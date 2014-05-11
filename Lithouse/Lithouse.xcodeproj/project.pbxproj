@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71C82E00191F2A8F00395392 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82DFF191F2A8F00395392 /* Foundation.framework */; };
+		71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E01191F2A8F00395392 /* CoreGraphics.framework */; };
+		71C82E04191F2A8F00395392 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E03191F2A8F00395392 /* UIKit.framework */; };
+		71C82E06191F2A8F00395392 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E05191F2A8F00395392 /* CoreData.framework */; };
+		71C82E0C191F2A8F00395392 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C82E0A191F2A8F00395392 /* InfoPlist.strings */; };
+		71C82E0E191F2A8F00395392 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E0D191F2A8F00395392 /* main.m */; };
+		71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E11191F2A8F00395392 /* LHAppDelegate.m */; };
+		71C82E15191F2A8F00395392 /* Lithouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E13191F2A8F00395392 /* Lithouse.xcdatamodeld */; };
+		71C82E17191F2A8F00395392 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C82E16191F2A8F00395392 /* Images.xcassets */; };
+		71C82E1E191F2A8F00395392 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E1D191F2A8F00395392 /* XCTest.framework */; };
+		71C82E1F191F2A8F00395392 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82DFF191F2A8F00395392 /* Foundation.framework */; };
+		71C82E20191F2A8F00395392 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E03191F2A8F00395392 /* UIKit.framework */; };
+		71C82E21191F2A8F00395392 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E05191F2A8F00395392 /* CoreData.framework */; };
+		71C82E29191F2A8F00395392 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C82E27191F2A8F00395392 /* InfoPlist.strings */; };
+		71C82E2B191F2A8F00395392 /* LithouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E2A191F2A8F00395392 /* LithouseTests.m */; };
+		71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E38191F358D00395392 /* MSDynamicsDrawerStyler.m */; };
+		71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E3B191F358D00395392 /* MSDynamicsDrawerViewController.m */; };
+		71C82E40191F3EE200395392 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C82E3F191F3EE200395392 /* Storyboard.storyboard */; };
+		71C82E44191F4CD600395392 /* LHMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E43191F4CD600395392 /* LHMainMenuViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		71C82E22191F2A8F00395392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71C82DF4191F2A8F00395392 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71C82DFB191F2A8F00395392;
+			remoteInfo = Lithouse;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		71C82DFC191F2A8F00395392 /* Lithouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lithouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71C82DFF191F2A8F00395392 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		71C82E01191F2A8F00395392 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		71C82E03191F2A8F00395392 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		71C82E05191F2A8F00395392 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		71C82E09191F2A8F00395392 /* Lithouse-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Lithouse-Info.plist"; sourceTree = "<group>"; };
+		71C82E0B191F2A8F00395392 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		71C82E0D191F2A8F00395392 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		71C82E0F191F2A8F00395392 /* Lithouse-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lithouse-Prefix.pch"; sourceTree = "<group>"; };
+		71C82E10191F2A8F00395392 /* LHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHAppDelegate.h; sourceTree = "<group>"; };
+		71C82E11191F2A8F00395392 /* LHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHAppDelegate.m; sourceTree = "<group>"; };
+		71C82E14191F2A8F00395392 /* Lithouse.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lithouse.xcdatamodel; sourceTree = "<group>"; };
+		71C82E16191F2A8F00395392 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		71C82E1C191F2A8F00395392 /* LithouseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LithouseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71C82E1D191F2A8F00395392 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		71C82E26191F2A8F00395392 /* LithouseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LithouseTests-Info.plist"; sourceTree = "<group>"; };
+		71C82E28191F2A8F00395392 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		71C82E2A191F2A8F00395392 /* LithouseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LithouseTests.m; sourceTree = "<group>"; };
+		71C82E37191F358D00395392 /* MSDynamicsDrawerStyler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDynamicsDrawerStyler.h; sourceTree = "<group>"; };
+		71C82E38191F358D00395392 /* MSDynamicsDrawerStyler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDynamicsDrawerStyler.m; sourceTree = "<group>"; };
+		71C82E39191F358D00395392 /* MSDynamicsDrawerViewController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSDynamicsDrawerViewController-Prefix.pch"; sourceTree = "<group>"; };
+		71C82E3A191F358D00395392 /* MSDynamicsDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDynamicsDrawerViewController.h; sourceTree = "<group>"; };
+		71C82E3B191F358D00395392 /* MSDynamicsDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDynamicsDrawerViewController.m; sourceTree = "<group>"; };
+		71C82E3F191F3EE200395392 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		71C82E42191F4CD600395392 /* LHMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHMainMenuViewController.h; sourceTree = "<group>"; };
+		71C82E43191F4CD600395392 /* LHMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHMainMenuViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71C82DF9191F2A8F00395392 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */,
+				71C82E06191F2A8F00395392 /* CoreData.framework in Frameworks */,
+				71C82E04191F2A8F00395392 /* UIKit.framework in Frameworks */,
+				71C82E00191F2A8F00395392 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71C82E19191F2A8F00395392 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71C82E1E191F2A8F00395392 /* XCTest.framework in Frameworks */,
+				71C82E21191F2A8F00395392 /* CoreData.framework in Frameworks */,
+				71C82E20191F2A8F00395392 /* UIKit.framework in Frameworks */,
+				71C82E1F191F2A8F00395392 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71C82DF3191F2A8F00395392 = {
+			isa = PBXGroup;
+			children = (
+				71C82E3E191F359300395392 /* libs */,
+				71C82E07191F2A8F00395392 /* Lithouse */,
+				71C82E24191F2A8F00395392 /* LithouseTests */,
+				71C82DFE191F2A8F00395392 /* Frameworks */,
+				71C82DFD191F2A8F00395392 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		71C82DFD191F2A8F00395392 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71C82DFC191F2A8F00395392 /* Lithouse.app */,
+				71C82E1C191F2A8F00395392 /* LithouseTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		71C82DFE191F2A8F00395392 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				71C82DFF191F2A8F00395392 /* Foundation.framework */,
+				71C82E01191F2A8F00395392 /* CoreGraphics.framework */,
+				71C82E03191F2A8F00395392 /* UIKit.framework */,
+				71C82E05191F2A8F00395392 /* CoreData.framework */,
+				71C82E1D191F2A8F00395392 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		71C82E07191F2A8F00395392 /* Lithouse */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E41191F4C9100395392 /* ViewControllers */,
+				71C82E10191F2A8F00395392 /* LHAppDelegate.h */,
+				71C82E11191F2A8F00395392 /* LHAppDelegate.m */,
+				71C82E16191F2A8F00395392 /* Images.xcassets */,
+				71C82E13191F2A8F00395392 /* Lithouse.xcdatamodeld */,
+				71C82E3F191F3EE200395392 /* Storyboard.storyboard */,
+				71C82E08191F2A8F00395392 /* Supporting Files */,
+			);
+			path = Lithouse;
+			sourceTree = "<group>";
+		};
+		71C82E08191F2A8F00395392 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E09191F2A8F00395392 /* Lithouse-Info.plist */,
+				71C82E0A191F2A8F00395392 /* InfoPlist.strings */,
+				71C82E0D191F2A8F00395392 /* main.m */,
+				71C82E0F191F2A8F00395392 /* Lithouse-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71C82E24191F2A8F00395392 /* LithouseTests */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E2A191F2A8F00395392 /* LithouseTests.m */,
+				71C82E25191F2A8F00395392 /* Supporting Files */,
+			);
+			path = LithouseTests;
+			sourceTree = "<group>";
+		};
+		71C82E25191F2A8F00395392 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E26191F2A8F00395392 /* LithouseTests-Info.plist */,
+				71C82E27191F2A8F00395392 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71C82E36191F358D00395392 /* MSDynamicsDrawerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E37191F358D00395392 /* MSDynamicsDrawerStyler.h */,
+				71C82E38191F358D00395392 /* MSDynamicsDrawerStyler.m */,
+				71C82E39191F358D00395392 /* MSDynamicsDrawerViewController-Prefix.pch */,
+				71C82E3A191F358D00395392 /* MSDynamicsDrawerViewController.h */,
+				71C82E3B191F358D00395392 /* MSDynamicsDrawerViewController.m */,
+			);
+			name = MSDynamicsDrawerViewController;
+			path = ../libs/MSDynamicsDrawerViewController;
+			sourceTree = "<group>";
+		};
+		71C82E3E191F359300395392 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E36191F358D00395392 /* MSDynamicsDrawerViewController */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		71C82E41191F4C9100395392 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E42191F4CD600395392 /* LHMainMenuViewController.h */,
+				71C82E43191F4CD600395392 /* LHMainMenuViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71C82DFB191F2A8F00395392 /* Lithouse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71C82E2E191F2A8F00395392 /* Build configuration list for PBXNativeTarget "Lithouse" */;
+			buildPhases = (
+				71C82DF8191F2A8F00395392 /* Sources */,
+				71C82DF9191F2A8F00395392 /* Frameworks */,
+				71C82DFA191F2A8F00395392 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lithouse;
+			productName = Lithouse;
+			productReference = 71C82DFC191F2A8F00395392 /* Lithouse.app */;
+			productType = "com.apple.product-type.application";
+		};
+		71C82E1B191F2A8F00395392 /* LithouseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71C82E31191F2A8F00395392 /* Build configuration list for PBXNativeTarget "LithouseTests" */;
+			buildPhases = (
+				71C82E18191F2A8F00395392 /* Sources */,
+				71C82E19191F2A8F00395392 /* Frameworks */,
+				71C82E1A191F2A8F00395392 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71C82E23191F2A8F00395392 /* PBXTargetDependency */,
+			);
+			name = LithouseTests;
+			productName = LithouseTests;
+			productReference = 71C82E1C191F2A8F00395392 /* LithouseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71C82DF4191F2A8F00395392 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LH;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Shah Hossain";
+				TargetAttributes = {
+					71C82E1B191F2A8F00395392 = {
+						TestTargetID = 71C82DFB191F2A8F00395392;
+					};
+				};
+			};
+			buildConfigurationList = 71C82DF7191F2A8F00395392 /* Build configuration list for PBXProject "Lithouse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 71C82DF3191F2A8F00395392;
+			productRefGroup = 71C82DFD191F2A8F00395392 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71C82DFB191F2A8F00395392 /* Lithouse */,
+				71C82E1B191F2A8F00395392 /* LithouseTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71C82DFA191F2A8F00395392 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71C82E0C191F2A8F00395392 /* InfoPlist.strings in Resources */,
+				71C82E17191F2A8F00395392 /* Images.xcassets in Resources */,
+				71C82E40191F3EE200395392 /* Storyboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71C82E1A191F2A8F00395392 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71C82E29191F2A8F00395392 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71C82DF8191F2A8F00395392 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71C82E44191F4CD600395392 /* LHMainMenuViewController.m in Sources */,
+				71C82E15191F2A8F00395392 /* Lithouse.xcdatamodeld in Sources */,
+				71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */,
+				71C82E0E191F2A8F00395392 /* main.m in Sources */,
+				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
+				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71C82E18191F2A8F00395392 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71C82E2B191F2A8F00395392 /* LithouseTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		71C82E23191F2A8F00395392 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71C82DFB191F2A8F00395392 /* Lithouse */;
+			targetProxy = 71C82E22191F2A8F00395392 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		71C82E0A191F2A8F00395392 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71C82E0B191F2A8F00395392 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		71C82E27191F2A8F00395392 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71C82E28191F2A8F00395392 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		71C82E2C191F2A8F00395392 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		71C82E2D191F2A8F00395392 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		71C82E2F191F2A8F00395392 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
+				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/shah/Desktop/LithouseAppAlpha/libs,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		71C82E30191F2A8F00395392 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
+				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/shah/Desktop/LithouseAppAlpha/libs,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		71C82E32191F2A8F00395392 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lithouse.app/Lithouse";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LithouseTests/LithouseTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		71C82E33191F2A8F00395392 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lithouse.app/Lithouse";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
+				INFOPLIST_FILE = "LithouseTests/LithouseTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		71C82DF7191F2A8F00395392 /* Build configuration list for PBXProject "Lithouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71C82E2C191F2A8F00395392 /* Debug */,
+				71C82E2D191F2A8F00395392 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71C82E2E191F2A8F00395392 /* Build configuration list for PBXNativeTarget "Lithouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71C82E2F191F2A8F00395392 /* Debug */,
+				71C82E30191F2A8F00395392 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		71C82E31191F2A8F00395392 /* Build configuration list for PBXNativeTarget "LithouseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71C82E32191F2A8F00395392 /* Debug */,
+				71C82E33191F2A8F00395392 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		71C82E13191F2A8F00395392 /* Lithouse.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				71C82E14191F2A8F00395392 /* Lithouse.xcdatamodel */,
+			);
+			currentVersion = 71C82E14191F2A8F00395392 /* Lithouse.xcdatamodel */;
+			path = Lithouse.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 71C82DF4191F2A8F00395392 /* Project object */;
+}
