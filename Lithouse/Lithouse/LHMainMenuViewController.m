@@ -46,11 +46,29 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    CAGradientLayer * backgroundLayer = [self backgroundGradient];
+    backgroundLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:backgroundLayer atIndex : 0];
+}
+
+//gradient background
+- (CAGradientLayer *) backgroundGradient {
+
+    UIColor * topColor = [UIColor colorWithRed : 0.022 green : 0.865 blue : 0.022 alpha : 1];
+    UIColor * bottomColor = [UIColor colorWithRed : 0.022 green : 0.665 blue : 0.22 alpha : 1];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSArray * colors = [NSArray arrayWithObjects : (id)topColor.CGColor, bottomColor.CGColor, nil];
+    NSNumber * stopOne = [NSNumber numberWithFloat : 0.0];
+    NSNumber * stopTwo = [NSNumber numberWithFloat : 1.0];
+    
+    NSArray * locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
+    
+    CAGradientLayer * headerLayer = [CAGradientLayer layer];
+    headerLayer.colors = colors;
+    headerLayer.locations = locations;
+    
+    return headerLayer;
+    
 }
 
 #pragma mark - MSMenuViewController
@@ -145,7 +163,7 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
                                                             forIndexPath : indexPath];
     
     cell.textLabel.text = self.paneViewControllerTitles[@([self paneViewControllerTypeForIndexPath : indexPath])];
-    
+    cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -157,11 +175,11 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
     [self transitionToViewController : paneViewControllerType];
     
     // Prevent visual display bug with cell dividers
-    [self.tableView deselectRowAtIndexPath : indexPath animated : YES];
+    [tableView deselectRowAtIndexPath : indexPath animated : YES];
     double delayInSeconds = 0.3;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.tableView reloadData];
+        [tableView reloadData];
     });
 }
 

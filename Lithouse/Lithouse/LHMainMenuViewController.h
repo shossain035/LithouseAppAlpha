@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, LHPaneViewControllerType) {
 };
 
 
-@interface LHMainMenuViewController : UITableViewController
+@interface LHMainMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) LHPaneViewControllerType         paneViewControllerType;
 @property (nonatomic, weak)   MSDynamicsDrawerViewController * dynamicsDrawerViewController;
