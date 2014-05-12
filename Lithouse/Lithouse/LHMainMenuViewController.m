@@ -11,10 +11,12 @@
 NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
 
 @interface LHMainMenuViewController ()
-@property (nonatomic, strong) NSDictionary    * paneViewControllerTitles;
-@property (nonatomic, strong) NSDictionary    * paneViewControllerIdentifiers;
+@property (nonatomic, strong) NSDictionary             * paneViewControllerTitles;
+@property (nonatomic, strong) NSDictionary             * paneViewControllerIdentifiers;
 
-@property (nonatomic, strong) UIBarButtonItem * drawerBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem          * drawerBarButtonItem;
+@property (nonatomic, strong) IBOutlet UITableView     * tableView;
+
 @end
 
 @implementation LHMainMenuViewController
@@ -49,6 +51,8 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
     CAGradientLayer * backgroundLayer = [self backgroundGradient];
     backgroundLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:backgroundLayer atIndex : 0];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
 }
 
 //gradient background
