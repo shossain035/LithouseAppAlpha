@@ -26,6 +26,10 @@
 		71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E3B191F358D00395392 /* MSDynamicsDrawerViewController.m */; };
 		71C82E40191F3EE200395392 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C82E3F191F3EE200395392 /* Storyboard.storyboard */; };
 		71C82E44191F4CD600395392 /* LHMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E43191F4CD600395392 /* LHMainMenuViewController.m */; };
+		71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4619205E6100395392 /* LHDevicesViewController.m */; };
+		71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4A1920621B00395392 /* LHDeviceCell.m */; };
+		71C82E4F1920775F00395392 /* LHDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4E1920775F00395392 /* LHDevice.m */; };
+		71C82E521920778500395392 /* LHTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E511920778500395392 /* LHTrigger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,14 @@
 		71C82E3F191F3EE200395392 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		71C82E42191F4CD600395392 /* LHMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHMainMenuViewController.h; sourceTree = "<group>"; };
 		71C82E43191F4CD600395392 /* LHMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHMainMenuViewController.m; sourceTree = "<group>"; };
+		71C82E4519205E6100395392 /* LHDevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDevicesViewController.h; sourceTree = "<group>"; };
+		71C82E4619205E6100395392 /* LHDevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDevicesViewController.m; sourceTree = "<group>"; };
+		71C82E491920621B00395392 /* LHDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDeviceCell.h; sourceTree = "<group>"; };
+		71C82E4A1920621B00395392 /* LHDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDeviceCell.m; sourceTree = "<group>"; };
+		71C82E4D1920775F00395392 /* LHDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDevice.h; sourceTree = "<group>"; };
+		71C82E4E1920775F00395392 /* LHDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDevice.m; sourceTree = "<group>"; };
+		71C82E501920778500395392 /* LHTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHTrigger.h; sourceTree = "<group>"; };
+		71C82E511920778500395392 /* LHTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHTrigger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +140,8 @@
 		71C82E07191F2A8F00395392 /* Lithouse */ = {
 			isa = PBXGroup;
 			children = (
+				71C82E4C1920772400395392 /* Models */,
+				71C82E48192061ED00395392 /* Views */,
 				71C82E41191F4C9100395392 /* ViewControllers */,
 				71C82E10191F2A8F00395392 /* LHAppDelegate.h */,
 				71C82E11191F2A8F00395392 /* LHAppDelegate.m */,
@@ -194,8 +208,30 @@
 			children = (
 				71C82E42191F4CD600395392 /* LHMainMenuViewController.h */,
 				71C82E43191F4CD600395392 /* LHMainMenuViewController.m */,
+				71C82E4519205E6100395392 /* LHDevicesViewController.h */,
+				71C82E4619205E6100395392 /* LHDevicesViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		71C82E48192061ED00395392 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E491920621B00395392 /* LHDeviceCell.h */,
+				71C82E4A1920621B00395392 /* LHDeviceCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		71C82E4C1920772400395392 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E4D1920775F00395392 /* LHDevice.h */,
+				71C82E4E1920775F00395392 /* LHDevice.m */,
+				71C82E501920778500395392 /* LHTrigger.h */,
+				71C82E511920778500395392 /* LHTrigger.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,9 +333,13 @@
 			files = (
 				71C82E44191F4CD600395392 /* LHMainMenuViewController.m in Sources */,
 				71C82E15191F2A8F00395392 /* Lithouse.xcdatamodeld in Sources */,
+				71C82E521920778500395392 /* LHTrigger.m in Sources */,
 				71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */,
 				71C82E0E191F2A8F00395392 /* main.m in Sources */,
+				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
+				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
+				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
