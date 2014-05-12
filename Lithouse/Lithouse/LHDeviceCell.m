@@ -22,7 +22,7 @@
 - (IBAction) infoButtonTapped : (id) sender
 {
     NSLog ( @"info button tapped" );
-    [self infoButtonCallback];
+    self.infoButtonCallback();
 }
 
 

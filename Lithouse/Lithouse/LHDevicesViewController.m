@@ -94,6 +94,10 @@ NSString * const LSDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
     cell.layer.borderWidth = 0.5f;
     cell.layer.borderColor = [[UIColor greenColor] CGColor];
 
+    cell.infoButtonCallback = ^{
+        NSLog ( @"device info %@", device.deviceName );
+    };
+    
     return cell;
 }
 
