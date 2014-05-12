@@ -8,14 +8,14 @@
 
 #import "LHDevicesViewController.h"
 #import "LHDevice.h"
-#import "LHTrigger.h"
+#import "LHDeviceGroup.h"
 #import "LHDeviceCell.h"
 
 NSString * const LSDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
 
 @interface LHDevicesViewController ()
 
-@property NSMutableArray * devices;
+@property NSMutableArray * devicesAndGroups;
 
 @end
 
@@ -34,27 +34,42 @@ NSString * const LSDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
 {
     [super viewDidLoad];
     
-    self.devices = [[NSMutableArray alloc] init];
+    self.devicesAndGroups = [[NSMutableArray alloc] init];
+    NSMutableArray * devices = [[NSMutableArray alloc] init];
+    NSMutableArray * deviceGroups = [[NSMutableArray alloc] init];
+    [self.devicesAndGroups addObject : devices];
+    [self.devicesAndGroups addObject : deviceGroups];
     
     LHDevice * device1 = [[LHDevice alloc] init];
-    device1.deviceName = @"device1";
-    device1.deviceImage = [UIImage imageNamed : @"unknown"];
-    [self.devices addObject : device1];
+    device1.friendlyName = @"device1";
+    device1.displayImage = [UIImage imageNamed : @"unknown"];
+    [devices addObject : device1];
     
     LHDevice * device2 = [[LHDevice alloc] init];
-    device2.deviceName = @"device2";
-    device2.deviceImage = [UIImage imageNamed : @"unknown"];
-    [self.devices addObject : device2];
+    device2.friendlyName = @"device2";
+    device2.displayImage = [UIImage imageNamed : @"unknown"];
+    [devices addObject : device2];
     
     LHDevice * device3 = [[LHDevice alloc] init];
-    device3.deviceName = @"device3";
-    device3.deviceImage = [UIImage imageNamed : @"unknown"];
-    [self.devices addObject : device3];
+    device3.friendlyName = @"device3";
+    device3.displayImage = [UIImage imageNamed : @"unknown"];
+    [devices addObject : device3];
     
     LHDevice * device4 = [[LHDevice alloc] init];
-    device4.deviceName = @"device4";
-    device4.deviceImage = [UIImage imageNamed : @"unknown"];
-    [self.devices addObject : device4];
+    device4.friendlyName = @"device4";
+    device4.displayImage = [UIImage imageNamed : @"unknown"];
+    [devices addObject : device4];
+    
+    LHDeviceGroup * deviceGroup1 = [[LHDeviceGroup alloc] init];
+    deviceGroup1.friendlyName = @"group1";
+    deviceGroup1.displayImage = [UIImage imageNamed : @"unknown"];
+    [deviceGroups addObject : deviceGroup1];
+    
+    LHDeviceGroup * deviceGroup2 = [[LHDeviceGroup alloc] init];
+    deviceGroup2.friendlyName = @"group2";
+    deviceGroup2.displayImage = [UIImage imageNamed : @"unknown"];
+    [deviceGroups addObject : deviceGroup2];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,42 +78,72 @@ NSString * const LSDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Collection view layout delegate
+
 - (UIEdgeInsets) collectionView : (UICollectionView *) collectionView
                          layout : (UICollectionViewLayout *) collectionViewLayout
          insetForSectionAtIndex : (NSInteger) section
 {
-    UIEdgeInsets insets = { .left = 5, .right = 5, .top = 5 };
+    //show margins
+    UIEdgeInsets insets = { .left = 5, .right = 5, .top = 5, .bottom = 5 };
     return insets;
+}
+
+- (CGSize) collectionView : (UICollectionView *) collectionView
+                   layout : (UICollectionViewLayout*) collectionViewLayout
+referenceSizeForHeaderInSection : (NSInteger) section
+{
+    if ( section == 0 ) {
+        return CGSizeMake ( 0, 0 );
+    }else {
+        return CGSizeMake ( self.collectionView.bounds.size.width, 25 );
+    }
 }
 
 #pragma mark - Collection view data source
 
+- (NSInteger) numberOfSectionsInCollectionView : (UICollectionView *) collectionView
+{
+    return 2;
+}
+
 - (NSInteger) collectionView : (UICollectionView *) view
       numberOfItemsInSection : (NSInteger) section;
 {
-    return [self.devices count];
+    return [[self.devicesAndGroups objectAtIndex : section] count];
 }
 
-
 - (UICollectionViewCell *) collectionView : (UICollectionView *) cv
-                   cellForItemAtIndexPath : (NSIndexPath *) indexPath {
+                   cellForItemAtIndexPath : (NSIndexPath *) indexPath
+{
     
     LHDeviceCell * cell = [cv dequeueReusableCellWithReuseIdentifier : LSDeviceCellReuseIdentifier
                                                         forIndexPath : indexPath];
     
-    LHDevice * device = [self.devices objectAtIndex : indexPath.row];
+    LHDevice * device = [[self.devicesAndGroups objectAtIndex : indexPath.section]
+                         objectAtIndex : indexPath.row];
     
-    cell.nameLabel.text = device.deviceName;
-    cell.image.image = device.deviceImage;
+    cell.nameLabel.text = device.friendlyName;
+    cell.image.image = device.displayImage;
     
     cell.layer.borderWidth = 0.5f;
     cell.layer.borderColor = [[UIColor greenColor] CGColor];
 
     cell.infoButtonCallback = ^{
-        NSLog ( @"device info %@", device.deviceName );
+        NSLog ( @"device info %@", device.friendlyName );
     };
     
     return cell;
+}
+
+- (UICollectionReusableView *) collectionView : (UICollectionView *) collectionView
+            viewForSupplementaryElementOfKind : (NSString *) kind
+                                  atIndexPath : (NSIndexPath *) indexPath
+{
+    UICollectionReusableView * headerView = [collectionView dequeueReusableSupplementaryViewOfKind : UICollectionElementKindSectionHeader
+                                                                               withReuseIdentifier : @"DeviceCollectionHeader"
+                                                                                      forIndexPath : indexPath];
+    return headerView;
 }
 
 #pragma mark - Collection view delegate

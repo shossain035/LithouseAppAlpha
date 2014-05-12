@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */; };
 		71C82E00191F2A8F00395392 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82DFF191F2A8F00395392 /* Foundation.framework */; };
 		71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E01191F2A8F00395392 /* CoreGraphics.framework */; };
 		71C82E04191F2A8F00395392 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E03191F2A8F00395392 /* UIKit.framework */; };
@@ -29,7 +30,6 @@
 		71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4619205E6100395392 /* LHDevicesViewController.m */; };
 		71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4A1920621B00395392 /* LHDeviceCell.m */; };
 		71C82E4F1920775F00395392 /* LHDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4E1920775F00395392 /* LHDevice.m */; };
-		71C82E521920778500395392 /* LHTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E511920778500395392 /* LHTrigger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7128FD8C19216F120031BEA8 /* LHDeviceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDeviceGroup.h; sourceTree = "<group>"; };
+		7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDeviceGroup.m; sourceTree = "<group>"; };
 		71C82DFC191F2A8F00395392 /* Lithouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lithouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C82DFF191F2A8F00395392 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		71C82E01191F2A8F00395392 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -75,8 +77,6 @@
 		71C82E4A1920621B00395392 /* LHDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDeviceCell.m; sourceTree = "<group>"; };
 		71C82E4D1920775F00395392 /* LHDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDevice.h; sourceTree = "<group>"; };
 		71C82E4E1920775F00395392 /* LHDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDevice.m; sourceTree = "<group>"; };
-		71C82E501920778500395392 /* LHTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHTrigger.h; sourceTree = "<group>"; };
-		71C82E511920778500395392 /* LHTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHTrigger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,8 +228,8 @@
 			children = (
 				71C82E4D1920775F00395392 /* LHDevice.h */,
 				71C82E4E1920775F00395392 /* LHDevice.m */,
-				71C82E501920778500395392 /* LHTrigger.h */,
-				71C82E511920778500395392 /* LHTrigger.m */,
+				7128FD8C19216F120031BEA8 /* LHDeviceGroup.h */,
+				7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -333,10 +333,10 @@
 			files = (
 				71C82E44191F4CD600395392 /* LHMainMenuViewController.m in Sources */,
 				71C82E15191F2A8F00395392 /* Lithouse.xcdatamodeld in Sources */,
-				71C82E521920778500395392 /* LHTrigger.m in Sources */,
 				71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */,
 				71C82E0E191F2A8F00395392 /* main.m in Sources */,
 				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
+				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
@@ -545,6 +545,7 @@
 				71C82E30191F2A8F00395392 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		71C82E31191F2A8F00395392 /* Build configuration list for PBXNativeTarget "LithouseTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +554,7 @@
 				71C82E33191F2A8F00395392 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
