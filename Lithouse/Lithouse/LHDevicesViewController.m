@@ -8,8 +8,10 @@
 
 #import "LHDevicesViewController.h"
 #import "LHDevice.h"
+#import "LHWeMoSwitch.h"
 #import "LHDeviceGroup.h"
 #import "LHDeviceCell.h"
+
 
 NSString * const LHDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
 
@@ -55,8 +57,8 @@ NSString * const LHDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
     device3.displayImage = [UIImage imageNamed : @"unknown"];
     [devices addObject : device3];
     
-    LHDevice * device4 = [[LHDevice alloc] init];
-    device4.friendlyName = @"device4";
+    LHDevice * device4 = [[LHWeMoSwitch alloc] init];
+    device4.friendlyName = @"WeMo";
     device4.displayImage = [UIImage imageNamed : @"unknown"];
     [devices addObject : device4];
     

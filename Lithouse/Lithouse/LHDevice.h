@@ -10,8 +10,8 @@
 
 @interface LHDevice : NSObject
 
-@property (nonatomic, strong) NSString * friendlyName;
-@property (nonatomic, strong) UIImage  * displayImage;
-
+@property (nonatomic, strong) NSString       * friendlyName;
+@property (nonatomic, strong) UIImage        * displayImage;
+@property (nonatomic, strong) NSMutableArray * permissibleActions;
 
 @end

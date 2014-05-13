@@ -10,6 +10,10 @@
 		7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */; };
 		7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */; };
 		7128FD971921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD961921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m */; };
+		7128FD9B192295780031BEA8 /* LHAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD9A192295780031BEA8 /* LHAction.m */; };
+		7128FD9E192296AE0031BEA8 /* LHTurnOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD9D192296AE0031BEA8 /* LHTurnOn.m */; };
+		7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */; };
+		7128FDA51922BF480031BEA8 /* LHTurnOff.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA41922BF480031BEA8 /* LHTurnOff.m */; };
 		71C82E00191F2A8F00395392 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82DFF191F2A8F00395392 /* Foundation.framework */; };
 		71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E01191F2A8F00395392 /* CoreGraphics.framework */; };
 		71C82E04191F2A8F00395392 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E03191F2A8F00395392 /* UIKit.framework */; };
@@ -51,6 +55,14 @@
 		7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGroupCRUDViewController.m; sourceTree = "<group>"; };
 		7128FD951921F21C0031BEA8 /* LHGroupDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGroupDeviceTableViewCell.h; sourceTree = "<group>"; };
 		7128FD961921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGroupDeviceTableViewCell.m; sourceTree = "<group>"; };
+		7128FD99192295780031BEA8 /* LHAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAction.h; sourceTree = "<group>"; };
+		7128FD9A192295780031BEA8 /* LHAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAction.m; sourceTree = "<group>"; };
+		7128FD9C192296AE0031BEA8 /* LHTurnOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHTurnOn.h; sourceTree = "<group>"; };
+		7128FD9D192296AE0031BEA8 /* LHTurnOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHTurnOn.m; sourceTree = "<group>"; };
+		7128FDA01922A11A0031BEA8 /* LHWeMoSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHWeMoSwitch.h; sourceTree = "<group>"; };
+		7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHWeMoSwitch.m; sourceTree = "<group>"; };
+		7128FDA31922BF480031BEA8 /* LHTurnOff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHTurnOff.h; sourceTree = "<group>"; };
+		7128FDA41922BF480031BEA8 /* LHTurnOff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHTurnOff.m; sourceTree = "<group>"; };
 		71C82DFC191F2A8F00395392 /* Lithouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lithouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C82DFF191F2A8F00395392 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		71C82E01191F2A8F00395392 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +123,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7128FD98192295530031BEA8 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				7128FD99192295780031BEA8 /* LHAction.h */,
+				7128FD9A192295780031BEA8 /* LHAction.m */,
+				7128FD9C192296AE0031BEA8 /* LHTurnOn.h */,
+				7128FD9D192296AE0031BEA8 /* LHTurnOn.m */,
+				7128FDA31922BF480031BEA8 /* LHTurnOff.h */,
+				7128FDA41922BF480031BEA8 /* LHTurnOff.m */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
+		7128FD9F1922A0B10031BEA8 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				71C82E4D1920775F00395392 /* LHDevice.h */,
+				71C82E4E1920775F00395392 /* LHDevice.m */,
+				7128FD8C19216F120031BEA8 /* LHDeviceGroup.h */,
+				7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */,
+				7128FDA01922A11A0031BEA8 /* LHWeMoSwitch.h */,
+				7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */,
+			);
+			name = Devices;
+			sourceTree = "<group>";
+		};
 		71C82DF3191F2A8F00395392 = {
 			isa = PBXGroup;
 			children = (
@@ -236,10 +274,8 @@
 		71C82E4C1920772400395392 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				71C82E4D1920775F00395392 /* LHDevice.h */,
-				71C82E4E1920775F00395392 /* LHDevice.m */,
-				7128FD8C19216F120031BEA8 /* LHDeviceGroup.h */,
-				7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */,
+				7128FD9F1922A0B10031BEA8 /* Devices */,
+				7128FD98192295530031BEA8 /* Actions */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -344,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7128FD9B192295780031BEA8 /* LHAction.m in Sources */,
 				71C82E44191F4CD600395392 /* LHMainMenuViewController.m in Sources */,
 				71C82E15191F2A8F00395392 /* Lithouse.xcdatamodeld in Sources */,
 				71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */,
@@ -352,9 +389,12 @@
 				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
 				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
 				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
+				7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
+				7128FD9E192296AE0031BEA8 /* LHTurnOn.m in Sources */,
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
+				7128FDA51922BF480031BEA8 /* LHTurnOff.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

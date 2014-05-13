@@ -10,4 +10,13 @@
 
 @implementation LHDevice
 
+- (id) init
+{
+    if ( self = [super init] ) {
+        self.permissibleActions = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
+
 @end
