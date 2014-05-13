@@ -11,7 +11,7 @@
 #import "LHDeviceGroup.h"
 #import "LHDeviceCell.h"
 
-NSString * const LSDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
+NSString * const LHDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
 
 @interface LHDevicesViewController ()
 
@@ -85,7 +85,7 @@ NSString * const LSDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
          insetForSectionAtIndex : (NSInteger) section
 {
     //show margins
-    UIEdgeInsets insets = { .left = 5, .right = 5, .top = 5, .bottom = 5 };
+    UIEdgeInsets insets = { .left = 10, .right = 10, .top = 10, .bottom = 10 };
     return insets;
 }
 
@@ -117,7 +117,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
                    cellForItemAtIndexPath : (NSIndexPath *) indexPath
 {
     
-    LHDeviceCell * cell = [cv dequeueReusableCellWithReuseIdentifier : LSDeviceCellReuseIdentifier
+    LHDeviceCell * cell = [cv dequeueReusableCellWithReuseIdentifier : LHDeviceCellReuseIdentifier
                                                         forIndexPath : indexPath];
     
     LHDevice * device = [[self.devicesAndGroups objectAtIndex : indexPath.section]

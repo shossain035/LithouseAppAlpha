@@ -7,8 +7,11 @@
 //
 
 #import "LHGroupCRUDViewController.h"
+#import "LHGroupDeviceTableViewCell.h"
 
 @interface LHGroupCRUDViewController ()
+
+@property (nonatomic, strong) IBOutlet UITableView * deviceTableView;
 
 @end
 
@@ -39,7 +42,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+     self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,15 +52,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Table view data source
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (NSInteger) numberOfSectionsInTableView : (UITableView *) tableView
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    return 1;
 }
-*/
+
+- (NSInteger) tableView : (UITableView *) tableView
+  numberOfRowsInSection : (NSInteger) section
+{
+    return 2;
+}
+
+
+ - (UITableViewCell *) tableView : (UITableView *) tableView
+           cellForRowAtIndexPath : (NSIndexPath *) indexPath
+ {
+     LHGroupDeviceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier : @"GroupDeviceCell"
+                                                                         forIndexPath : indexPath];
+ 
+     cell.deviceNameLabel.text = @"device1";
+     return cell;
+ }
 
 @end

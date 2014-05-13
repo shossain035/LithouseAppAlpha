@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LHGroupCRUDViewController : UIViewController
+@interface LHGroupCRUDViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end
