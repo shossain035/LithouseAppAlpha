@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */; };
+		7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */; };
 		71C82E00191F2A8F00395392 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82DFF191F2A8F00395392 /* Foundation.framework */; };
 		71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E01191F2A8F00395392 /* CoreGraphics.framework */; };
 		71C82E04191F2A8F00395392 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E03191F2A8F00395392 /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		7128FD8C19216F120031BEA8 /* LHDeviceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDeviceGroup.h; sourceTree = "<group>"; };
 		7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDeviceGroup.m; sourceTree = "<group>"; };
+		7128FD8F19219A360031BEA8 /* LHGroupCRUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGroupCRUDViewController.h; sourceTree = "<group>"; };
+		7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGroupCRUDViewController.m; sourceTree = "<group>"; };
 		71C82DFC191F2A8F00395392 /* Lithouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lithouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C82DFF191F2A8F00395392 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		71C82E01191F2A8F00395392 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -210,6 +213,8 @@
 				71C82E43191F4CD600395392 /* LHMainMenuViewController.m */,
 				71C82E4519205E6100395392 /* LHDevicesViewController.h */,
 				71C82E4619205E6100395392 /* LHDevicesViewController.m */,
+				7128FD8F19219A360031BEA8 /* LHGroupCRUDViewController.h */,
+				7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */,
 				71C82E0E191F2A8F00395392 /* main.m in Sources */,
 				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
+				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
 				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,

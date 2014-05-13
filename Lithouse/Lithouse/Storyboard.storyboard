@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="-69" y="842"/>
         </scene>
-        <!--View Controller - Trigger-->
+        <!--GroupCRUD View Controller - Create Group-->
         <scene sceneID="aoq-fd-Bdj">
             <objects>
-                <viewController id="clm-La-61T" sceneMemberID="viewController">
+                <viewController id="clm-La-61T" customClass="LHGroupCRUDViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NWz-4U-DmI"/>
                         <viewControllerLayoutGuide type="bottom" id="mr8-sF-byb"/>
@@ -86,9 +86,18 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Trigger" id="5cc-RD-HWu">
+                    <navigationItem key="navigationItem" title="Create Group" id="5cc-RD-HWu">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="VHg-iU-ibJ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="NAq-yo-YFB"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xje-iO-5nz">
+                            <connections>
+                                <action selector="cancel:" destination="clm-La-61T" id="2n4-gN-zyx"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="NAq-yo-YFB">
+                            <connections>
+                                <action selector="save:" destination="clm-La-61T" id="q3m-zC-zKw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHC-Jz-e9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
