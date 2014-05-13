@@ -10,11 +10,15 @@
 
 @implementation LHDeviceCell
 
-- (id)initWithFrame:(CGRect)frame
+- (id) initWithCoder : (NSCoder*) aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Initialization code
+        self.layer.borderWidth = 1.0f;
+        self.layer.borderColor = [[UIColor greenColor] CGColor];
+        self.layer.cornerRadius = 10;
+        self.layer.shadowPath = [[UIBezierPath bezierPathWithRoundedRect : self.bounds
+                                                            cornerRadius : self.layer.cornerRadius] CGPath];
     }
     return self;
 }

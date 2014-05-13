@@ -126,9 +126,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
     cell.nameLabel.text = device.friendlyName;
     cell.image.image = device.displayImage;
     
-    cell.layer.borderWidth = 0.5f;
-    cell.layer.borderColor = [[UIColor greenColor] CGColor];
-
     cell.infoButtonCallback = ^{
         NSLog ( @"device info %@", device.friendlyName );
     };
@@ -151,21 +148,17 @@ referenceSizeForHeaderInSection : (NSInteger) section
 {
     NSLog ( @"item selected at %@", indexPath );
     
-    /*
+   
     UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath : indexPath];
-    [UIView animateWithDuration : 1.0
-                          delay : 0
-                        options : (UIViewAnimationOptionAllowUserInteraction)
-                     animations : ^{
-                         cell.layer.borderColor = [[UIColor blueColor] CGColor];
-                         cell.layer.borderWidth = 1;
-                     }
-                     completion : ^(BOOL finished){
-                         cell.layer.borderColor = [[UIColor greenColor] CGColor];
-                         cell.layer.borderWidth = 0.5f;
-                     }
-     ];
-     */
+    
+    CABasicAnimation * borderAnimation = [CABasicAnimation animationWithKeyPath : @"borderWidth"];
+    [borderAnimation setFromValue : [NSNumber numberWithFloat : cell.layer.borderWidth]];
+    [borderAnimation setToValue : [NSNumber numberWithFloat : 0.0f]];
+    [borderAnimation setRepeatCount : 1.0];
+    [borderAnimation setAutoreverses : NO];
+    [borderAnimation setDuration : 0.3f];
+    
+    [cell.layer addAnimation : borderAnimation forKey : @"animateBorder"];
 }
 
 

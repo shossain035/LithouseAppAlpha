@@ -287,6 +287,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Shah Hossain";
 				TargetAttributes = {
+					71C82DFB191F2A8F00395392 = {
+						DevelopmentTeam = ZJ6D9WMT6L;
+					};
 					71C82E1B191F2A8F00395392 = {
 						TestTargetID = 71C82DFB191F2A8F00395392;
 					};
@@ -463,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
 				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
@@ -480,6 +484,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
 				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
