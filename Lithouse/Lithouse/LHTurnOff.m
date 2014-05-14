@@ -13,7 +13,7 @@
 
 - (NSString *) friendlyName
 {
-    return @"Turn On";
+    return @"Turn Off";
 }
 
 - (void) performAction

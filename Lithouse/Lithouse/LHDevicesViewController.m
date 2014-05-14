@@ -7,13 +7,15 @@
 //
 
 #import "LHDevicesViewController.h"
+#import "LHGroupCRUDViewController.h"
 #import "LHDevice.h"
 #import "LHWeMoSwitch.h"
 #import "LHDeviceGroup.h"
 #import "LHDeviceCell.h"
 
 
-NSString * const LHDeviceCellReuseIdentifier = @"DevicesAndTriggerCell";
+NSString * const LHDeviceCellReuseIdentifier    = @"DevicesAndTriggerCell";
+NSString * const LHPushGroupCRUDSegueIdentifier = @"PushGroupCRUDSegue";
 
 @interface LHDevicesViewController ()
 
@@ -162,6 +164,19 @@ referenceSizeForHeaderInSection : (NSInteger) section
     
     [cell.layer addAnimation : borderAnimation forKey : @"animateBorder"];
 }
+
+#pragma mark - Navigation
+
+-(void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender
+{
+    if ( [[segue identifier] isEqualToString : LHPushGroupCRUDSegueIdentifier] ) {
+        LHGroupCRUDViewController * targetViewController =
+            (LHGroupCRUDViewController *) segue.destinationViewController;
+        targetViewController.devices = [self.devicesAndGroups objectAtIndex : 0];
+    }
+    
+}
+
 
 
 @end

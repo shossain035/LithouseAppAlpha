@@ -14,6 +14,6 @@
 
 @end
 
-@interface LHTurnOn : LHAction <LHActionInitiator>
+@interface LHTurnOn : LHAction
 
 @end

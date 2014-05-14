@@ -12,11 +12,12 @@
 @end
 
 @protocol LHActionInitiator
+@optional
 - (NSString *) friendlyName;
 - (void) performAction;
 @end
 
-@interface LHAction : NSObject
+@interface LHAction : NSObject <LHActionInitiator>
 @property (weak) id <LHActionHandler> parentDevice;
 
 - (id) initWithParentDevice : (id <LHActionHandler>) aDevice;

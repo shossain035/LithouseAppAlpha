@@ -10,4 +10,6 @@
 
 @interface LHGroupCRUDViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property NSMutableArray * devices;
+
 @end

@@ -17,6 +17,7 @@
 
 - (IBAction) didTapActionPickerButton : (id) sender
 {
+    self.actionPickerCallback();
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

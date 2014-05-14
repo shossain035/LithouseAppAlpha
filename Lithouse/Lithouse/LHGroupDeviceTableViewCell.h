@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^LHDeviceCellActionPickerCallbackBlock) (void);
+
 @interface LHGroupDeviceTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UIButton * selectionButton;
-@property (nonatomic, strong) IBOutlet UIButton * actionPickerButton;
-@property (nonatomic, strong) IBOutlet UILabel  * deviceNameLabel;
+@property (nonatomic, strong) IBOutlet UIButton *        selectionButton;
+@property (nonatomic, strong) IBOutlet UIButton *        actionPickerButton;
+@property (nonatomic, strong) IBOutlet UILabel  *        deviceNameLabel;
 
-@property                              BOOL       isSelected;
+@property                              BOOL              isSelected;
+@property (copy) LHDeviceCellActionPickerCallbackBlock   actionPickerCallback;
+
 
 @end

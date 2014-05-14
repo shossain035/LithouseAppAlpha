@@ -8,6 +8,10 @@
 
 #import "LHGroupCRUDViewController.h"
 #import "LHGroupDeviceTableViewCell.h"
+#import "LHModalPickerViewController.h"
+
+#import "LHDevice.h"
+#import "LHAction.h"
 
 @interface LHGroupCRUDViewController ()
 
@@ -62,7 +66,7 @@
 - (NSInteger) tableView : (UITableView *) tableView
   numberOfRowsInSection : (NSInteger) section
 {
-    return 2;
+    return [self.devices count];
 }
 
 
@@ -71,9 +75,46 @@
  {
      LHGroupDeviceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier : @"GroupDeviceCell"
                                                                          forIndexPath : indexPath];
- 
-     cell.deviceNameLabel.text = @"device1";
+     LHGroupDeviceTableViewCell * __weak wCell = cell;
+     
+     LHDevice * device = [self.devices objectAtIndex : indexPath.row];
+     cell.deviceNameLabel.text = device.friendlyName;
+     
+     cell.actionPickerCallback = ^{
+         [self launchActionPickerForCell : wCell withDevice : device];
+     };
+
      return cell;
  }
+
+- (void) launchActionPickerForCell : (LHGroupDeviceTableViewCell *) deviceSelectionCell
+                        withDevice : (LHDevice *) aDevice
+{
+    UINavigationController * navigationController = (UINavigationController *)
+        [self.storyboard instantiateViewControllerWithIdentifier : @"ModalPickerViewController"];
+
+    LHModalPickerViewController * pickerViewController =
+        (LHModalPickerViewController *) [[navigationController viewControllers] objectAtIndex : 0];
+    pickerViewController.navigationItem.title = aDevice.friendlyName;
+    
+    pickerViewController.numberOfRowsCallback = ^ NSInteger {
+        return [aDevice.permissibleActions count];
+    };
+
+    pickerViewController.updateCellAtIndexPathCallback =
+    ^ (UITableViewCell * cell, NSIndexPath * indexPath) {
+        LHAction * action = [aDevice.permissibleActions objectAtIndex : indexPath.row];
+        cell.textLabel.text = action.friendlyName;
+    };
+    
+    pickerViewController.didSelectRowAtIndexPathCallback = ^ (NSIndexPath * indexPath) {
+        LHAction * action = [aDevice.permissibleActions objectAtIndex : indexPath.row];
+        [deviceSelectionCell.actionPickerButton setTitle : action.friendlyName
+                                                forState : UIControlStateNormal];
+    };
+    
+    [self presentViewController : navigationController animated : YES completion : nil];
+}
+
 
 @end
