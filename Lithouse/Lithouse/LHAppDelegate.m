@@ -10,6 +10,7 @@
 #import "LHMainMenuViewController.h"
 #import "MSDynamicsDrawerViewController.h"
 #import "MSDynamicsDrawerStyler.h"
+#import "WeMoNetworkManager.h"
 
 
 @implementation LHAppDelegate
@@ -17,6 +18,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize stateManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -39,33 +41,53 @@
     
     //App wide styles
     self.window.tintColor = [UIColor greenColor];
+    
+    //wemo state manager
+    stateManager = [WeMoStateManager sharedWeMoStateManager];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [stateManager applicationWillResignActive : application];
+    [[NSNotificationCenter defaultCenter] removeObserver : self
+                                                    name : wemoNetworkChangeNotification
+                                                  object : nil];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [stateManager applicationDidEnterBackground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [stateManager applicationWillEnterForeground:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [stateManager applicationDidBecomeActive : application];
+    WeMoNetworkManager * networkManager = [WeMoNetworkManager sharedWeMoNetworkManager];
+    
+    NSLog(@"ssid = %@",[networkManager accessPoint]);
+    [[NSNotificationCenter defaultCenter] addObserver : self
+                                             selector : @selector(didNetworkChanged:)
+                                                 name : wemoNetworkChangeNotification
+                                               object : nil];
+    /*
+    if (self.window.rootViewController == nil)
+    {
+        [self showDeviceScreen];
+    }else{
+        [self.presentedViewController performSelectorOnMainThread:@selector(refreshList) withObject:nil waitUntilDone:NO];
+    }
+     */
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[NSNotificationCenter defaultCenter] removeObserver : self];
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
@@ -164,5 +186,14 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+-(void) didNetworkChanged : (NSNotification *) notification {
+    WeMoNetworkManager * networkManager = [WeMoNetworkManager sharedWeMoNetworkManager];
+    NSString * currentssid = [networkManager accessPoint];
+    NSLog(@" didNetworkChanged currentssid=%@",currentssid);
+    
+    
+}
+
 
 @end

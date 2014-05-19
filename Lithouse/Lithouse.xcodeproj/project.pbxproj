@@ -15,6 +15,16 @@
 		7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */; };
 		7128FDA51922BF480031BEA8 /* LHTurnOff.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA41922BF480031BEA8 /* LHTurnOff.m */; };
 		7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */; };
+		71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */; };
+		71B226E4192537F300E251B3 /* BelkinSDKLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */; };
+		71B226E5192537F300E251B3 /* Cybergarage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DA192537F300E251B3 /* Cybergarage.a */; };
+		71B226E6192537F400E251B3 /* Reachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DB192537F300E251B3 /* Reachability.a */; };
+		71B226E7192537F400E251B3 /* WeMoLocalControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226E1192537F300E251B3 /* WeMoLocalControl.a */; };
+		71B226E9192539E500E251B3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226E8192539E500E251B3 /* libxml2.dylib */; };
+		71B226EB19253A0E00E251B3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226EA19253A0E00E251B3 /* MobileCoreServices.framework */; };
+		71B226ED19253A5000E251B3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226EC19253A5000E251B3 /* Security.framework */; };
+		71B226EF19253A6A00E251B3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226EE19253A6A00E251B3 /* SystemConfiguration.framework */; };
+		71C1CB8B1926097E00C27024 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C1CB8A1926097E00C27024 /* CFNetwork.framework */; };
 		71C82E00191F2A8F00395392 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82DFF191F2A8F00395392 /* Foundation.framework */; };
 		71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E01191F2A8F00395392 /* CoreGraphics.framework */; };
 		71C82E04191F2A8F00395392 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C82E03191F2A8F00395392 /* UIKit.framework */; };
@@ -66,6 +76,24 @@
 		7128FDA41922BF480031BEA8 /* LHTurnOff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHTurnOff.m; sourceTree = "<group>"; };
 		7128FDA61923F5CD0031BEA8 /* LHModalPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHModalPickerViewController.h; sourceTree = "<group>"; };
 		7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHModalPickerViewController.m; sourceTree = "<group>"; };
+		71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceConfigData.plist; sourceTree = "<group>"; };
+		71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = BelkinSDKLibrary.a; sourceTree = "<group>"; };
+		71B226DA192537F300E251B3 /* Cybergarage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Cybergarage.a; sourceTree = "<group>"; };
+		71B226DB192537F300E251B3 /* Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Reachability.a; sourceTree = "<group>"; };
+		71B226DC192537F300E251B3 /* WeMoBugSenseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoBugSenseManager.h; sourceTree = "<group>"; };
+		71B226DD192537F300E251B3 /* WeMoConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoConstants.h; sourceTree = "<group>"; };
+		71B226DE192537F300E251B3 /* WeMoControlDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoControlDevice.h; sourceTree = "<group>"; };
+		71B226DF192537F300E251B3 /* WeMoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoDevice.h; sourceTree = "<group>"; };
+		71B226E0192537F300E251B3 /* WeMoDiscoveryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoDiscoveryManager.h; sourceTree = "<group>"; };
+		71B226E1192537F300E251B3 /* WeMoLocalControl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = WeMoLocalControl.a; sourceTree = "<group>"; };
+		71B226E2192537F300E251B3 /* WeMoNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoNetworkManager.h; sourceTree = "<group>"; };
+		71B226E3192537F300E251B3 /* WeMoStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoStateManager.h; sourceTree = "<group>"; };
+		71B226E8192539E500E251B3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		71B226EA19253A0E00E251B3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		71B226EC19253A5000E251B3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		71B226EE19253A6A00E251B3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		71C1CB891925EE4800C27024 /* WeMoConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeMoConstant.h; sourceTree = "<group>"; };
+		71C1CB8A1926097E00C27024 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		71C82DFC191F2A8F00395392 /* Lithouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lithouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C82DFF191F2A8F00395392 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		71C82E01191F2A8F00395392 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -105,10 +133,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C1CB8B1926097E00C27024 /* CFNetwork.framework in Frameworks */,
+				71B226EF19253A6A00E251B3 /* SystemConfiguration.framework in Frameworks */,
+				71B226ED19253A5000E251B3 /* Security.framework in Frameworks */,
+				71B226EB19253A0E00E251B3 /* MobileCoreServices.framework in Frameworks */,
+				71B226E9192539E500E251B3 /* libxml2.dylib in Frameworks */,
+				71B226E5192537F300E251B3 /* Cybergarage.a in Frameworks */,
 				71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */,
 				71C82E06191F2A8F00395392 /* CoreData.framework in Frameworks */,
 				71C82E04191F2A8F00395392 /* UIKit.framework in Frameworks */,
 				71C82E00191F2A8F00395392 /* Foundation.framework in Frameworks */,
+				71B226E7192537F400E251B3 /* WeMoLocalControl.a in Frameworks */,
+				71B226E4192537F300E251B3 /* BelkinSDKLibrary.a in Frameworks */,
+				71B226E6192537F400E251B3 /* Reachability.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +189,33 @@
 			name = Devices;
 			sourceTree = "<group>";
 		};
+		71B226D7192537AD00E251B3 /* WeMoLocalSDK */ = {
+			isa = PBXGroup;
+			children = (
+				71B226D8192537F300E251B3 /* -iphoneos */,
+			);
+			name = WeMoLocalSDK;
+			sourceTree = "<group>";
+		};
+		71B226D8192537F300E251B3 /* -iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				71C1CB891925EE4800C27024 /* WeMoConstant.h */,
+				71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */,
+				71B226DA192537F300E251B3 /* Cybergarage.a */,
+				71B226DB192537F300E251B3 /* Reachability.a */,
+				71B226DC192537F300E251B3 /* WeMoBugSenseManager.h */,
+				71B226DD192537F300E251B3 /* WeMoConstants.h */,
+				71B226DE192537F300E251B3 /* WeMoControlDevice.h */,
+				71B226DF192537F300E251B3 /* WeMoDevice.h */,
+				71B226E0192537F300E251B3 /* WeMoDiscoveryManager.h */,
+				71B226E1192537F300E251B3 /* WeMoLocalControl.a */,
+				71B226E2192537F300E251B3 /* WeMoNetworkManager.h */,
+				71B226E3192537F300E251B3 /* WeMoStateManager.h */,
+			);
+			path = "-iphoneos";
+			sourceTree = "<group>";
+		};
 		71C82DF3191F2A8F00395392 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +239,11 @@
 		71C82DFE191F2A8F00395392 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71C1CB8A1926097E00C27024 /* CFNetwork.framework */,
+				71B226EE19253A6A00E251B3 /* SystemConfiguration.framework */,
+				71B226EC19253A5000E251B3 /* Security.framework */,
+				71B226EA19253A0E00E251B3 /* MobileCoreServices.framework */,
+				71B226E8192539E500E251B3 /* libxml2.dylib */,
 				71C82DFF191F2A8F00395392 /* Foundation.framework */,
 				71C82E01191F2A8F00395392 /* CoreGraphics.framework */,
 				71C82E03191F2A8F00395392 /* UIKit.framework */,
@@ -203,6 +272,7 @@
 		71C82E08191F2A8F00395392 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */,
 				71C82E09191F2A8F00395392 /* Lithouse-Info.plist */,
 				71C82E0A191F2A8F00395392 /* InfoPlist.strings */,
 				71C82E0D191F2A8F00395392 /* main.m */,
@@ -245,6 +315,7 @@
 		71C82E3E191F359300395392 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				71B226D7192537AD00E251B3 /* WeMoLocalSDK */,
 				71C82E36191F358D00395392 /* MSDynamicsDrawerViewController */,
 			);
 			name = libs;
@@ -364,6 +435,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */,
 				71C82E0C191F2A8F00395392 /* InfoPlist.strings in Resources */,
 				71C82E17191F2A8F00395392 /* Images.xcassets in Resources */,
 				71C82E40191F3EE200395392 /* Storyboard.storyboard in Resources */,
@@ -525,6 +597,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/shah/Desktop/LithouseAppAlpha/libs,
+					"$(PROJECT_DIR)/-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -543,6 +616,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/shah/Desktop/LithouseAppAlpha/libs,
+					"$(PROJECT_DIR)/-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

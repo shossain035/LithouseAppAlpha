@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeMoStateManager.h"
 
 @class MSDynamicsDrawerViewController;
 @interface LHAppDelegate : UIResponder <UIApplicationDelegate>
@@ -18,6 +19,10 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (strong, nonatomic) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
+
+//WeMo SDK reference
+@property (nonatomic, copy) WeMoStateManager * stateManager;
+
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

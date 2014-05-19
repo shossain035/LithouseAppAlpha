@@ -14,6 +14,7 @@
 {
     if ( self = [super init] ) {
         self.permissibleActions = [[NSMutableArray alloc] init];
+        self.displayImage = [UIImage imageNamed : @"unknown"];
     }
     
     return self;

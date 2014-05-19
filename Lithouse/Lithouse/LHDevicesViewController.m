@@ -12,14 +12,18 @@
 #import "LHWeMoSwitch.h"
 #import "LHDeviceGroup.h"
 #import "LHDeviceCell.h"
+#import "WeMoNetworkManager.h"
+#import "WeMoConstant.h"
 
 
 NSString * const LHDeviceCellReuseIdentifier    = @"DevicesAndTriggerCell";
 NSString * const LHPushGroupCRUDSegueIdentifier = @"PushGroupCRUDSegue";
+int const        LHSpinnerViewTag               = 1001;
 
 @interface LHDevicesViewController ()
 
 @property NSMutableArray * devicesAndGroups;
+@property NSMutableSet   * deviceIds;
 
 @end
 
@@ -38,12 +42,15 @@ NSString * const LHPushGroupCRUDSegueIdentifier = @"PushGroupCRUDSegue";
 {
     [super viewDidLoad];
     
+    self.deviceIds = [[NSMutableSet alloc] init];
     self.devicesAndGroups = [[NSMutableArray alloc] init];
     NSMutableArray * devices = [[NSMutableArray alloc] init];
     NSMutableArray * deviceGroups = [[NSMutableArray alloc] init];
+    
     [self.devicesAndGroups addObject : devices];
     [self.devicesAndGroups addObject : deviceGroups];
     
+    /*
     LHDevice * device1 = [[LHDevice alloc] init];
     device1.friendlyName = @"device1";
     device1.displayImage = [UIImage imageNamed : @"unknown"];
@@ -73,7 +80,74 @@ NSString * const LHPushGroupCRUDSegueIdentifier = @"PushGroupCRUDSegue";
     deviceGroup2.friendlyName = @"group2";
     deviceGroup2.displayImage = [UIImage imageNamed : @"unknown"];
     [deviceGroups addObject : deviceGroup2];
+    */
+}
+
+- (void) viewWillAppear : (BOOL) animated
+{
+    [self showSpinner];
+}
+
+- (void) viewDidAppear : (BOOL) animated
+{
+    [self refreshDeviceList];
+}
+
+- (void) showSpinner
+{
+    CGRect screenRectangle = [[UIScreen mainScreen] bounds];
+    UIView * coverView = [[UIView alloc] initWithFrame : screenRectangle];
+    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent : 0.3];
     
+    UIActivityIndicatorView * spinner = [[UIActivityIndicatorView alloc]
+                                         initWithActivityIndicatorStyle : UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = self.navigationController.view.center;
+    [coverView addSubview : spinner];
+    [spinner startAnimating];
+    
+    coverView.tag = LHSpinnerViewTag;
+    [self.navigationController.view addSubview : coverView];
+}
+
+- (void) hideSpinner
+{
+    UIView * spinnerCoverView = [self.navigationController.view viewWithTag : LHSpinnerViewTag];
+    [spinnerCoverView removeFromSuperview];
+}
+
+- (void) reloadDeviceList
+{
+    // hiding at the first one
+    [self hideSpinner];
+    [self.collectionView reloadData];
+}
+
+- (void) refreshDeviceList
+{
+    [[self.devicesAndGroups objectAtIndex : 0] removeAllObjects];
+    [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
+    [self.deviceIds removeAllObjects];
+    
+    [self.collectionView reloadData];
+    
+    WeMoNetworkManager * networkManager = [WeMoNetworkManager sharedWeMoNetworkManager];
+    NSString * routerSsid = [networkManager accessPoint];
+    NSLog(@"ssid = %@",routerSsid);
+    
+    if ( [routerSsid isEqualToString : EMPTY_STRING]
+            || ([routerSsid hasPrefix : WEMO_SSID] == YES)) {
+        [self hideSpinner];
+        //UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:ALERT_BUTTON_TITLE message:NETWORK_CHANGE_MESSAGE delegate:nil cancelButtonTitle:OK_BUTTON otherButtonTitles: nil] autorelease];
+        //[alertView show];
+    }else{
+        @synchronized( self.devicesAndGroups ){
+            NSLog(@"refreshListFromSDK");
+            WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
+            discoveryManager.deviceDiscoveryDelegate = self;
+            [discoveryManager discoverDevices : WeMoUpnpInterface];
+        }
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -176,6 +250,69 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }
     
 }
+
+#pragma mark - WeMo Discovery Delegate
+- (void) discoveryManager : (WeMoDiscoveryManager *) manager
+           didFoundDevice : (WeMoControlDevice *) device
+{
+    NSLog(@"didFound Wemo Device ");
+    
+    @synchronized ( self.devicesAndGroups ) {
+        //already discovered
+        if ( [self.deviceIds containsObject : device.udn] ) return;
+        [self.deviceIds addObject : device.udn];
+            
+        //Insight devices have 3 states (ON/OFF/IDLE. So called a separate UPnP method to handle IDLE state. Insight device type is 2 as mentioned in DeviceConfigData.plist file.)
+        if (device.deviceType == 2)
+        {
+            //todo
+            //[self getStatusForInsightDevice:device];
+        }
+        
+        LHWeMoSwitch * weMoDevice = [[LHWeMoSwitch alloc] initWithWeMoControlDevice : device];
+        weMoDevice.friendlyName = device.friendlyName;
+        
+        NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
+        [devices addObject : weMoDevice];
+        
+        NSLog(@"discoverDevices device = %d:%@",device.deviceType, device.friendlyName);
+        [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                               withObject : nil
+                            waitUntilDone : NO];
+    }
+}
+
+-(void)discoveryManager : (WeMoDiscoveryManager *) manager
+    removeDeviceWithUdn : (NSString*) udn {
+    //todo:
+    /*NSLog(@"removeDeviceNotificationWithUserInfo");
+    @synchronized(devicesArray){
+        for (WeMoControlDevice* aDevice in devicesArray) {
+            if ([aDevice.udn isEqualToString:udn]){
+                if (self.wemoDeviceDetail) {
+                    [self.wemoDeviceDetail deviceRemoved];
+                }
+                [devicesArray removeObject:aDevice];
+                [deviceListTableView reloadData];
+                return;
+            }
+        }
+    }*/
+}
+
+-(void) discoveryManagerRemovedAllDevices : (WeMoDiscoveryManager *) manager
+{
+    /*
+    NSLog(@"removeAllDevicesNotificationWithUserInfo");
+    
+    @synchronized(devicesArray){
+        [devicesArray removeAllObjects];
+        [deviceListTableView reloadData];
+    }*/
+    //todo
+}
+
+
 
 
 

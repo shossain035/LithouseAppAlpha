@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeMoDiscoveryManager.h"
 
-@interface LHDevicesViewController : UICollectionViewController
+
+@interface LHDevicesViewController : UICollectionViewController <WeMoDeviceDiscoveryDelegate>
+
 
 @end

@@ -10,6 +10,11 @@
 #import "LHTurnOn.h"
 #import "LHTurnOff.h"
 
+#import "WeMoControlDevice.h"
+
 @interface LHWeMoSwitch : LHDevice <LHTurnOnHandler, LHTurnOffHandler>
 
+- (id) initWithWeMoControlDevice : (WeMoControlDevice *) aWeMoControlDevice;
+
+@property (nonatomic, strong) WeMoControlDevice * weMoControlDevice;
 @end
