@@ -243,35 +243,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dJh-kt-dpq">
-                            <size key="itemSize" width="93" height="87"/>
-                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="itemSize" width="300" height="66"/>
+                            <size key="headerReferenceSize" width="50" height="29"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DevicesAndTriggerCell" id="AKs-ox-2lE" customClass="LHDeviceCell">
-                                <rect key="frame" x="0.0" y="114" width="93" height="87"/>
+                                <rect key="frame" x="10" y="93" width="300" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="93" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFM-GG-JgC">
-                                            <rect key="frame" x="0.0" y="0.0" width="62" height="58"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JFM-GG-JgC">
+                                            <rect key="frame" x="6" y="4" width="58" height="58"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="58" id="6em-FR-fUU"/>
+                                            </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqU-93-dMr">
-                                            <rect key="frame" x="66" y="3" width="22" height="22"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqU-93-dMr">
+                                            <rect key="frame" x="258" y="22" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="22" id="xEC-fY-T60"/>
+                                            </constraints>
                                             <connections>
                                                 <action selector="infoButtonTapped:" destination="AKs-ox-2lE" eventType="touchDown" id="DyZ-gX-RSb"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYl-OL-H9H">
-                                            <rect key="frame" x="0.0" y="62" width="84" height="20"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYl-OL-H9H">
+                                            <rect key="frame" x="80" y="23" width="152" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -279,6 +282,17 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="JFM-GG-JgC" firstAttribute="top" secondItem="AKs-ox-2lE" secondAttribute="top" constant="4" id="1Kn-aE-YAo"/>
+                                    <constraint firstAttribute="trailing" secondItem="nqU-93-dMr" secondAttribute="trailing" constant="20" id="6XW-pY-r00"/>
+                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="centerY" secondItem="JFM-GG-JgC" secondAttribute="centerY" id="9s5-RS-6s0"/>
+                                    <constraint firstItem="JFM-GG-JgC" firstAttribute="leading" secondItem="AKs-ox-2lE" secondAttribute="leading" constant="6" id="NTt-0f-MTJ"/>
+                                    <constraint firstItem="nqU-93-dMr" firstAttribute="leading" secondItem="gYl-OL-H9H" secondAttribute="trailing" constant="26" id="bJo-ZZ-JuF"/>
+                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="centerY" secondItem="nqU-93-dMr" secondAttribute="centerY" id="s8r-El-8SL"/>
+                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="leading" secondItem="JFM-GG-JgC" secondAttribute="trailing" constant="16" id="uMr-ys-kZy"/>
+                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="top" secondItem="AKs-ox-2lE" secondAttribute="top" constant="23" id="zDR-O2-ibb"/>
+                                    <constraint firstItem="nqU-93-dMr" firstAttribute="centerY" secondItem="AKs-ox-2lE" secondAttribute="centerY" id="zsl-7f-byX"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="image" destination="JFM-GG-JgC" id="ije-wi-qYG"/>
                                     <outlet property="nameLabel" destination="gYl-OL-H9H" id="ppS-fg-Zfn"/>
@@ -286,18 +300,26 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeviceCollectionHeader" id="yOd-xb-mpc">
-                            <rect key="frame" x="0.0" y="64" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="29"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Groups" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-xL-I4E">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-xL-I4E">
                                     <rect key="frame" x="229" y="2" width="85" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="Cx8-Ev-qP0"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="0xv-xL-I4E" firstAttribute="top" secondItem="yOd-xb-mpc" secondAttribute="top" constant="2" id="6ze-w9-Nqf"/>
+                                <constraint firstAttribute="bottom" secondItem="0xv-xL-I4E" secondAttribute="bottom" constant="6" id="JdT-AX-QZo"/>
+                                <constraint firstAttribute="trailing" secondItem="0xv-xL-I4E" secondAttribute="trailing" constant="6" id="QQI-N9-z93"/>
+                            </constraints>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="SfV-gr-bcl" id="jgG-wI-eMi"/>
