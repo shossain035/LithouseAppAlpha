@@ -15,6 +15,7 @@
     if ( self = [super init] ) {
         [self.permissibleActions addObject : [[LHTurnOn alloc] initWithParentDevice : self]];
         [self.permissibleActions addObject : [[LHTurnOff alloc] initWithParentDevice : self]];
+        [self.permissibleActions addObject : [[LHToggle alloc] initWithParentDevice : self]];
     }
     
     return self;
@@ -62,11 +63,24 @@
 - (void) turnOn
 {
     NSLog ( @"turning wemo on");
+    [self.weMoControlDevice setPluginStatus : WeMoDeviceOn];
 }
 
 - (void) turnOff
 {
     NSLog ( @"turning wemo off");
+    [self.weMoControlDevice setPluginStatus : WeMoDeviceOff];
+}
+
+- (void) toggle
+{
+    NSLog ( @"toggling wemo");
+    
+    if ( self.weMoControlDevice.state == WeMoDeviceOn ) {
+        [self turnOff];
+    } else {
+        [self turnOn];
+    }
 }
 
 

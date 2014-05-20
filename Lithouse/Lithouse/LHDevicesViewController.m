@@ -208,6 +208,10 @@ referenceSizeForHeaderInSection : (NSInteger) section
         NSLog ( @"device info %@", device.friendlyName );
     };
     
+    cell.toggleCallbackBlock = ^{
+        [(id <LHToogleHandler>) device toggle];
+    };
+    
     return cell;
 }
 
@@ -226,8 +230,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
 {
     NSLog ( @"item selected at %@", indexPath );
     
-   
-    UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath : indexPath];
+    LHDeviceCell * cell = (LHDeviceCell *) [collectionView cellForItemAtIndexPath : indexPath];
     
     CABasicAnimation * borderAnimation = [CABasicAnimation animationWithKeyPath : @"borderWidth"];
     [borderAnimation setFromValue : [NSNumber numberWithFloat : cell.layer.borderWidth]];
@@ -237,6 +240,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
     [borderAnimation setDuration : 0.3f];
     
     [cell.layer addAnimation : borderAnimation forKey : @"animateBorder"];
+    
+    cell.toggleCallbackBlock();
 }
 
 #pragma mark - Navigation

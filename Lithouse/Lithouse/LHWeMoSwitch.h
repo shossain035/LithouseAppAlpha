@@ -9,10 +9,13 @@
 #import "LHDevice.h"
 #import "LHTurnOn.h"
 #import "LHTurnOff.h"
+#import "LHToggle.h"
 
 #import "WeMoControlDevice.h"
 
-@interface LHWeMoSwitch : LHDevice <LHTurnOnHandler, LHTurnOffHandler>
+@interface LHWeMoSwitch : LHDevice <LHTurnOnHandler,
+                                    LHTurnOffHandler,
+                                    LHToogleHandler>
 
 - (id) initWithWeMoControlDevice : (WeMoControlDevice *) aWeMoControlDevice;
 

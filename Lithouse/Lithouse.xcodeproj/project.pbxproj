@@ -16,6 +16,7 @@
 		7128FDA51922BF480031BEA8 /* LHTurnOff.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA41922BF480031BEA8 /* LHTurnOff.m */; };
 		7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */; };
 		71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */; };
+		71A697AE192B17D600C9AB86 /* LHToggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697AD192B17D600C9AB86 /* LHToggle.m */; };
 		71B226E4192537F300E251B3 /* BelkinSDKLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */; };
 		71B226E5192537F300E251B3 /* Cybergarage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DA192537F300E251B3 /* Cybergarage.a */; };
 		71B226E6192537F400E251B3 /* Reachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DB192537F300E251B3 /* Reachability.a */; };
@@ -77,6 +78,8 @@
 		7128FDA61923F5CD0031BEA8 /* LHModalPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHModalPickerViewController.h; sourceTree = "<group>"; };
 		7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHModalPickerViewController.m; sourceTree = "<group>"; };
 		71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceConfigData.plist; sourceTree = "<group>"; };
+		71A697AC192B17D600C9AB86 /* LHToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHToggle.h; sourceTree = "<group>"; };
+		71A697AD192B17D600C9AB86 /* LHToggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHToggle.m; sourceTree = "<group>"; };
 		71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = BelkinSDKLibrary.a; sourceTree = "<group>"; };
 		71B226DA192537F300E251B3 /* Cybergarage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Cybergarage.a; sourceTree = "<group>"; };
 		71B226DB192537F300E251B3 /* Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Reachability.a; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				7128FD9D192296AE0031BEA8 /* LHTurnOn.m */,
 				7128FDA31922BF480031BEA8 /* LHTurnOff.h */,
 				7128FDA41922BF480031BEA8 /* LHTurnOff.m */,
+				71A697AC192B17D600C9AB86 /* LHToggle.h */,
+				71A697AD192B17D600C9AB86 /* LHToggle.m */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
 				7128FDA51922BF480031BEA8 /* LHTurnOff.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
+				71A697AE192B17D600C9AB86 /* LHToggle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

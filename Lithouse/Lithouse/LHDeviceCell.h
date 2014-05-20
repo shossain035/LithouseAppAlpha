@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 typedef void (^LHDeviceCellInfoButtonCallbackBlock) (void);
-
+typedef void (^LHDeviceCellToggleCallbackBlock)     (void);
 
 @interface LHDeviceCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView   * image;
 @property (strong, nonatomic) IBOutlet UILabel       * nameLabel;
 @property (copy) LHDeviceCellInfoButtonCallbackBlock   infoButtonCallback;
+@property (copy) LHDeviceCellToggleCallbackBlock       toggleCallbackBlock;
+
 
 @end
