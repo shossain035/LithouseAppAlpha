@@ -17,6 +17,18 @@
 		7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */; };
 		71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */; };
 		71A697AE192B17D600C9AB86 /* LHToggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697AD192B17D600C9AB86 /* LHToggle.m */; };
+		71A697BF192B24D900C9AB86 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B1192B24D900C9AB86 /* DDAbstractDatabaseLogger.m */; };
+		71A697C0192B24D900C9AB86 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B3192B24D900C9AB86 /* DDASLLogger.m */; };
+		71A697C1192B24D900C9AB86 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B5192B24D900C9AB86 /* DDFileLogger.m */; };
+		71A697C2192B24D900C9AB86 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B7192B24D900C9AB86 /* DDLog.m */; };
+		71A697C3192B24D900C9AB86 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B9192B24D900C9AB86 /* DDTTYLogger.m */; };
+		71A697C4192B24D900C9AB86 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697BC192B24D900C9AB86 /* ContextFilterLogFormatter.m */; };
+		71A697C5192B24D900C9AB86 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697BE192B24D900C9AB86 /* DispatchQueueLogFormatter.m */; };
+		71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697CE192B2B2600C9AB86 /* PHBridgePushLinkViewController.m */; };
+		71A697D9192B2B2600C9AB86 /* PHBridgePushLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71A697CF192B2B2600C9AB86 /* PHBridgePushLinkViewController.xib */; };
+		71A697DC192B2B2600C9AB86 /* press_smartbridge.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A697D4192B2B2600C9AB86 /* press_smartbridge.png */; };
+		71A697DD192B2B2600C9AB86 /* press_smartbridge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A697D5192B2B2600C9AB86 /* press_smartbridge@2x.png */; };
+		71A697ED192C788B00C9AB86 /* LHHueBulb.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697EC192C788B00C9AB86 /* LHHueBulb.m */; };
 		71B226E4192537F300E251B3 /* BelkinSDKLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */; };
 		71B226E5192537F300E251B3 /* Cybergarage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DA192537F300E251B3 /* Cybergarage.a */; };
 		71B226E6192537F400E251B3 /* Reachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DB192537F300E251B3 /* Reachability.a */; };
@@ -80,6 +92,28 @@
 		71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceConfigData.plist; sourceTree = "<group>"; };
 		71A697AC192B17D600C9AB86 /* LHToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHToggle.h; sourceTree = "<group>"; };
 		71A697AD192B17D600C9AB86 /* LHToggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHToggle.m; sourceTree = "<group>"; };
+		71A697B0192B24D900C9AB86 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		71A697B1192B24D900C9AB86 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		71A697B2192B24D900C9AB86 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		71A697B3192B24D900C9AB86 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		71A697B4192B24D900C9AB86 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		71A697B5192B24D900C9AB86 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		71A697B6192B24D900C9AB86 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		71A697B7192B24D900C9AB86 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		71A697B8192B24D900C9AB86 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		71A697B9192B24D900C9AB86 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		71A697BB192B24D900C9AB86 /* ContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		71A697BC192B24D900C9AB86 /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		71A697BD192B24D900C9AB86 /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		71A697BE192B24D900C9AB86 /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		71A697C6192B252100C9AB86 /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HueSDK_iOS.framework; sourceTree = "<group>"; };
+		71A697CD192B2B2600C9AB86 /* PHBridgePushLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHBridgePushLinkViewController.h; sourceTree = "<group>"; };
+		71A697CE192B2B2600C9AB86 /* PHBridgePushLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHBridgePushLinkViewController.m; sourceTree = "<group>"; };
+		71A697CF192B2B2600C9AB86 /* PHBridgePushLinkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHBridgePushLinkViewController.xib; sourceTree = "<group>"; };
+		71A697D4192B2B2600C9AB86 /* press_smartbridge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = press_smartbridge.png; sourceTree = "<group>"; };
+		71A697D5192B2B2600C9AB86 /* press_smartbridge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press_smartbridge@2x.png"; sourceTree = "<group>"; };
+		71A697EB192C788B00C9AB86 /* LHHueBulb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHHueBulb.h; sourceTree = "<group>"; };
+		71A697EC192C788B00C9AB86 /* LHHueBulb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHHueBulb.m; sourceTree = "<group>"; };
 		71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = BelkinSDKLibrary.a; sourceTree = "<group>"; };
 		71B226DA192537F300E251B3 /* Cybergarage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Cybergarage.a; sourceTree = "<group>"; };
 		71B226DB192537F300E251B3 /* Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Reachability.a; sourceTree = "<group>"; };
@@ -190,8 +224,60 @@
 				7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */,
 				7128FDA01922A11A0031BEA8 /* LHWeMoSwitch.h */,
 				7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */,
+				71A697EB192C788B00C9AB86 /* LHHueBulb.h */,
+				71A697EC192C788B00C9AB86 /* LHHueBulb.m */,
 			);
 			name = Devices;
+			sourceTree = "<group>";
+		};
+		71A697AF192B24D900C9AB86 /* Lumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				71A697B0192B24D900C9AB86 /* DDAbstractDatabaseLogger.h */,
+				71A697B1192B24D900C9AB86 /* DDAbstractDatabaseLogger.m */,
+				71A697B2192B24D900C9AB86 /* DDASLLogger.h */,
+				71A697B3192B24D900C9AB86 /* DDASLLogger.m */,
+				71A697B4192B24D900C9AB86 /* DDFileLogger.h */,
+				71A697B5192B24D900C9AB86 /* DDFileLogger.m */,
+				71A697B6192B24D900C9AB86 /* DDLog.h */,
+				71A697B7192B24D900C9AB86 /* DDLog.m */,
+				71A697B8192B24D900C9AB86 /* DDTTYLogger.h */,
+				71A697B9192B24D900C9AB86 /* DDTTYLogger.m */,
+				71A697BA192B24D900C9AB86 /* Extensions */,
+			);
+			path = Lumberjack;
+			sourceTree = "<group>";
+		};
+		71A697BA192B24D900C9AB86 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				71A697BB192B24D900C9AB86 /* ContextFilterLogFormatter.h */,
+				71A697BC192B24D900C9AB86 /* ContextFilterLogFormatter.m */,
+				71A697BD192B24D900C9AB86 /* DispatchQueueLogFormatter.h */,
+				71A697BE192B24D900C9AB86 /* DispatchQueueLogFormatter.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		71A697C8192B2B2600C9AB86 /* HueSDK */ = {
+			isa = PBXGroup;
+			children = (
+				71A697CD192B2B2600C9AB86 /* PHBridgePushLinkViewController.h */,
+				71A697CE192B2B2600C9AB86 /* PHBridgePushLinkViewController.m */,
+				71A697CF192B2B2600C9AB86 /* PHBridgePushLinkViewController.xib */,
+				71A697D3192B2B2600C9AB86 /* Resources */,
+			);
+			name = HueSDK;
+			path = SDKWizard;
+			sourceTree = "<group>";
+		};
+		71A697D3192B2B2600C9AB86 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				71A697D4192B2B2600C9AB86 /* press_smartbridge.png */,
+				71A697D5192B2B2600C9AB86 /* press_smartbridge@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		71B226D7192537AD00E251B3 /* WeMoLocalSDK */ = {
@@ -244,6 +330,8 @@
 		71C82DFE191F2A8F00395392 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71A697C6192B252100C9AB86 /* HueSDK_iOS.framework */,
+				71A697AF192B24D900C9AB86 /* Lumberjack */,
 				71C1CB8A1926097E00C27024 /* CFNetwork.framework */,
 				71B226EE19253A6A00E251B3 /* SystemConfiguration.framework */,
 				71B226EC19253A5000E251B3 /* Security.framework */,
@@ -320,6 +408,7 @@
 		71C82E3E191F359300395392 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				71A697C8192B2B2600C9AB86 /* HueSDK */,
 				71B226D7192537AD00E251B3 /* WeMoLocalSDK */,
 				71C82E36191F358D00395392 /* MSDynamicsDrawerViewController */,
 			);
@@ -440,10 +529,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71A697DC192B2B2600C9AB86 /* press_smartbridge.png in Resources */,
+				71A697DD192B2B2600C9AB86 /* press_smartbridge@2x.png in Resources */,
 				71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */,
 				71C82E0C191F2A8F00395392 /* InfoPlist.strings in Resources */,
 				71C82E17191F2A8F00395392 /* Images.xcassets in Resources */,
 				71C82E40191F3EE200395392 /* Storyboard.storyboard in Resources */,
+				71A697D9192B2B2600C9AB86 /* PHBridgePushLinkViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,23 +555,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				7128FD9B192295780031BEA8 /* LHAction.m in Sources */,
+				71A697ED192C788B00C9AB86 /* LHHueBulb.m in Sources */,
 				71C82E44191F4CD600395392 /* LHMainMenuViewController.m in Sources */,
 				71C82E15191F2A8F00395392 /* Lithouse.xcdatamodeld in Sources */,
 				71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */,
+				71A697C0192B24D900C9AB86 /* DDASLLogger.m in Sources */,
+				71A697C5192B24D900C9AB86 /* DispatchQueueLogFormatter.m in Sources */,
 				7128FD971921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m in Sources */,
 				7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */,
 				71C82E0E191F2A8F00395392 /* main.m in Sources */,
+				71A697C3192B24D900C9AB86 /* DDTTYLogger.m in Sources */,
 				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
+				71A697BF192B24D900C9AB86 /* DDAbstractDatabaseLogger.m in Sources */,
+				71A697C1192B24D900C9AB86 /* DDFileLogger.m in Sources */,
 				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
 				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
 				7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
+				71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */,
+				71A697C2192B24D900C9AB86 /* DDLog.m in Sources */,
 				7128FD9E192296AE0031BEA8 /* LHTurnOn.m in Sources */,
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
 				7128FDA51922BF480031BEA8 /* LHTurnOff.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
 				71A697AE192B17D600C9AB86 /* LHToggle.m in Sources */,
+				71A697C4192B24D900C9AB86 /* ContextFilterLogFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +626,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -555,6 +657,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -563,6 +666,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -586,6 +690,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -594,9 +699,14 @@
 		71C82E2F191F2A8F00395392 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
 				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
@@ -604,6 +714,10 @@
 					"$(inherited)",
 					/Users/shah/Desktop/LithouseAppAlpha/libs,
 					"$(PROJECT_DIR)/-iphoneos",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					/Users/shah/Desktop/LithouseAppAlpha/Lithouse/HueSDK_iOS.framework/Versions/A/HueSDK_iOS,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -613,9 +727,14 @@
 		71C82E30191F2A8F00395392 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
 				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
@@ -623,6 +742,10 @@
 					"$(inherited)",
 					/Users/shah/Desktop/LithouseAppAlpha/libs,
 					"$(PROJECT_DIR)/-iphoneos",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					/Users/shah/Desktop/LithouseAppAlpha/Lithouse/HueSDK_iOS.framework/Versions/A/HueSDK_iOS,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

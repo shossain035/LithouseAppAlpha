@@ -8,17 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "WeMoStateManager.h"
+#import <HueSDK_iOS/HueSDK.h>
 
+@class PHHueSDK;
 @class MSDynamicsDrawerViewController;
 @interface LHAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow                               * window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (readonly, strong, nonatomic) NSManagedObjectContext       * managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel         * managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator * persistentStoreCoordinator;
 
-@property (strong, nonatomic) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
+@property (strong, nonatomic) MSDynamicsDrawerViewController         * dynamicsDrawerViewController;
 
 //WeMo SDK reference
 @property (nonatomic, copy) WeMoStateManager * stateManager;
@@ -26,5 +28,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
++ (PHHueSDK *) getHueSDK;
 
 @end

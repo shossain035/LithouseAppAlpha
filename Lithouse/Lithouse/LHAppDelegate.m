@@ -12,6 +12,10 @@
 #import "MSDynamicsDrawerStyler.h"
 #import "WeMoNetworkManager.h"
 
+@interface LHAppDelegate ()
+@property (readonly, strong, nonatomic) PHHueSDK * phHueSDK;
+
+@end
 
 @implementation LHAppDelegate
 
@@ -19,6 +23,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize stateManager;
+@synthesize phHueSDK;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -44,6 +49,11 @@
     
     //wemo state manager
     stateManager = [WeMoStateManager sharedWeMoStateManager];
+    
+    // Create hue sdk instance
+    phHueSDK = [[PHHueSDK alloc] init];
+    [phHueSDK startUpSDK];
+    [phHueSDK enableLogging : YES];
     return YES;
 }
 
@@ -193,6 +203,12 @@
     NSLog(@" didNetworkChanged currentssid=%@",currentssid);
     
     
+}
+
++ (PHHueSDK *) getHueSDK
+{
+    LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+    return [appDelegate phHueSDK];
 }
 
 

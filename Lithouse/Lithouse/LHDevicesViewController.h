@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "WeMoDiscoveryManager.h"
+#import "PHBridgePushLinkViewController.h"
 
 
-@interface LHDevicesViewController : UICollectionViewController <WeMoDeviceDiscoveryDelegate>
+@interface LHDevicesViewController : UICollectionViewController <WeMoDeviceDiscoveryDelegate,
+                                                                 PHBridgePushLinkViewControllerDelegate>
 
 
 @end
