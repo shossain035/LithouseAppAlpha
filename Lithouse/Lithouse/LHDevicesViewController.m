@@ -169,12 +169,15 @@ int const        LHSpinnerViewTag               = 1001;
         //[alertView show];
     }else{
         @synchronized( self.devicesAndGroups ){
-            [self updateHueLights];
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                [self updateHueLights];
+            });
             
-            NSLog(@"refreshListFromSDK");
-            WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
-            discoveryManager.deviceDiscoveryDelegate = self;
-            [discoveryManager discoverDevices : WeMoUpnpInterface];
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
+                discoveryManager.deviceDiscoveryDelegate = self;
+                [discoveryManager discoverDevices : WeMoUpnpInterface];
+            });
         }
     }
 
@@ -370,14 +373,17 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
             [self.deviceIds addObject : light.identifier];
             
-            LHHueBulb * hueBulb = [[LHHueBulb alloc] initWithPHLight : light];
+            @synchronized( self.devicesAndGroups ){
+                
+                LHHueBulb * hueBulb = [[LHHueBulb alloc] initWithPHLight : light];
             
-            NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
-            [devices addObject : hueBulb];
+                NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
+                [devices addObject : hueBulb];
             
-            [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                                   withObject : nil
-                                waitUntilDone : NO];
+                [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                                       withObject : nil
+                                    waitUntilDone : NO];
+            }
         }
     }
 
@@ -475,7 +481,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     if ( cache != nil && cache.bridgeConfiguration != nil
         && cache.bridgeConfiguration.ipaddress != nil ) {
         // Enable heartbeat with interval of 15 seconds
-        [[LHAppDelegate getHueSDK] enableLocalConnectionUsingInterval:15];
+        [[LHAppDelegate getHueSDK] enableLocalConnectionUsingInterval:10];
     } else {
         // Automaticly start searching for bridges
         [self searchForBridgeLocal];
