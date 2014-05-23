@@ -19,9 +19,10 @@
 #import <HueSDK_iOS/HueSDK.h>
 
 
-NSString * const LHDeviceCellReuseIdentifier    = @"DevicesAndTriggerCell";
-NSString * const LHPushGroupCRUDSegueIdentifier = @"PushGroupCRUDSegue";
-int const        LHSpinnerViewTag               = 1001;
+NSString * const LHDeviceCellReuseIdentifier         = @"DevicesAndTriggerCell";
+NSString * const LHPushGroupForCreateSegueIdentifier = @"PushGroupForCreateSegue";
+NSString * const LHPushGroupForEditSegueIdentifier   = @"PushGroupForEditSegue";
+int const        LHSpinnerViewTag                    = 1001;
 
 @interface LHDevicesViewController ()
 
@@ -30,6 +31,7 @@ int const        LHSpinnerViewTag               = 1001;
 @property (nonatomic, strong) PHBridgeSearching              * bridgeSearch;
 @property (nonatomic, strong) PHBridgePushLinkViewController * pushLinkViewController;
 
+@property (nonatomic, weak)   LHDevice                       * selectedDevice;
 @end
 
 @implementation LHDevicesViewController
@@ -114,11 +116,17 @@ int const        LHSpinnerViewTag               = 1001;
 - (void) viewWillAppear : (BOOL) animated
 {
     [self showSpinner];
+    [self enableLocalHeartbeat];
 }
 
 - (void) viewDidAppear : (BOOL) animated
 {
     [self refreshDeviceList];
+}
+
+- (void) viewWillDisappear : (BOOL) animated
+{
+    [self disableLocalHeartbeat];
 }
 
 - (void) showSpinner
@@ -168,17 +176,19 @@ int const        LHSpinnerViewTag               = 1001;
         //UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:ALERT_BUTTON_TITLE message:NETWORK_CHANGE_MESSAGE delegate:nil cancelButtonTitle:OK_BUTTON otherButtonTitles: nil] autorelease];
         //[alertView show];
     }else{
-        @synchronized( self.devicesAndGroups ){
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-                [self updateHueLights];
-            });
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [self updateHueLights];
+        });
             
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-                WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
-                discoveryManager.deviceDiscoveryDelegate = self;
-                [discoveryManager discoverDevices : WeMoUpnpInterface];
-            });
-        }
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
+            discoveryManager.deviceDiscoveryDelegate = self;
+            [discoveryManager discoverDevices : WeMoUpnpInterface];
+        });
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [self loadDeviceGroups];
+        });
     }
 
 }
@@ -238,7 +248,13 @@ referenceSizeForHeaderInSection : (NSInteger) section
     cell.image.image = device.displayImage;
     
     cell.infoButtonCallback = ^{
+        self.selectedDevice = device;
         NSLog ( @"device info %@", device.friendlyName );
+        
+        if ( [device isKindOfClass : [LHDeviceGroup class]] ) {
+            [self performSegueWithIdentifier : LHPushGroupForEditSegueIdentifier
+                                      sender : self];
+        }
     };
     
     cell.toggleCallbackBlock = ^{
@@ -281,10 +297,24 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender
 {
-    if ( [[segue identifier] isEqualToString : LHPushGroupCRUDSegueIdentifier] ) {
+    if ( [[segue identifier] isEqualToString : LHPushGroupForCreateSegueIdentifier] ) {
         LHGroupCRUDViewController * targetViewController =
             (LHGroupCRUDViewController *) segue.destinationViewController;
+        
+        LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+        
+        DeviceGroup * deviceGroup = [NSEntityDescription insertNewObjectForEntityForName : @"DeviceGroup"
+                                                                  inManagedObjectContext : appDelegate.managedObjectContext];
+        
         targetViewController.devices = [self.devicesAndGroups objectAtIndex : 0];
+        targetViewController.deviceGroup = deviceGroup;
+        
+    } else if ( [[segue identifier] isEqualToString : LHPushGroupForEditSegueIdentifier] ) {
+        LHGroupCRUDViewController * targetViewController =
+        (LHGroupCRUDViewController *) segue.destinationViewController;
+        
+        targetViewController.devices = [self.devicesAndGroups objectAtIndex : 0];
+        targetViewController.deviceGroup = ((LHDeviceGroup *) self.selectedDevice).managedDeviceGroup;
     }
     
 }
@@ -294,7 +324,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
            didFoundDevice : (WeMoControlDevice *) device
 {
     NSLog(@"didFound Wemo Device ");
-    
+    //todo: move to a common function
     @synchronized ( self.devicesAndGroups ) {
         //already discovered
         if ( [self.deviceIds containsObject : device.udn] ) return;
@@ -387,6 +417,37 @@ referenceSizeForHeaderInSection : (NSInteger) section
         }
     }
 
+}
+
+- (void) loadDeviceGroups
+{
+    NSManagedObjectContext * context = ((LHAppDelegate *)
+                                        [[UIApplication sharedApplication] delegate]).managedObjectContext;
+    
+    NSFetchRequest * request = [[NSFetchRequest alloc]initWithEntityName : @"DeviceGroup"];
+    NSError * error = nil;
+    NSArray * results = [context executeFetchRequest : request error : &error];
+    
+    if ( error == nil ) {
+        for ( DeviceGroup * managedDeviceGroup  in results ) {
+            NSLog(@"Name: %@", managedDeviceGroup.name);
+            LHDeviceGroup * deviceGroup = [[LHDeviceGroup alloc]
+                                           initWithManagedDeviceGroup : managedDeviceGroup];
+            
+            @synchronized( self.devicesAndGroups ) {
+                NSMutableArray * deviceGroups = [self.devicesAndGroups objectAtIndex : 1];
+                [deviceGroups addObject : deviceGroup];
+            }
+        }
+        
+        [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                               withObject : nil
+                            waitUntilDone : NO];
+    }
+    else {
+        
+        //todo: deal with error
+    }
 }
 
 /**

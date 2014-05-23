@@ -16,6 +16,11 @@
     return @"Turn Off";
 }
 
+- (NSString *) identifier
+{
+    return @"TURN_OFF_ACTION";
+}
+
 - (void) performAction
 {
     [(id <LHTurnOffHandler>) self.parentDevice turnOff];

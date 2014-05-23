@@ -9,6 +9,7 @@
 #import "LHGroupCRUDViewController.h"
 #import "LHGroupDeviceTableViewCell.h"
 #import "LHModalPickerViewController.h"
+#import "LHAppDelegate.h"
 
 #import "LHDevice.h"
 #import "LHAction.h"
@@ -16,6 +17,10 @@
 @interface LHGroupCRUDViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView * deviceTableView;
+@property (nonatomic, strong) IBOutlet UITextField * groupNameField;
+@property (nonatomic, strong) IBOutlet UIImageView * displayImage;
+
+@property (nonatomic, strong) NSMutableDictionary  * currentActionsForDevices;
 
 @end
 
@@ -30,9 +35,22 @@
 - (IBAction) save : (id) sender
 {
     NSLog( @"Save clicked" );
+    //todo: error check
+    
+    self.deviceGroup.name = self.groupNameField.text;
+    //self.deviceGroup.image =
+    
+    LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    NSError * error;
+    [appDelegate.managedObjectContext save : &error];
+    
+    if ( error ) {
+        NSLog ( @"Could not save device group: %@, error: %@", self.deviceGroup, error );
+    }
+
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +66,13 @@
     [super viewDidLoad];
     
      self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
+}
+
+- (void) viewWillAppear : (BOOL)animated
+{
+    self.displayImage.image = [UIImage imageWithData : self.deviceGroup.image];
+    self.groupNameField.text = self.deviceGroup.name;
+    self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,20 +97,46 @@
 
  - (UITableViewCell *) tableView : (UITableView *) tableView
            cellForRowAtIndexPath : (NSIndexPath *) indexPath
- {
-     LHGroupDeviceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier : @"GroupDeviceCell"
+{
+    LHGroupDeviceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier : @"GroupDeviceCell"
                                                                          forIndexPath : indexPath];
-     LHGroupDeviceTableViewCell * __weak wCell = cell;
-     
-     LHDevice * device = [self.devices objectAtIndex : indexPath.row];
-     cell.deviceNameLabel.text = device.friendlyName;
-     
-     cell.actionPickerCallback = ^{
-         [self launchActionPickerForCell : wCell withDevice : device];
-     };
+    LHGroupDeviceTableViewCell * __weak wCell = cell;
+    LHDevice * device = [self.devices objectAtIndex : indexPath.row];
+    
+    cell.actionPickerCallback = ^{
+        [self launchActionPickerForCell : wCell withDevice : device];
+    };
+    
+    cell.selectionButtonCallback = ^ (BOOL isSelected) {
+        if ( isSelected ) {
+            if ( self.deviceGroup.actions == nil ) {
+                self.deviceGroup.actions = [[NSMutableDictionary alloc] init];
+            }
+            [self.deviceGroup.actions setObject : [self.currentActionsForDevices objectForKey : device.identifier]
+                                         forKey : device.identifier];
+        } else {
+            [self.deviceGroup.actions removeObjectForKey : device.identifier];
+        }
+    };
 
-     return cell;
- }
+    LHAction * action = [device.permissibleActions objectForKey :
+                        [self.deviceGroup.actions objectForKey : device.identifier]];
+     
+    BOOL selectionFlag = YES;
+    if ( action == nil ) {
+        action = [[device.permissibleActions allValues] objectAtIndex : 0];
+        selectionFlag = NO;
+    }
+    
+    [self updateCurrentActionForDevice : device
+                            withAction : action
+                        forDisplayCell : cell
+                            isSelected : selectionFlag];
+
+    cell.deviceNameLabel.text = device.friendlyName;
+    
+    return cell;
+}
 
 - (void) launchActionPickerForCell : (LHGroupDeviceTableViewCell *) deviceSelectionCell
                         withDevice : (LHDevice *) aDevice
@@ -103,18 +154,32 @@
 
     pickerViewController.updateCellAtIndexPathCallback =
     ^ (UITableViewCell * cell, NSIndexPath * indexPath) {
-        LHAction * action = [aDevice.permissibleActions objectAtIndex : indexPath.row];
+        LHAction * action = [[aDevice.permissibleActions allValues] objectAtIndex : indexPath.row];
         cell.textLabel.text = action.friendlyName;
     };
     
     pickerViewController.didSelectRowAtIndexPathCallback = ^ (NSIndexPath * indexPath) {
-        LHAction * action = [aDevice.permissibleActions objectAtIndex : indexPath.row];
-        [deviceSelectionCell.actionPickerButton setTitle : action.friendlyName
-                                                forState : UIControlStateNormal];
+        LHAction * action = [[aDevice.permissibleActions allValues] objectAtIndex : indexPath.row];
+        [self updateCurrentActionForDevice : aDevice
+                                withAction : action
+                            forDisplayCell : deviceSelectionCell
+                                isSelected : YES];
     };
     
     [self presentViewController : navigationController animated : YES completion : nil];
 }
 
+- (void) updateCurrentActionForDevice : (LHDevice *) aDevice
+                           withAction : (LHAction *) anAction
+                       forDisplayCell : (LHGroupDeviceTableViewCell *) aCell
+                           isSelected : (BOOL) selectionFlag
+{
+    [self.currentActionsForDevices setObject : anAction.identifier
+                                      forKey : aDevice.identifier];
+    
+    [aCell.actionPickerButton setTitle : anAction.friendlyName
+                             forState : UIControlStateNormal];
+    [aCell selectDevice : selectionFlag];
+}
 
 @end

@@ -14,6 +14,7 @@
 @protocol LHActionInitiator
 @optional
 - (NSString *) friendlyName;
+- (NSString *) identifier;
 - (void) performAction;
 @end
 

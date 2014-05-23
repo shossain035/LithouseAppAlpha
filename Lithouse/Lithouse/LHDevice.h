@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LHToggle.h"
 
-@interface LHDevice : NSObject
 
-@property (nonatomic, strong) NSString       * friendlyName;
-@property (nonatomic, strong) UIImage        * displayImage;
-@property (nonatomic, strong) NSMutableArray * permissibleActions;
+@interface LHDevice : NSObject <LHToogleHandler>
+
+@property (nonatomic, strong) NSString            * friendlyName;
+@property (nonatomic, strong) UIImage             * displayImage;
+@property (nonatomic, strong) NSMutableDictionary * permissibleActions;
+
+- (NSString *) identifier;
+- (void) addToPermessibleActions : (LHAction *) aAction;
 
 @end

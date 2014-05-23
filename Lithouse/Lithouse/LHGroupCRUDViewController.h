@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeviceGroup.h"
 
 @interface LHGroupCRUDViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property NSMutableArray * devices;
+@property DeviceGroup    * deviceGroup;
 
 @end

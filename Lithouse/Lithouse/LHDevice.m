@@ -13,11 +13,27 @@
 - (id) init
 {
     if ( self = [super init] ) {
-        self.permissibleActions = [[NSMutableArray alloc] init];
+        self.permissibleActions = [[NSMutableDictionary alloc] init];
         self.displayImage = [UIImage imageNamed : @"unknown"];
     }
     
     return self;
+}
+
+- (void) toggle
+{
+    NSAssert(NO, @"This is an abstract method and should be overridden");
+}
+
+- (NSString *) identifier
+{
+    NSAssert(NO, @"This is an abstract method and should be overridden");
+    return nil;
+}
+
+- (void) addToPermessibleActions : (LHAction *) aAction
+{
+    [self.permissibleActions setObject : aAction forKey : aAction.identifier];
 }
 
 @end

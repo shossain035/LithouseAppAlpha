@@ -7,7 +7,12 @@
 //
 
 #import "LHDevice.h"
+#import "DeviceGroup.h"
 
 @interface LHDeviceGroup : LHDevice
+
+- (id) initWithManagedDeviceGroup : (DeviceGroup *) aManagedDeviceGroup;
+
+@property (nonatomic, strong) DeviceGroup * managedDeviceGroup;
 
 @end

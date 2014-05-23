@@ -9,13 +9,11 @@
 #import "LHDevice.h"
 #import "LHTurnOn.h"
 #import "LHTurnOff.h"
-#import "LHToggle.h"
 
 #import <HueSDK_iOS/HueSDK.h>
 
 @interface LHHueBulb : LHDevice <LHTurnOnHandler,
-                                 LHTurnOffHandler,
-                                 LHToogleHandler>
+                                 LHTurnOffHandler>
 
 
 - (id) initWithPHLight : (PHLight *) aPHLight;

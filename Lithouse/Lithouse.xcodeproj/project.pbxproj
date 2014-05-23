@@ -29,6 +29,7 @@
 		71A697DC192B2B2600C9AB86 /* press_smartbridge.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A697D4192B2B2600C9AB86 /* press_smartbridge.png */; };
 		71A697DD192B2B2600C9AB86 /* press_smartbridge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A697D5192B2B2600C9AB86 /* press_smartbridge@2x.png */; };
 		71A697ED192C788B00C9AB86 /* LHHueBulb.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697EC192C788B00C9AB86 /* LHHueBulb.m */; };
+		71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */; };
 		71B226E4192537F300E251B3 /* BelkinSDKLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */; };
 		71B226E5192537F300E251B3 /* Cybergarage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DA192537F300E251B3 /* Cybergarage.a */; };
 		71B226E6192537F400E251B3 /* Reachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DB192537F300E251B3 /* Reachability.a */; };
@@ -114,6 +115,8 @@
 		71A697D5192B2B2600C9AB86 /* press_smartbridge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press_smartbridge@2x.png"; sourceTree = "<group>"; };
 		71A697EB192C788B00C9AB86 /* LHHueBulb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHHueBulb.h; sourceTree = "<group>"; };
 		71A697EC192C788B00C9AB86 /* LHHueBulb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHHueBulb.m; sourceTree = "<group>"; };
+		71A697EF192DAE9E00C9AB86 /* DeviceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceGroup.h; sourceTree = "<group>"; };
+		71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceGroup.m; sourceTree = "<group>"; };
 		71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = BelkinSDKLibrary.a; sourceTree = "<group>"; };
 		71B226DA192537F300E251B3 /* Cybergarage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Cybergarage.a; sourceTree = "<group>"; };
 		71B226DB192537F300E251B3 /* Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Reachability.a; sourceTree = "<group>"; };
@@ -280,6 +283,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		71A697F2192DAEC000C9AB86 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				71A697EF192DAE9E00C9AB86 /* DeviceGroup.h */,
+				71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
 		71B226D7192537AD00E251B3 /* WeMoLocalSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +456,7 @@
 		71C82E4C1920772400395392 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				71A697F2192DAEC000C9AB86 /* ManagedObjects */,
 				7128FD9F1922A0B10031BEA8 /* Devices */,
 				7128FD98192295530031BEA8 /* Actions */,
 			);
@@ -571,6 +584,7 @@
 				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
 				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
 				7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */,
+				71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
 				71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */,

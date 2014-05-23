@@ -13,9 +13,9 @@
 - (id) init
 {
     if ( self = [super init] ) {
-        [self.permissibleActions addObject : [[LHTurnOn alloc] initWithParentDevice : self]];
-        [self.permissibleActions addObject : [[LHTurnOff alloc] initWithParentDevice : self]];
-        [self.permissibleActions addObject : [[LHToggle alloc] initWithParentDevice : self]];
+        [self addToPermessibleActions : [[LHToggle alloc] initWithParentDevice : self]];
+        [self addToPermessibleActions : [[LHTurnOff alloc] initWithParentDevice : self]];
+        [self addToPermessibleActions : [[LHTurnOn alloc] initWithParentDevice : self]];
     }
     
     return self;
@@ -81,6 +81,11 @@
     } else {
         [self turnOn];
     }
+}
+
+- (NSString *) identifier
+{
+    return self.weMoControlDevice.udn;
 }
 
 

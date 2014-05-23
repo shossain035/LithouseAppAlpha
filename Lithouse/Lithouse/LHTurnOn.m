@@ -15,6 +15,11 @@
     return @"Turn On";
 }
 
+- (NSString *) identifier
+{
+    return @"TURN_ON_ACTION";
+}
+
 - (void) performAction
 {
     [(id <LHTurnOnHandler>) self.parentDevice turnOn];

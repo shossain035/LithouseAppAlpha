@@ -15,6 +15,12 @@
     return @"Toogle";
 }
 
+- (NSString *) identifier
+{
+    return @"TOGGLE_ACTION";
+}
+
+
 - (void) performAction
 {
     [(id <LHToogleHandler>) self.parentDevice toggle];
