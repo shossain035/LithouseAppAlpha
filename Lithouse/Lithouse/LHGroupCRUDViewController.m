@@ -16,6 +16,10 @@
 
 @interface LHGroupCRUDViewController ()
 
+@property (nonatomic, strong) NSMutableArray * devices;
+@property (nonatomic, strong) DeviceGroup    * deviceGroup;
+@property (nonatomic)         BOOL             isNewGroup;
+
 @property (nonatomic, strong) IBOutlet UITableView * deviceTableView;
 @property (nonatomic, strong) IBOutlet UITextField * groupNameField;
 @property (nonatomic, strong) IBOutlet UIImageView * displayImage;
@@ -29,6 +33,13 @@
 - (IBAction) cancel : (id) sender
 {
     NSLog( @"Cancel clicked" );
+    
+    if ( self.isNewGroup ) {
+        LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+
+        [appDelegate.managedObjectContext deleteObject : self.deviceGroup];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -41,14 +52,8 @@
     //self.deviceGroup.image =
     
     LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate saveContext];
     
-    NSError * error;
-    [appDelegate.managedObjectContext save : &error];
-    
-    if ( error ) {
-        NSLog ( @"Could not save device group: %@, error: %@", self.deviceGroup, error );
-    }
-
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -65,14 +70,24 @@
 {
     [super viewDidLoad];
     
-     self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
+    self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
+    self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
 }
 
-- (void) viewWillAppear : (BOOL)animated
+- (void) initializeWithDevices : (NSMutableArray *) devices
+               withDeviceGroup : (DeviceGroup *) deviceGroup
+                    isNewGroup : (BOOL) isNewGroup
+{
+    self.isNewGroup = isNewGroup;
+    self.devices = devices;
+    self.deviceGroup = deviceGroup;
+    [self.currentActionsForDevices removeAllObjects];
+}
+
+- (void) viewWillAppear:(BOOL)animated
 {
     self.displayImage.image = [UIImage imageWithData : self.deviceGroup.image];
     self.groupNameField.text = self.deviceGroup.name;
-    self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,7 +135,7 @@
     };
 
     LHAction * action = [device.permissibleActions objectForKey :
-                        [self.deviceGroup.actions objectForKey : device.identifier]];
+                         [self.deviceGroup.actions objectForKey : device.identifier]];
      
     BOOL selectionFlag = YES;
     if ( action == nil ) {
@@ -181,5 +196,6 @@
                              forState : UIControlStateNormal];
     [aCell selectDevice : selectionFlag];
 }
+
 
 @end

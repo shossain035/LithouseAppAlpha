@@ -11,7 +11,8 @@
 
 @interface LHGroupCRUDViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property NSMutableArray * devices;
-@property DeviceGroup    * deviceGroup;
+- (void) initializeWithDevices : (NSMutableArray *) devices
+               withDeviceGroup : (DeviceGroup *) deviceGroup
+                    isNewGroup : (BOOL) isNewGroup;
 
 @end

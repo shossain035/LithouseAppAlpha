@@ -17,6 +17,6 @@
 @property (nonatomic, strong) NSMutableDictionary * permissibleActions;
 
 - (NSString *) identifier;
-- (void) addToPermessibleActions : (LHAction *) aAction;
+- (void) addToPermissibleActions : (LHAction *) aAction;
 
 @end

@@ -13,9 +13,9 @@
 - (id) init
 {
     if ( self = [super init] ) {
-        [self addToPermessibleActions : [[LHToggle alloc] initWithParentDevice : self]];
-        [self addToPermessibleActions : [[LHTurnOff alloc] initWithParentDevice : self]];
-        [self addToPermessibleActions : [[LHTurnOn alloc] initWithParentDevice : self]];
+        [self addToPermissibleActions : [[LHToggle alloc] initWithParentDevice : self]];
+        [self addToPermissibleActions : [[LHTurnOff alloc] initWithParentDevice : self]];
+        [self addToPermissibleActions : [[LHTurnOn alloc] initWithParentDevice : self]];
     }
     
     return self;

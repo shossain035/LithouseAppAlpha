@@ -11,8 +11,9 @@
 
 @interface LHDeviceGroup : LHDevice
 
-- (id) initWithManagedDeviceGroup : (DeviceGroup *) aManagedDeviceGroup;
+@property (nonatomic, strong) DeviceGroup                    * managedDeviceGroup;
 
-@property (nonatomic, strong) DeviceGroup * managedDeviceGroup;
+- (id) initWithManagedDeviceGroup : (DeviceGroup *) aManagedDeviceGroup
+             withDeviceDictionary : (NSMutableDictionary *) aDeviceDictionary;
 
 @end

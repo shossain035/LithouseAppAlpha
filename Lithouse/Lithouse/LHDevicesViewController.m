@@ -27,7 +27,7 @@ int const        LHSpinnerViewTag                    = 1001;
 @interface LHDevicesViewController ()
 
 @property NSMutableArray                                     * devicesAndGroups;
-@property NSMutableSet                                       * deviceIds;
+@property NSMutableDictionary                                * deviceDictionary;
 @property (nonatomic, strong) PHBridgeSearching              * bridgeSearch;
 @property (nonatomic, strong) PHBridgePushLinkViewController * pushLinkViewController;
 
@@ -49,7 +49,7 @@ int const        LHSpinnerViewTag                    = 1001;
 {
     [super viewDidLoad];
     
-    self.deviceIds = [[NSMutableSet alloc] init];
+    self.deviceDictionary = [[NSMutableDictionary alloc] init];
     self.devicesAndGroups = [[NSMutableArray alloc] init];
     NSMutableArray * devices = [[NSMutableArray alloc] init];
     NSMutableArray * deviceGroups = [[NSMutableArray alloc] init];
@@ -160,9 +160,8 @@ int const        LHSpinnerViewTag                    = 1001;
 
 - (void) refreshDeviceList
 {
-    [[self.devicesAndGroups objectAtIndex : 0] removeAllObjects];
+    //just delete device groups
     [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
-    [self.deviceIds removeAllObjects];
     
     [self.collectionView reloadData];
     
@@ -306,15 +305,17 @@ referenceSizeForHeaderInSection : (NSInteger) section
         DeviceGroup * deviceGroup = [NSEntityDescription insertNewObjectForEntityForName : @"DeviceGroup"
                                                                   inManagedObjectContext : appDelegate.managedObjectContext];
         
-        targetViewController.devices = [self.devicesAndGroups objectAtIndex : 0];
-        targetViewController.deviceGroup = deviceGroup;
-        
+        [targetViewController initializeWithDevices : [self.devicesAndGroups objectAtIndex : 0]
+                                    withDeviceGroup : deviceGroup
+                                         isNewGroup : YES];
+
     } else if ( [[segue identifier] isEqualToString : LHPushGroupForEditSegueIdentifier] ) {
         LHGroupCRUDViewController * targetViewController =
         (LHGroupCRUDViewController *) segue.destinationViewController;
         
-        targetViewController.devices = [self.devicesAndGroups objectAtIndex : 0];
-        targetViewController.deviceGroup = ((LHDeviceGroup *) self.selectedDevice).managedDeviceGroup;
+        [targetViewController initializeWithDevices : [self.devicesAndGroups objectAtIndex : 0]
+                                    withDeviceGroup : ((LHDeviceGroup *) self.selectedDevice).managedDeviceGroup
+                                         isNewGroup : NO];
     }
     
 }
@@ -325,28 +326,18 @@ referenceSizeForHeaderInSection : (NSInteger) section
 {
     NSLog(@"didFound Wemo Device ");
     //todo: move to a common function
-    @synchronized ( self.devicesAndGroups ) {
         //already discovered
-        if ( [self.deviceIds containsObject : device.udn] ) return;
-        [self.deviceIds addObject : device.udn];
-            
+    if ( [self.deviceDictionary objectForKey : device.udn] ) return;
+        
         //Insight devices have 3 states (ON/OFF/IDLE. So called a separate UPnP method to handle IDLE state. Insight device type is 2 as mentioned in DeviceConfigData.plist file.)
-        if (device.deviceType == 2)
-        {
+       // if (device.deviceType == 2)
+        //{
             //todo
             //[self getStatusForInsightDevice:device];
-        }
+        //}
         
-        LHWeMoSwitch * weMoDevice = [[LHWeMoSwitch alloc] initWithWeMoControlDevice : device];
-        
-        NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
-        [devices addObject : weMoDevice];
-        
-        NSLog(@"discoverDevices device = %d:%@",device.deviceType, device.friendlyName);
-        [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                               withObject : nil
-                            waitUntilDone : NO];
-    }
+    LHWeMoSwitch * weMoDevice = [[LHWeMoSwitch alloc] initWithWeMoControlDevice : device];
+    [self addDeviceToList : weMoDevice];
 }
 
 -(void)discoveryManager : (WeMoDiscoveryManager *) manager
@@ -397,23 +388,12 @@ referenceSizeForHeaderInSection : (NSInteger) section
     
     for (PHLight * light in cache.lights.allValues) {
         if ( [light.lightState.reachable boolValue]
-             && ![self.deviceIds containsObject : light.identifier] ) {
+             && ![self.deviceDictionary objectForKey : light.identifier] ) {
             
             NSLog ( @"light: %@", light.name );
-
-            [self.deviceIds addObject : light.identifier];
+            LHHueBulb * hueBulb = [[LHHueBulb alloc] initWithPHLight : light];
             
-            @synchronized( self.devicesAndGroups ){
-                
-                LHHueBulb * hueBulb = [[LHHueBulb alloc] initWithPHLight : light];
-            
-                NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
-                [devices addObject : hueBulb];
-            
-                [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                                       withObject : nil
-                                    waitUntilDone : NO];
-            }
+            [self addDeviceToList : hueBulb];
         }
     }
 
@@ -432,7 +412,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
         for ( DeviceGroup * managedDeviceGroup  in results ) {
             NSLog(@"Name: %@", managedDeviceGroup.name);
             LHDeviceGroup * deviceGroup = [[LHDeviceGroup alloc]
-                                           initWithManagedDeviceGroup : managedDeviceGroup];
+                                           initWithManagedDeviceGroup : managedDeviceGroup
+                                           withDeviceDictionary : self.deviceDictionary];
             
             @synchronized( self.devicesAndGroups ) {
                 NSMutableArray * deviceGroups = [self.devicesAndGroups objectAtIndex : 1];
@@ -600,6 +581,19 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }];
 }
 
-
+- (void) addDeviceToList : (LHDevice *) aDevice
+{
+    @synchronized ( self.devicesAndGroups ) {
+        
+        NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
+        [devices addObject : aDevice];
+        [self.deviceDictionary setObject : aDevice
+                                  forKey : aDevice.identifier];
+    
+        [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                               withObject : nil
+                            waitUntilDone : NO];
+    }
+}
 
 @end

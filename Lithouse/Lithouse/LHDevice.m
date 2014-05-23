@@ -31,7 +31,7 @@
     return nil;
 }
 
-- (void) addToPermessibleActions : (LHAction *) aAction
+- (void) addToPermissibleActions : (LHAction *) aAction
 {
     [self.permissibleActions setObject : aAction forKey : aAction.identifier];
 }
