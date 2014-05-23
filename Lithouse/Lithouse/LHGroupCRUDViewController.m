@@ -25,6 +25,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView * displayImage;
 
 @property (nonatomic, strong) NSMutableDictionary  * currentActionsForDevices;
+@property (nonatomic, strong) NSMutableDictionary  * selectedActionsForDevices;
 
 @end
 
@@ -50,6 +51,7 @@
     
     self.deviceGroup.name = self.groupNameField.text;
     //self.deviceGroup.image =
+    self.deviceGroup.actions = self.selectedActionsForDevices;
     
     LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate saveContext];
@@ -82,6 +84,7 @@
     self.devices = devices;
     self.deviceGroup = deviceGroup;
     [self.currentActionsForDevices removeAllObjects];
+    self.selectedActionsForDevices = [[NSMutableDictionary alloc] init];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -124,13 +127,11 @@
     
     cell.selectionButtonCallback = ^ (BOOL isSelected) {
         if ( isSelected ) {
-            if ( self.deviceGroup.actions == nil ) {
-                self.deviceGroup.actions = [[NSMutableDictionary alloc] init];
-            }
-            [self.deviceGroup.actions setObject : [self.currentActionsForDevices objectForKey : device.identifier]
-                                         forKey : device.identifier];
+            
+            [self.selectedActionsForDevices setObject : [self.currentActionsForDevices objectForKey : device.identifier]
+                                               forKey : device.identifier];
         } else {
-            [self.deviceGroup.actions removeObjectForKey : device.identifier];
+            [self.selectedActionsForDevices removeObjectForKey : device.identifier];
         }
     };
 
