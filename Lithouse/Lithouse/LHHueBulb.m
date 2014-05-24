@@ -26,7 +26,7 @@
     if ( self = [self init] ) {
         self.phLight = aPHLight;
         self.friendlyName = aPHLight.name;
-        //self.displayImage = ;
+        self.displayImage = [UIImage imageNamed : @"hue"];
     }
     
     return self;
