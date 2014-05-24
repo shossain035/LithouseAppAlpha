@@ -85,6 +85,13 @@
     
     self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
     self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
+    
+    self.displayImage.layer.borderWidth = 0.3f;
+    self.displayImage.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.displayImage.layer.cornerRadius = 10;
+    self.displayImage.layer.shadowPath = [[UIBezierPath bezierPathWithRoundedRect : self.displayImage.bounds
+                                                                     cornerRadius : self.displayImage.layer.cornerRadius] CGPath];
+    
 }
 
 - (void) initializeWithDevices : (NSMutableArray *) devices
