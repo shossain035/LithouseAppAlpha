@@ -176,6 +176,16 @@
                                     <outlet property="delegate" destination="clm-La-61T" id="gSH-o3-U91"/>
                                 </connections>
                             </tableView>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNI-55-U7O" colorLabel="IBBuiltInLabel-Red">
+                                <rect key="frame" x="14" y="427" width="291" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Delete This Group">
+                                    <color key="titleColor" red="0.94591039540816324" green="0.10925212200735407" blue="0.069421974029198849" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="delete:" destination="clm-La-61T" eventType="touchDown" id="Yt1-zX-N70"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -193,6 +203,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="SNI-55-U7O" id="ZPj-hp-HSc"/>
                         <outlet property="deviceTableView" destination="b1B-h1-nha" id="SWT-Tq-gPO"/>
                         <outlet property="displayImage" destination="Qzz-sy-Vxh" id="Dim-Vz-Tvb"/>
                         <outlet property="groupNameField" destination="7W2-c2-e6S" id="mtU-IT-bZN"/>

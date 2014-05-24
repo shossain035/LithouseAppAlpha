@@ -23,8 +23,8 @@
         self.managedDeviceGroup = aManagedDeviceGroup;
         self.friendlyName = aManagedDeviceGroup.name;
         self.deviceDictionary = aDeviceDictionary;
-        //self.displayImage =
-        //self.permissible
+        self.displayImage = [UIImage imageWithData : aManagedDeviceGroup.image];
+        self.permissibleActions = nil;
     }
 
     return self;

@@ -17,4 +17,11 @@
 @dynamic image;
 @dynamic actions;
 
+
+- (void) awakeFromInsert
+{
+    self.name = @"My Group";
+    self.image = UIImagePNGRepresentation ( [UIImage imageNamed : @"unknown"] );
+}
+
 @end

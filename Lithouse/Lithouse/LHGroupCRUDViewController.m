@@ -23,6 +23,7 @@
 @property (nonatomic, strong) IBOutlet UITableView * deviceTableView;
 @property (nonatomic, strong) IBOutlet UITextField * groupNameField;
 @property (nonatomic, strong) IBOutlet UIImageView * displayImage;
+@property (nonatomic, strong) IBOutlet UIButton    * deleteButton;
 
 @property (nonatomic, strong) NSMutableDictionary  * currentActionsForDevices;
 @property (nonatomic, strong) NSMutableDictionary  * selectedActionsForDevices;
@@ -50,10 +51,20 @@
     //todo: error check
     
     self.deviceGroup.name = self.groupNameField.text;
-    //self.deviceGroup.image =
+    self.deviceGroup.image = UIImagePNGRepresentation ( self.displayImage.image );
+    
     self.deviceGroup.actions = self.selectedActionsForDevices;
     
     LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate saveContext];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction) delete : (id) sender
+{
+    LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.managedObjectContext deleteObject : self.deviceGroup];
     [appDelegate saveContext];
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -91,6 +102,14 @@
 {
     self.displayImage.image = [UIImage imageWithData : self.deviceGroup.image];
     self.groupNameField.text = self.deviceGroup.name;
+    
+    if ( !self.isNewGroup ) {
+        self.title = self.deviceGroup.name;
+        self.deleteButton.hidden = NO;
+    } else {
+        self.title = @"Create Group";
+        self.deleteButton.hidden = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning

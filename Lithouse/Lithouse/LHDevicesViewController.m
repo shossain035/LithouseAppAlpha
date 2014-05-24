@@ -57,38 +57,6 @@ int const        LHSpinnerViewTag                    = 1001;
     [self.devicesAndGroups addObject : devices];
     [self.devicesAndGroups addObject : deviceGroups];
     
-    /*
-    LHDevice * device1 = [[LHDevice alloc] init];
-    device1.friendlyName = @"device1";
-    device1.displayImage = [UIImage imageNamed : @"unknown"];
-    [devices addObject : device1];
-    
-    LHDevice * device2 = [[LHDevice alloc] init];
-    device2.friendlyName = @"device2";
-    device2.displayImage = [UIImage imageNamed : @"unknown"];
-    [devices addObject : device2];
-    
-    LHDevice * device3 = [[LHDevice alloc] init];
-    device3.friendlyName = @"device3";
-    device3.displayImage = [UIImage imageNamed : @"unknown"];
-    [devices addObject : device3];
-    
-    LHDevice * device4 = [[LHWeMoSwitch alloc] init];
-    device4.friendlyName = @"WeMo";
-    device4.displayImage = [UIImage imageNamed : @"unknown"];
-    [devices addObject : device4];
-    
-    LHDeviceGroup * deviceGroup1 = [[LHDeviceGroup alloc] init];
-    deviceGroup1.friendlyName = @"group1";
-    deviceGroup1.displayImage = [UIImage imageNamed : @"unknown"];
-    [deviceGroups addObject : deviceGroup1];
-    
-    LHDeviceGroup * deviceGroup2 = [[LHDeviceGroup alloc] init];
-    deviceGroup2.friendlyName = @"group2";
-    deviceGroup2.displayImage = [UIImage imageNamed : @"unknown"];
-    [deviceGroups addObject : deviceGroup2];
-    */
-    
     // Listen for notifications
     PHNotificationManager *notificationManager = [PHNotificationManager defaultManager];
     /***************************************************
