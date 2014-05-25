@@ -118,13 +118,15 @@
                                 <rect key="frame" x="113" y="7" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="Sdq-yl-APV"/>
-                                    <constraint firstAttribute="width" constant="90" id="cd9-Y6-bQ1"/>
+                                    <constraint firstAttribute="height" constant="90" id="1lm-Kv-LDM"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="My group" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7W2-c2-e6S">
                                 <rect key="frame" x="82" y="105" width="157" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ppp-UW-IT1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -210,18 +212,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mr8-sF-byb" firstAttribute="top" secondItem="SNI-55-U7O" secondAttribute="bottom" constant="5" id="0hT-GO-VrT"/>
-                            <constraint firstItem="SNI-55-U7O" firstAttribute="top" secondItem="b1B-h1-nha" secondAttribute="bottom" constant="8" id="1Ak-cx-2GP"/>
-                            <constraint firstItem="b1B-h1-nha" firstAttribute="leading" secondItem="SNI-55-U7O" secondAttribute="leading" constant="1" id="3Bi-Uc-lOG"/>
-                            <constraint firstItem="b1B-h1-nha" firstAttribute="top" secondItem="7W2-c2-e6S" secondAttribute="bottom" constant="16" id="Nl7-WZ-iHS"/>
-                            <constraint firstItem="Qzz-sy-Vxh" firstAttribute="top" secondItem="NWz-4U-DmI" secondAttribute="bottom" constant="7" id="V0Q-Ss-ok1"/>
-                            <constraint firstItem="7W2-c2-e6S" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="82" id="V1Z-q0-c49"/>
-                            <constraint firstItem="b1B-h1-nha" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="14" id="WnN-NU-Y4o"/>
-                            <constraint firstAttribute="trailing" secondItem="b1B-h1-nha" secondAttribute="trailing" constant="15" id="cLP-0r-d3G"/>
-                            <constraint firstItem="7W2-c2-e6S" firstAttribute="centerX" secondItem="g2m-oe-4h8" secondAttribute="centerX" id="jQl-l7-qND"/>
-                            <constraint firstItem="Qzz-sy-Vxh" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="113" id="lsh-Yc-bWE"/>
-                            <constraint firstItem="SNI-55-U7O" firstAttribute="trailing" secondItem="b1B-h1-nha" secondAttribute="trailing" constant="-1" id="vRb-HL-Kyh"/>
-                            <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="Qzz-sy-Vxh" secondAttribute="bottom" constant="8" symbolic="YES" id="wVa-Zq-1nL"/>
+                            <constraint firstItem="b1B-h1-nha" firstAttribute="top" secondItem="7W2-c2-e6S" secondAttribute="bottom" constant="16" id="Dyi-qw-EEG"/>
+                            <constraint firstAttribute="trailing" secondItem="SNI-55-U7O" secondAttribute="trailing" constant="16" id="H8R-4O-qT0"/>
+                            <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="Qzz-sy-Vxh" secondAttribute="bottom" constant="8" symbolic="YES" id="JJR-vr-9b5"/>
+                            <constraint firstItem="b1B-h1-nha" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="14" id="JrC-sD-f7w"/>
+                            <constraint firstItem="Qzz-sy-Vxh" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="113" id="YeR-YV-AKJ"/>
+                            <constraint firstItem="Qzz-sy-Vxh" firstAttribute="centerX" secondItem="SNI-55-U7O" secondAttribute="centerX" id="cXt-v5-OMn"/>
+                            <constraint firstItem="mr8-sF-byb" firstAttribute="top" secondItem="SNI-55-U7O" secondAttribute="bottom" constant="5" id="cp4-uT-zqq"/>
+                            <constraint firstAttribute="trailing" secondItem="b1B-h1-nha" secondAttribute="trailing" constant="15" id="gVA-Dm-hso"/>
+                            <constraint firstItem="7W2-c2-e6S" firstAttribute="centerX" secondItem="g2m-oe-4h8" secondAttribute="centerX" id="nmL-Fp-YqZ"/>
+                            <constraint firstItem="SNI-55-U7O" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="13" id="rS9-1s-lR3"/>
+                            <constraint firstItem="7W2-c2-e6S" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="82" id="rx2-6c-Usf"/>
+                            <constraint firstItem="Qzz-sy-Vxh" firstAttribute="top" secondItem="NWz-4U-DmI" secondAttribute="bottom" constant="7" id="xQU-5T-Qlt"/>
+                            <constraint firstItem="SNI-55-U7O" firstAttribute="top" secondItem="b1B-h1-nha" secondAttribute="bottom" constant="8" symbolic="YES" id="xRM-kd-9Yh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Group" id="5cc-RD-HWu">
