@@ -339,7 +339,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-xL-I4E">
-                                    <rect key="frame" x="229" y="2" width="85" height="21"/>
+                                    <rect key="frame" x="222" y="2" width="85" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="85" id="Cx8-Ev-qP0"/>
@@ -349,11 +349,11 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.075977652620000002" green="0.62486049109999997" blue="0.091857902259999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="0xv-xL-I4E" firstAttribute="top" secondItem="yOd-xb-mpc" secondAttribute="top" constant="2" id="6ze-w9-Nqf"/>
                                 <constraint firstAttribute="bottom" secondItem="0xv-xL-I4E" secondAttribute="bottom" constant="6" id="JdT-AX-QZo"/>
-                                <constraint firstAttribute="trailing" secondItem="0xv-xL-I4E" secondAttribute="trailing" constant="6" id="QQI-N9-z93"/>
+                                <constraint firstAttribute="trailing" secondItem="0xv-xL-I4E" secondAttribute="trailing" constant="13" id="QQI-N9-z93"/>
                             </constraints>
                         </collectionReusableView>
                         <connections>
@@ -386,7 +386,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CrU-6p-KNh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.075977652623560876" green="0.6248604910714286" blue="0.091857902263110774" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>

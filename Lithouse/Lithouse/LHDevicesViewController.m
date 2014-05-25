@@ -238,6 +238,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
     UICollectionReusableView * headerView = [collectionView dequeueReusableSupplementaryViewOfKind : UICollectionElementKindSectionHeader
                                                                                withReuseIdentifier : @"DeviceCollectionHeader"
                                                                                       forIndexPath : indexPath];
+    // no groups available. hide the header bar
+    if ([[self.devicesAndGroups objectAtIndex : 1] count] == 0) headerView.hidden = YES;
+    else headerView.hidden = NO;
     return headerView;
 }
 
