@@ -295,9 +295,17 @@ referenceSizeForHeaderInSection : (NSInteger) section
            didFoundDevice : (WeMoControlDevice *) device
 {
     NSLog(@"didFound Wemo Device ");
-    //todo: move to a common function
-        //already discovered
-    if ( [self.deviceDictionary objectForKey : device.udn] ) return;
+    
+    LHWeMoSwitch * wemoSwitch = [self.deviceDictionary objectForKey : device.udn];
+    //already discovered. just update. todo: OOP
+    if ( wemoSwitch != nil ) {
+        [ wemoSwitch updateWithWeMoControlDevice : device];
+        
+        [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                               withObject : nil
+                            waitUntilDone : NO];
+        return;
+    }
         
         //Insight devices have 3 states (ON/OFF/IDLE. So called a separate UPnP method to handle IDLE state. Insight device type is 2 as mentioned in DeviceConfigData.plist file.)
        // if (device.deviceType == 2)
@@ -312,20 +320,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void)discoveryManager : (WeMoDiscoveryManager *) manager
     removeDeviceWithUdn : (NSString*) udn {
-    //todo:
-    /*NSLog(@"removeDeviceNotificationWithUserInfo");
-    @synchronized(devicesArray){
-        for (WeMoControlDevice* aDevice in devicesArray) {
-            if ([aDevice.udn isEqualToString:udn]){
-                if (self.wemoDeviceDetail) {
-                    [self.wemoDeviceDetail deviceRemoved];
-                }
-                [devicesArray removeObject:aDevice];
-                [deviceListTableView reloadData];
-                return;
-            }
-        }
-    }*/
+    
+    [self removeDeviceFromList : udn];
 }
 
 -(void) discoveryManagerRemovedAllDevices : (WeMoDiscoveryManager *) manager
@@ -357,13 +353,23 @@ referenceSizeForHeaderInSection : (NSInteger) section
     
     for (PHLight * light in cache.lights.allValues) {
         if ( [light.lightState.reachable boolValue] ) {
-            if ( ![self.deviceDictionary objectForKey : light.identifier] ) {
+            LHHueBulb * discoveredHueBulb = [self.deviceDictionary objectForKey : light.identifier];
+            
+            if ( discoveredHueBulb == nil ) {
                 NSLog ( @"light: %@", light.name );
                 LHHueBulb * hueBulb = [[LHHueBulb alloc] initWithPHLight : light];
             
                 [self addDeviceToList : hueBulb];
+            } else {
+                //already discovered. just update. todo: OOP
+                [discoveredHueBulb updateWithPHLight : light];
+                    
+                [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                                       withObject : nil
+                                    waitUntilDone : NO];
             }
         } else {
+            //the bulb is not reachable anymore
             [self removeDeviceFromList : light.identifier];
         }
     }

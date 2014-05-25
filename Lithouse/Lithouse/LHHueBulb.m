@@ -24,18 +24,23 @@
 - (id) initWithPHLight : (PHLight *) aPHLight
 {
     if ( self = [self init] ) {
-        self.phLight = aPHLight;
-        self.friendlyName = aPHLight.name;
-        self.displayImage = [UIImage imageNamed : @"hue"];
-        
-        if ( [self.phLight.lightState.on boolValue] ) {
-            self.currentStatus = LHDeviceIsOn;
-        } else {
-            self.currentStatus = LHDeviceIsOff;
-        }
+        [self updateWithPHLight : aPHLight];
     }
     
     return self;
+}
+
+- (void) updateWithPHLight : (PHLight *) aPHLight;
+{
+    self.phLight = aPHLight;
+    self.friendlyName = aPHLight.name;
+    self.displayImage = [UIImage imageNamed : @"hue"];
+    
+    if ( [self.phLight.lightState.on boolValue] ) {
+        self.currentStatus = LHDeviceIsOn;
+    } else {
+        self.currentStatus = LHDeviceIsOff;
+    }
 }
 
 - (void) turnOn

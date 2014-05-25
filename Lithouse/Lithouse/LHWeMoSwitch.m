@@ -24,27 +24,31 @@
 - (id) initWithWeMoControlDevice : (WeMoControlDevice *) aWeMoControlDevice
 {
     if ( self = [self init] ) {
-        self.weMoControlDevice = aWeMoControlDevice;
-        self.friendlyName = aWeMoControlDevice.friendlyName;
-        
-        if (aWeMoControlDevice.icon == nil) {
-            self.displayImage = [self defaultDeviceIcon : aWeMoControlDevice.deviceType];
-        }
-        else {
-            self.displayImage = aWeMoControlDevice.icon;
-        }
-        
-        if ( self.weMoControlDevice.state == WeMoDeviceOn ) {
-            self.currentStatus = LHDeviceIsOn;
-        } else {
-            self.currentStatus = LHDeviceIsOff;
-        }
-
-        
+        [self updateWithWeMoControlDevice : aWeMoControlDevice];
     }
     
     return self;
 }
+
+- (void) updateWithWeMoControlDevice : (WeMoControlDevice *) aWeMoControlDevice
+{
+    self.weMoControlDevice = aWeMoControlDevice;
+    self.friendlyName = aWeMoControlDevice.friendlyName;
+        
+    if (aWeMoControlDevice.icon == nil) {
+        self.displayImage = [self defaultDeviceIcon : aWeMoControlDevice.deviceType];
+    }
+    else {
+        self.displayImage = aWeMoControlDevice.icon;
+    }
+        
+    if ( self.weMoControlDevice.state == WeMoDeviceOn ) {
+        self.currentStatus = LHDeviceIsOn;
+    } else {
+        self.currentStatus = LHDeviceIsOff;
+    }
+}
+
 
 - (UIImage*) defaultDeviceIcon : (NSInteger) deviceType
 {
