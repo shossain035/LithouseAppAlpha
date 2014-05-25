@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHDevice.h"
 
 typedef void (^LHDeviceCellInfoButtonCallbackBlock) (void);
 typedef void (^LHDeviceCellToggleCallbackBlock)     (void);
@@ -18,5 +19,5 @@ typedef void (^LHDeviceCellToggleCallbackBlock)     (void);
 @property (copy) LHDeviceCellInfoButtonCallbackBlock   infoButtonCallback;
 @property (copy) LHDeviceCellToggleCallbackBlock       toggleCallbackBlock;
 
-
+- (void) addObserverForDevice : (LHDevice *) aDevice;
 @end

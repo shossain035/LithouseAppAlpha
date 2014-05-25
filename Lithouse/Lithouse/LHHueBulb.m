@@ -13,7 +13,7 @@
 - (id) init
 {
     if ( self = [super init] ) {
-        [self addToPermissibleActions : [[LHToggle alloc] initWithParentDevice : self]];
+        //[self addToPermissibleActions : [[LHToggle alloc] initWithParentDevice : self]];
         [self addToPermissibleActions : [[LHTurnOff alloc] initWithParentDevice : self]];
         [self addToPermissibleActions : [[LHTurnOn alloc] initWithParentDevice : self]];
     }
@@ -27,6 +27,12 @@
         self.phLight = aPHLight;
         self.friendlyName = aPHLight.name;
         self.displayImage = [UIImage imageNamed : @"hue"];
+        
+        if ( [self.phLight.lightState.on boolValue] ) {
+            self.currentStatus = LHDeviceIsOn;
+        } else {
+            self.currentStatus = LHDeviceIsOff;
+        }
     }
     
     return self;
@@ -34,12 +40,14 @@
 
 - (void) turnOn
 {
+    self.currentStatus = LHDeviceIsOn;
     NSLog ( @"turning hue on");
     [self turnLightOn : YES];
 }
 
 - (void) turnOff
 {
+    self.currentStatus = LHDeviceIsOff;
     NSLog ( @"turning hue off");
     [self turnLightOn : NO];
 }

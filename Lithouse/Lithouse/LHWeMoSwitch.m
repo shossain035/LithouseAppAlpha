@@ -13,7 +13,7 @@
 - (id) init
 {
     if ( self = [super init] ) {
-        [self addToPermissibleActions : [[LHToggle alloc] initWithParentDevice : self]];
+        //[self addToPermissibleActions : [[LHToggle alloc] initWithParentDevice : self]];
         [self addToPermissibleActions : [[LHTurnOff alloc] initWithParentDevice : self]];
         [self addToPermissibleActions : [[LHTurnOn alloc] initWithParentDevice : self]];
     }
@@ -33,6 +33,13 @@
         else {
             self.displayImage = aWeMoControlDevice.icon;
         }
+        
+        if ( self.weMoControlDevice.state == WeMoDeviceOn ) {
+            self.currentStatus = LHDeviceIsOn;
+        } else {
+            self.currentStatus = LHDeviceIsOff;
+        }
+
         
     }
     
@@ -62,12 +69,14 @@
 
 - (void) turnOn
 {
+    self.currentStatus = LHDeviceIsOn;
     NSLog ( @"turning wemo on");
     [self.weMoControlDevice setPluginStatus : WeMoDeviceOn];
 }
 
 - (void) turnOff
 {
+    self.currentStatus = LHDeviceIsOff;
     NSLog ( @"turning wemo off");
     [self.weMoControlDevice setPluginStatus : WeMoDeviceOff];
 }

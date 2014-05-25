@@ -8,6 +8,8 @@
 
 #import "LHDevice.h"
 
+NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChangeNotification";
+
 @implementation LHDevice
 
 - (id) init
@@ -15,6 +17,7 @@
     if ( self = [super init] ) {
         self.permissibleActions = [[NSMutableDictionary alloc] init];
         self.displayImage = [UIImage imageNamed : @"unknown"];
+        self.currentStatus = LHDeviceIsUnknown;
     }
     
     return self;
@@ -36,4 +39,20 @@
     [self.permissibleActions setObject : aAction forKey : aAction.identifier];
 }
 
+- (void) setCurrentStatus : (LHDeviceStatus) currentStatus
+{
+    _currentStatus = currentStatus;
+    
+    [self notifyCurrentStatus];
+}
+
+- (void) notifyCurrentStatus
+{
+    NSDictionary * statusData = [NSDictionary dictionaryWithObject : [NSNumber numberWithInt : self.currentStatus]
+                                                            forKey : LHDeviceDidStatusChangeNotification];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName : LHDeviceDidStatusChangeNotification
+                                                        object : self
+                                                      userInfo : statusData];
+}
 @end

@@ -228,6 +228,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [(id <LHToogleHandler>) device toggle];
     };
     
+    [cell addObserverForDevice : device];
+    
     return cell;
 }
 
