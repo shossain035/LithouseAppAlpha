@@ -131,18 +131,18 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-h1-nha">
-                                <rect key="frame" x="14" y="151" width="291" height="310"/>
+                                <rect key="frame" x="15" y="151" width="291" height="310"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDeviceCell" id="0JC-V3-Dt9" customClass="LHGroupDeviceTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="291" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0JC-V3-Dt9" id="Yvt-RI-p2n">
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0JC-V3-Dt9" id="Yvt-RI-p2n">
                                             <rect key="frame" x="0.0" y="0.0" width="291" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqh-kQ-Ct7">
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqh-kQ-Ct7">
                                                     <rect key="frame" x="209" y="7" width="82" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
@@ -155,7 +155,7 @@
                                                         <action selector="didTapActionPickerButton:" destination="0JC-V3-Dt9" eventType="touchDown" id="Sx3-TA-kqM"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyc-UI-Lnz">
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyc-UI-Lnz">
                                                     <rect key="frame" x="0.0" y="8" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
@@ -168,28 +168,32 @@
                                                         <action selector="didTapSelectionButton:" destination="0JC-V3-Dt9" eventType="touchDown" id="IZt-3T-1Il"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f8-tI-qEC">
-                                                    <rect key="frame" x="41" y="10" width="160" height="21"/>
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcv-l8-4bx">
+                                                    <rect key="frame" x="43" y="6" width="158" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="didTapSelectionButton:" destination="0JC-V3-Dt9" eventType="touchDown" id="uyo-AW-4hQ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Hyc-UI-Lnz" firstAttribute="leading" secondItem="Yvt-RI-p2n" secondAttribute="leading" id="5G8-0r-IRt"/>
-                                                <constraint firstItem="5f8-tI-qEC" firstAttribute="leading" secondItem="Hyc-UI-Lnz" secondAttribute="trailing" constant="16" id="OYK-Tu-x9q"/>
-                                                <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="baseline" secondItem="5f8-tI-qEC" secondAttribute="baseline" id="OiB-UG-sTb"/>
-                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="centerY" secondItem="5f8-tI-qEC" secondAttribute="centerY" id="Q1y-U2-1O1"/>
-                                                <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="leading" secondItem="5f8-tI-qEC" secondAttribute="trailing" constant="8" symbolic="YES" id="RJe-IB-e4F"/>
+                                                <constraint firstItem="Jcv-l8-4bx" firstAttribute="leading" secondItem="Hyc-UI-Lnz" secondAttribute="trailing" constant="18" id="7Ac-RV-wjN"/>
+                                                <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="leading" secondItem="Jcv-l8-4bx" secondAttribute="trailing" constant="8" symbolic="YES" id="Ttb-e5-vBt"/>
                                                 <constraint firstItem="Hyc-UI-Lnz" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="8" id="U7E-km-bcl"/>
-                                                <constraint firstItem="5f8-tI-qEC" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="10" id="UYR-M9-zJf"/>
                                                 <constraint firstAttribute="trailing" secondItem="Cqh-kQ-Ct7" secondAttribute="trailing" id="WpZ-Ef-NYL"/>
+                                                <constraint firstItem="Jcv-l8-4bx" firstAttribute="centerY" secondItem="Yvt-RI-p2n" secondAttribute="centerY" id="YrY-5g-ngh"/>
                                                 <constraint firstAttribute="bottom" secondItem="Hyc-UI-Lnz" secondAttribute="bottom" constant="10" id="c3G-xW-7uq"/>
+                                                <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="7" id="veJ-Bs-qBs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="actionPickerButton" destination="Cqh-kQ-Ct7" id="DJR-dQ-IIz"/>
-                                            <outlet property="deviceNameLabel" destination="5f8-tI-qEC" id="NAR-88-7bB"/>
+                                            <outlet property="deviceNameButton" destination="Jcv-l8-4bx" id="nqH-sF-lrM"/>
                                             <outlet property="selectionButton" destination="Hyc-UI-Lnz" id="M7t-IK-Waq"/>
                                         </connections>
                                     </tableViewCell>
@@ -215,11 +219,11 @@
                             <constraint firstItem="b1B-h1-nha" firstAttribute="top" secondItem="7W2-c2-e6S" secondAttribute="bottom" constant="16" id="Dyi-qw-EEG"/>
                             <constraint firstAttribute="trailing" secondItem="SNI-55-U7O" secondAttribute="trailing" constant="16" id="H8R-4O-qT0"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="Qzz-sy-Vxh" secondAttribute="bottom" constant="8" symbolic="YES" id="JJR-vr-9b5"/>
-                            <constraint firstItem="b1B-h1-nha" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="14" id="JrC-sD-f7w"/>
+                            <constraint firstItem="b1B-h1-nha" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="15" id="JrC-sD-f7w"/>
                             <constraint firstItem="Qzz-sy-Vxh" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="113" id="YeR-YV-AKJ"/>
                             <constraint firstItem="Qzz-sy-Vxh" firstAttribute="centerX" secondItem="SNI-55-U7O" secondAttribute="centerX" id="cXt-v5-OMn"/>
                             <constraint firstItem="mr8-sF-byb" firstAttribute="top" secondItem="SNI-55-U7O" secondAttribute="bottom" constant="5" id="cp4-uT-zqq"/>
-                            <constraint firstAttribute="trailing" secondItem="b1B-h1-nha" secondAttribute="trailing" constant="15" id="gVA-Dm-hso"/>
+                            <constraint firstAttribute="trailing" secondItem="b1B-h1-nha" secondAttribute="trailing" constant="14" id="gVA-Dm-hso"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="centerX" secondItem="g2m-oe-4h8" secondAttribute="centerX" id="nmL-Fp-YqZ"/>
                             <constraint firstItem="SNI-55-U7O" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="13" id="rS9-1s-lR3"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="82" id="rx2-6c-Usf"/>
@@ -279,7 +283,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="8GY-bp-dgz">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dJh-kt-dpq">
                             <size key="itemSize" width="300" height="66"/>
                             <size key="headerReferenceSize" width="50" height="29"/>
@@ -294,9 +298,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JFM-GG-JgC">
+                                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JFM-GG-JgC">
                                             <rect key="frame" x="6" y="4" width="58" height="58"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="58" id="6em-FR-fUU"/>
                                             </constraints>
@@ -314,12 +319,13 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYl-OL-H9H">
                                             <rect key="frame" x="80" y="23" width="152" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="JFM-GG-JgC" firstAttribute="top" secondItem="AKs-ox-2lE" secondAttribute="top" constant="4" id="1Kn-aE-YAo"/>
                                     <constraint firstAttribute="trailing" secondItem="nqU-93-dMr" secondAttribute="trailing" constant="20" id="6XW-pY-r00"/>
@@ -333,11 +339,12 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="image" destination="JFM-GG-JgC" id="ije-wi-qYG"/>
+                                    <outlet property="infoButton" destination="nqU-93-dMr" id="xVe-PE-b2E"/>
                                     <outlet property="nameLabel" destination="gYl-OL-H9H" id="ppS-fg-Zfn"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeviceCollectionHeader" id="yOd-xb-mpc">
+                        <collectionReusableView key="sectionHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeviceCollectionHeader" id="yOd-xb-mpc">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>

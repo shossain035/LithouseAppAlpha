@@ -171,7 +171,8 @@
                         forDisplayCell : cell
                             isSelected : selectionFlag];
 
-    cell.deviceNameLabel.text = device.friendlyName;
+    [cell.deviceNameButton setTitle : device.friendlyName
+                           forState : UIControlStateNormal];
     
     return cell;
 }

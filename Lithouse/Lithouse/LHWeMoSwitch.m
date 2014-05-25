@@ -50,16 +50,16 @@
 {
     switch (deviceType) {
         case 0:
-            return [UIImage imageNamed:@"ic_switch.png"];
+            return [UIImage imageNamed:@"ic_switch"];
             
         case 1:
-            return [UIImage imageNamed:@"ic_sensor.png"];
+            return [UIImage imageNamed:@"ic_sensor"];
             
         case 2:
-            return [UIImage imageNamed:@"ic_insight.png"];
+            return [UIImage imageNamed:@"ic_insight"];
             
         case 3:
-            return [UIImage imageNamed:@"ic_wallpaper.png"];
+            return [UIImage imageNamed:@"ic_wallpaper"];
             
     }
     

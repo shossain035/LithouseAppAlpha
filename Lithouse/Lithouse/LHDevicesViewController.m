@@ -214,16 +214,21 @@ referenceSizeForHeaderInSection : (NSInteger) section
     cell.nameLabel.text = device.friendlyName;
     cell.image.image = device.displayImage;
     
-    cell.infoButtonCallback = ^{
-        self.selectedDevice = device;
-        NSLog ( @"device info %@", device.friendlyName );
+    if ( [device isKindOfClass : [LHDeviceGroup class]] ) {
+        cell.infoButton.hidden  = NO;
+        cell.infoButtonCallback = ^{
+            self.selectedDevice = device;
+            NSLog ( @"device info %@", device.friendlyName );
         
-        if ( [device isKindOfClass : [LHDeviceGroup class]] ) {
+        
             [self performSegueWithIdentifier : LHPushGroupForEditSegueIdentifier
                                       sender : self];
-        }
-    };
-    
+        
+        };
+    } else {
+        cell.infoButton.hidden  = YES;
+    }
+
     cell.toggleCallbackBlock = ^{
         [(id <LHToogleHandler>) device toggle];
     };
@@ -253,15 +258,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     
     LHDeviceCell * cell = (LHDeviceCell *) [collectionView cellForItemAtIndexPath : indexPath];
     
-    CABasicAnimation * borderAnimation = [CABasicAnimation animationWithKeyPath : @"borderWidth"];
-    [borderAnimation setFromValue : [NSNumber numberWithFloat : cell.layer.borderWidth]];
-    [borderAnimation setToValue : [NSNumber numberWithFloat : 0.0f]];
-    [borderAnimation setRepeatCount : 1.0];
-    [borderAnimation setAutoreverses : NO];
-    [borderAnimation setDuration : 0.3f];
-    
-    [cell.layer addAnimation : borderAnimation forKey : @"animateBorder"];
-    
+    [cell animate];
     cell.toggleCallbackBlock();
 }
 
@@ -352,7 +349,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
     // Check current connection state
     NSLog ( @"localConnection" );
     
-    //todo: check if at least one light is reachable
     [self updateHueLights];
 }
 
@@ -360,13 +356,15 @@ referenceSizeForHeaderInSection : (NSInteger) section
     PHBridgeResourcesCache * cache = [PHBridgeResourcesReader readBridgeResourcesCache];
     
     for (PHLight * light in cache.lights.allValues) {
-        if ( [light.lightState.reachable boolValue]
-             && ![self.deviceDictionary objectForKey : light.identifier] ) {
+        if ( [light.lightState.reachable boolValue] ) {
+            if ( ![self.deviceDictionary objectForKey : light.identifier] ) {
+                NSLog ( @"light: %@", light.name );
+                LHHueBulb * hueBulb = [[LHHueBulb alloc] initWithPHLight : light];
             
-            NSLog ( @"light: %@", light.name );
-            LHHueBulb * hueBulb = [[LHHueBulb alloc] initWithPHLight : light];
-            
-            [self addDeviceToList : hueBulb];
+                [self addDeviceToList : hueBulb];
+            }
+        } else {
+            [self removeDeviceFromList : light.identifier];
         }
     }
 
@@ -563,6 +561,22 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [self.deviceDictionary setObject : aDevice
                                   forKey : aDevice.identifier];
     
+        [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                               withObject : nil
+                            waitUntilDone : NO];
+    }
+}
+
+- (void) removeDeviceFromList : (NSString *) withDeviceIdentifier
+{
+    @synchronized ( self.devicesAndGroups ) {
+        LHDevice * device = [self.deviceDictionary objectForKey : withDeviceIdentifier];
+        if ( device == nil ) return;
+        
+        NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
+        [devices removeObject : device];
+        [self.deviceDictionary removeObjectForKey : withDeviceIdentifier];
+        
         [self performSelectorOnMainThread : @selector(reloadDeviceList)
                                withObject : nil
                             waitUntilDone : NO];

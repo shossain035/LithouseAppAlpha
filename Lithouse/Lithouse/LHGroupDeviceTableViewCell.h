@@ -16,7 +16,7 @@ typedef void (^LHDeviceCellSelectionButtonCallbackBlock) (BOOL);
 
 @property (nonatomic, strong) IBOutlet UIButton *         selectionButton;
 @property (nonatomic, strong) IBOutlet UIButton *         actionPickerButton;
-@property (nonatomic, strong) IBOutlet UILabel  *         deviceNameLabel;
+@property (nonatomic, strong) IBOutlet UIButton *         deviceNameButton;
 
 @property                              BOOL               isSelected;
 @property (copy) LHDeviceCellActionPickerCallbackBlock    actionPickerCallback;

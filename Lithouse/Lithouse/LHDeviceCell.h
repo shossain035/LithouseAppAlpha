@@ -16,8 +16,10 @@ typedef void (^LHDeviceCellToggleCallbackBlock)     (void);
 
 @property (strong, nonatomic) IBOutlet UIImageView   * image;
 @property (strong, nonatomic) IBOutlet UILabel       * nameLabel;
+@property (strong, nonatomic) IBOutlet UIButton      * infoButton;
 @property (copy) LHDeviceCellInfoButtonCallbackBlock   infoButtonCallback;
 @property (copy) LHDeviceCellToggleCallbackBlock       toggleCallbackBlock;
 
 - (void) addObserverForDevice : (LHDevice *) aDevice;
+- (void) animate;
 @end
