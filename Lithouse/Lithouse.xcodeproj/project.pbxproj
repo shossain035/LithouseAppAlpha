@@ -61,6 +61,7 @@
 		71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4619205E6100395392 /* LHDevicesViewController.m */; };
 		71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4A1920621B00395392 /* LHDeviceCell.m */; };
 		71C82E4F1920775F00395392 /* LHDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4E1920775F00395392 /* LHDevice.m */; };
+		71D9BF001933099A00164594 /* LHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9BEFF1933099A00164594 /* LHAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,8 @@
 		71C82E4A1920621B00395392 /* LHDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDeviceCell.m; sourceTree = "<group>"; };
 		71C82E4D1920775F00395392 /* LHDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDevice.h; sourceTree = "<group>"; };
 		71C82E4E1920775F00395392 /* LHDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDevice.m; sourceTree = "<group>"; };
+		71D9BEFE1933099A00164594 /* LHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAlertView.h; sourceTree = "<group>"; };
+		71D9BEFF1933099A00164594 /* LHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +452,8 @@
 				71C82E4A1920621B00395392 /* LHDeviceCell.m */,
 				7128FD951921F21C0031BEA8 /* LHGroupDeviceTableViewCell.h */,
 				7128FD961921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m */,
+				71D9BEFE1933099A00164594 /* LHAlertView.h */,
+				71D9BEFF1933099A00164594 /* LHAlertView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -584,6 +589,7 @@
 				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
 				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
 				7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */,
+				71D9BF001933099A00164594 /* LHAlertView.m in Sources */,
 				71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,

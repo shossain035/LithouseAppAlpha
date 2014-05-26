@@ -13,6 +13,7 @@
 
 #import "LHDevice.h"
 #import "LHAction.h"
+#import "LHAlertView.h"
 
 @interface LHGroupCRUDViewController ()
 
@@ -63,11 +64,24 @@
 
 - (IBAction) delete : (id) sender
 {
-    LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.managedObjectContext deleteObject : self.deviceGroup];
-    [appDelegate saveContext];
+    LHAlertView *alert = [[LHAlertView alloc] initWithTitle : @"Deleting Group"
+                                                    message : [NSString stringWithFormat
+                                                               : @"Do you really want to delete \"%@\"?",
+                                                               self.groupNameField.text]
+                                          cancelButtonTitle : @"Cancel"
+                                          otherButtonTitles : @[@"Yes"]];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    alert.completion = ^ (BOOL cancelled, NSInteger buttonIndex) {
+        if ( !cancelled ) {
+            LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.managedObjectContext deleteObject : self.deviceGroup];
+            [appDelegate saveContext];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    };
+    
+    [alert show];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
