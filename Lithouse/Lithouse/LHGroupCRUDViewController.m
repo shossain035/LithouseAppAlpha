@@ -195,6 +195,12 @@
     ^ (UITableViewCell * cell, NSIndexPath * indexPath) {
         LHAction * action = [[aDevice.permissibleActions allValues] objectAtIndex : indexPath.row];
         cell.textLabel.text = action.friendlyName;
+        
+        if ([self isSelectedAction : action forDevice : aDevice]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     };
     
     pickerViewController.didSelectRowAtIndexPathCallback = ^ (NSIndexPath * indexPath) {
@@ -221,5 +227,15 @@
     [aCell selectDevice : selectionFlag];
 }
 
+- (BOOL) isSelectedAction : (LHAction *) anAction
+                forDevice : (LHDevice *) forDevice
+{
+    if ([anAction.identifier isEqualToString :
+         [self.currentActionsForDevices objectForKey : forDevice.identifier]]) {
+        return YES;
+    }
+    
+    return NO;
+}
 
 @end
