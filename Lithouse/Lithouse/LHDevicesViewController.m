@@ -30,6 +30,7 @@ int const        LHSpinnerViewTag                    = 1001;
 @property NSMutableDictionary                                * deviceDictionary;
 @property (nonatomic, strong) PHBridgeSearching              * bridgeSearch;
 @property (nonatomic, strong) PHBridgePushLinkViewController * pushLinkViewController;
+@property (nonatomic, strong) NSString                      * isHueHeartbeatEnabled;
 
 @property (nonatomic, weak)   LHDevice                       * selectedDevice;
 @end
@@ -49,6 +50,7 @@ int const        LHSpinnerViewTag                    = 1001;
 {
     [super viewDidLoad];
     
+    self.isHueHeartbeatEnabled = @"NO";
     self.deviceDictionary = [[NSMutableDictionary alloc] init];
     self.devicesAndGroups = [[NSMutableArray alloc] init];
     NSMutableArray * devices = [[NSMutableArray alloc] init];
@@ -488,6 +490,11 @@ referenceSizeForHeaderInSection : (NSInteger) section
  Starts the local heartbeat with a 10 second interval
  */
 - (void)enableLocalHeartbeat {
+    @synchronized ( self.isHueHeartbeatEnabled ) {
+        if ( [self.isHueHeartbeatEnabled isEqualToString : @"YES"]) return;
+        
+        self.isHueHeartbeatEnabled = @"YES";
+    }
     /***************************************************
      The heartbeat processing collects data from the bridge
      so now try to see if we have a bridge already connected
@@ -508,6 +515,10 @@ referenceSizeForHeaderInSection : (NSInteger) section
  Stops the local heartbeat
  */
 - (void)disableLocalHeartbeat {
+    @synchronized ( self.isHueHeartbeatEnabled ) {
+        self.isHueHeartbeatEnabled = @"NO";
+    }
+    
     [[LHAppDelegate getHueSDK] disableLocalConnection];
 }
 
