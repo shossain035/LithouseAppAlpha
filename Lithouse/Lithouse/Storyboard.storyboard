@@ -142,12 +142,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="291" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqh-kQ-Ct7">
-                                                    <rect key="frame" x="209" y="7" width="82" height="30"/>
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqh-kQ-Ct7">
+                                                    <rect key="frame" x="14" y="7" width="72" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="82" id="p7x-5g-IP8"/>
-                                                    </constraints>
                                                     <state key="normal" title="Turn On">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -156,10 +153,12 @@
                                                     </connections>
                                                 </button>
                                                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyc-UI-Lnz">
-                                                    <rect key="frame" x="0.0" y="8" width="25" height="25"/>
+                                                    <rect key="frame" x="261" y="9" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="jk7-0P-CmP"/>
+                                                        <constraint firstAttribute="height" constant="25" id="8LM-wQ-f1r"/>
+                                                        <constraint firstAttribute="width" constant="25" id="SJf-Nq-RsV"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="zuZ-8j-pxj"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="Unchecked">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -169,8 +168,11 @@
                                                     </connections>
                                                 </button>
                                                 <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcv-l8-4bx">
-                                                    <rect key="frame" x="43" y="6" width="158" height="30"/>
+                                                    <rect key="frame" x="105" y="7" width="134" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="134" id="XAb-vf-q44"/>
+                                                    </constraints>
                                                     <state key="normal" title="Button">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,14 +183,14 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="leading" secondItem="Yvt-RI-p2n" secondAttribute="leading" id="5G8-0r-IRt"/>
-                                                <constraint firstItem="Jcv-l8-4bx" firstAttribute="leading" secondItem="Hyc-UI-Lnz" secondAttribute="trailing" constant="18" id="7Ac-RV-wjN"/>
-                                                <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="leading" secondItem="Jcv-l8-4bx" secondAttribute="trailing" constant="8" symbolic="YES" id="Ttb-e5-vBt"/>
-                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="8" id="U7E-km-bcl"/>
-                                                <constraint firstAttribute="trailing" secondItem="Cqh-kQ-Ct7" secondAttribute="trailing" id="WpZ-Ef-NYL"/>
-                                                <constraint firstItem="Jcv-l8-4bx" firstAttribute="centerY" secondItem="Yvt-RI-p2n" secondAttribute="centerY" id="YrY-5g-ngh"/>
-                                                <constraint firstAttribute="bottom" secondItem="Hyc-UI-Lnz" secondAttribute="bottom" constant="10" id="c3G-xW-7uq"/>
-                                                <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="7" id="veJ-Bs-qBs"/>
+                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="9" id="7Pl-dH-eXO"/>
+                                                <constraint firstItem="Jcv-l8-4bx" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="7" id="7Yh-oq-Mrs"/>
+                                                <constraint firstItem="Jcv-l8-4bx" firstAttribute="leading" secondItem="Cqh-kQ-Ct7" secondAttribute="trailing" constant="19" id="96E-8E-NRz"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hyc-UI-Lnz" secondAttribute="trailing" constant="5" id="W3T-Lh-Swt"/>
+                                                <constraint firstItem="Jcv-l8-4bx" firstAttribute="baseline" secondItem="Cqh-kQ-Ct7" secondAttribute="baseline" id="aJR-Rd-Thg"/>
+                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="centerY" secondItem="Yvt-RI-p2n" secondAttribute="centerY" id="ofI-0R-Zth"/>
+                                                <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="leading" secondItem="Yvt-RI-p2n" secondAttribute="leading" constant="14" id="wVe-o2-CKA"/>
+                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="leading" secondItem="Jcv-l8-4bx" secondAttribute="trailing" constant="22" id="yPW-dv-Wbp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

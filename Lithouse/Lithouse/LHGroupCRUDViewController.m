@@ -85,9 +85,6 @@
     
     self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
     self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
-
-    self.displayImage.layer.borderWidth = 0.3f;
-    self.displayImage.layer.borderColor = [[UIColor lightGrayColor] CGColor];
 }
 
 - (void) initializeWithDevices : (NSMutableArray *) devices
