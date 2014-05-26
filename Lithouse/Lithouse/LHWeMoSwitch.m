@@ -39,7 +39,8 @@
         self.displayImage = [self defaultDeviceIcon : aWeMoControlDevice.deviceType];
     }
     else {
-        self.displayImage = aWeMoControlDevice.icon;
+        //todo: find a better solution for white background
+        self.displayImage = [self changeWhiteColorTransparent : aWeMoControlDevice.icon];
     }
         
     if ( self.weMoControlDevice.state == WeMoDeviceOn ) {
@@ -70,6 +71,27 @@
     return nil;
 }
 
+- (UIImage *) changeWhiteColorTransparent : (UIImage *) image
+{
+    CGImageRef rawImageRef = image.CGImage;
+    
+    const float colorMasking[6] = {222, 255, 255, 255, 255, 255};
+    
+    UIGraphicsBeginImageContext ( image.size );
+    CGImageRef maskedImageRef=CGImageCreateWithMaskingColors(rawImageRef, colorMasking);
+    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), 0.0, image.size.height);
+    CGContextScaleCTM(UIGraphicsGetCurrentContext(), 1.0, -1.0);
+    
+    CGContextDrawImage(UIGraphicsGetCurrentContext(),
+                       CGRectMake(0, 0, image.size.width, image.size.height),
+                       maskedImageRef);
+    
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    CGImageRelease(maskedImageRef);
+    UIGraphicsEndImageContext();
+    
+    return result;
+}
 
 - (void) turnOn
 {

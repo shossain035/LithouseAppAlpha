@@ -7,6 +7,7 @@
 //
 
 #import "LHDeviceCell.h"
+#import "LHAppDelegate.h"
 
 @interface LHDeviceCell ()
 @property (strong, nonatomic) id statusChangeObserver;
@@ -47,7 +48,9 @@
                 self.nameLabel.textColor = [UIColor grayColor];
             } else if ( [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
                          intValue] == LHDeviceIsUnknown ) {
-                self.nameLabel.textColor = [UIColor greenColor];
+                LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+
+                self.nameLabel.textColor = appDelegate.window.tintColor;
             }
         }
     ];

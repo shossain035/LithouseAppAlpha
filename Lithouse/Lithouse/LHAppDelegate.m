@@ -45,7 +45,10 @@
     [menuViewController transitionToViewController : LHPaneViewControllerTypeDevicesAndTriggers];
     
     //App wide styles
-    self.window.tintColor = [UIColor greenColor];
+    self.window.tintColor = [UIColor colorWithRed : 0.23203192348306206f
+                                            green : 0.68421157525510212f
+                                             blue : 0.29434636798765151f
+                                            alpha : 1.0f];
     
     //wemo state manager
     stateManager = [WeMoStateManager sharedWeMoStateManager];
