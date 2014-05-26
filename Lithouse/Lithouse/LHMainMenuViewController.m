@@ -97,7 +97,7 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
                                                                 style : UIBarButtonItemStyleBordered
                                                                target : self
                                                                action : @selector(drawerBarButtonItemTapped:)];
-    
+    self.drawerBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
 - (void) drawerBarButtonItemTapped : (id) sender

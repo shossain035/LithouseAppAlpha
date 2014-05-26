@@ -453,7 +453,7 @@
     </scenes>
     <resources>
         <image name="Unchecked" width="833" height="833"/>
-        <image name="unknown" width="300" height="300"/>
+        <image name="unknown" width="1500" height="1500"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
