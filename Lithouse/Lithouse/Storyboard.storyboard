@@ -452,7 +452,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Unchecked" width="256" height="256"/>
+        <image name="Unchecked" width="833" height="833"/>
         <image name="unknown" width="300" height="300"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
