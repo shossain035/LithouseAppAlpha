@@ -76,9 +76,6 @@ int const        LHSpinnerViewTag                    = 1001;
     [notificationManager registerObject : self
                            withSelector : @selector ( notAuthenticated )
                         forNotification : NO_LOCAL_AUTHENTICATION_NOTIFICATION];
-    
-    [self enableLocalHeartbeat];
-
 }
 
 - (void) viewWillAppear : (BOOL) animated
