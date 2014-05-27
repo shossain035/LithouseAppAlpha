@@ -15,6 +15,16 @@
 
 @implementation LHDeviceCell
 
+- (id) initWithCoder:(NSCoder *)aDecoder
+{
+    if ( self = [super initWithCoder : aDecoder] ) {
+        self.layer.masksToBounds = NO;
+        self.layer.shadowOffset = CGSizeMake(-1, 1);
+        self.layer.shadowOpacity = 0.10;
+    }
+    
+    return self;
+}
 
 - (IBAction) infoButtonTapped : (id) sender
 {
@@ -60,16 +70,14 @@
 
 - (void) animate
 {
-    self.layer.borderColor = [[UIColor greenColor] CGColor];
+    CABasicAnimation * shadowAnimation = [CABasicAnimation animationWithKeyPath : @"shadowOpacity"];
+    shadowAnimation.fromValue = [NSNumber numberWithFloat : self.layer.shadowOpacity];
+    shadowAnimation.toValue = [NSNumber numberWithFloat : 0.8f];
+    shadowAnimation.repeatCount = 1.0;
+    shadowAnimation.autoreverses = YES;
+    shadowAnimation.duration = 0.15f;
     
-    CABasicAnimation * borderAnimation = [CABasicAnimation animationWithKeyPath : @"borderWidth"];
-    [borderAnimation setFromValue : [NSNumber numberWithFloat : 1.0f]];
-    [borderAnimation setToValue : [NSNumber numberWithFloat : 0.0f]];
-    [borderAnimation setRepeatCount : 2.0];
-    [borderAnimation setAutoreverses : NO];
-    [borderAnimation setDuration : 0.5f];
-    
-    [self.layer addAnimation : borderAnimation forKey : @"animateBorder"];
+    [self.layer addAnimation : shadowAnimation forKey : @"shadowOpacity"];
 }
 
 @end
