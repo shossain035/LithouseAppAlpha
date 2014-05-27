@@ -72,7 +72,7 @@
 {
     CABasicAnimation * shadowAnimation = [CABasicAnimation animationWithKeyPath : @"shadowOpacity"];
     shadowAnimation.fromValue = [NSNumber numberWithFloat : self.layer.shadowOpacity];
-    shadowAnimation.toValue = [NSNumber numberWithFloat : 0.8f];
+    shadowAnimation.toValue = [NSNumber numberWithFloat : 0.7f];
     shadowAnimation.repeatCount = 1.0;
     shadowAnimation.autoreverses = YES;
     shadowAnimation.duration = 0.15f;

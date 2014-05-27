@@ -69,7 +69,7 @@
                                                                : @"Do you really want to delete \"%@\"?",
                                                                self.groupNameField.text]
                                           cancelButtonTitle : @"Cancel"
-                                          otherButtonTitles : @[@"Yes"]];
+                                          otherButtonTitles : @[@"Delete"]];
     
     alert.completion = ^ (BOOL cancelled, NSInteger buttonIndex) {
         if ( !cancelled ) {
