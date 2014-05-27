@@ -373,7 +373,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Devices" id="7Ge-Lo-apd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2rY-O1-JNq">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="2rY-O1-JNq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="clm-La-61T" kind="push" identifier="PushGroupForCreateSegue" id="arR-f9-dw0"/>
@@ -381,6 +381,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addGroupBarButton" destination="2rY-O1-JNq" id="8Td-N3-yuI"/>
                         <segue destination="clm-La-61T" kind="push" identifier="PushGroupForEditSegue" id="0EK-rc-e7C"/>
                     </connections>
                 </collectionViewController>
