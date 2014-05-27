@@ -16,6 +16,7 @@
 #import "LHDeviceCell.h"
 #import "WeMoNetworkManager.h"
 #import "WeMoConstant.h"
+#import "LHAlertView.h"
 #import <HueSDK_iOS/HueSDK.h>
 
 
@@ -24,15 +25,18 @@ NSString * const LHPushGroupForCreateSegueIdentifier = @"PushGroupForCreateSegue
 NSString * const LHPushGroupForEditSegueIdentifier   = @"PushGroupForEditSegue";
 int const        LHSpinnerViewTag                    = 1001;
 
-@interface LHDevicesViewController ()
+@interface LHDevicesViewController () <UIAlertViewDelegate>
 
 @property NSMutableArray                                     * devicesAndGroups;
 @property NSMutableDictionary                                * deviceDictionary;
 @property (nonatomic, strong) PHBridgeSearching              * bridgeSearch;
 @property (nonatomic, strong) PHBridgePushLinkViewController * pushLinkViewController;
-@property (nonatomic, strong) NSString                      * isHueHeartbeatEnabled;
+@property (nonatomic, strong) NSString                       * isHueHeartbeatEnabled;
 
 @property (nonatomic, weak)   LHDevice                       * selectedDevice;
+@property (nonatomic, strong) UIAlertView                    * wifiDisconnectedAlert;
+@property (nonatomic, strong) UIView                         * spinnerView;
+@property (nonatomic, strong) NSString                       * currentNetworkSSId;
 @end
 
 @implementation LHDevicesViewController
@@ -78,11 +82,38 @@ int const        LHSpinnerViewTag                    = 1001;
     [notificationManager registerObject : self
                            withSelector : @selector ( notAuthenticated )
                         forNotification : NO_LOCAL_AUTHENTICATION_NOTIFICATION];
+    
+    [[NSNotificationCenter defaultCenter] addObserver : self
+                                             selector : @selector(didNetworkChanged:)
+                                                 name : wemoNetworkChangeNotification
+                                               object : nil];
+    [self createHelperViews];
+}
+
+- (void) createHelperViews
+{
+    //wifi missing alert
+    self.wifiDisconnectedAlert = [[LHAlertView alloc] initWithTitle : @"No WiFi Connection"
+                                                            message : @"Please connect to your home WiFi network."
+                                                  cancelButtonTitle : @"Retry"
+                                                  otherButtonTitles : nil];
+    self.wifiDisconnectedAlert.delegate = self;
+    
+    //spinner view
+    CGRect screenRectangle = [[UIScreen mainScreen] bounds];
+    self.spinnerView = [[UIView alloc] initWithFrame : screenRectangle];
+    self.spinnerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent : 0.3];
+    
+    UIActivityIndicatorView * spinner = [[UIActivityIndicatorView alloc]
+                                         initWithActivityIndicatorStyle : UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = self.navigationController.view.center;
+    [self.spinnerView addSubview : spinner];
+    [spinner startAnimating];
+
 }
 
 - (void) viewWillAppear : (BOOL) animated
 {
-    [self showSpinner];
     [self enableLocalHeartbeat];
 }
 
@@ -98,24 +129,15 @@ int const        LHSpinnerViewTag                    = 1001;
 
 - (void) showSpinner
 {
-    CGRect screenRectangle = [[UIScreen mainScreen] bounds];
-    UIView * coverView = [[UIView alloc] initWithFrame : screenRectangle];
-    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent : 0.3];
-    
-    UIActivityIndicatorView * spinner = [[UIActivityIndicatorView alloc]
-                                         initWithActivityIndicatorStyle : UIActivityIndicatorViewStyleWhiteLarge];
-    spinner.center = self.navigationController.view.center;
-    [coverView addSubview : spinner];
-    [spinner startAnimating];
-    
-    coverView.tag = LHSpinnerViewTag;
-    [self.navigationController.view addSubview : coverView];
+    [self.spinnerView removeFromSuperview];
+    [self.navigationController.view addSubview : self.spinnerView];
 }
 
 - (void) hideSpinner
 {
-    UIView * spinnerCoverView = [self.navigationController.view viewWithTag : LHSpinnerViewTag];
-    [spinnerCoverView removeFromSuperview];
+    [self.spinnerView performSelector : @selector(removeFromSuperview)
+                           withObject : nil
+                           afterDelay : 1.0];
 }
 
 - (void) reloadDeviceList
@@ -127,36 +149,65 @@ int const        LHSpinnerViewTag                    = 1001;
 
 - (void) refreshDeviceList
 {
+    NSLog( @"refresh getting called");
+    [self showSpinner];
+    
+    if ( ![self isWiFiConnected] ) return;
+    
     //just delete device groups
     [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
-    
     [self.collectionView reloadData];
     
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self updateHueLights];
+    });
+            
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
+        discoveryManager.deviceDiscoveryDelegate = self;
+        [discoveryManager discoverDevices : WeMoUpnpInterface];
+    });
+        
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self loadDeviceGroups];
+    });
+
+}
+
+- (BOOL) isWiFiConnected
+{
     WeMoNetworkManager * networkManager = [WeMoNetworkManager sharedWeMoNetworkManager];
     NSString * routerSsid = [networkManager accessPoint];
     NSLog(@"ssid = %@",routerSsid);
     
-    if ( [routerSsid isEqualToString : EMPTY_STRING]
-            || ([routerSsid hasPrefix : WEMO_SSID] == YES)) {
-        [self hideSpinner];
-        //UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:ALERT_BUTTON_TITLE message:NETWORK_CHANGE_MESSAGE delegate:nil cancelButtonTitle:OK_BUTTON otherButtonTitles: nil] autorelease];
-        //[alertView show];
-    }else{
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [self updateHueLights];
-        });
-            
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
-            discoveryManager.deviceDiscoveryDelegate = self;
-            [discoveryManager discoverDevices : WeMoUpnpInterface];
-        });
+    if ( ![routerSsid isEqualToString : EMPTY_STRING]
+            && ([routerSsid hasPrefix : WEMO_SSID] == NO)) {
         
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [self loadDeviceGroups];
-        });
+        [self.wifiDisconnectedAlert dismissWithClickedButtonIndex : self.wifiDisconnectedAlert.cancelButtonIndex
+                                                         animated : YES];
+        
+        if ( ![routerSsid isEqualToString : self.currentNetworkSSId] ) {
+            self.currentNetworkSSId = routerSsid;
+            [self refreshDeviceList];
+            //todo: revisit. since immediately calling refreshDeviceList, probably OK to do this.
+            return NO;
+        }
+        
+        return YES;
     }
+    
+    self.currentNetworkSSId = nil;
 
+    //remove every device and groups
+    [[self.devicesAndGroups objectAtIndex : 0] removeAllObjects];
+    [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
+    [self.deviceDictionary removeAllObjects];
+    
+    if ( !self.wifiDisconnectedAlert.visible ) {
+        [self.wifiDisconnectedAlert show];
+    }
+    
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -335,6 +386,11 @@ referenceSizeForHeaderInSection : (NSInteger) section
     //todo
 }
 
+-(void) didNetworkChanged : (NSNotification *) notification
+{
+    [self refreshDeviceList];
+}
+
 #pragma mark - HueSDK
 
 /**
@@ -348,6 +404,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
 }
 
 - (void) updateHueLights {
+    if ( ![[LHAppDelegate getHueSDK] localConnected] ) return;
+    
     PHBridgeResourcesCache * cache = [PHBridgeResourcesReader readBridgeResourcesCache];
     
     for (PHLight * light in cache.lights.allValues) {
@@ -413,7 +471,17 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (void)noLocalConnection {
     // Check current connection state
     NSLog ( @"noLocalConnection" );
+    //remove all hue
+    PHBridgeResourcesCache * cache = [PHBridgeResourcesReader readBridgeResourcesCache];
+    
+    for (PHLight * light in cache.lights.allValues) {
+        [self removeDeviceFromList : light.identifier];
+    }
+    
+    [self isWiFiConnected];
 }
+
+
 
 /**
  Notification receiver for failed local authentication
@@ -569,6 +637,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (void) addDeviceToList : (LHDevice *) aDevice
 {
     @synchronized ( self.devicesAndGroups ) {
+        //guard against race condition
+        if ( [self.deviceDictionary objectForKey : aDevice.identifier] ) return;
         
         NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
         [devices addObject : aDevice];
@@ -594,6 +664,15 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [self performSelectorOnMainThread : @selector(reloadDeviceList)
                                withObject : nil
                             waitUntilDone : NO];
+    }
+}
+
+#pragma mark alert view delegate
+- (void)alertView : (UIAlertView *) alertView didDismissWithButtonIndex : (NSInteger) buttonIndex
+{
+    if ( alertView == self.wifiDisconnectedAlert
+        && buttonIndex == 0 ) {
+        [self refreshDeviceList];
     }
 }
 

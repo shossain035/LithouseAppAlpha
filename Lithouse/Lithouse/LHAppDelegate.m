@@ -81,21 +81,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [stateManager applicationDidBecomeActive : application];
-    WeMoNetworkManager * networkManager = [WeMoNetworkManager sharedWeMoNetworkManager];
-    
-    NSLog(@"ssid = %@",[networkManager accessPoint]);
-    [[NSNotificationCenter defaultCenter] addObserver : self
-                                             selector : @selector(didNetworkChanged:)
-                                                 name : wemoNetworkChangeNotification
-                                               object : nil];
-    /*
-    if (self.window.rootViewController == nil)
-    {
-        [self showDeviceScreen];
-    }else{
-        [self.presentedViewController performSelectorOnMainThread:@selector(refreshList) withObject:nil waitUntilDone:NO];
-    }
-     */
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
