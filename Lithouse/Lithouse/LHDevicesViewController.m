@@ -200,8 +200,7 @@ int const        LHSpinnerViewTag                    = 1001;
     if ( !doInBackground ) {
         //just delete device groups. no need to do this in background mode
         [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
-        [self.collectionView reloadData];
-    
+        
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [self loadDeviceGroups];
         });
@@ -500,11 +499,11 @@ referenceSizeForHeaderInSection : (NSInteger) section
                 NSMutableArray * deviceGroups = [self.devicesAndGroups objectAtIndex : 1];
                 [deviceGroups addObject : deviceGroup];
             }
-            
-            [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                                   withObject : nil
-                                waitUntilDone : NO];
         }
+        
+        [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                               withObject : nil
+                            waitUntilDone : NO];
     }
     else {
         
