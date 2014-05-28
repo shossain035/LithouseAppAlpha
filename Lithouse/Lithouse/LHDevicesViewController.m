@@ -16,7 +16,6 @@
 #import "LHDeviceCell.h"
 #import "WeMoNetworkManager.h"
 #import "WeMoConstant.h"
-#import "LHAlertView.h"
 #import <HueSDK_iOS/HueSDK.h>
 
 
@@ -35,8 +34,15 @@ int const        LHSpinnerViewTag                    = 1001;
 
 @property (nonatomic, weak)   LHDevice                       * selectedDevice;
 @property (nonatomic, strong) UIAlertView                    * wifiDisconnectedAlert;
+@property (nonatomic, strong) UIAlertView                    * hueHubNotAuthenticatedAlert;
+@property (nonatomic, strong) UIAlertView                    * noDeviceAvailableAlert;
+@property (nonatomic, strong) NSArray                        * alertArray;
+
 @property (nonatomic, strong) UIView                         * spinnerView;
 @property (nonatomic, strong) NSString                       * currentNetworkSSId;
+
+@property (nonatomic, strong) IBOutlet UIBarButtonItem       * addGroupBarButton;
+
 @end
 
 @implementation LHDevicesViewController
@@ -63,41 +69,49 @@ int const        LHSpinnerViewTag                    = 1001;
     [self.devicesAndGroups addObject : devices];
     [self.devicesAndGroups addObject : deviceGroups];
     
-    // Listen for notifications
-    PHNotificationManager *notificationManager = [PHNotificationManager defaultManager];
-    /***************************************************
-     The SDK will send the following notifications in response to events
-     *****************************************************/
-    
-    [notificationManager registerObject : self
-                           withSelector : @selector ( localConnection )
-                        forNotification : LOCAL_CONNECTION_NOTIFICATION];
-    [notificationManager registerObject : self
-                           withSelector : @selector ( noLocalConnection )
-                        forNotification : NO_LOCAL_CONNECTION_NOTIFICATION];
-    /***************************************************
-     If there is no authentication against the bridge this notification is sent
-     *****************************************************/
-    
-    [notificationManager registerObject : self
-                           withSelector : @selector ( notAuthenticated )
-                        forNotification : NO_LOCAL_AUTHENTICATION_NOTIFICATION];
+    [self listenForHueNotifications : YES];
     
     [[NSNotificationCenter defaultCenter] addObserver : self
                                              selector : @selector(didNetworkChanged:)
                                                  name : wemoNetworkChangeNotification
                                                object : nil];
     [self createHelperViews];
+    
+    [NSTimer scheduledTimerWithTimeInterval : 15.0
+                                     target : self
+                                   selector : @selector(checkAppStatus)
+                                   userInfo : nil
+                                    repeats : YES];
 }
 
 - (void) createHelperViews
 {
     //wifi missing alert
-    self.wifiDisconnectedAlert = [[LHAlertView alloc] initWithTitle : @"No WiFi Connection"
-                                                            message : @"Please connect to your home WiFi network."
-                                                  cancelButtonTitle : @"Retry"
-                                                  otherButtonTitles : nil];
-    self.wifiDisconnectedAlert.delegate = self;
+    self.wifiDisconnectedAlert =
+        [[UIAlertView alloc] initWithTitle : @"No WiFi Connection"
+                                   message : @"Please connect to your home WiFi network."
+                                  delegate : self
+                         cancelButtonTitle : @"Retry"
+                         otherButtonTitles : nil];
+    //hub authentication alert
+    self.hueHubNotAuthenticatedAlert =
+        [[UIAlertView alloc] initWithTitle : @"Authentication Failed"
+                                   message : @"Please press the button on the hub within 30 seconds."
+                                  delegate : self
+                         cancelButtonTitle : @"Cancel"
+                         otherButtonTitles : @"Retry", nil];
+    
+    //no device found alert
+    self.noDeviceAvailableAlert =
+        [[UIAlertView alloc] initWithTitle : @"No Devices Found"
+                                   message : @"Please power up your WeMo or Hue and connect them to network."
+                                  delegate : self
+                         cancelButtonTitle : @"Retry"
+                         otherButtonTitles : nil];
+    
+    self.alertArray = @[self.wifiDisconnectedAlert,
+                        self.hueHubNotAuthenticatedAlert,
+                        self.noDeviceAvailableAlert];
     
     //spinner view
     CGRect screenRectangle = [[UIScreen mainScreen] bounds];
@@ -112,25 +126,27 @@ int const        LHSpinnerViewTag                    = 1001;
 
 }
 
-- (void) viewWillAppear : (BOOL) animated
-{
-    [self enableLocalHeartbeat];
-}
-
 - (void) viewDidAppear : (BOOL) animated
 {
     [self refreshDeviceList];
 }
 
-- (void) viewWillDisappear : (BOOL) animated
-{
-    [self disableLocalHeartbeat];
-}
 
 - (void) showSpinner
 {
     [self.spinnerView removeFromSuperview];
-    [self.navigationController.view addSubview : self.spinnerView];
+    
+    if ( ![self isAlertsVisible] ) {
+        [self.navigationController.view addSubview : self.spinnerView];
+    }
+}
+
+- (BOOL) isAlertsVisible {
+    for ( UIAlertView * alert in self.alertArray ) {
+        if ( alert.visible ) return YES;
+    }
+    
+    return NO;
 }
 
 - (void) hideSpinner
@@ -144,19 +160,30 @@ int const        LHSpinnerViewTag                    = 1001;
 {
     // hiding at the first one
     [self hideSpinner];
+    
+    //todo: consolidate
+    if ( self.deviceDictionary.count > 0  ) {
+        self.addGroupBarButton.enabled = true;
+        [self.noDeviceAvailableAlert dismissWithClickedButtonIndex : self.noDeviceAvailableAlert.cancelButtonIndex
+                                                          animated : YES];
+    } else {
+        self.addGroupBarButton.enabled = false;
+    }
+    
+
     [self.collectionView reloadData];
 }
 
 - (void) refreshDeviceList
 {
-    NSLog( @"refresh getting called");
-    [self showSpinner];
+    [self refreshDeviceList : NO];
+}
+
+- (void) refreshDeviceList : (BOOL) doInBackground
+{
+    if ( !doInBackground ) [self showSpinner];
     
     if ( ![self isWiFiConnected] ) return;
-    
-    //just delete device groups
-    [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
-    [self.collectionView reloadData];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         [self updateHueLights];
@@ -166,11 +193,19 @@ int const        LHSpinnerViewTag                    = 1001;
         WeMoDiscoveryManager * discoveryManager = [WeMoDiscoveryManager sharedWeMoDiscoveryManager];
         discoveryManager.deviceDiscoveryDelegate = self;
         [discoveryManager discoverDevices : WeMoUpnpInterface];
-    });
         
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [self loadDeviceGroups];
+        [self updateWeMos];
     });
+    
+    if ( !doInBackground ) {
+        //just delete device groups. no need to do this in background mode
+        [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
+        [self.collectionView reloadData];
+    
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [self loadDeviceGroups];
+        });
+    }
 
 }
 
@@ -203,7 +238,7 @@ int const        LHSpinnerViewTag                    = 1001;
     [[self.devicesAndGroups objectAtIndex : 1] removeAllObjects];
     [self.deviceDictionary removeAllObjects];
     
-    if ( !self.wifiDisconnectedAlert.visible ) {
+    if ( ![self isAlertsVisible] ) {
         [self.wifiDisconnectedAlert show];
     }
     
@@ -388,7 +423,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void) didNetworkChanged : (NSNotification *) notification
 {
-    [self refreshDeviceList];
 }
 
 #pragma mark - HueSDK
@@ -399,8 +433,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (void)localConnection {
     // Check current connection state
     NSLog ( @"localConnection" );
-    
-    [self updateHueLights];
 }
 
 - (void) updateHueLights {
@@ -433,6 +465,21 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 }
 
+- (void) updateWeMos {
+    NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
+    
+    for ( int i = 0; i < devices.count; i++ ) {
+        if ( [devices[i] isKindOfClass : [LHWeMoSwitch class]]) {
+            LHWeMoSwitch * wemoDevice = (LHWeMoSwitch *) devices[i];
+            WeMoControlDevice * WeMoControlDevice = wemoDevice.weMoControlDevice;
+            
+            if (WeMoControlDevice.state == WeMoDeviceUndefinedState) {
+                [self removeDeviceFromList : wemoDevice.identifier];
+            }
+        }
+    }
+}
+
 - (void) loadDeviceGroups
 {
     NSManagedObjectContext * context = ((LHAppDelegate *)
@@ -453,11 +500,11 @@ referenceSizeForHeaderInSection : (NSInteger) section
                 NSMutableArray * deviceGroups = [self.devicesAndGroups objectAtIndex : 1];
                 [deviceGroups addObject : deviceGroup];
             }
+            
+            [self performSelectorOnMainThread : @selector(reloadDeviceList)
+                                   withObject : nil
+                                waitUntilDone : NO];
         }
-        
-        [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                               withObject : nil
-                            waitUntilDone : NO];
     }
     else {
         
@@ -477,8 +524,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
     for (PHLight * light in cache.lights.allValues) {
         [self removeDeviceFromList : light.identifier];
     }
-    
-    [self isWiFiConnected];
 }
 
 
@@ -488,6 +533,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
  */
 - (void)notAuthenticated {
     NSLog ( @"notAuthenticated" );
+    
+    [self disableLocalHeartbeat];
     
     self.pushLinkViewController = [[PHBridgePushLinkViewController alloc]
                                    initWithHueSDK  : [LHAppDelegate getHueSDK]
@@ -511,7 +558,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
  Delegate method for PHBridgePushLinkViewController which is invoked if the pushlinking was successfull
  */
 - (void)pushlinkSuccess {
-  /*
+  
     // Remove pushlink view controller
     [self.navigationController dismissViewControllerAnimated : YES completion : nil];
     self.pushLinkViewController = nil;
@@ -520,7 +567,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
     [self performSelector : @selector(enableLocalHeartbeat)
                withObject : nil
                afterDelay : 1];
-*/
 }
 
 /**
@@ -543,11 +589,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }
     else {
         // Bridge button not pressed in time
-        [[[UIAlertView alloc] initWithTitle : NSLocalizedString(@"Authentication failed", @"Authentication failed alert title")
-                                    message : NSLocalizedString(@"Make sure you press the button within 30 seconds", @"Authentication failed alert message")
-                                   delegate : self
-                          cancelButtonTitle : nil
-                          otherButtonTitles : NSLocalizedString(@"Retry", @"Authentication failed alert retry button"), NSLocalizedString(@"Cancel", @"Authentication failed cancel button"), nil] show];
+        [self.hueHubNotAuthenticatedAlert show];
     }
  
 }
@@ -571,7 +613,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
     if ( cache != nil && cache.bridgeConfiguration != nil
         && cache.bridgeConfiguration.ipaddress != nil ) {
-        // Enable heartbeat with interval of 15 seconds
+        // Enable heartbeat with interval of 10 seconds
         [[LHAppDelegate getHueSDK] enableLocalConnectionUsingInterval:10];
     } else {
         // Automaticly start searching for bridges
@@ -625,11 +667,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
         }
         else {
             NSLog ( @"No HUE bridge found" );
-            //            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle : @"No bridge found"
-            //                                                                 message : @"Could not find a Hue bridge. Please make sure that the bridge is powered up and connected to router."
-            //                                                       cancelButtonTitle : @"Cancel"
-            //                                                       otherButtonTitles : NSLocalizedString(@"Retry", @"No bridge found alert retry button"),NSLocalizedString(@"Cancel", @"No bridge found alert cancel button"), nil];
-            //            [alertView show];
+            [self performSelector : @selector(enableLocalHeartbeat)
+                       withObject : nil
+                       afterDelay : 1];
         }
     }];
 }
@@ -673,6 +713,59 @@ referenceSizeForHeaderInSection : (NSInteger) section
     if ( alertView == self.wifiDisconnectedAlert
         && buttonIndex == 0 ) {
         [self refreshDeviceList];
+    } else if ( alertView == self.hueHubNotAuthenticatedAlert ) {
+        if ( buttonIndex != 0 ) {
+            [self notAuthenticated];
+        }
+        else {
+            [self disableLocalHeartbeat];
+        }
+    } if ( alertView == self.noDeviceAvailableAlert
+          && buttonIndex == 0 ) {
+        [self refreshDeviceList];
+    }
+}
+
+- (void) listenForHueNotifications : (BOOL) doListen
+{
+    PHNotificationManager * notificationManager = [PHNotificationManager defaultManager];
+    
+    if ( doListen ) {
+        /***************************************************
+         The SDK will send the following notifications in response to events
+         *****************************************************/
+        
+        [notificationManager registerObject : self
+                               withSelector : @selector ( localConnection )
+                            forNotification : LOCAL_CONNECTION_NOTIFICATION];
+        [notificationManager registerObject : self
+                               withSelector : @selector ( noLocalConnection )
+                            forNotification : NO_LOCAL_CONNECTION_NOTIFICATION];
+        [notificationManager registerObject : self
+                               withSelector : @selector ( notAuthenticated )
+                            forNotification : NO_LOCAL_AUTHENTICATION_NOTIFICATION];
+        
+        [self enableLocalHeartbeat];
+        
+    } else {
+        [notificationManager deregisterObjectForAllNotifications : self];
+    }
+    
+}
+
+- (void) checkAppStatus
+{
+    if ( [self isWiFiConnected] ) {
+        if ( self.deviceDictionary.count == 0 ) {
+            self.addGroupBarButton.enabled = NO;
+            //todo: needs refactor. central hub
+            if ( !self.pushLinkViewController
+                && ![self isAlertsVisible] ) {
+                [self.noDeviceAvailableAlert show];
+            }
+        }
+        
+        [self refreshDeviceList : YES];
     }
 }
 
