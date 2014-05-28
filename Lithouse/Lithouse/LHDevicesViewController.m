@@ -126,7 +126,7 @@ int const        LHSpinnerViewTag                    = 1001;
 
 }
 
-- (void) viewDidAppear : (BOOL) animated
+- (void) viewWillAppear : (BOOL) animated
 {
     [self refreshDeviceList];
 }
