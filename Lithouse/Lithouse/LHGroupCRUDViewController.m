@@ -118,7 +118,8 @@
         
     //select default action for all devices
     if ( self.isNewGroup ) {
-        for ( LHDevice * device in devices ) {
+        for ( int i =0; i< devices.count; i++  ) {
+            LHDevice * device = devices[i];
             LHAction * action = [[device.permissibleActions allValues] objectAtIndex : 0];
             [self.selectedActionsForDevices setObject : action.identifier
                                                forKey : device.identifier];
