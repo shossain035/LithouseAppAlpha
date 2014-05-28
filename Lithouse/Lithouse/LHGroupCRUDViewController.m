@@ -110,6 +110,21 @@
     self.deviceGroup = deviceGroup;
     [self.currentActionsForDevices removeAllObjects];
     self.selectedActionsForDevices = [[NSMutableDictionary alloc] init];
+    
+    for ( NSString * deviceId in deviceGroup.actions ) {
+        [self.selectedActionsForDevices setObject : [deviceGroup.actions objectForKey : deviceId]
+                                           forKey : deviceId];
+    }
+        
+    //select default action for all devices
+    if ( self.isNewGroup ) {
+        for ( LHDevice * device in devices ) {
+            LHAction * action = [[device.permissibleActions allValues] objectAtIndex : 0];
+            [self.selectedActionsForDevices setObject : action.identifier
+                                               forKey : device.identifier];
+
+        }
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -169,7 +184,7 @@
     };
 
     LHAction * action = [device.permissibleActions objectForKey :
-                         [self.deviceGroup.actions objectForKey : device.identifier]];
+                         [self.selectedActionsForDevices objectForKey : device.identifier]];
      
     BOOL selectionFlag = YES;
     if ( action == nil ) {
