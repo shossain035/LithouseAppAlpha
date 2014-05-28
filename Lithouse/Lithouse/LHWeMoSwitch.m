@@ -97,14 +97,19 @@
 {
     self.currentStatus = LHDeviceIsOn;
     NSLog ( @"turning wemo on");
-    [self.weMoControlDevice setPluginStatus : WeMoDeviceOn];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self.weMoControlDevice setPluginStatus : WeMoDeviceOn];
+    });
 }
 
 - (void) turnOff
 {
     self.currentStatus = LHDeviceIsOff;
     NSLog ( @"turning wemo off");
-    [self.weMoControlDevice setPluginStatus : WeMoDeviceOff];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self.weMoControlDevice setPluginStatus : WeMoDeviceOff];
+    });
 }
 
 - (void) toggle
