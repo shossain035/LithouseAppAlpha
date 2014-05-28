@@ -15,7 +15,7 @@
 #import "LHAction.h"
 #import "LHAlertView.h"
 
-@interface LHGroupCRUDViewController ()
+@interface LHGroupCRUDViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray * devices;
 @property (nonatomic, strong) DeviceGroup    * deviceGroup;
@@ -84,18 +84,18 @@
     [alert show];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIGestureRecognizer * tapper = [[UITapGestureRecognizer alloc]
+                                    initWithTarget : self
+                                    action : @selector(handleSingleTap:)];
+    
+    tapper.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer : tapper];
+    self.groupNameField.delegate = self;
     
     self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
     self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
@@ -265,4 +265,17 @@
     return NO;
 }
 
+#pragma mark gesture recognizer
+- (void) handleSingleTap : (UITapGestureRecognizer *) sender
+{
+    [self.groupNameField resignFirstResponder];
+}
+
+#pragma mark textfield delegate
+- (BOOL) textFieldShouldReturn : (UITextField *) textField {
+    if ( textField == self.groupNameField ) {
+        [textField resignFirstResponder];
+    }
+    return NO;
+}
 @end
