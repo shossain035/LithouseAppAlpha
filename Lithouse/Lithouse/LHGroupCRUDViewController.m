@@ -14,8 +14,14 @@
 #import "LHDevice.h"
 #import "LHAction.h"
 #import "LHAlertView.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface LHGroupCRUDViewController () <UITextFieldDelegate>
+int const LHPhotoPickerActionSheetTag = 1;
+
+@interface LHGroupCRUDViewController () <UITextFieldDelegate,
+                                         UIActionSheetDelegate,
+                                         UIImagePickerControllerDelegate,
+                                         UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * devices;
 @property (nonatomic, strong) DeviceGroup    * deviceGroup;
@@ -62,6 +68,41 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction) changeGroupImage : (id)sender
+{
+    //todo: show if camera is available
+    if ( [UIImagePickerController isSourceTypeAvailable:
+        UIImagePickerControllerSourceTypePhotoLibrary] == NO ) return;
+    
+    UIActionSheet * photoPickerActionSheet;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera] == YES ) {
+
+        photoPickerActionSheet =
+            [[UIActionSheet alloc] initWithTitle : nil
+                                        delegate : self
+                               cancelButtonTitle : @"Cancel"
+                          destructiveButtonTitle : nil
+                               otherButtonTitles :
+                                        @"Select from Library",
+                                        @"Take a Photo",
+                                        nil];
+    } else {
+        photoPickerActionSheet =
+            [[UIActionSheet alloc] initWithTitle : nil
+                                        delegate : self
+                               cancelButtonTitle : @"Cancel"
+                          destructiveButtonTitle : nil
+                               otherButtonTitles :
+                                        @"Select from Library",
+                                        nil];
+    }
+    
+    photoPickerActionSheet.tag = LHPhotoPickerActionSheetTag;
+    [photoPickerActionSheet showInView : [UIApplication sharedApplication].keyWindow];
+}
+
 - (IBAction) delete : (id) sender
 {
     LHAlertView *alert = [[LHAlertView alloc] initWithTitle : @"Deleting Group"
@@ -96,6 +137,11 @@
     tapper.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer : tapper];
     self.groupNameField.delegate = self;
+    
+    self.displayImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.displayImage.layer.borderWidth = 0.3;
+    self.displayImage.layer.cornerRadius = 8;
+    self.displayImage.layer.masksToBounds = YES;
     
     self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
     self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
@@ -277,5 +323,80 @@
         [textField resignFirstResponder];
     }
     return NO;
+}
+
+- (void) actionSheet : (UIActionSheet *) actionSheet
+clickedButtonAtIndex : (NSInteger) buttonIndex
+{
+    if ( actionSheet.tag == LHPhotoPickerActionSheetTag ) {
+        
+        if ( actionSheet.cancelButtonIndex == buttonIndex ) return;
+            
+        UIImagePickerController * pickerUi = [[UIImagePickerController alloc] init];
+        pickerUi.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+        pickerUi.allowsEditing = NO;
+        pickerUi.delegate = self;
+        
+        if ( buttonIndex == 0 ) {         // select from library
+            pickerUi.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        } else if ( buttonIndex == 1 ) {  // take a photo
+            pickerUi.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        
+        [self.navigationController presentViewController : pickerUi
+                                                animated : YES
+                                              completion : nil];
+    }
+    
+}
+
+#pragma mark - image picker controller
+
+- (void) imagePickerControllerDidCancel : (UIImagePickerController *) picker
+{
+    [self.navigationController dismissViewControllerAnimated : YES completion : nil];
+}
+
+- (void) imagePickerController : (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo : (NSDictionary *) info
+{
+    
+    NSString * mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    UIImage * originalImage = nil;
+    
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo) {
+        
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+    }
+    
+    [self.navigationController dismissViewControllerAnimated : YES
+                                                  completion : ^ {
+                                                      if (originalImage != nil) {
+                                                          self.displayImage.image =
+                                                            [self scaleImage : originalImage toFillSize : CGSizeMake ( 90, 90 )];
+                                                      }
+                                                  }];
+}
+
+- (UIImage *) scaleImage : (UIImage *) image toFillSize : (CGSize) size
+{
+    CGFloat scale = MAX ( size.width / image.size.width,
+                          size.height / image.size.height );
+    CGFloat width = image.size.width * scale;
+    CGFloat height = image.size.height * scale;
+    CGRect imageRect = CGRectMake( (size.width - width) / 2.0f,
+                                   (size.height - height) / 2.0f,
+                                   width,
+                                   height);
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [image drawInRect:imageRect];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 @end
