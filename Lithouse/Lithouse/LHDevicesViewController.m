@@ -14,6 +14,7 @@
 #import "LHHueBulb.h"
 #import "LHDeviceGroup.h"
 #import "LHDeviceCell.h"
+#import "LHAlertView.h"
 #import "WeMoNetworkManager.h"
 #import "WeMoConstant.h"
 #import <HueSDK_iOS/HueSDK.h>
@@ -33,9 +34,9 @@ int const        LHSpinnerViewTag                    = 1001;
 @property (nonatomic, strong) NSString                       * isHueHeartbeatEnabled;
 
 @property (nonatomic, weak)   LHDevice                       * selectedDevice;
-@property (nonatomic, strong) UIAlertView                    * wifiDisconnectedAlert;
-@property (nonatomic, strong) UIAlertView                    * hueHubNotAuthenticatedAlert;
-@property (nonatomic, strong) UIAlertView                    * noDeviceAvailableAlert;
+@property (nonatomic, strong) LHAlertView                    * wifiDisconnectedAlert;
+@property (nonatomic, strong) LHAlertView                    * hueHubNotAuthenticatedAlert;
+@property (nonatomic, strong) LHAlertView                    * noDeviceAvailableAlert;
 @property (nonatomic, strong) NSArray                        * alertArray;
 
 @property (nonatomic, strong) UIView                         * spinnerView;
@@ -88,14 +89,14 @@ int const        LHSpinnerViewTag                    = 1001;
 {
     //wifi missing alert
     self.wifiDisconnectedAlert =
-        [[UIAlertView alloc] initWithTitle : @"No WiFi Connection"
+        [[LHAlertView alloc] initWithTitle : @"No WiFi Connection"
                                    message : @"Please connect to your home WiFi network."
                                   delegate : self
                          cancelButtonTitle : @"Retry"
                          otherButtonTitles : nil];
     //hub authentication alert
     self.hueHubNotAuthenticatedAlert =
-        [[UIAlertView alloc] initWithTitle : @"Authentication Failed"
+        [[LHAlertView alloc] initWithTitle : @"Authentication Failed"
                                    message : @"Please press the button on the hub within 30 seconds."
                                   delegate : self
                          cancelButtonTitle : @"Cancel"
@@ -103,7 +104,7 @@ int const        LHSpinnerViewTag                    = 1001;
     
     //no device found alert
     self.noDeviceAvailableAlert =
-        [[UIAlertView alloc] initWithTitle : @"No Devices Found"
+        [[LHAlertView alloc] initWithTitle : @"No Devices Found"
                                    message : @"Please power up your WeMo or Hue and connect them to network."
                                   delegate : self
                          cancelButtonTitle : @"Retry"
@@ -134,11 +135,14 @@ int const        LHSpinnerViewTag                    = 1001;
 
 - (void) showSpinner
 {
-    [self.spinnerView removeFromSuperview];
+    dispatch_async(dispatch_get_main_queue(), ^{
     
-    if ( ![self isAlertsVisible] ) {
-        [self.navigationController.view addSubview : self.spinnerView];
-    }
+        [self.spinnerView removeFromSuperview];
+        
+        if ( ![self isAlertsVisible] ) {
+            [self.navigationController.view addSubview : self.spinnerView];
+        }
+    });
 }
 
 - (BOOL) isAlertsVisible {
@@ -151,27 +155,31 @@ int const        LHSpinnerViewTag                    = 1001;
 
 - (void) hideSpinner
 {
-    [self.spinnerView performSelector : @selector(removeFromSuperview)
-                           withObject : nil
-                           afterDelay : 1.0];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.spinnerView performSelector : @selector(removeFromSuperview)
+                               withObject : nil
+                               afterDelay : 1.0];
+    });
 }
 
 - (void) reloadDeviceList
 {
-    // hiding at the first one
-    [self hideSpinner];
-    
-    //todo: consolidate
-    if ( self.deviceDictionary.count > 0  ) {
-        self.addGroupBarButton.enabled = true;
-        [self.noDeviceAvailableAlert dismissWithClickedButtonIndex : self.noDeviceAvailableAlert.cancelButtonIndex
-                                                          animated : YES];
-    } else {
-        self.addGroupBarButton.enabled = false;
-    }
-    
-
-    [self.collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // hiding at the first one
+        [self hideSpinner];
+        
+        //todo: consolidate
+        if ( self.deviceDictionary.count > 0  ) {
+            self.addGroupBarButton.enabled = true;
+            [self.noDeviceAvailableAlert dismissWithClickedButtonIndex : self.noDeviceAvailableAlert.cancelButtonIndex
+                                                              animated : YES];
+        } else {
+            self.addGroupBarButton.enabled = false;
+        }
+        
+        
+        [self.collectionView reloadData];
+    });
 }
 
 - (void) refreshDeviceList
@@ -383,11 +391,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
     LHWeMoSwitch * wemoSwitch = [self.deviceDictionary objectForKey : device.udn];
     //already discovered. just update. todo: OOP
     if ( wemoSwitch != nil ) {
-        [ wemoSwitch updateWithWeMoControlDevice : device];
+        [wemoSwitch updateWithWeMoControlDevice : device];
         
-        [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                               withObject : nil
-                            waitUntilDone : NO];
+        [self reloadDeviceList];
         return;
     }
         
@@ -452,9 +458,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
                 //already discovered. just update. todo: OOP
                 [discoveredHueBulb updateWithPHLight : light];
                     
-                [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                                       withObject : nil
-                                    waitUntilDone : NO];
+                [self reloadDeviceList];
             }
         } else {
             //the bulb is not reachable anymore
@@ -501,9 +505,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
             }
         }
         
-        [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                               withObject : nil
-                            waitUntilDone : NO];
+        [self reloadDeviceList];
     }
     else {
         
@@ -685,9 +687,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [self.deviceDictionary setObject : aDevice
                                   forKey : aDevice.identifier];
     
-        [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                               withObject : nil
-                            waitUntilDone : NO];
+        [self reloadDeviceList];
     }
 }
 
@@ -701,9 +701,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [devices removeObject : device];
         [self.deviceDictionary removeObjectForKey : withDeviceIdentifier];
         
-        [self performSelectorOnMainThread : @selector(reloadDeviceList)
-                               withObject : nil
-                            waitUntilDone : NO];
+        [self reloadDeviceList];
     }
 }
 
