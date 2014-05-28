@@ -666,10 +666,11 @@ referenceSizeForHeaderInSection : (NSInteger) section
         }
         else {
             NSLog ( @"No HUE bridge found" );
-            [self performSelector : @selector(enableLocalHeartbeat)
-                       withObject : nil
-                       afterDelay : 1];
         }
+        
+        [self performSelector : @selector(enableLocalHeartbeat)
+                   withObject : nil
+                   afterDelay : 1];
     }];
 }
 
