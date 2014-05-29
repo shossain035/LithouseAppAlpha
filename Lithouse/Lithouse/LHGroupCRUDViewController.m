@@ -49,7 +49,7 @@ int const LHPhotoPickerActionSheetTag = 1;
         [appDelegate.managedObjectContext deleteObject : self.deviceGroup];
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self revertBackToDevicesView];
 }
 
 - (IBAction) save : (id) sender
@@ -65,6 +65,13 @@ int const LHPhotoPickerActionSheetTag = 1;
     LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate saveContext];
     
+    [self revertBackToDevicesView];
+}
+
+- (void) revertBackToDevicesView
+{
+    self.displayImage.image = nil;
+    self.deviceGroup = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
