@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "081613_phillips_hue_connected_bulb_300.png"
+      "filename" : "hue.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "hue@2x.png"
     }
   ],
   "info" : {
