@@ -27,6 +27,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setStatusBarHidden : NO];
+    
     self.dynamicsDrawerViewController = (MSDynamicsDrawerViewController *) self.window.rootViewController;
     self.dynamicsDrawerViewController.paneDragRequiresScreenEdgePan = YES;
     // Add some example stylers
