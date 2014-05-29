@@ -503,9 +503,10 @@ referenceSizeForHeaderInSection : (NSInteger) section
                 NSMutableArray * deviceGroups = [self.devicesAndGroups objectAtIndex : 1];
                 [deviceGroups addObject : deviceGroup];
             }
+            
+            [self reloadDeviceList];
         }
         
-        [self reloadDeviceList];
     }
     else {
         
@@ -686,9 +687,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [devices addObject : aDevice];
         [self.deviceDictionary setObject : aDevice
                                   forKey : aDevice.identifier];
-    
-        [self reloadDeviceList];
     }
+    
+    [self reloadDeviceList];
 }
 
 - (void) removeDeviceFromList : (NSString *) withDeviceIdentifier
@@ -700,9 +701,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
         NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
         [devices removeObject : device];
         [self.deviceDictionary removeObjectForKey : withDeviceIdentifier];
-        
-        [self reloadDeviceList];
     }
+    
+    [self reloadDeviceList];
 }
 
 #pragma mark alert view delegate
