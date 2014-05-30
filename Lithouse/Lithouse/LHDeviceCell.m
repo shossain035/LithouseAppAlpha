@@ -47,21 +47,14 @@
             
             if ( [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
                   intValue] == LHDeviceIsOn ) {
-                self.nameLabel.textColor = [UIColor darkGrayColor];
+                
                 self.backgroundColor = [UIColor colorWithRed : 0.74991234038415455f
                                                        green : 1.0f
                                                         blue : 0.78419363416042009f
                                                        alpha : 1.0f];
                 
-            } else if ( [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
-                         intValue] == LHDeviceIsOff ) {
-                self.nameLabel.textColor = [UIColor grayColor];
-            } else if ( [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
-                         intValue] == LHDeviceIsUnknown ) {
-                LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
-
-                self.nameLabel.textColor = appDelegate.window.tintColor;
             }
+            
         }
     ];
     
