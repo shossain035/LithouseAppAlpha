@@ -296,12 +296,24 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (UICollectionViewCell *) collectionView : (UICollectionView *) cv
                    cellForItemAtIndexPath : (NSIndexPath *) indexPath
 {
-    
     LHDeviceCell * cell = [cv dequeueReusableCellWithReuseIdentifier : LHDeviceCellReuseIdentifier
                                                         forIndexPath : indexPath];
-    
-    LHDevice * device = [[self.devicesAndGroups objectAtIndex : indexPath.section]
-                         objectAtIndex : indexPath.row];
+    LHDevice * device = nil;
+    //todo: guard against array iob. need to refactor.
+    @synchronized( self.devicesAndGroups ) {
+        if ( [[self.devicesAndGroups objectAtIndex : indexPath.section] count] <= indexPath.row ) {
+            cell.layer.hidden = YES;
+            //refresh the collectionview
+            [self performSelector : @selector(reloadDeviceList)
+                       withObject : nil
+                       afterDelay : 1.0];
+            return cell;
+        }
+        
+        cell.layer.hidden = NO;
+        device = [[self.devicesAndGroups objectAtIndex : indexPath.section]
+                                         objectAtIndex : indexPath.row];
+    }
     
     cell.nameLabel.text = device.friendlyName;
     cell.image.image = device.displayImage;
