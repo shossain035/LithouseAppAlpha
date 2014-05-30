@@ -114,7 +114,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-EE-5da">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-EE-5da">
                                 <rect key="frame" x="113" y="7" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
@@ -165,37 +165,20 @@
                                                         <action selector="didTapActionPickerButton:" destination="0JC-V3-Dt9" eventType="touchDown" id="Sx3-TA-kqM"/>
                                                     </connections>
                                                 </button>
-                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyc-UI-Lnz">
-                                                    <rect key="frame" x="261" y="9" width="25" height="25"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="8LM-wQ-f1r"/>
-                                                        <constraint firstAttribute="width" constant="25" id="SJf-Nq-RsV"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="zuZ-8j-pxj"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="Unchecked">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="didTapSelectionButton:" destination="0JC-V3-Dt9" eventType="touchDown" id="IZt-3T-1Il"/>
-                                                    </connections>
-                                                </button>
                                                 <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcv-l8-4bx">
-                                                    <rect key="frame" x="105" y="7" width="134" height="30"/>
+                                                    <rect key="frame" x="105" y="7" width="186" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="didTapSelectionButton:" destination="0JC-V3-Dt9" eventType="touchDown" id="uyo-AW-4hQ"/>
+                                                        <action selector="didTapActionPickerButton:" destination="0JC-V3-Dt9" eventType="touchDown" id="bDb-8q-P0K"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="centerY" secondItem="Yvt-RI-p2n" secondAttribute="centerY" id="THQ-fP-1J2"/>
-                                                <constraint firstItem="Hyc-UI-Lnz" firstAttribute="leading" secondItem="Jcv-l8-4bx" secondAttribute="trailing" constant="22" id="Vmr-kO-CHU"/>
-                                                <constraint firstAttribute="trailing" secondItem="Hyc-UI-Lnz" secondAttribute="trailing" constant="5" id="Vsr-re-obt"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jcv-l8-4bx" secondAttribute="trailing" id="LJg-pz-cPC"/>
                                                 <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="leading" secondItem="Yvt-RI-p2n" secondAttribute="leading" constant="14" id="WYd-XU-RCE"/>
                                                 <constraint firstItem="Cqh-kQ-Ct7" firstAttribute="top" secondItem="Yvt-RI-p2n" secondAttribute="top" constant="7" id="ZXe-Xc-2bk"/>
                                                 <constraint firstItem="Jcv-l8-4bx" firstAttribute="baseline" secondItem="Cqh-kQ-Ct7" secondAttribute="baseline" id="f5v-wg-Rax"/>
@@ -205,7 +188,6 @@
                                         <connections>
                                             <outlet property="actionPickerButton" destination="Cqh-kQ-Ct7" id="DJR-dQ-IIz"/>
                                             <outlet property="deviceNameButton" destination="Jcv-l8-4bx" id="nqH-sF-lrM"/>
-                                            <outlet property="selectionButton" destination="Hyc-UI-Lnz" id="M7t-IK-Waq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -228,17 +210,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="b1B-h1-nha" firstAttribute="centerX" secondItem="7W2-c2-e6S" secondAttribute="centerX" id="8wv-5c-GlD"/>
+                            <constraint firstItem="WCP-EE-5da" firstAttribute="trailing" secondItem="Qzz-sy-Vxh" secondAttribute="trailing" id="Afs-2n-5So"/>
                             <constraint firstItem="SNI-55-U7O" firstAttribute="top" secondItem="b1B-h1-nha" secondAttribute="bottom" constant="8" symbolic="YES" id="BNz-qv-Ppb"/>
                             <constraint firstAttribute="trailing" secondItem="SNI-55-U7O" secondAttribute="trailing" constant="16" id="H8R-4O-qT0"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="Qzz-sy-Vxh" secondAttribute="bottom" constant="8" symbolic="YES" id="JJR-vr-9b5"/>
+                            <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="WCP-EE-5da" secondAttribute="bottom" constant="8" symbolic="YES" id="PBV-OP-Q2i"/>
                             <constraint firstItem="Qzz-sy-Vxh" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="113" id="YeR-YV-AKJ"/>
                             <constraint firstItem="b1B-h1-nha" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="15" id="Ymd-CT-2RR"/>
+                            <constraint firstItem="WCP-EE-5da" firstAttribute="leading" secondItem="Qzz-sy-Vxh" secondAttribute="leading" id="acl-oI-aP6"/>
                             <constraint firstItem="Qzz-sy-Vxh" firstAttribute="centerX" secondItem="SNI-55-U7O" secondAttribute="centerX" id="cXt-v5-OMn"/>
                             <constraint firstItem="mr8-sF-byb" firstAttribute="top" secondItem="SNI-55-U7O" secondAttribute="bottom" constant="5" id="cp4-uT-zqq"/>
                             <constraint firstItem="b1B-h1-nha" firstAttribute="top" secondItem="7W2-c2-e6S" secondAttribute="bottom" constant="16" id="lFj-R4-hSq"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="centerX" secondItem="g2m-oe-4h8" secondAttribute="centerX" id="nmL-Fp-YqZ"/>
                             <constraint firstItem="SNI-55-U7O" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="13" id="rS9-1s-lR3"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="82" id="rx2-6c-Usf"/>
+                            <constraint firstItem="WCP-EE-5da" firstAttribute="top" secondItem="Qzz-sy-Vxh" secondAttribute="top" id="wkr-Qr-SIS"/>
                             <constraint firstItem="Qzz-sy-Vxh" firstAttribute="top" secondItem="NWz-4U-DmI" secondAttribute="bottom" constant="7" id="xQU-5T-Qlt"/>
                         </constraints>
                     </view>
@@ -450,6 +436,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -462,7 +451,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Unchecked" width="25" height="25"/>
         <image name="unknown" width="90" height="90"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

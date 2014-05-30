@@ -17,7 +17,7 @@
 
 - (NSString *) identifier
 {
-    return @"TURN_ON_ACTION";
+    return LHDefaultActionId;
 }
 
 - (void) performAction

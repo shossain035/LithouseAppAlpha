@@ -8,6 +8,11 @@
 
 #import "LHDevice.h"
 
+@interface LHDevice ()
+@property (nonatomic, strong) NSMutableDictionary * permissibleActions;
+@property (nonatomic, strong) NSMutableArray      * permissibleActionIds;
+@end
+
 NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChangeNotification";
 
 @implementation LHDevice
@@ -16,8 +21,12 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
 {
     if ( self = [super init] ) {
         self.permissibleActions = [[NSMutableDictionary alloc] init];
+        self.permissibleActionIds = [[NSMutableArray alloc] init];
+        
         self.displayImage = [UIImage imageNamed : @"unknown"];
         self.currentStatus = LHDeviceIsUnknown;
+        
+        [self addToPermissibleActions : [[LHIgnoreAction alloc] initWithParentDevice : self]];
     }
     
     return self;
@@ -34,9 +43,33 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
     return nil;
 }
 
-- (void) addToPermissibleActions : (LHAction *) aAction
+- (void) addToPermissibleActions : (LHAction *) anAction
 {
-    [self.permissibleActions setObject : aAction forKey : aAction.identifier];
+    if (![self.permissibleActions objectForKey : anAction.identifier]) {
+        [self.permissibleActionIds addObject : anAction.identifier];
+    }
+    
+    [self.permissibleActions setObject : anAction forKey : anAction.identifier];
+}
+
+- (LHAction *) actionForActionId : (NSString *) actionId
+{
+    return [self.permissibleActions objectForKey : actionId];
+}
+
+
+- (LHAction *) actionAtIndex : (int) index
+{
+    if ( self.permissibleActionIds.count > index ) {
+        return [self.permissibleActions objectForKey :
+                [self.permissibleActionIds objectAtIndex : index]];
+    }
+    return nil;
+}
+
+- (int) actionCount
+{
+    return [self.permissibleActions count];
 }
 
 - (void) setCurrentStatus : (LHDeviceStatus) currentStatus

@@ -10,11 +10,6 @@
 
 @implementation LHGroupDeviceTableViewCell
 
-- (IBAction) didTapSelectionButton : (id) sender
-{
-    self.isSelected = !self.isSelected;
-    [self selectDevice : self.isSelected];
-}
 
 - (IBAction) didTapActionPickerButton : (id) sender
 {
@@ -30,17 +25,6 @@
     return self;
 }
 
-- (void) selectDevice : (BOOL) didSelect
-{
-    self.isSelected = didSelect;
-    if ( self.isSelected ) {
-        [self.selectionButton setImage : [UIImage imageNamed : @"Checked"] forState : UIControlStateNormal];
-    } else {
-        [self.selectionButton setImage : [UIImage imageNamed : @"Unchecked"] forState : UIControlStateNormal];
-    }
-    
-    self.selectionButtonCallback ( self.isSelected );
-}
 
 - (void)awakeFromNib
 {

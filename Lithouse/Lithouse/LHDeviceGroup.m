@@ -24,7 +24,6 @@
         self.friendlyName = aManagedDeviceGroup.name;
         self.deviceDictionary = aDeviceDictionary;
         self.displayImage = [UIImage imageWithData : aManagedDeviceGroup.image];
-        self.permissibleActions = nil;
     }
 
     return self;
@@ -39,7 +38,7 @@
         NSLog(@"device id: %@ action: %@", deviceId, actionId );
         
         LHDevice * device = [self.deviceDictionary objectForKey : deviceId];
-        LHAction * action = [device.permissibleActions objectForKey : actionId];
+        LHAction * action = [device actionForActionId : actionId];
         
         [action performAction];
     }

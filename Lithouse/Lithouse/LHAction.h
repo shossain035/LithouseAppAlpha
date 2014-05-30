@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const LHDefaultActionId;
+
 @protocol LHActionHandler
 @end
 

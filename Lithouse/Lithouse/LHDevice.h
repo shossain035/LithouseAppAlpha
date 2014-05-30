@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LHToggle.h"
+#import "LHIgnoreAction.h"
 
 extern NSString * const LHDeviceDidStatusChangeNotification;
 
@@ -17,14 +18,20 @@ typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
     LHDeviceIsOff
 };
 
-@interface LHDevice : NSObject <LHToogleHandler>
+@interface LHDevice : NSObject <LHToogleHandler,
+                                LHIgnoreActionHandler>
 
-@property (nonatomic, strong) NSString            * friendlyName;
-@property (nonatomic, strong) UIImage             * displayImage;
-@property (nonatomic, strong) NSMutableDictionary * permissibleActions;
-@property (nonatomic)         LHDeviceStatus        currentStatus;
+@property (nonatomic, strong)   NSString            * friendlyName;
+@property (nonatomic, strong)   UIImage             * displayImage;
+@property (nonatomic)           LHDeviceStatus        currentStatus;
+@property (nonatomic, readonly) int                   actionCount;
 
 - (NSString *) identifier;
-- (void) addToPermissibleActions : (LHAction *) aAction;
+
+- (void) addToPermissibleActions : (LHAction *) anAction;
+- (LHAction *) actionForActionId : (NSString *) actionId;
+- (LHAction *) actionAtIndex     : (int) index;
+
+
 - (void) notifyCurrentStatus;
 @end

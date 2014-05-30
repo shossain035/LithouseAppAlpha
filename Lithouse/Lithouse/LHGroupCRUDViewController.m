@@ -13,6 +13,7 @@
 
 #import "LHDevice.h"
 #import "LHAction.h"
+#import "LHIgnoreAction.h"
 #import "LHAlertView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -32,7 +33,6 @@ int const LHPhotoPickerActionSheetTag = 1;
 @property (nonatomic, strong) IBOutlet UIImageView * displayImage;
 @property (nonatomic, strong) IBOutlet UIButton    * deleteButton;
 
-@property (nonatomic, strong) NSMutableDictionary  * currentActionsForDevices;
 @property (nonatomic, strong) NSMutableDictionary  * selectedActionsForDevices;
 
 @end
@@ -72,6 +72,7 @@ int const LHPhotoPickerActionSheetTag = 1;
 {
     self.displayImage.image = nil;
     self.deviceGroup = nil;
+    self.selectedActionsForDevices = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -150,7 +151,6 @@ int const LHPhotoPickerActionSheetTag = 1;
     self.displayImage.layer.cornerRadius = 8;
     self.displayImage.layer.masksToBounds = YES;
     
-    self.currentActionsForDevices = [[NSMutableDictionary alloc] init];
     self.deviceTableView.tableFooterView = [[UIView alloc] initWithFrame : CGRectZero];
 }
 
@@ -161,24 +161,27 @@ int const LHPhotoPickerActionSheetTag = 1;
     self.isNewGroup = isNewGroup;
     self.devices = devices;
     self.deviceGroup = deviceGroup;
-    [self.currentActionsForDevices removeAllObjects];
     self.selectedActionsForDevices = [[NSMutableDictionary alloc] init];
     
-    for ( NSString * deviceId in deviceGroup.actions ) {
-        [self.selectedActionsForDevices setObject : [deviceGroup.actions objectForKey : deviceId]
-                                           forKey : deviceId];
-    }
+    for ( int i =0; i < devices.count; i++  ) {
+        LHDevice * device = devices[i];
+        LHAction * action = [device actionForActionId :
+                             [self.deviceGroup.actions objectForKey : device.identifier]];
         
-    //select default action for all devices
-    if ( self.isNewGroup ) {
-        for ( int i =0; i< devices.count; i++  ) {
-            LHDevice * device = devices[i];
-            LHAction * action = [[device.permissibleActions allValues] objectAtIndex : 0];
-            [self.selectedActionsForDevices setObject : action.identifier
-                                               forKey : device.identifier];
-
+        //the device was not found before or, this is a new group
+        if ( !action ) {
+            action = [device actionForActionId : LHIgnoreActionId];
+            
+            if ( isNewGroup ) {
+                action = [device actionForActionId : LHDefaultActionId];
+            }
         }
+        
+        [self.selectedActionsForDevices setObject : action.identifier
+                                           forKey : device.identifier];
+
     }
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -227,29 +230,12 @@ int const LHPhotoPickerActionSheetTag = 1;
         [self launchActionPickerForCell : wCell withDevice : device];
     };
     
-    cell.selectionButtonCallback = ^ (BOOL isSelected) {
-        if ( isSelected ) {
-            
-            [self.selectedActionsForDevices setObject : [self.currentActionsForDevices objectForKey : device.identifier]
-                                               forKey : device.identifier];
-        } else {
-            [self.selectedActionsForDevices removeObjectForKey : device.identifier];
-        }
-    };
-
-    LHAction * action = [device.permissibleActions objectForKey :
+    LHAction * action = [device actionForActionId :
                          [self.selectedActionsForDevices objectForKey : device.identifier]];
-     
-    BOOL selectionFlag = YES;
-    if ( action == nil ) {
-        action = [[device.permissibleActions allValues] objectAtIndex : 0];
-        selectionFlag = NO;
-    }
     
     [self updateCurrentActionForDevice : device
                             withAction : action
-                        forDisplayCell : cell
-                            isSelected : selectionFlag];
+                        forDisplayCell : cell];
 
     [cell.deviceNameButton setTitle : device.friendlyName
                            forState : UIControlStateNormal];
@@ -268,15 +254,16 @@ int const LHPhotoPickerActionSheetTag = 1;
     pickerViewController.navigationItem.title = aDevice.friendlyName;
     
     pickerViewController.numberOfRowsCallback = ^ NSInteger {
-        return [aDevice.permissibleActions count];
+        return [aDevice actionCount];
     };
 
     pickerViewController.updateCellAtIndexPathCallback =
     ^ (UITableViewCell * cell, NSIndexPath * indexPath) {
-        LHAction * action = [[aDevice.permissibleActions allValues] objectAtIndex : indexPath.row];
+        LHAction * action = [aDevice actionAtIndex : indexPath.row];
         cell.textLabel.text = action.friendlyName;
         
-        if ([self isSelectedAction : action forDevice : aDevice]) {
+        if ([action.identifier isEqualToString :
+             [self.selectedActionsForDevices objectForKey : aDevice.identifier]]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -284,11 +271,13 @@ int const LHPhotoPickerActionSheetTag = 1;
     };
     
     pickerViewController.didSelectRowAtIndexPathCallback = ^ (NSIndexPath * indexPath) {
-        LHAction * action = [[aDevice.permissibleActions allValues] objectAtIndex : indexPath.row];
+        LHAction * action = [aDevice actionAtIndex : indexPath.row];
+        [self.selectedActionsForDevices setObject : action.identifier
+                                           forKey : aDevice.identifier];
+        
         [self updateCurrentActionForDevice : aDevice
                                 withAction : action
-                            forDisplayCell : deviceSelectionCell
-                                isSelected : YES];
+                            forDisplayCell : deviceSelectionCell];
     };
     
     [self presentViewController : navigationController animated : YES completion : nil];
@@ -297,25 +286,9 @@ int const LHPhotoPickerActionSheetTag = 1;
 - (void) updateCurrentActionForDevice : (LHDevice *) aDevice
                            withAction : (LHAction *) anAction
                        forDisplayCell : (LHGroupDeviceTableViewCell *) aCell
-                           isSelected : (BOOL) selectionFlag
 {
-    [self.currentActionsForDevices setObject : anAction.identifier
-                                      forKey : aDevice.identifier];
-    
     [aCell.actionPickerButton setTitle : anAction.friendlyName
                              forState : UIControlStateNormal];
-    [aCell selectDevice : selectionFlag];
-}
-
-- (BOOL) isSelectedAction : (LHAction *) anAction
-                forDevice : (LHDevice *) forDevice
-{
-    if ([anAction.identifier isEqualToString :
-         [self.currentActionsForDevices objectForKey : forDevice.identifier]]) {
-        return YES;
-    }
-    
-    return NO;
 }
 
 #pragma mark gesture recognizer

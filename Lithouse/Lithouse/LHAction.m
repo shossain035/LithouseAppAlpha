@@ -8,6 +8,8 @@
 
 #import "LHAction.h"
 
+NSString * const LHDefaultActionId = @"TURN_ON_ACTION";
+
 @implementation LHAction
 
 - (id) initWithParentDevice : (id <LHActionHandler>) aDevice
