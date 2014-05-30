@@ -30,7 +30,7 @@ typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
 
 - (void) addToPermissibleActions : (LHAction *) anAction;
 - (LHAction *) actionForActionId : (NSString *) actionId;
-- (LHAction *) actionAtIndex     : (int) index;
+- (LHAction *) actionAtIndex     : (long) index;
 
 
 - (void) notifyCurrentStatus;

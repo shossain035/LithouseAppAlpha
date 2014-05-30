@@ -58,7 +58,7 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
 }
 
 
-- (LHAction *) actionAtIndex : (int) index
+- (LHAction *) actionAtIndex : (long) index
 {
     if ( self.permissibleActionIds.count > index ) {
         return [self.permissibleActions objectForKey :
