@@ -7,10 +7,11 @@
 //
 
 #import "LHMainMenuViewController.h"
+#import <MessageUI/MessageUI.h>
 
 NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
 
-@interface LHMainMenuViewController ()
+@interface LHMainMenuViewController () <MFMailComposeViewControllerDelegate>
 @property (nonatomic, strong) NSDictionary             * paneViewControllerTitles;
 @property (nonatomic, strong) NSDictionary             * paneViewControllerIdentifiers;
 
@@ -82,14 +83,14 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
     self.paneViewControllerType = NSUIntegerMax;
     
     self.paneViewControllerTitles = @{
-                                      @(LHPaneViewControllerTypeDevicesAndTriggers) : @"Devices",
+                                      @(LHPaneViewControllerTypeDevicesAndTriggers) : @"Search for Devices",
                                       @(LHPaneViewControllerTypeContactUs)          : @"Contact Us",
                                       @(LHPaneViewControllerTypeAbout)              : @"About"
                                       };
     
     self.paneViewControllerIdentifiers = @{
                                            @(LHPaneViewControllerTypeDevicesAndTriggers) : @"DevicesAndTriggers",
-                                           @(LHPaneViewControllerTypeContactUs)          : @"ContactUs",
+                                           @(LHPaneViewControllerTypeContactUs)          : @"DevicesAndTriggers",
                                            @(LHPaneViewControllerTypeAbout)              : @"About"
                                            };
     
@@ -111,6 +112,15 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
 
 - (void) transitionToViewController : (LHPaneViewControllerType) paneViewControllerType
 {
+    //hnadle contact us
+    if ( LHPaneViewControllerTypeContactUs == paneViewControllerType ) {
+        [self sendEmailWithContent : [NSString stringWithFormat : @"</br></br></br>Lithouse v%@",
+                                      [[[NSBundle mainBundle] infoDictionary] objectForKey : @"CFBundleShortVersionString"]]
+                       withSubject : @"Feedback from iOS app"
+                       toRecipents : [NSArray arrayWithObject : @"nahid@lithouse.co"]];
+        return;
+    }
+    
     // Close pane if already displaying the pane view controller
     if ( paneViewControllerType == self.paneViewControllerType ) {
         [self.dynamicsDrawerViewController setPaneState : MSDynamicsDrawerPaneStateClosed
@@ -185,6 +195,27 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [tableView reloadData];
     });
+}
+
+- (void) sendEmailWithContent : (NSString *) content
+                  withSubject : subject
+                  toRecipents : (NSArray *) recipients {
+    
+    MFMailComposeViewController *emailComposer = [[MFMailComposeViewController alloc] init];
+    [emailComposer setSubject : subject];
+    [emailComposer setMessageBody : content isHTML : YES];
+    [emailComposer setToRecipients : recipients];
+    emailComposer.mailComposeDelegate = self;
+    
+    [self presentViewController : emailComposer animated : YES completion : NULL];
+    
+}
+
+#pragma mark - Mail Compose ViewController Delegate
+- (void) mailComposeController : (MFMailComposeViewController *) controller
+           didFinishWithResult : (MFMailComposeResult) result
+                         error : (NSError *) error {
+    [self dismissViewControllerAnimated : YES completion : NULL];
 }
 
 /*

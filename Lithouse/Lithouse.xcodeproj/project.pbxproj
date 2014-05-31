@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		711444AD1937C492007AD29C /* LHIgnoreAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 711444AC1937C492007AD29C /* LHIgnoreAction.m */; };
+		711444AF193825AC007AD29C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711444AE193825AC007AD29C /* Social.framework */; };
 		7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */; };
 		7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */; };
 		7128FD971921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD961921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m */; };
@@ -78,6 +79,7 @@
 /* Begin PBXFileReference section */
 		711444AB1937C492007AD29C /* LHIgnoreAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHIgnoreAction.h; sourceTree = "<group>"; };
 		711444AC1937C492007AD29C /* LHIgnoreAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHIgnoreAction.m; sourceTree = "<group>"; };
+		711444AE193825AC007AD29C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7128FD8C19216F120031BEA8 /* LHDeviceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDeviceGroup.h; sourceTree = "<group>"; };
 		7128FD8D19216F120031BEA8 /* LHDeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDeviceGroup.m; sourceTree = "<group>"; };
 		7128FD8F19219A360031BEA8 /* LHGroupCRUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGroupCRUDViewController.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				711444AF193825AC007AD29C /* Social.framework in Frameworks */,
 				71C1CB8B1926097E00C27024 /* CFNetwork.framework in Frameworks */,
 				71B226EF19253A6A00E251B3 /* SystemConfiguration.framework in Frameworks */,
 				71B226ED19253A5000E251B3 /* Security.framework in Frameworks */,
@@ -350,6 +353,7 @@
 		71C82DFE191F2A8F00395392 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				711444AE193825AC007AD29C /* Social.framework */,
 				71A697C6192B252100C9AB86 /* HueSDK_iOS.framework */,
 				71A697AF192B24D900C9AB86 /* Lumberjack */,
 				71C1CB8A1926097E00C27024 /* CFNetwork.framework */,
@@ -729,6 +733,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.1.0;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -757,6 +762,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.1.0;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
