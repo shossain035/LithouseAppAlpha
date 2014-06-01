@@ -11,8 +11,8 @@
 
 typedef NS_ENUM(NSUInteger, LHPaneViewControllerType) {
     LHPaneViewControllerTypeDevicesAndTriggers,
-    LHPaneViewControllerTypeContactUs,
-    LHPaneViewControllerTypeAbout
+    LHPaneViewControllerTypeTweet,
+    LHPaneViewControllerTypeContactUs
 };
 
 

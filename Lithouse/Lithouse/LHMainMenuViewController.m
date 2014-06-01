@@ -8,6 +8,9 @@
 
 #import "LHMainMenuViewController.h"
 #import <MessageUI/MessageUI.h>
+#import <Social/Social.h>
+
+#define ITUNES_APP_URL_IOS7 @"http://itunes.apple.com/app/id866665066"
 
 NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
 
@@ -85,13 +88,13 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
     self.paneViewControllerTitles = @{
                                       @(LHPaneViewControllerTypeDevicesAndTriggers) : @"Search for Devices",
                                       @(LHPaneViewControllerTypeContactUs)          : @"Contact Us",
-                                      @(LHPaneViewControllerTypeAbout)              : @"About"
+                                      @(LHPaneViewControllerTypeTweet)              : @"Tweet!"
                                       };
     
     self.paneViewControllerIdentifiers = @{
                                            @(LHPaneViewControllerTypeDevicesAndTriggers) : @"DevicesAndTriggers",
                                            @(LHPaneViewControllerTypeContactUs)          : @"DevicesAndTriggers",
-                                           @(LHPaneViewControllerTypeAbout)              : @"About"
+                                           @(LHPaneViewControllerTypeTweet)              : @"DevicesAndTriggers"
                                            };
     
     self.drawerBarButtonItem = [[UIBarButtonItem alloc] initWithImage : [UIImage imageNamed : @"Drawer"]
@@ -118,6 +121,9 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
                                       [[[NSBundle mainBundle] infoDictionary] objectForKey : @"CFBundleShortVersionString"]]
                        withSubject : @"Feedback from iOS app"
                        toRecipents : [NSArray arrayWithObject : @"nahid@lithouse.co"]];
+        return;
+    } else if ( LHPaneViewControllerTypeTweet == paneViewControllerType ) {
+        [self twittTapped];
         return;
     }
     
@@ -216,6 +222,28 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
            didFinishWithResult : (MFMailComposeResult) result
                          error : (NSError *) error {
     [self dismissViewControllerAnimated : YES completion : NULL];
+}
+
+
+- (void) twittTapped {
+    
+    if ( [SLComposeViewController isAvailableForServiceType : SLServiceTypeTwitter] ) {
+        SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType : SLServiceTypeTwitter];
+        [tweetSheet setInitialText : [NSString stringWithFormat : @"%@ by @lithouseIoT is the easiest way to connect #IoT",
+                                      ITUNES_APP_URL_IOS7]];
+        
+        [self presentViewController : tweetSheet animated : YES completion : nil];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle : @"Sorry"
+                                  message : @"Please make sure that you have a Twitter account setup."
+                                  delegate : self
+                                  cancelButtonTitle : @"OK"
+                                  otherButtonTitles : nil];
+        
+        [alertView show];
+    }
 }
 
 /*
