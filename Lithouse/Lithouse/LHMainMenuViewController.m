@@ -7,6 +7,7 @@
 //
 
 #import "LHMainMenuViewController.h"
+#import "LHDevicesViewController.h"
 #import <MessageUI/MessageUI.h>
 #import <Social/Social.h>
 
@@ -125,6 +126,9 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
     } else if ( LHPaneViewControllerTypeTweet == paneViewControllerType ) {
         [self twittTapped];
         return;
+    } else if ( LHPaneViewControllerTypeDevicesAndTriggers == paneViewControllerType ) {
+        [[NSNotificationCenter defaultCenter] postNotificationName : LHSearchForDevicesNotification
+                                                            object : nil];
     }
     
     // Close pane if already displaying the pane view controller

@@ -10,6 +10,7 @@
 #import "WeMoDiscoveryManager.h"
 #import "PHBridgePushLinkViewController.h"
 
+extern NSString * const LHSearchForDevicesNotification;
 
 @interface LHDevicesViewController : UICollectionViewController <WeMoDeviceDiscoveryDelegate,
                                                                  PHBridgePushLinkViewControllerDelegate>

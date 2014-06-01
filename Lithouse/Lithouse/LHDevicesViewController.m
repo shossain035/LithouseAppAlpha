@@ -23,7 +23,7 @@
 NSString * const LHDeviceCellReuseIdentifier         = @"DevicesAndTriggerCell";
 NSString * const LHPushGroupForCreateSegueIdentifier = @"PushGroupForCreateSegue";
 NSString * const LHPushGroupForEditSegueIdentifier   = @"PushGroupForEditSegue";
-int const        LHSpinnerViewTag                    = 1001;
+NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotification";
 
 @interface LHDevicesViewController () <UIAlertViewDelegate>
 
@@ -76,6 +76,11 @@ int const        LHSpinnerViewTag                    = 1001;
                                              selector : @selector(didNetworkChanged:)
                                                  name : wemoNetworkChangeNotification
                                                object : nil];
+    [[NSNotificationCenter defaultCenter] addObserver : self
+                                             selector : @selector(searchForDevices:)
+                                                 name : LHSearchForDevicesNotification
+                                               object : nil];
+    
     [self createHelperViews];
     
     [NSTimer scheduledTimerWithTimeInterval : 15.0
@@ -441,6 +446,13 @@ referenceSizeForHeaderInSection : (NSInteger) section
 -(void) didNetworkChanged : (NSNotification *) notification
 {
 }
+
+-(void) searchForDevices : (NSNotification *) notification {
+    NSLog(@"search for devices");
+    [self searchForBridgeLocal];
+    //no need to start wemo search, as they will be called periodically. 
+}
+
 
 #pragma mark - HueSDK
 

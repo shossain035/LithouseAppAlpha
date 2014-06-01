@@ -187,14 +187,6 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
--(void) didNetworkChanged : (NSNotification *) notification {
-    WeMoNetworkManager * networkManager = [WeMoNetworkManager sharedWeMoNetworkManager];
-    NSString * currentssid = [networkManager accessPoint];
-    NSLog(@" didNetworkChanged currentssid=%@",currentssid);
-    
-    
-}
-
 + (PHHueSDK *) getHueSDK
 {
     LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
