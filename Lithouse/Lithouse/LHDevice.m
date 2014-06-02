@@ -67,7 +67,7 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
     return nil;
 }
 
-- (int) actionCount
+- (NSUInteger) actionCount
 {
     return [self.permissibleActions count];
 }
