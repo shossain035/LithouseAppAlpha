@@ -544,12 +544,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (void)noLocalConnection {
     // Check current connection state
     NSLog ( @"noLocalConnection" );
-    //remove all hue
-    PHBridgeResourcesCache * cache = [PHBridgeResourcesReader readBridgeResourcesCache];
     
-    for (PHLight * light in cache.lights.allValues) {
-        [self removeDeviceFromList : light.identifier];
-    }
 }
 
 
