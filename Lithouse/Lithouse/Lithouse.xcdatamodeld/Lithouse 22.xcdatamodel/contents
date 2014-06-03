@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Device" representedClassName="Device" syncable="YES">
+        <attribute name="lhDevice" optional="YES" transient="YES" syncable="YES"/>
+        <attribute name="lhDeviceData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="ssid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DeviceGroup" representedClassName="DeviceGroup" syncable="YES">
+        <attribute name="actions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DeviceGroup" positionX="-54" positionY="-9" width="128" height="118"/>
+        <element name="Device" positionX="-45" positionY="36" width="128" height="90"/>
+    </elements>
+</model>

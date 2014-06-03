@@ -8,6 +8,10 @@
 
 #import "LHWeMoSwitch.h"
 
+@interface LHWeMoSwitch ()
+@property (nonatomic, strong) WeMoControlDevice * weMoControlDevice;
+@end
+
 @implementation LHWeMoSwitch
 
 - (id) init

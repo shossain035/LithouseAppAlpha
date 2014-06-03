@@ -8,6 +8,11 @@
 
 #import "LHHueBulb.h"
 
+@interface LHHueBulb ()
+@property (nonatomic, strong) PHLight  * phLight;
+@property (nonatomic, strong) NSString * uuid;
+@end
+
 @implementation LHHueBulb
 
 - (id) init
@@ -32,9 +37,10 @@
 
 - (void) updateWithPHLight : (PHLight *) aPHLight;
 {
-    self.phLight = aPHLight;
+    self.phLight      = aPHLight;
     self.friendlyName = aPHLight.name;
     self.displayImage = [UIImage imageNamed : @"hue"];
+    self.uuid         = aPHLight.identifier;
     
     if ( [self.phLight.lightState.on boolValue] ) {
         self.currentStatus = LHDeviceIsOn;
@@ -90,7 +96,7 @@
 
 - (NSString *) identifier
 {
-    return self.phLight.identifier;
+    return self.uuid;
 }
 
 

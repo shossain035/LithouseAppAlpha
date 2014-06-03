@@ -18,6 +18,4 @@
 - (id) initWithWeMoControlDevice : (WeMoControlDevice *) aWeMoControlDevice;
 - (void) updateWithWeMoControlDevice : (WeMoControlDevice *) aWeMoControlDevice;
 
-
-@property (nonatomic, strong) WeMoControlDevice * weMoControlDevice;
 @end

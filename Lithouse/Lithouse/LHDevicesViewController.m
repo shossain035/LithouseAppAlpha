@@ -13,6 +13,7 @@
 #import "LHWeMoSwitch.h"
 #import "LHHueBulb.h"
 #import "LHDeviceGroup.h"
+#import "Device.h"
 #import "LHDeviceCell.h"
 #import "LHAlertView.h"
 #import "WeMoNetworkManager.h"
@@ -79,6 +80,11 @@ NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotif
     [[NSNotificationCenter defaultCenter] addObserver : self
                                              selector : @selector(searchForDevices:)
                                                  name : LHSearchForDevicesNotification
+                                               object : nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver : self
+                                             selector : @selector(saveDevices:)
+                                                 name : UIApplicationDidEnterBackgroundNotification
                                                object : nil];
     
     [self createHelperViews];
@@ -235,6 +241,7 @@ NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotif
         
         if ( ![routerSsid isEqualToString : self.currentNetworkSSId] ) {
             self.currentNetworkSSId = routerSsid;
+            [self loadDevicesForSSID : routerSsid];
             [self refreshDeviceList];
             //todo: revisit. since immediately calling refreshDeviceList, probably OK to do this.
             return NO;
@@ -544,12 +551,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (void)noLocalConnection {
     // Check current connection state
     NSLog ( @"noLocalConnection" );
-    //remove all hue
-    PHBridgeResourcesCache * cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    
-    for (PHLight * light in cache.lights.allValues) {
-        [self removeDeviceFromList : light.identifier];
-    }
 }
 
 
@@ -790,6 +791,56 @@ referenceSizeForHeaderInSection : (NSInteger) section
         
         [self refreshDeviceList : YES];
     }
+}
+
+- (void) saveDevices : (NSNotification *) notification
+{
+    LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    NSArray * devices = [self fetchDevicesForSSID : self.currentNetworkSSId];
+    for ( Device * device in devices ) {
+        [appDelegate.managedObjectContext deleteObject : device];
+    }
+    
+    NSMutableArray * lhDevices = [self.devicesAndGroups objectAtIndex : 0];
+    
+    for ( LHDevice * lhDevice in lhDevices ) {
+        Device * device = [NSEntityDescription insertNewObjectForEntityForName : @"Device"
+                                                        inManagedObjectContext : appDelegate.managedObjectContext];
+        device.lhDevice = lhDevice;
+        device.ssid     = self.currentNetworkSSId;
+    }
+    
+    [appDelegate saveContext];
+}
+
+- (void) loadDevicesForSSID : (NSString *) ssid
+{
+    //todo: delete array
+    NSArray * devices = [self fetchDevicesForSSID : ssid];
+    
+    for ( Device * device in devices ) {
+        [self addDeviceToList : device.lhDevice];
+    }
+}
+
+- (NSArray *) fetchDevicesForSSID : (NSString *) ssid
+{
+    NSManagedObjectContext * context = ((LHAppDelegate *)
+                                        [[UIApplication sharedApplication] delegate]).managedObjectContext;
+    
+    NSFetchRequest * request = [[NSFetchRequest alloc]initWithEntityName : @"Device"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"ssid == %@", ssid];
+    [request setPredicate : predicate];
+    
+    NSError * error = nil;
+    NSArray * results = [context executeFetchRequest : request error : &error];
+    
+    if ( error != nil ) {
+        return results;
+    }
+    
+    return nil;
 }
 
 @end

@@ -19,7 +19,6 @@
 - (id) initWithPHLight : (PHLight *) aPHLight;
 - (void) updateWithPHLight : (PHLight *) aPHLight;
 
-@property (nonatomic, strong) PHLight * phLight;
 
 
 @end

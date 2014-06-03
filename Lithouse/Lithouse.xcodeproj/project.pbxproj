@@ -64,6 +64,7 @@
 		71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4A1920621B00395392 /* LHDeviceCell.m */; };
 		71C82E4F1920775F00395392 /* LHDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C82E4E1920775F00395392 /* LHDevice.m */; };
 		71D9BF001933099A00164594 /* LHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9BEFF1933099A00164594 /* LHAlertView.m */; };
+		71F90A90193D3872008D41E2 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F90A8F193D3871008D41E2 /* Device.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,10 @@
 		71C82E4E1920775F00395392 /* LHDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDevice.m; sourceTree = "<group>"; };
 		71D9BEFE1933099A00164594 /* LHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAlertView.h; sourceTree = "<group>"; };
 		71D9BEFF1933099A00164594 /* LHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAlertView.m; sourceTree = "<group>"; };
+		71F90A8E193D3871008D41E2 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device.h; path = ../Device.h; sourceTree = "<group>"; };
+		71F90A8F193D3871008D41E2 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Device.m; path = ../Device.m; sourceTree = "<group>"; };
+		71F90A91193D7048008D41E2 /* Lithouse 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Lithouse 2.xcdatamodel"; sourceTree = "<group>"; };
+		71F90A92193D7C4A008D41E2 /* Lithouse 22.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Lithouse 22.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +302,8 @@
 		71A697F2192DAEC000C9AB86 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				71F90A8E193D3871008D41E2 /* Device.h */,
+				71F90A8F193D3871008D41E2 /* Device.m */,
 				71A697EF192DAE9E00C9AB86 /* DeviceGroup.h */,
 				71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */,
 			);
@@ -606,6 +613,7 @@
 				71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */,
 				71A697C2192B24D900C9AB86 /* DDLog.m in Sources */,
 				7128FD9E192296AE0031BEA8 /* LHTurnOn.m in Sources */,
+				71F90A90193D3872008D41E2 /* Device.m in Sources */,
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
 				7128FDA51922BF480031BEA8 /* LHTurnOff.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
@@ -862,9 +870,11 @@
 		71C82E13191F2A8F00395392 /* Lithouse.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				71F90A92193D7C4A008D41E2 /* Lithouse 22.xcdatamodel */,
+				71F90A91193D7048008D41E2 /* Lithouse 2.xcdatamodel */,
 				71C82E14191F2A8F00395392 /* Lithouse.xcdatamodel */,
 			);
-			currentVersion = 71C82E14191F2A8F00395392 /* Lithouse.xcdatamodel */;
+			currentVersion = 71F90A92193D7C4A008D41E2 /* Lithouse 22.xcdatamodel */;
 			path = Lithouse.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
