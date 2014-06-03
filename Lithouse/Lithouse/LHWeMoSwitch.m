@@ -27,6 +27,7 @@
         [self updateWithWeMoControlDevice : aWeMoControlDevice];
     }
     
+    self.displayImage = [self defaultDeviceIcon : aWeMoControlDevice.deviceType];
     return self;
 }
 
@@ -34,7 +35,7 @@
 {
     self.weMoControlDevice = aWeMoControlDevice;
     self.friendlyName = aWeMoControlDevice.friendlyName;
-    self.displayImage = [self defaultDeviceIcon : aWeMoControlDevice.deviceType];
+    
     
     if ( self.weMoControlDevice.state == WeMoDeviceOn ) {
         self.currentStatus = LHDeviceIsOn;

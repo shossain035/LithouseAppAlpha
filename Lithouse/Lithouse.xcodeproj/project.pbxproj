@@ -522,7 +522,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LH;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Shah Hossain";
 				TargetAttributes = {
 					71C82DFB191F2A8F00395392 = {
@@ -741,6 +741,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
 				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/shah/Desktop/LithouseAppAlpha/libs,
@@ -752,6 +753,7 @@
 					/Users/shah/Desktop/LithouseAppAlpha/Lithouse/HueSDK_iOS.framework/Versions/A/HueSDK_iOS,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -771,6 +773,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lithouse/Lithouse-Prefix.pch";
 				INFOPLIST_FILE = "Lithouse/Lithouse-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/shah/Desktop/LithouseAppAlpha/libs,
@@ -782,6 +785,7 @@
 					/Users/shah/Desktop/LithouseAppAlpha/Lithouse/HueSDK_iOS.framework/Versions/A/HueSDK_iOS,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

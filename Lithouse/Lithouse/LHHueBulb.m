@@ -26,6 +26,7 @@
     if ( self = [self init] ) {
         [self updateWithPHLight : aPHLight];
     }
+    self.displayImage = [UIImage imageNamed : @"hue"];
     
     return self;
 }
@@ -34,7 +35,7 @@
 {
     self.phLight = aPHLight;
     self.friendlyName = aPHLight.name;
-    self.displayImage = [UIImage imageNamed : @"hue"];
+    
     
     if ( [self.phLight.lightState.on boolValue] ) {
         self.currentStatus = LHDeviceIsOn;

@@ -19,6 +19,8 @@
 #import "WeMoConstant.h"
 #import <HueSDK_iOS/HueSDK.h>
 
+#define INITIAL_HUE_HEARTBEAT_DELAY                  1
+#define REGULAR_HUE_HEARTBEAT_DELAY                  10
 
 NSString * const LHDeviceCellReuseIdentifier         = @"DevicesAndTriggerCell";
 NSString * const LHPushGroupForCreateSegueIdentifier = @"PushGroupForCreateSegue";
@@ -43,6 +45,7 @@ NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotif
 @property (nonatomic, strong) NSString                       * currentNetworkSSId;
 
 @property (nonatomic, strong) IBOutlet UIBarButtonItem       * addGroupBarButton;
+@property int                                                  hueHeartbeatDelay;
 
 @end
 
@@ -462,6 +465,18 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (void)localConnection {
     // Check current connection state
     NSLog ( @"localConnection" );
+    
+    //first time after refresh
+    if ( self.hueHeartbeatDelay != REGULAR_HUE_HEARTBEAT_DELAY ) {
+        self.hueHeartbeatDelay = REGULAR_HUE_HEARTBEAT_DELAY;
+        
+        [self disableLocalHeartbeat];
+        [self performSelector : @selector(enableLocalHeartbeat:)
+                   withObject : [NSNumber numberWithInt : REGULAR_HUE_HEARTBEAT_DELAY]
+                   afterDelay : 1];
+    }
+    [self updateHueLights];
+    
 }
 
 - (void) updateHueLights {
@@ -618,14 +633,22 @@ referenceSizeForHeaderInSection : (NSInteger) section
 #pragma mark - Heartbeat control
 
 /**
- Starts the local heartbeat with a 10 second interval
+ Starts the local heartbeat with a 1 second interval
  */
-- (void)enableLocalHeartbeat {
+
+- (void)enableLocalHeartbeat
+{
+    [self enableLocalHeartbeat : [NSNumber numberWithInt : INITIAL_HUE_HEARTBEAT_DELAY]];
+}
+
+- (void)enableLocalHeartbeat : (NSNumber*) withDelay {
     @synchronized ( self.isHueHeartbeatEnabled ) {
         if ( [self.isHueHeartbeatEnabled isEqualToString : @"YES"]) return;
         
         self.isHueHeartbeatEnabled = @"YES";
     }
+    
+    self.hueHeartbeatDelay = [withDelay intValue];
     /***************************************************
      The heartbeat processing collects data from the bridge
      so now try to see if we have a bridge already connected
@@ -634,8 +657,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
     PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
     if ( cache != nil && cache.bridgeConfiguration != nil
         && cache.bridgeConfiguration.ipaddress != nil ) {
-        // Enable heartbeat with interval of 10 seconds
-        [[LHAppDelegate getHueSDK] enableLocalConnectionUsingInterval:10];
+        
+        [[LHAppDelegate getHueSDK] enableLocalConnectionUsingInterval:self.hueHeartbeatDelay];
     } else {
         // Automaticly start searching for bridges
         [self searchForBridgeLocal];
