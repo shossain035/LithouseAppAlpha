@@ -472,7 +472,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
         
         [self disableLocalHeartbeat];
         [self performSelector : @selector(enableLocalHeartbeat:)
-                   withObject : [NSNumber numberWithInt : REGULAR_HUE_HEARTBEAT_DELAY]
+                   withObject : @REGULAR_HUE_HEARTBEAT_DELAY
                    afterDelay : 1];
     }
     [self updateHueLights];
@@ -638,7 +638,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 - (void)enableLocalHeartbeat
 {
-    [self enableLocalHeartbeat : [NSNumber numberWithInt : INITIAL_HUE_HEARTBEAT_DELAY]];
+    [self enableLocalHeartbeat : @INITIAL_HUE_HEARTBEAT_DELAY];
 }
 
 - (void)enableLocalHeartbeat : (NSNumber*) withDelay {
