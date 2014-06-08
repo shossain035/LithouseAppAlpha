@@ -93,8 +93,8 @@ int const LHPhotoPickerActionSheetTag = 1;
                                cancelButtonTitle : @"Cancel"
                           destructiveButtonTitle : nil
                                otherButtonTitles :
-                                        @"Select from Library",
-                                        @"Take a Photo",
+                                        @"Choose Photo",
+                                        @"Take Photo",
                                         nil];
     } else {
         photoPickerActionSheet =
@@ -103,7 +103,7 @@ int const LHPhotoPickerActionSheetTag = 1;
                                cancelButtonTitle : @"Cancel"
                           destructiveButtonTitle : nil
                                otherButtonTitles :
-                                        @"Select from Library",
+                                        @"Choose Photo",
                                         nil];
     }
     
