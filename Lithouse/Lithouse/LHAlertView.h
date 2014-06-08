@@ -17,4 +17,7 @@
    cancelButtonTitle : (NSString *) cancelButtonTitle
    otherButtonTitles : (NSArray *) otherButtonTitles;
 
+//todo: ios 8.0 quick fix. remove
+@property (nonatomic, assign) BOOL isAlertViewVisible;
+
 @end

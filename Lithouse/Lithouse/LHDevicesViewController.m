@@ -154,8 +154,8 @@ NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotif
 }
 
 - (BOOL) isAlertsVisible {
-    for ( UIAlertView * alert in self.alertArray ) {
-        if ( alert.visible ) return YES;
+    for ( LHAlertView * alert in self.alertArray ) {
+        if ( alert.isAlertViewVisible ) return YES;
     }
     
     return NO;
@@ -751,6 +751,11 @@ referenceSizeForHeaderInSection : (NSInteger) section
 #pragma mark alert view delegate
 - (void)alertView : (UIAlertView *) alertView didDismissWithButtonIndex : (NSInteger) buttonIndex
 {
+    //todo: find a common path for manual and automatic dismissal.
+    if ( [alertView isKindOfClass : [LHAlertView class]] ) {
+        ((LHAlertView *) alertView).isAlertViewVisible = false;
+    }
+    
     if ( alertView == self.wifiDisconnectedAlert
         && buttonIndex == 0 ) {
         [self refreshDeviceList];

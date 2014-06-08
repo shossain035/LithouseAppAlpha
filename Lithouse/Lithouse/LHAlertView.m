@@ -30,20 +30,32 @@
         for (NSString * buttonTitle in otherButtonTitles) {
             [self addButtonWithTitle : buttonTitle];
         }
+        
     }
     return self;
 }
 
-
-- (void)alertView : (UIAlertView *) alertView didDismissWithButtonIndex : (NSInteger) buttonIndex {
-    
+- (void)alertView : (UIAlertView *) alertView didDismissWithButtonIndex : (NSInteger) buttonIndex
+{
     if (self.completion) {
         self.completion ( buttonIndex == self.cancelButtonIndex, buttonIndex );
     }
 }
 
+- (void) dismissWithClickedButtonIndex : (NSInteger) buttonIndex animated : (BOOL) animated
+{
+    if (self.isAlertViewVisible) {
+        [super dismissWithClickedButtonIndex : buttonIndex
+                                    animated : animated];
+    }
+    
+    self.isAlertViewVisible = false;
+}
+
 - (void) show
 {
+    _isAlertViewVisible = true;
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [super show];
     });
