@@ -20,7 +20,7 @@
 #import <HueSDK_iOS/HueSDK.h>
 
 #define INITIAL_HUE_HEARTBEAT_DELAY                  1
-#define REGULAR_HUE_HEARTBEAT_DELAY                  10
+#define REGULAR_HUE_HEARTBEAT_DELAY                  30
 
 NSString * const LHDeviceCellReuseIdentifier         = @"DevicesAndTriggerCell";
 NSString * const LHPushGroupForCreateSegueIdentifier = @"PushGroupForCreateSegue";
@@ -86,7 +86,7 @@ NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotif
     
     [self createHelperViews];
     
-    [NSTimer scheduledTimerWithTimeInterval : 15.0
+    [NSTimer scheduledTimerWithTimeInterval : 30.0
                                      target : self
                                    selector : @selector(checkAppStatus)
                                    userInfo : nil
