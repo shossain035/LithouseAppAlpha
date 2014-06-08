@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AN3-Sb-tr2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AN3-Sb-tr2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Dynamics Drawer View Controller-->
@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell opaque="NO" contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Drawer Cell" id="8di-r4-2yQ">
+                                    <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Drawer Cell" id="8di-r4-2yQ">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8di-r4-2yQ" id="hDG-ia-G1e">
@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModalPickerCell" id="PPr-Ez-ZT3">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModalPickerCell" id="PPr-Ez-ZT3">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PPr-Ez-ZT3" id="Hwg-B6-yTL">
@@ -135,7 +135,7 @@
                                 <rect key="frame" x="15" y="151" width="291" height="310"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDeviceCell" id="0JC-V3-Dt9" customClass="LHGroupDeviceTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDeviceCell" id="0JC-V3-Dt9" customClass="LHGroupDeviceTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="291" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0JC-V3-Dt9" id="Yvt-RI-p2n">
@@ -279,8 +279,8 @@
                                                 <action selector="infoButtonTapped:" destination="AKs-ox-2lE" eventType="touchDown" id="DyZ-gX-RSb"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYl-OL-H9H">
-                                            <rect key="frame" x="80" y="23" width="152" height="20"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="g" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYl-OL-H9H">
+                                            <rect key="frame" x="80" y="17" width="152" height="29"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -291,12 +291,12 @@
                                 <constraints>
                                     <constraint firstItem="JFM-GG-JgC" firstAttribute="top" secondItem="AKs-ox-2lE" secondAttribute="top" constant="4" id="1Kn-aE-YAo"/>
                                     <constraint firstAttribute="trailing" secondItem="nqU-93-dMr" secondAttribute="trailing" constant="20" id="6XW-pY-r00"/>
-                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="centerY" secondItem="JFM-GG-JgC" secondAttribute="centerY" id="9s5-RS-6s0"/>
+                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="centerY" secondItem="JFM-GG-JgC" secondAttribute="centerY" constant="-1.5" id="9s5-RS-6s0"/>
                                     <constraint firstItem="JFM-GG-JgC" firstAttribute="leading" secondItem="AKs-ox-2lE" secondAttribute="leading" constant="6" id="NTt-0f-MTJ"/>
                                     <constraint firstItem="nqU-93-dMr" firstAttribute="leading" secondItem="gYl-OL-H9H" secondAttribute="trailing" constant="26" id="bJo-ZZ-JuF"/>
-                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="centerY" secondItem="nqU-93-dMr" secondAttribute="centerY" constant="1" id="s8r-El-8SL"/>
+                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="centerY" secondItem="nqU-93-dMr" secondAttribute="centerY" constant="-0.5" id="s8r-El-8SL"/>
                                     <constraint firstItem="gYl-OL-H9H" firstAttribute="leading" secondItem="JFM-GG-JgC" secondAttribute="trailing" constant="16" id="uMr-ys-kZy"/>
-                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="top" secondItem="AKs-ox-2lE" secondAttribute="top" constant="23" id="zDR-O2-ibb"/>
+                                    <constraint firstItem="gYl-OL-H9H" firstAttribute="top" secondItem="AKs-ox-2lE" secondAttribute="top" constant="17" id="zDR-O2-ibb"/>
                                     <constraint firstItem="nqU-93-dMr" firstAttribute="centerY" secondItem="AKs-ox-2lE" secondAttribute="centerY" constant="-1" id="zsl-7f-byX"/>
                                 </constraints>
                                 <connections>
