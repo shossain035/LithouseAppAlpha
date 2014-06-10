@@ -216,7 +216,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Group" id="5cc-RD-HWu">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="VHg-iU-ibJ"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xje-iO-5nz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
