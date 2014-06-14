@@ -186,6 +186,8 @@ int const LHPhotoPickerActionSheetTag = 1;
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     self.displayImage.image = [UIImage imageWithData : self.deviceGroup.image];
     self.groupNameField.text = self.deviceGroup.name;
     

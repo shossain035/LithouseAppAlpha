@@ -137,6 +137,7 @@ NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotif
 
 - (void) viewWillAppear : (BOOL) animated
 {
+    [super viewWillAppear:animated];
     [self refreshDeviceList];
 }
 
