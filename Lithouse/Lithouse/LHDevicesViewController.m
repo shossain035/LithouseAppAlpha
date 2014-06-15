@@ -9,6 +9,7 @@
 #import "LHAppDelegate.h"
 #import "LHDevicesViewController.h"
 #import "LHGroupCRUDViewController.h"
+#import "LHColorPickerViewController.h"
 #import "LHDevice.h"
 #import "LHWeMoSwitch.h"
 #import "LHHueBulb.h"
@@ -22,10 +23,11 @@
 #define INITIAL_HUE_HEARTBEAT_DELAY                  1
 #define REGULAR_HUE_HEARTBEAT_DELAY                  30
 
-NSString * const LHDeviceCellReuseIdentifier         = @"DevicesAndTriggerCell";
-NSString * const LHPushGroupForCreateSegueIdentifier = @"PushGroupForCreateSegue";
-NSString * const LHPushGroupForEditSegueIdentifier   = @"PushGroupForEditSegue";
-NSString * const LHSearchForDevicesNotification      = @"LHSearchForDevicesNotification";
+NSString * const LHDeviceCellReuseIdentifier              = @"DevicesAndTriggerCell";
+NSString * const LHPushGroupForCreateSegueIdentifier      = @"PushGroupForCreateSegue";
+NSString * const LHPushGroupForEditSegueIdentifier        = @"PushGroupForEditSegue";
+NSString * const LHPushColorPickerForLightSegueIdentifier = @"PushColorPickerForLightSegue";
+NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevicesNotification";
 
 @interface LHDevicesViewController () <UIAlertViewDelegate>
 
@@ -326,6 +328,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     
     cell.nameLabel.text = device.friendlyName;
     cell.image.image = device.displayImage;
+    cell.infoButton.hidden  = YES;
     
     if ( [device isKindOfClass : [LHDeviceGroup class]] ) {
         cell.infoButton.hidden  = NO;
@@ -338,8 +341,24 @@ referenceSizeForHeaderInSection : (NSInteger) section
                                       sender : self];
         
         };
-    } else {
-        cell.infoButton.hidden  = YES;
+    } else if ( [device isKindOfClass : [LHHueBulb class]] ) {
+        LHHueBulb * hueBulb = (LHHueBulb *) device;
+        
+        if ( hueBulb.phLight.supportsColor
+            && hueBulb.phLight.supportsBrightness ) {
+            cell.infoButton.hidden  = NO;
+            
+            cell.infoButtonCallback = ^{
+            
+                self.selectedDevice = device;
+                NSLog ( @"light name %@", device.friendlyName );
+                
+                [self performSegueWithIdentifier : LHPushColorPickerForLightSegueIdentifier
+                                          sender : self];
+            };
+
+        }
+    
     }
 
     cell.toggleCallbackBlock = ^{
@@ -399,8 +418,13 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [targetViewController initializeWithDevices : [self.devicesAndGroups objectAtIndex : 0]
                                     withDeviceGroup : ((LHDeviceGroup *) self.selectedDevice).managedDeviceGroup
                                          isNewGroup : NO];
-    }
     
+    } else if ( [[segue identifier] isEqualToString : LHPushColorPickerForLightSegueIdentifier] ) {
+        LHColorPickerViewController * targetViewController =
+            (LHColorPickerViewController *) segue.destinationViewController;
+        targetViewController.light = (LHHueBulb *) self.selectedDevice;
+        targetViewController.title = self.selectedDevice.friendlyName;
+    }
 }
 
 #pragma mark - WeMo Discovery Delegate

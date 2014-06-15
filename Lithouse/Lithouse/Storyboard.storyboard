@@ -240,6 +240,49 @@
             </objects>
             <point key="canvasLocation" x="1372" y="842"/>
         </scene>
+        <!--Color Picker View Controller-->
+        <scene sceneID="bbb-JN-2jB">
+            <objects>
+                <viewController id="L1s-Oh-vgh" customClass="LHColorPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Cw-4v-hp6"/>
+                        <viewControllerLayoutGuide type="bottom" id="sls-uJ-3sL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eBp-t5-us6">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-p6-vni" customClass="NKOColorPickerView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqA-Ia-kcp">
+                                <rect key="frame" x="96" y="380" width="128" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ob5-4P-K9t">
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="GOZ-p1-yHB">
+                            <connections>
+                                <action selector="back:" destination="L1s-Oh-vgh" id="e3M-Vw-Bv6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="button" destination="vqA-Ia-kcp" id="g3K-hT-mxe"/>
+                        <outlet property="pickerView" destination="DLp-p6-vni" id="NkY-HZ-8fp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qKH-wx-psT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1372" y="1550"/>
+        </scene>
         <!--Devices View Controller - Devices-->
         <scene sceneID="Pnr-w2-OUc">
             <objects>
@@ -342,6 +385,7 @@
                     <connections>
                         <outlet property="addGroupBarButton" destination="2rY-O1-JNq" id="8Td-N3-yuI"/>
                         <segue destination="clm-La-61T" kind="push" identifier="PushGroupForEditSegue" id="0EK-rc-e7C"/>
+                        <segue destination="L1s-Oh-vgh" kind="push" identifier="PushColorPickerForLightSegue" id="HMi-B5-27O"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNO-BC-goO" userLabel="First Responder" sceneMemberID="firstResponder"/>
