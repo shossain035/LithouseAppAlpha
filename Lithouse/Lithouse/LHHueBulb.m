@@ -94,8 +94,6 @@ static int const LHHueApiCallInterval = 1.0;
     [self.phLight.lightState setOnBool : true];
     
     CGPoint xyPoint = [PHUtilities calculateXY:toColor forModel:self.phLight.modelNumber];
-    //[self.phLight.lightState setHue:@((int)(hue * 65535.0))];
-    //[self.phLight.lightState setSaturation:@((int)(saturation * 254.0))];
     [self.phLight.lightState setX:@(xyPoint.x)];
     [self.phLight.lightState setY:@(xyPoint.y)];
     
@@ -106,11 +104,23 @@ static int const LHHueApiCallInterval = 1.0;
 
 -(UIColor *) getCurrentColor
 {
-    UIColor * currentColor = [PHUtilities colorFromXY:CGPointMake([self.phLight.lightState.x floatValue],
-                                                                  [self.phLight.lightState.y floatValue])
+    UIColor * currentColor = [PHUtilities colorFromXY:CGPointMake(self.phLight.lightState.x.floatValue,
+                                                                  self.phLight.lightState.y.floatValue)
                                              forModel:self.phLight.modelNumber];
+    CGFloat hue, saturation, brightness, alpha;
     
-    return currentColor;
+    [currentColor getHue:&hue
+              saturation:&saturation
+              brightness:&brightness
+                   alpha:&alpha];
+    
+    //brightness is not carried over with XY color
+    brightness = self.phLight.lightState.brightness.floatValue / 254.0;
+    
+    return [UIColor colorWithHue:hue
+                      saturation:saturation
+                      brightness:brightness
+                           alpha:alpha];
     
 }
 

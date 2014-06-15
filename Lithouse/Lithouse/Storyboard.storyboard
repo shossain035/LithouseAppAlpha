@@ -252,30 +252,29 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-p6-vni" customClass="NKOColorPickerView">
+                            <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-p6-vni" customClass="NKOColorPickerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqA-Ia-kcp">
-                                <rect key="frame" x="96" y="380" width="128" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DLp-p6-vni" secondAttribute="trailing" id="FkQ-sA-o1e"/>
+                            <constraint firstItem="sls-uJ-3sL" firstAttribute="top" secondItem="DLp-p6-vni" secondAttribute="bottom" constant="140" id="J6L-PM-LJ0"/>
+                            <constraint firstItem="DLp-p6-vni" firstAttribute="leading" secondItem="eBp-t5-us6" secondAttribute="leading" id="odY-3g-3HA"/>
+                            <constraint firstItem="DLp-p6-vni" firstAttribute="top" secondItem="eBp-t5-us6" secondAttribute="top" id="pd0-ku-fh1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ob5-4P-K9t">
-                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="GOZ-p1-yHB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GOZ-p1-yHB">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back:" destination="L1s-Oh-vgh" id="e3M-Vw-Bv6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="button" destination="vqA-Ia-kcp" id="g3K-hT-mxe"/>
                         <outlet property="pickerView" destination="DLp-p6-vni" id="NkY-HZ-8fp"/>
                     </connections>
                 </viewController>

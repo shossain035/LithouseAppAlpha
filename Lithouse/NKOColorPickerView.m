@@ -136,9 +136,9 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
             _color = [newColor copy];
         }
         
-        if (self.didChangeColorBlock != nil){
-            self.didChangeColorBlock(self.color);
-        }
+//        if (self.didChangeColorBlock != nil){
+//            self.didChangeColorBlock(self.color);
+//        }
     }
 }
 
@@ -226,6 +226,13 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 	for (UITouch *touch in touches){
 		[self dispatchTouchEvent:[touch locationInView:self]];
 	}
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.didChangeColorBlock != nil){
+        self.didChangeColorBlock(self.color);
+    }
 }
 
 - (void)dispatchTouchEvent:(CGPoint)position
@@ -325,7 +332,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 //                                                                                   NKOPickerViewBrightnessIndicatorWidth,
 //                                                                                   NKOPickerViewBrightnessIndicatorHeight)];
 //        
-//        self->_brightnessIndicator.image = [[UIImage imageNamed:@"nko_brightness_guide"] nko_tintImageWithColor:[self _defaultTintColor]];
+//        self->_brightnessIndicator.image = [UIImage imageNamed:@"nko_brightness_guide"];
 //        self->_brightnessIndicator.backgroundColor = [UIColor clearColor];
 //        self->_brightnessIndicator.autoresizingMask = UIViewAutoresizingNone;
 //    }
@@ -379,7 +386,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 	const CGFloat *c = CGColorGetComponents(_color.CGColor);
     
 	CGFloat colors[] = {
-        0.f, 0.f, 0.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
 		c[0], c[1], c[2], 1.0f,
 	};
 	
