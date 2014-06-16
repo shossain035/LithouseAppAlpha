@@ -253,7 +253,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-p6-vni" customClass="NKOColorPickerView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="364"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -261,13 +261,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DLp-p6-vni" secondAttribute="trailing" id="FkQ-sA-o1e"/>
-                            <constraint firstItem="sls-uJ-3sL" firstAttribute="top" secondItem="DLp-p6-vni" secondAttribute="bottom" constant="140" id="J6L-PM-LJ0"/>
+                            <constraint firstItem="sls-uJ-3sL" firstAttribute="top" secondItem="DLp-p6-vni" secondAttribute="bottom" constant="90" id="J6L-PM-LJ0"/>
                             <constraint firstItem="DLp-p6-vni" firstAttribute="leading" secondItem="eBp-t5-us6" secondAttribute="leading" id="odY-3g-3HA"/>
-                            <constraint firstItem="DLp-p6-vni" firstAttribute="top" secondItem="eBp-t5-us6" secondAttribute="top" id="pd0-ku-fh1"/>
+                            <constraint firstItem="DLp-p6-vni" firstAttribute="top" secondItem="eBp-t5-us6" secondAttribute="top" constant="50" id="pd0-ku-fh1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ob5-4P-K9t">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GOZ-p1-yHB">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="GOZ-p1-yHB">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back:" destination="L1s-Oh-vgh" id="e3M-Vw-Bv6"/>
@@ -439,6 +439,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="23" height="42"/>
         <image name="unknown" width="90" height="90"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
