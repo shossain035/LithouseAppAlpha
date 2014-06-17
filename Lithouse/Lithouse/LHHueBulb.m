@@ -135,25 +135,24 @@ static int const LHHueApiCallInterval = 1.0;
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         dispatch_semaphore_wait([LHHueBulb sharedSemaphore], DISPATCH_TIME_FOREVER);
         
-        //throttling
         dispatch_async(dispatch_get_main_queue(), ^{
+            //throttling
             [NSTimer scheduledTimerWithTimeInterval:LHHueApiCallInterval
                                              target:[LHHueBulb class]
                                            selector:@selector(signalSharedSemaphore:)
                                            userInfo:nil
                                             repeats:NO];
+            id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
+            
+            // Send lightstate to light
+            [bridgeSendAPI updateLightStateForId:self.phLight.identifier
+                                   withLighState:self.phLight.lightState
+                               completionHandler:^(NSArray *errors) {
+                                   if (errors != nil) {
+                                       NSLog(@"Response: %@",errors);
+                                   }
+                               }];
         });
-        
-        id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
-        
-        // Send lightstate to light
-        [bridgeSendAPI updateLightStateForId:self.phLight.identifier
-                               withLighState:self.phLight.lightState
-                           completionHandler:^(NSArray *errors) {
-                               if (errors != nil) {
-                                   NSLog(@"Response: %@",errors);
-                               }
-        }];
     });
 
 }
