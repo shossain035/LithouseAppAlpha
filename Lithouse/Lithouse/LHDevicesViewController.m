@@ -44,7 +44,6 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
 @property (nonatomic, strong) NSArray                        * alertArray;
 
 @property (nonatomic, strong) UIView                         * spinnerView;
-@property (nonatomic, strong) NSString                       * currentNetworkSSId;
 
 @property (nonatomic, strong) IBOutlet UIBarButtonItem       * addGroupBarButton;
 @property int                                                  hueHeartbeatDelay;
@@ -88,11 +87,15 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
     
     [self createHelperViews];
     
+    /*
     [NSTimer scheduledTimerWithTimeInterval : 30.0
                                      target : self
                                    selector : @selector(checkAppStatus)
                                    userInfo : nil
                                     repeats : YES];
+    */
+    
+    //todo: handle UIApplicationDidBecomeActiveNotification
 }
 
 - (void) createHelperViews
@@ -238,18 +241,18 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
         
         [self.wifiDisconnectedAlert dismissWithClickedButtonIndex : self.wifiDisconnectedAlert.cancelButtonIndex
                                                          animated : YES];
-        
+        /*
         if ( ![routerSsid isEqualToString : self.currentNetworkSSId] ) {
             self.currentNetworkSSId = routerSsid;
             [self refreshDeviceList];
             //todo: revisit. since immediately calling refreshDeviceList, probably OK to do this.
             return NO;
         }
-        
+        */
         return YES;
     }
     
-    self.currentNetworkSSId = nil;
+    //self.currentNetworkSSId = nil;
 
     //remove every device and groups
     [[self.devicesAndGroups objectAtIndex : 0] removeAllObjects];
@@ -387,7 +390,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
 - (void) collectionView : (UICollectionView *) collectionView didSelectItemAtIndexPath : (NSIndexPath *) indexPath
 {
     NSLog ( @"item selected at %@", indexPath );
-    
+    if (![self isWiFiConnected]) return;
+        
     LHDeviceCell * cell = (LHDeviceCell *) [collectionView cellForItemAtIndexPath : indexPath];
     
     [cell animate];
@@ -473,11 +477,13 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void) didNetworkChanged : (NSNotification *) notification
 {
+    NSLog(@"didNetworkChanged");
 }
 
 -(void) searchForDevices : (NSNotification *) notification {
     NSLog(@"search for devices");
     [self searchForBridgeLocal];
+    [self refreshDeviceList];
     //no need to start wemo search, as they will be called periodically. 
 }
 
@@ -823,7 +829,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }
     
 }
-
+/*
 - (void) checkAppStatus
 {
     if ( [self isWiFiConnected] ) {
@@ -839,5 +845,5 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [self refreshDeviceList : YES];
     }
 }
-
+*/
 @end
