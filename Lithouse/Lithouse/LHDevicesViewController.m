@@ -98,6 +98,11 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
     //todo: handle UIApplicationDidBecomeActiveNotification
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void) createHelperViews
 {
     //wifi missing alert

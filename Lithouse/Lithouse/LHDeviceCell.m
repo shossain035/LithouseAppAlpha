@@ -73,4 +73,9 @@
     [self.layer addAnimation : shadowAnimation forKey : @"shadowOpacity"];
 }
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.statusChangeObserver];
+}
+
 @end
