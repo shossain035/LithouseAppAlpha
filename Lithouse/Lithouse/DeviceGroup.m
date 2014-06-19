@@ -20,7 +20,7 @@
 
 - (void) awakeFromInsert
 {
-    self.name = @"My Group";
+    self.name = @"All On";
     self.image = UIImagePNGRepresentation ( [UIImage imageNamed : @"unknown"] );
 }
 
