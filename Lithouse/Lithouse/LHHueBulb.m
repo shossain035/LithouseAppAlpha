@@ -7,6 +7,7 @@
 //
 
 #import "LHHueBulb.h"
+#import "LHAction.h"
 
 //throttling timeout for Hue api call in seconds
 static int const LHHueApiCallInterval = 1.0;
@@ -16,9 +17,14 @@ static int const LHHueApiCallInterval = 1.0;
 - (id) init
 {
     if ( self = [super init] ) {
-        //[self addToPermissibleActions : [[LHToggle alloc] initWithParentDevice : self]];
-        [self addToPermissibleActions : [[LHTurnOn alloc] initWithParentDevice : self]];
-        [self addToPermissibleActions : [[LHTurnOff alloc] initWithParentDevice : self]];
+        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
+                                                            withActionSelector:@selector(turnOn)
+                                                          withActionIdentifier:LHTurnOnActionId]];
+        
+        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
+                                                            withActionSelector:@selector(turnOff)
+                                                          withActionIdentifier:LHTurnOffActionId]];
+
     }
     
     return self;

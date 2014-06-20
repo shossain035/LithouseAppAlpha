@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LHToggle.h"
-#import "LHIgnoreAction.h"
 
 extern NSString * const LHDeviceDidStatusChangeNotification;
+
+@class LHAction;
 
 typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
     LHDeviceIsUnknown,
@@ -18,8 +18,7 @@ typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
     LHDeviceIsOff
 };
 
-@interface LHDevice : NSObject <LHToogleHandler,
-                                LHIgnoreActionHandler>
+@interface LHDevice : NSObject
 
 @property (nonatomic, strong)   NSString            * friendlyName;
 @property (nonatomic, strong)   UIImage             * displayImage;
@@ -32,6 +31,6 @@ typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
 - (LHAction *) actionForActionId : (NSString *) actionId;
 - (LHAction *) actionAtIndex     : (long) index;
 
-
+- (void) toggle;
 - (void) notifyCurrentStatus;
 @end

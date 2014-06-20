@@ -370,7 +370,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }
 
     cell.toggleCallbackBlock = ^{
-        [(id <LHToogleHandler>) device toggle];
+        [device toggle];
     };
     
     [cell addObserverForDevice : device];

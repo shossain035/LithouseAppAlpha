@@ -7,7 +7,7 @@
 //
 
 #import "LHDevice.h"
-#import "DeviceGroup.h"
+@class DeviceGroup;
 
 @interface LHDeviceGroup : LHDevice
 

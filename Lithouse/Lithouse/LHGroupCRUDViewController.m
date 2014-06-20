@@ -13,7 +13,6 @@
 
 #import "LHDevice.h"
 #import "LHAction.h"
-#import "LHIgnoreAction.h"
 #import "LHAlertView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 

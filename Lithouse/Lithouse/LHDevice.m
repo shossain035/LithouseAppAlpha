@@ -7,6 +7,7 @@
 //
 
 #import "LHDevice.h"
+#import "LHAction.h"
 
 @interface LHDevice ()
 @property (nonatomic, strong) NSMutableDictionary * permissibleActions;
@@ -26,7 +27,9 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
         self.displayImage = [UIImage imageNamed : @"unknown"];
         self.currentStatus = LHDeviceIsUnknown;
         
-        [self addToPermissibleActions : [[LHIgnoreAction alloc] initWithParentDevice : self]];
+        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:nil
+                                                            withActionSelector:nil
+                                                          withActionIdentifier:LHIgnoreActionId]];
     }
     
     return self;

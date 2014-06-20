@@ -9,20 +9,19 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const LHDefaultActionId;
+extern NSString * const LHTurnOnActionId;
+extern NSString * const LHTurnOffActionId;
+extern NSString * const LHIgnoreActionId;
 
-@protocol LHActionHandler
-@end
+@interface LHAction : NSObject
 
-@protocol LHActionInitiator
-@optional
+@property (nonatomic, strong, readonly) NSString * identifier;
+
+- (id) initWithTargetDevice : (id) aDevice
+         withActionSelector : (SEL) anAction
+       withActionIdentifier : (NSString *) anActionId;
+
 - (NSString *) friendlyName;
-- (NSString *) identifier;
 - (void) performAction;
-@end
-
-@interface LHAction : NSObject <LHActionInitiator>
-@property (weak) id <LHActionHandler> parentDevice;
-
-- (id) initWithParentDevice : (id <LHActionHandler>) aDevice;
 
 @end

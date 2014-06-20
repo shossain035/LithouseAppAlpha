@@ -7,15 +7,20 @@
 //
 
 #import "LHWeMoSwitch.h"
+#import "LHAction.h"
 
 @implementation LHWeMoSwitch
 
 - (id) init
 {
     if ( self = [super init] ) {
-        //[self addToPermissibleActions : [[LHToggle alloc] initWithParentDevice : self]];
-        [self addToPermissibleActions : [[LHTurnOn alloc] initWithParentDevice : self]];
-        [self addToPermissibleActions : [[LHTurnOff alloc] initWithParentDevice : self]];
+        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
+                                                            withActionSelector:@selector(turnOn)
+                                                          withActionIdentifier:LHTurnOnActionId]];
+        
+        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
+                                                            withActionSelector:@selector(turnOff)
+                                                          withActionIdentifier:LHTurnOffActionId]];
     }
     
     return self;

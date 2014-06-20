@@ -7,15 +7,11 @@
 //
 
 #import "LHDevice.h"
-#import "LHTurnOn.h"
-#import "LHTurnOff.h"
 #import "DeviceProtocols.h"
 
 #import <HueSDK_iOS/HueSDK.h>
 
-@interface LHHueBulb : LHDevice <LHTurnOnHandler,
-                                 LHTurnOffHandler,
-                                 ColoredLight>
+@interface LHHueBulb : LHDevice <ColoredLight>
 
 
 - (id) initWithPHLight : (PHLight *) aPHLight;

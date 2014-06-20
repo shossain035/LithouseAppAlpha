@@ -7,6 +7,8 @@
 //
 
 #import "LHDeviceGroup.h"
+#import "DeviceGroup.h"
+#import "LHAction.h"
 
 @interface LHDeviceGroup()
 
