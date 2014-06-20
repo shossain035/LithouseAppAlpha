@@ -8,6 +8,7 @@
 
 #import "LHHueBulb.h"
 #import "LHAction.h"
+#import <HueSDK_iOS/HueSDK.h>
 
 //throttling timeout for Hue api call in seconds
 static int const LHHueApiCallInterval = 1.0;

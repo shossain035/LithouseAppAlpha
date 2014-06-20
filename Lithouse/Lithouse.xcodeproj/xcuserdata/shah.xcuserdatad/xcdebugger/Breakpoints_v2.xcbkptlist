@@ -1418,11 +1418,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHueBulb.m"
-            timestampString = "424934318.011056"
+            timestampString = "424935547.220165"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "+signalSharedSemaphore:"
             landmarkType = "5">
          </BreakpointContent>

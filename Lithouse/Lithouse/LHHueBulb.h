@@ -9,8 +9,7 @@
 #import "LHDevice.h"
 #import "DeviceProtocols.h"
 
-#import <HueSDK_iOS/HueSDK.h>
-
+@class PHLight;
 @interface LHHueBulb : LHDevice <ColoredLight>
 
 
