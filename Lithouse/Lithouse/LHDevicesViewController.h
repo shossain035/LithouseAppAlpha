@@ -10,10 +10,21 @@
 #import "WeMoDiscoveryManager.h"
 #import "PHBridgePushLinkViewController.h"
 
+@class LHDevice;
+
+@protocol LHDeviceViewControllerDelegate <NSObject>
+
+- (void) addDeviceToList : (LHDevice *) aDevice;
+- (void) addUnPairedDevicesToList : (NSMutableArray *) devices;
+- (void) removeDeviceFromList : (NSString *) withDeviceIdentifier;
+
+@end
+
 extern NSString * const LHSearchForDevicesNotification;
 
 @interface LHDevicesViewController : UICollectionViewController <WeMoDeviceDiscoveryDelegate,
-                                                                 PHBridgePushLinkViewControllerDelegate>
+                                                                 PHBridgePushLinkViewControllerDelegate,
+                                                                 LHDeviceViewControllerDelegate>
 
 
 @end

@@ -15,7 +15,8 @@ extern NSString * const LHDeviceDidStatusChangeNotification;
 typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
     LHDeviceIsUnknown,
     LHDeviceIsOn,
-    LHDeviceIsOff
+    LHDeviceIsOff,
+    LHDeviceIsUnPaired
 };
 
 @interface LHDevice : NSObject

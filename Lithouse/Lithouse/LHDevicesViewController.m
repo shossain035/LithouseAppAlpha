@@ -13,12 +13,15 @@
 #import "LHDevice.h"
 #import "LHWeMoSwitch.h"
 #import "LHHueBulb.h"
+#import "LHHomeKitDevice.h"
 #import "LHDeviceGroup.h"
 #import "LHDeviceCell.h"
 #import "LHAlertView.h"
 #import "WeMoNetworkManager.h"
 #import "WeMoConstant.h"
+#import "LHHomeKitController.h"
 #import <HueSDK_iOS/HueSDK.h>
+#import <HomeKit/HomeKit.h>
 
 #define INITIAL_HUE_HEARTBEAT_DELAY                  1
 #define REGULAR_HUE_HEARTBEAT_DELAY                  30
@@ -48,6 +51,7 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
 @property (nonatomic, strong) IBOutlet UIBarButtonItem       * addGroupBarButton;
 @property int                                                  hueHeartbeatDelay;
 
+@property (nonatomic, strong) LHHomeKitController            * homeKitController;
 @end
 
 @implementation LHDevicesViewController
@@ -86,6 +90,8 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
                                                object : nil];
     
     [self createHelperViews];
+    
+    self.homeKitController = [[LHHomeKitController alloc] initWithDeviceViewController:self];
     
     /*
     [NSTimer scheduledTimerWithTimeInterval : 30.0
@@ -149,6 +155,7 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
 {
     [super viewWillAppear:animated];
     [self refreshDeviceList];
+    [self.homeKitController startSearchingForHomeKitDevices];
 }
 
 
@@ -372,6 +379,16 @@ referenceSizeForHeaderInSection : (NSInteger) section
     cell.toggleCallbackBlock = ^{
         [device toggle];
     };
+    
+    if ( [device isKindOfClass:[LHHomeKitDevice class]]) {
+        LHHomeKitDevice * homeKitDevice = (LHHomeKitDevice *) device;
+        
+        if ( !homeKitDevice.accessory.configured ) {
+            cell.toggleCallbackBlock = ^{
+                [self.homeKitController pairDevice:homeKitDevice];
+            };
+        }
+    }
     
     [cell addObserverForDevice : device];
     
@@ -769,6 +786,24 @@ referenceSizeForHeaderInSection : (NSInteger) section
     
     [self reloadDeviceList];
 }
+
+- (void) addUnPairedDevicesToList : (NSMutableArray *) devices
+{
+    @synchronized ( self.devicesAndGroups ) {
+        for ( LHDevice * device in devices ) {
+            if ( [self.deviceDictionary objectForKey : device.identifier] == nil ) {
+        
+                NSMutableArray * devices = [self.devicesAndGroups objectAtIndex : 0];
+                [devices addObject : device];
+                [self.deviceDictionary setObject : device
+                                          forKey : device.identifier];
+            }
+        }
+    }
+    
+    [self reloadDeviceList];
+}
+
 
 - (void) removeDeviceFromList : (NSString *) withDeviceIdentifier
 {
