@@ -38,7 +38,7 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
                                                    forService:self.primaryService];
         //todo: what if we cannot fetch services now?
         [self readPrimaryCharacteristic];
-        
+        //todo: move these to LHDevice
         [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
                                                             withActionSelector:@selector(setPrimaryCharacteristic)
                                                           withActionIdentifier:actionIdForSettingPrimaryCharacteristic]];
@@ -48,9 +48,6 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
                                                           withActionIdentifier:actionIdForUnsettingPrimaryCharacteristic]];
         
     }
-    
-    self.displayImage = [UIImage imageNamed : @"unknown"];
-
     
     return self;
 }
@@ -70,6 +67,7 @@ withActionIdForUnsettingPrimaryCharacteristic:nil];
     return self.accessory.identifier.UUIDString;
 }
 
+//todo: move these to LHDevice
 - (void) setPrimaryCharacteristic
 {
     NSLog ( @"turning HM device on");
@@ -91,6 +89,56 @@ withActionIdForUnsettingPrimaryCharacteristic:nil];
     } else {
         [self setPrimaryCharacteristic];
     }
+}
+
+- (NSNumber *) convertValueOfCharacteristic:(HMCharacteristic *) characteristic
+                           toTargetRangeMin:(NSNumber *) targetMin
+                           toTargetRangeMax:(NSNumber *) targetMax
+{
+    if ( characteristic.metadata.minimumValue == nil
+        || characteristic.metadata.maximumValue == nil ) {
+        return characteristic.value;
+    }
+    
+    return [self convertValue:characteristic.value
+          fromCurrentRangeMin:characteristic.metadata.minimumValue
+          fromCurrentRangeMax:characteristic.metadata.maximumValue
+             toTargetRangeMin:targetMin
+             toTargetRangeMax:targetMax];
+}
+
+- (NSNumber *) convertValue : (NSNumber *) currentValue
+        fromCurrentRangeMin : (NSNumber *) currentMin
+        fromCurrentRangeMax : (NSNumber *) currentMax
+toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
+{
+    if ( characteristic.metadata.minimumValue == nil
+        || characteristic.metadata.maximumValue == nil ) {
+        return currentValue;
+    }
+    
+
+    return [self convertValue:currentValue
+          fromCurrentRangeMin:currentMin
+          fromCurrentRangeMax:currentMax
+             toTargetRangeMin:characteristic.metadata.minimumValue
+             toTargetRangeMax:characteristic.metadata.maximumValue];
+}
+
+- (NSNumber *) convertValue : (NSNumber *) currentValue
+        fromCurrentRangeMin : (NSNumber *) currentMin
+        fromCurrentRangeMax : (NSNumber *) currentMax
+           toTargetRangeMin : (NSNumber *) targetMin
+           toTargetRangeMax : (NSNumber *) targetMax
+{
+    NSNumber * currentRange = @(currentMax.doubleValue - currentMin.doubleValue);
+    if ([currentRange isEqualToNumber:@(0)]) return currentValue;
+        
+    NSNumber * targetRange = @(targetMax.doubleValue - targetMin.doubleValue);
+    
+    return @(targetMin.doubleValue
+        + (currentValue.doubleValue * targetRange.doubleValue)
+        / currentRange.doubleValue);
 }
 
 - (void) writePrimaryCharacteristic:(id)targetValue
@@ -118,7 +166,9 @@ withActionIdForUnsettingPrimaryCharacteristic:nil];
     [characteristic writeValue : targetValue
              completionHandler : ^(NSError *error) {
                  if (error == nil) {
-                     completion ( targetValue ) ;
+                     if (completion != nil) {
+                         completion ( targetValue );
+                     }
                  } else {
                      NSLog(@"could not write characteristic: %@", error);
                  }
@@ -126,6 +176,23 @@ withActionIdForUnsettingPrimaryCharacteristic:nil];
     
 }
 
+- (void) writeTargetValue:(id) targetValue
+      fromCurrentRangeMin:(NSNumber *) currentMin
+      fromCurrentRangeMax:(NSNumber *) currentMax
+         toCharacteristic:(HMCharacteristic *) characteristic
+{
+    //turn the accessory on if its not already on
+    if (self.currentStatus != LHDeviceIsOn) {
+        [self setPrimaryCharacteristic];
+    }
+    
+    [self writeTargetValue:[self convertValue:targetValue
+                          fromCurrentRangeMin:currentMin
+                          fromCurrentRangeMax:currentMax
+               toTargetRangeForCharacteristic:characteristic]
+          toCharacteristic:characteristic
+     withCompletionHandler:nil];
+}
 
 - (void) readPrimaryCharacteristic
 {
@@ -150,7 +217,9 @@ withActionIdForUnsettingPrimaryCharacteristic:nil];
     
     [characteristic readValueWithCompletionHandler : ^(NSError *error) {
         if (error == nil) {
-            completion ( characteristic.value ) ;
+            if (completion != nil) {
+                completion ( characteristic.value );
+            }
         } else {
             NSLog(@"could not read characteristic: %@", error);
         }
@@ -165,6 +234,8 @@ withActionIdForUnsettingPrimaryCharacteristic:nil];
     
     for ( HMCharacteristic * characteristic in service.characteristics ) {
         if ( [characteristic.characteristicType isEqualToString : characteristicType]) {
+            //initial read
+            [self readCharacteristic:characteristic withCompletionHandler:nil];
             return characteristic;
         }
     }

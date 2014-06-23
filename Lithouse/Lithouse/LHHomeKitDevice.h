@@ -27,4 +27,13 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
 - (HMCharacteristic *) characteristicWithType : (NSString *) characteristicType
                                    forService : (HMService *) service;
 
+- (NSNumber *) convertValueOfCharacteristic:(HMCharacteristic *) characteristic
+                           toTargetRangeMin:(NSNumber *) targetMin
+                           toTargetRangeMax:(NSNumber *) targetMax;
+
+- (void) writeTargetValue:(id) targetValue
+      fromCurrentRangeMin:(NSNumber *) currentMin
+      fromCurrentRangeMax:(NSNumber *) currentMax
+         toCharacteristic:(HMCharacteristic *) characteristic;
+
 @end
