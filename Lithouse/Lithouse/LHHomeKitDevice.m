@@ -7,67 +7,113 @@
 //
 
 #import "LHHomeKitDevice.h"
+#import "LHAction.h"
 #import <HomeKit/HomeKit.h>
+
+@interface LHHomeKitDevice ()
+@property (nonatomic, strong, readonly) HMCharacteristic   * primaryCharacteristic;
+
+@end
 
 @implementation LHHomeKitDevice
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+              withPrimaryServiceType:(NSString *) serviceType
+              withCharacteristicType:(NSString *) characteristicType
+withActionIdForSettingPrimaryCharacteristic:(NSString *) actionIdForSettingPrimaryCharacteristic
+withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingPrimaryCharacteristic
+
 {
-    if ( self = [self init] ) {
-        _accessory = accessory;
-        self.friendlyName = accessory.name;
+    self = [super init];
+    if (!self) return nil;;
+    
+    _accessory = accessory;
+    self.friendlyName = accessory.name;
+    
+    if (!accessory.configured) {
+        self.currentStatus = LHDeviceIsUnPaired;
+    } else if (serviceType != nil && characteristicType != nil ) {
+        _primaryService = [self serviceForType:serviceType];
+        _primaryCharacteristic = [self characteristicWithType:characteristicType
+                                                   forService:self.primaryService];
+        //todo: what if we cannot fetch services now?
+        [self readPrimaryCharacteristic];
         
-        if (!accessory.configured) {
-            self.currentStatus = LHDeviceIsUnPaired;
-        }
+        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
+                                                            withActionSelector:@selector(setPrimaryCharacteristic)
+                                                          withActionIdentifier:actionIdForSettingPrimaryCharacteristic]];
         
-        self.displayImage = [UIImage imageNamed : @"unknown"];
+        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
+                                                            withActionSelector:@selector(unsetPrimaryCharacteristic)
+                                                          withActionIdentifier:actionIdForUnsettingPrimaryCharacteristic]];
+        
     }
+    
+    self.displayImage = [UIImage imageNamed : @"unknown"];
+
     
     return self;
 }
 
+- (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+{
+    
+    return [self initWithHMAccessory:accessory
+              withPrimaryServiceType:nil
+              withCharacteristicType:nil
+withActionIdForSettingPrimaryCharacteristic:nil
+withActionIdForUnsettingPrimaryCharacteristic:nil];
+}
 
 - (NSString *) identifier
 {
     return self.accessory.identifier.UUIDString;
 }
 
-- (void) toggle
+- (void) setPrimaryCharacteristic
 {
-    NSLog(@"Unknown home kit device: %@", self.accessory);
-    //todo: alert user
+    NSLog ( @"turning HM device on");
+    [self writePrimaryCharacteristic:@(1)];
 }
 
-- (void) writePowerState:(id)targetValue
-          forServiceType:(NSString*)serviceType
+- (void) unsetPrimaryCharacteristic
 {
-    [self writeCharacteristic:targetValue
-                     withType:HMCharacteristicTypePowerState
-               forServiceType:serviceType
-        withCompletionHandler:^(id value) {
-                   if ( [value boolValue] == YES ) {
-                       self.currentStatus = LHDeviceIsOn;
-                   } else {
-                       self.currentStatus = LHDeviceIsOff;
-                   }
+    NSLog ( @"turning HM device off");
+    [self writePrimaryCharacteristic:@(0)];
+}
+
+- (void) toggle
+{
+    NSLog ( @"toggling HM device");
+    
+    if ( self.currentStatus == LHDeviceIsOn ) {
+        [self unsetPrimaryCharacteristic];
+    } else {
+        [self setPrimaryCharacteristic];
+    }
+}
+
+- (void) writePrimaryCharacteristic:(id)targetValue
+{
+    [self writeTargetValue:targetValue
+          toCharacteristic:self.primaryCharacteristic
+     withCompletionHandler:^(id value) {
+           if ( [value boolValue] == YES ) {
+               self.currentStatus = LHDeviceIsOn;
+           } else {
+               self.currentStatus = LHDeviceIsOff;
+           }
     }];
 }
 
-- (void) writeCharacteristic : (id) targetValue
-                    withType : (NSString *) characteristicType
-              forServiceType : (NSString *) serviceType
-       withCompletionHandler : (void (^)(id value))completion
+- (void) writeTargetValue : (id) targetValue
+         toCharacteristic : (HMCharacteristic *) characteristic
+    withCompletionHandler : (void (^)(id value))completion
 {
-    if ( !self.accessory.configured ) {
-        NSLog(@"trying to write unpaired accessory: %@", self.accessory);
+    if (!characteristic) {
+        NSLog(@"could not write. nil values supplied");
         return;
     }
-    
-    HMCharacteristic * characteristic = [self characteristicWithType:characteristicType
-                                                      forServiceType:serviceType];
-    
-    if (!characteristic) return;
     
     [characteristic writeValue : targetValue
              completionHandler : ^(NSError *error) {
@@ -81,29 +127,26 @@
 }
 
 
-- (void) readPowerStateForServiceType:(NSString*) serviceType
+- (void) readPrimaryCharacteristic
 {
-    [self readCharacteristicWithType:HMCharacteristicTypePowerState
-                      forServiceType:serviceType
-               withCompletionHandler:^(id value) {
-                   if ( [value boolValue] == YES ) {
-                       self.currentStatus = LHDeviceIsOn;
-                   } else {
-                       self.currentStatus = LHDeviceIsOff;
-                   }
+    [self readCharacteristic:self.primaryCharacteristic
+       withCompletionHandler:^(id value) {
+           if ( [value boolValue] == YES ) {
+               self.currentStatus = LHDeviceIsOn;
+           } else {
+               self.currentStatus = LHDeviceIsOff;
+           }
     }];
 }
 
-- (void) readCharacteristicWithType : (NSString *) characteristicType
-                     forServiceType : (NSString *) serviceType
-              withCompletionHandler : (void (^)(id value))completion
+- (void) readCharacteristic : (HMCharacteristic *) characteristic
+      withCompletionHandler : (void (^)(id value))completion
 {
-    if ( !self.accessory.configured ) return;
     
-    HMCharacteristic * characteristic = [self characteristicWithType:characteristicType
-                                                      forServiceType:serviceType];
-    
-    if (!characteristic) return;
+    if (!characteristic) {
+        NSLog(@"could not read. nil values supplied");
+        return;
+    }
     
     [characteristic readValueWithCompletionHandler : ^(NSError *error) {
         if (error == nil) {
@@ -115,27 +158,25 @@
     
 }
 
-- (HMService *) serviceForType : (NSString *) serviceType
+- (HMCharacteristic *) characteristicWithType : (NSString *) characteristicType
+                                   forService : (HMService *) service
 {
-    for ( HMService * service in self.accessory.services ) {
-        if ( [service.serviceType isEqualToString : serviceType] ) {
-            return service;
+    if (service == nil) return nil;
+    
+    for ( HMCharacteristic * characteristic in service.characteristics ) {
+        if ( [characteristic.characteristicType isEqualToString : characteristicType]) {
+            return characteristic;
         }
     }
     
     return nil;
 }
 
-- (HMCharacteristic *) characteristicWithType : (NSString *) characteristicType
-                               forServiceType : (NSString *) serviceType
+- (HMService *) serviceForType : (NSString *) serviceType
 {
-    HMService * service = [self serviceForType:serviceType];
-    
-    if (!service) return nil;
-    
-    for ( HMCharacteristic * characteristic in service.characteristics ) {
-        if ( [characteristic.characteristicType isEqualToString : characteristicType]) {
-            return characteristic;
+    for ( HMService * service in self.accessory.services ) {
+        if ( [service.serviceType isEqualToString : serviceType] ) {
+            return service;
         }
     }
     

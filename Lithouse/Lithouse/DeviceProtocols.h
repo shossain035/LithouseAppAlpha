@@ -13,6 +13,7 @@
 
 - (void) updateColor : (UIColor *) toColor;
 - (UIColor *) getCurrentColor;
+- (BOOL) doesSupportColorControl;
 
 @end
 

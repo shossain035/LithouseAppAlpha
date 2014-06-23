@@ -10,48 +10,32 @@
 #import "LHAction.h"
 #import <HomeKit/HomeKit.h>
 
+@interface LHHomeKitBulb ()
+@property (nonatomic, strong, readonly) HMCharacteristic * hue;
+@property (nonatomic, strong, readonly) HMCharacteristic * saturation;
+@property (nonatomic, strong, readonly) HMCharacteristic * brightness;
+
+@end
+
 @implementation LHHomeKitBulb
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
 {
-    if ( self = [super initWithHMAccessory:accessory] ) {
+    if ( self = [super initWithHMAccessory:accessory
+                    withPrimaryServiceType:HMServiceTypeLightbulb
+                    withCharacteristicType:HMCharacteristicTypePowerState
+withActionIdForSettingPrimaryCharacteristic:LHTurnOnActionId
+withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId] ) {
+        
         self.displayImage = [UIImage imageNamed : @"hue"];
         
-        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
-                                                            withActionSelector:@selector(turnOn)
-                                                          withActionIdentifier:LHTurnOnActionId]];
+        _hue = [self characteristicWithType:HMCharacteristicTypeHue forService:self.primaryService];
+        _saturation = [self characteristicWithType:HMCharacteristicTypeSaturation forService:self.primaryService];
+        _brightness = [self characteristicWithType:HMCharacteristicTypeBrightness forService:self.primaryService];
         
-        [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
-                                                            withActionSelector:@selector(turnOff)
-                                                          withActionIdentifier:LHTurnOffActionId]];
-        
-        [self readPowerStateForServiceType:HMServiceTypeLightbulb];
     }
     
     return self;
-}
-
-- (void) turnOn
-{
-    NSLog ( @"turning HM bulb on");
-    [self writePowerState:@(1) forServiceType:HMServiceTypeLightbulb];
-}
-
-- (void) turnOff
-{
-    NSLog ( @"turning HM bulb off");
-    [self writePowerState:@(0) forServiceType:HMServiceTypeLightbulb];
-}
-
-- (void) toggle
-{
-    NSLog ( @"toggling hue");
-    
-    if ( self.currentStatus == LHDeviceIsOn ) {
-        [self turnOff];
-    } else {
-        [self turnOn];
-    }
 }
 
 #pragma mark ColoredLight
@@ -62,6 +46,12 @@
 - (UIColor *) getCurrentColor;
 {
     return nil;
+}
+
+- (BOOL) doesSupportColorControl
+{
+    //todo: break it up
+    return (self.hue != nil && self.saturation != nil && self.brightness != nil);
 }
 
 @end

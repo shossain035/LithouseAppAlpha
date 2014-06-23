@@ -356,24 +356,19 @@ referenceSizeForHeaderInSection : (NSInteger) section
                                       sender : self];
         
         };
-    } else if ( [device isKindOfClass : [LHHueBulb class]] ) {
-        LHHueBulb * hueBulb = (LHHueBulb *) device;
+    } else if ( [device conformsToProtocol:@protocol(ColoredLight)]
+                && [(id<ColoredLight>) device doesSupportColorControl] ) {
         
-        if ( hueBulb.phLight.supportsColor
-            && hueBulb.phLight.supportsBrightness ) {
-            cell.infoButton.hidden  = NO;
+        cell.infoButton.hidden  = NO;
+        
+        cell.infoButtonCallback = ^{
+        
+            self.selectedDevice = device;
+            NSLog ( @"light name %@", device.friendlyName );
             
-            cell.infoButtonCallback = ^{
-            
-                self.selectedDevice = device;
-                NSLog ( @"light name %@", device.friendlyName );
-                
-                [self performSegueWithIdentifier : LHPushColorPickerForLightSegueIdentifier
-                                          sender : self];
-            };
-
-        }
-    
+            [self performSegueWithIdentifier : LHPushColorPickerForLightSegueIdentifier
+                                      sender : self];
+        };
     }
 
     cell.toggleCallbackBlock = ^{
@@ -382,7 +377,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     
     if ( [device isKindOfClass:[LHHomeKitDevice class]]) {
         LHHomeKitDevice * homeKitDevice = (LHHomeKitDevice *) device;
-        
+        //unpaired home kit device. toogle will result in pairing.
         if ( !homeKitDevice.accessory.configured ) {
             cell.toggleCallbackBlock = ^{
                 [self.homeKitController pairDevice:homeKitDevice];
@@ -448,7 +443,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     } else if ( [[segue identifier] isEqualToString : LHPushColorPickerForLightSegueIdentifier] ) {
         LHColorPickerViewController * targetViewController =
             (LHColorPickerViewController *) segue.destinationViewController;
-        targetViewController.light = (LHHueBulb *) self.selectedDevice;
+        targetViewController.light = (id<ColoredLight>)self.selectedDevice;
         targetViewController.title = self.selectedDevice.friendlyName;
     }
 }

@@ -87,6 +87,7 @@ static int const LHHueApiCallInterval = 1.0;
     [self updateLightState];
 }
 
+#pragma mark ColoredLight
 - (void) updateColor : (UIColor *) toColor
 {
     self.currentStatus = LHDeviceIsOn;
@@ -129,6 +130,12 @@ static int const LHHueApiCallInterval = 1.0;
                       brightness:brightness
                            alpha:alpha];
     
+}
+
+- (BOOL) doesSupportColorControl
+{
+    return self.phLight.supportsColor
+            && self.phLight.supportsBrightness;
 }
 
 - (NSString *) identifier

@@ -9,14 +9,22 @@
 #import "LHDevice.h"
 
 @class HMAccessory;
+@class HMService;
+@class HMCharacteristic;
 
 @interface LHHomeKitDevice : LHDevice
 
-@property (nonatomic, strong, readonly) HMAccessory * accessory;
+@property (nonatomic, strong, readonly) HMAccessory        * accessory;
+@property (nonatomic, strong, readonly) HMService          * primaryService;
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory;
+- (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+              withPrimaryServiceType:(NSString *) serviceType
+              withCharacteristicType:(NSString *) characteristicType
+withActionIdForSettingPrimaryCharacteristic:(NSString *) actionIdForSettingPrimaryCharacteristic
+withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingPrimaryCharacteristic;
 
-- (void) readPowerStateForServiceType:(NSString*) serviceType;
-- (void) writePowerState:(id)targetValue
-          forServiceType:(NSString*) serviceType;
+- (HMCharacteristic *) characteristicWithType : (NSString *) characteristicType
+                                   forService : (HMService *) service;
+
 @end

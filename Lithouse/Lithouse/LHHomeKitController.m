@@ -31,7 +31,7 @@ static const int LHHomeKitDeviceSearchDelay = 50;
 
 - (instancetype) initWithDeviceViewController : (id <LHDeviceViewControllerDelegate>) deviceViewControllerDelegate
 {
-    self = [self init];
+    self = [super init];
     if ( !self ) return self;
     
     _deviceViewControllerDelegate = deviceViewControllerDelegate;
