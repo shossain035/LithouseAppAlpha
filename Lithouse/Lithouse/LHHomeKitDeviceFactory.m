@@ -10,6 +10,7 @@
 #import "LHHomeKitDevice.h"
 #import "LHHomeKitBulb.h"
 #import "LHLock.h"
+#import "LHSwitch.h"
 #import <HomeKit/HomeKit.h>
 
 @implementation LHHomeKitDeviceFactory
@@ -22,6 +23,8 @@
             return [[LHHomeKitBulb alloc] initWithHMAccessory:accessory];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeLock] ) {
             return [[LHLock alloc] initWithHMAccessory:accessory];
+        } else if ( [service.serviceType isEqualToString:HMServiceTypeSwitch] ) {
+            return [[LHSwitch alloc] initWithHMAccessory:accessory];
         }
     }
         

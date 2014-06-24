@@ -64,6 +64,7 @@
 		71C871A5195673D000C3F564 /* LHHomeKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C871A4195673D000C3F564 /* LHHomeKitController.m */; };
 		71C871A81956A64300C3F564 /* LHHomeKitDeviceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C871A71956A64300C3F564 /* LHHomeKitDeviceFactory.m */; };
 		71C871AB1959280B00C3F564 /* LHLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C871AA1959280B00C3F564 /* LHLock.m */; };
+		71C871AE1959ED1C00C3F564 /* LHSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C871AD1959ED1C00C3F564 /* LHSwitch.m */; };
 		71D9BF001933099A00164594 /* LHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9BEFF1933099A00164594 /* LHAlertView.m */; };
 		71E8EC2D194C076A0004C6F7 /* LHColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EC2C194C076A0004C6F7 /* LHColorPickerViewController.m */; };
 		71E8EC33194C0C5E0004C6F7 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EC30194C0C5E0004C6F7 /* NKOColorPickerView.m */; };
@@ -179,6 +180,8 @@
 		71C871A71956A64300C3F564 /* LHHomeKitDeviceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHHomeKitDeviceFactory.m; sourceTree = "<group>"; };
 		71C871A91959280B00C3F564 /* LHLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHLock.h; sourceTree = "<group>"; };
 		71C871AA1959280B00C3F564 /* LHLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHLock.m; sourceTree = "<group>"; };
+		71C871AC1959ED1C00C3F564 /* LHSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSwitch.h; sourceTree = "<group>"; };
+		71C871AD1959ED1C00C3F564 /* LHSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHSwitch.m; sourceTree = "<group>"; };
 		71D9BEFE1933099A00164594 /* LHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAlertView.h; sourceTree = "<group>"; };
 		71D9BEFF1933099A00164594 /* LHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAlertView.m; sourceTree = "<group>"; };
 		71E8EC2B194C076A0004C6F7 /* LHColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHColorPickerViewController.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				71102103195404CA001128E0 /* LHHomeKitBulb.m */,
 				71C871A91959280B00C3F564 /* LHLock.h */,
 				71C871AA1959280B00C3F564 /* LHLock.m */,
+				71C871AC1959ED1C00C3F564 /* LHSwitch.h */,
+				71C871AD1959ED1C00C3F564 /* LHSwitch.m */,
 				71C871A61956A64300C3F564 /* LHHomeKitDeviceFactory.h */,
 				71C871A71956A64300C3F564 /* LHHomeKitDeviceFactory.m */,
 			);
@@ -644,6 +649,7 @@
 				71D9BF001933099A00164594 /* LHAlertView.m in Sources */,
 				71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
+				71C871AE1959ED1C00C3F564 /* LHSwitch.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
 				71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */,
 				71C871A5195673D000C3F564 /* LHHomeKitController.m in Sources */,
