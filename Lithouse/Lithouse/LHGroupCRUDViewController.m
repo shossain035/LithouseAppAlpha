@@ -169,10 +169,12 @@ int const LHPhotoPickerActionSheetTag = 1;
         
         //the device was not found before or, this is a new group
         if ( !action ) {
-            action = [device actionForActionId : LHIgnoreActionId];
-            
             if ( isNewGroup ) {
                 action = [device actionForActionId : LHDefaultActionId];
+            }
+            //not new group or device does not have default action. just ignore it.
+            if ( !action ) {
+                action = [device actionForActionId : LHIgnoreActionId];
             }
         }
         
