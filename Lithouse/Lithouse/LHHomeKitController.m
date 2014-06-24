@@ -13,7 +13,7 @@
 #import <HomeKit/HomeKit.h>
 
 static NSString * LHHomeName = @"Lithouse Home";
-static const int LHHomeKitDeviceSearchDelay = 50;
+static const int LHHomeKitDeviceSearchDelay = 30;
 
 @interface LHHomeKitController () <HMHomeManagerDelegate,
                                    HMAccessoryBrowserDelegate>
