@@ -44,14 +44,23 @@
         {
             NSDictionary * statusData = notification.userInfo;
             self.backgroundColor = [UIColor whiteColor];
+            LHDeviceStatus status = [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
+                                     intValue];
             
-            if ( [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
-                  intValue] == LHDeviceIsOn ) {
+            UIImage * deviceImage = [[aDevice class] imageForStatus:status];
+            if ( deviceImage != nil ) {
+                self.image.image = deviceImage;
+            }
+                
+            if ( status == LHDeviceIsOn ) {
                 
                 self.backgroundColor = [UIColor colorWithRed : 0.74991234038415455f
                                                        green : 1.0f
                                                         blue : 0.78419363416042009f
                                                        alpha : 1.0f];
+                
+            } else if ( status == LHDeviceIsUnPaired ) {
+                self.backgroundColor = [UIColor lightGrayColor];
                 
             }
             

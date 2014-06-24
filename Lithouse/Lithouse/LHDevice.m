@@ -91,4 +91,9 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
                                                         object : self
                                                       userInfo : statusData];
 }
+
++ (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    return nil;
+}
 @end

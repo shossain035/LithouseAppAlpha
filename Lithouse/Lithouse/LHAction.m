@@ -11,6 +11,8 @@
 NSString * const LHTurnOnActionId  = @"TURN_ON_ACTION";
 NSString * const LHDefaultActionId = @"TURN_ON_ACTION";
 NSString * const LHTurnOffActionId = @"TURN_OFF_ACTION";
+NSString * const LHLockActionId    = @"LOCK_ACTION";
+NSString * const LHUnlockActionId  = @"UNLOCK_ACTION";
 NSString * const LHIgnoreActionId  = @"IGNORE_ACTION";
 
 @interface LHAction ()
@@ -56,6 +58,8 @@ NSString * const LHIgnoreActionId  = @"IGNORE_ACTION";
     dispatch_once(&pred, ^{
         sharedDictionary = @{LHTurnOnActionId:@"Turn On",
                              LHTurnOffActionId:@"Turn Off",
+                             LHLockActionId:@"Lock",
+                             LHUnlockActionId:@"Unlock",
                              LHIgnoreActionId:@"Ignore"};
     });
     

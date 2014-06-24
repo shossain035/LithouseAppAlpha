@@ -9,6 +9,7 @@
 #import "LHHomeKitDeviceFactory.h"
 #import "LHHomeKitDevice.h"
 #import "LHHomeKitBulb.h"
+#import "LHLock.h"
 #import <HomeKit/HomeKit.h>
 
 @implementation LHHomeKitDeviceFactory
@@ -19,6 +20,8 @@
         NSLog(@"service: %@", service.serviceType);
         if ( [service.serviceType isEqualToString:HMServiceTypeLightbulb] ) {
             return [[LHHomeKitBulb alloc] initWithHMAccessory:accessory];
+        } else if ( [service.serviceType isEqualToString:HMServiceTypeLock] ) {
+            return [[LHLock alloc] initWithHMAccessory:accessory];
         }
     }
         

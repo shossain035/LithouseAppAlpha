@@ -11,6 +11,9 @@
 extern NSString * const LHDefaultActionId;
 extern NSString * const LHTurnOnActionId;
 extern NSString * const LHTurnOffActionId;
+extern NSString * const LHLockActionId;
+extern NSString * const LHUnlockActionId;
+
 extern NSString * const LHIgnoreActionId;
 
 @interface LHAction : NSObject

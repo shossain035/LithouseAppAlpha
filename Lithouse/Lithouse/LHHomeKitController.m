@@ -128,8 +128,10 @@ static const int LHHomeKitDeviceSearchDelay = 50;
 {
     for ( HMHome * home in self.homeManager.homes ) {
         for ( HMAccessory * accessory in home.accessories ) {
-            [self.deviceViewControllerDelegate addDeviceToList:
-             [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory]];
+            if (accessory.reachable) {
+                [self.deviceViewControllerDelegate addDeviceToList:
+                 [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory]];
+            }
         }
     }
 }
