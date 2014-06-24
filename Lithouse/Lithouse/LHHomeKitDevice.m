@@ -47,6 +47,14 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
                                                             withActionSelector:@selector(unsetPrimaryCharacteristic)
                                                           withActionIdentifier:actionIdForUnsettingPrimaryCharacteristic]];
         
+//        for (HMService * service in accessory.services) {
+//            NSLog(@"service: %@", service.serviceType);
+//            
+//            for (HMCharacteristic * characteristic in service.characteristics) {
+//                NSLog(@"characteristic: %@ property: %@", characteristic.characteristicType, characteristic.properties);
+//            }
+//        }
+        
     }
     
     return self;

@@ -11,6 +11,7 @@
 #import "LHHomeKitBulb.h"
 #import "LHLock.h"
 #import "LHSwitch.h"
+#import "LHGarageDoor.h"
 #import <HomeKit/HomeKit.h>
 
 @implementation LHHomeKitDeviceFactory
@@ -25,6 +26,8 @@
             return [[LHLock alloc] initWithHMAccessory:accessory];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeSwitch] ) {
             return [[LHSwitch alloc] initWithHMAccessory:accessory];
+        } else if ( [service.serviceType isEqualToString:HMServiceTypeGarageDoorOpener] ) {
+            return [[LHGarageDoor alloc] initWithHMAccessory:accessory];
         }
     }
         
