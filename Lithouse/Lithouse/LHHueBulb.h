@@ -10,7 +10,7 @@
 #import "DeviceProtocols.h"
 
 @class PHLight;
-@interface LHHueBulb : LHDevice <ColoredLight>
+@interface LHHueBulb : LHDevice <LHLightColorChanging>
 
 
 - (id) initWithPHLight : (PHLight *) aPHLight;

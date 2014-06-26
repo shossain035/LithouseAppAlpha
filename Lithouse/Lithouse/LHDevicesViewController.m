@@ -9,7 +9,7 @@
 #import "LHAppDelegate.h"
 #import "LHDevicesViewController.h"
 #import "LHGroupCRUDViewController.h"
-#import "LHColorPickerViewController.h"
+#import "LHDetailCollectionViewController.h"
 #import "LHDevice.h"
 #import "LHWeMoSwitch.h"
 #import "LHHueBulb.h"
@@ -26,11 +26,11 @@
 #define INITIAL_HUE_HEARTBEAT_DELAY                  1
 #define REGULAR_HUE_HEARTBEAT_DELAY                  30
 
-NSString * const LHDeviceCellReuseIdentifier              = @"DevicesAndTriggerCell";
-NSString * const LHPushGroupForCreateSegueIdentifier      = @"PushGroupForCreateSegue";
-NSString * const LHPushGroupForEditSegueIdentifier        = @"PushGroupForEditSegue";
-NSString * const LHPushColorPickerForLightSegueIdentifier = @"PushColorPickerForLightSegue";
-NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevicesNotification";
+static NSString * const LHDeviceCellReuseIdentifier               = @"DevicesAndTriggerCell";
+static NSString * const LHPushGroupForCreateSegueIdentifier       = @"PushGroupForCreateSegue";
+static NSString * const LHPushGroupForEditSegueIdentifier         = @"PushGroupForEditSegue";
+static NSString * const LHPushDetailCollectionViewSegueIdentifier = @"PushDetailCollectionViewSegue";
+NSString * const LHSearchForDevicesNotification                   = @"LHSearchForDevicesNotification";
 
 @interface LHDevicesViewController () <UIAlertViewDelegate>
 
@@ -356,8 +356,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
                                       sender : self];
         
         };
-    } else if ( [device conformsToProtocol:@protocol(ColoredLight)]
-                && [(id<ColoredLight>) device doesSupportColorControl] ) {
+    } else if ( [device conformsToProtocol:@protocol(LHDeviceDetailChanging)] ) {
         
         cell.infoButton.hidden  = NO;
         
@@ -366,8 +365,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
             self.selectedDevice = device;
             NSLog ( @"light name %@", device.friendlyName );
             
-            [self performSegueWithIdentifier : LHPushColorPickerForLightSegueIdentifier
-                                      sender : self];
+            [self performSegueWithIdentifier:LHPushDetailCollectionViewSegueIdentifier
+                                      sender:self];
         };
     }
 
@@ -440,10 +439,10 @@ referenceSizeForHeaderInSection : (NSInteger) section
                                     withDeviceGroup : ((LHDeviceGroup *) self.selectedDevice).managedDeviceGroup
                                          isNewGroup : NO];
     
-    } else if ( [[segue identifier] isEqualToString : LHPushColorPickerForLightSegueIdentifier] ) {
-        LHColorPickerViewController * targetViewController =
-            (LHColorPickerViewController *) segue.destinationViewController;
-        targetViewController.light = (id<ColoredLight>)self.selectedDevice;
+    } else if ( [[segue identifier] isEqualToString : LHPushDetailCollectionViewSegueIdentifier] ) {
+        LHDetailCollectionViewController * targetViewController =
+            (LHDetailCollectionViewController *) segue.destinationViewController;
+        targetViewController.device = (id<LHDeviceDetailChanging>)self.selectedDevice;
         targetViewController.title = self.selectedDevice.friendlyName;
     }
 }

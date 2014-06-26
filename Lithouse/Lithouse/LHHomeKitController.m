@@ -49,6 +49,7 @@ static const int LHHomeKitDeviceSearchDelay = 30;
 
 - (void) startSearchingForHomeKitDevices
 {
+    NSLog(@"start searching for homekit devices");
     [self.unPairedDevices removeAllObjects];
     [self.accessoryBrowser startSearchingForNewAccessories];
     [self performSelector : @selector(stopSearchingForHomeKitDevices)
@@ -58,6 +59,8 @@ static const int LHHomeKitDeviceSearchDelay = 30;
 
 - (void) stopSearchingForHomeKitDevices
 {
+    NSLog(@"stop searching for homekit devices");
+    
     [self.accessoryBrowser stopSearchingForNewAccessories];
     //todo: add new devices with alert
     

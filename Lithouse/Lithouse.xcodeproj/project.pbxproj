@@ -67,9 +67,9 @@
 		71C871AE1959ED1C00C3F564 /* LHSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C871AD1959ED1C00C3F564 /* LHSwitch.m */; };
 		71C871B11959F6FB00C3F564 /* LHGarageDoor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C871B01959F6FB00C3F564 /* LHGarageDoor.m */; };
 		71D9BF001933099A00164594 /* LHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D9BEFF1933099A00164594 /* LHAlertView.m */; };
-		71E8EC2D194C076A0004C6F7 /* LHColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EC2C194C076A0004C6F7 /* LHColorPickerViewController.m */; };
 		71E8EC33194C0C5E0004C6F7 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EC30194C0C5E0004C6F7 /* NKOColorPickerView.m */; };
 		71E8EC34194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EC31194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m */; };
+		71FB4BD6195A9321005CF70E /* LHDetailCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BD5195A9321005CF70E /* LHDetailCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,12 +187,12 @@
 		71C871B01959F6FB00C3F564 /* LHGarageDoor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGarageDoor.m; sourceTree = "<group>"; };
 		71D9BEFE1933099A00164594 /* LHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAlertView.h; sourceTree = "<group>"; };
 		71D9BEFF1933099A00164594 /* LHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAlertView.m; sourceTree = "<group>"; };
-		71E8EC2B194C076A0004C6F7 /* LHColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHColorPickerViewController.h; sourceTree = "<group>"; };
-		71E8EC2C194C076A0004C6F7 /* LHColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHColorPickerViewController.m; sourceTree = "<group>"; };
 		71E8EC2F194C0C5E0004C6F7 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKOColorPickerView.h; sourceTree = "<group>"; };
 		71E8EC30194C0C5E0004C6F7 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKOColorPickerView.m; sourceTree = "<group>"; };
 		71E8EC31194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKOTriangularIndicatorView.m; sourceTree = "<group>"; };
 		71E8EC35194C0CAE0004C6F7 /* NKOTriangularIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKOTriangularIndicatorView.h; sourceTree = "<group>"; };
+		71FB4BD4195A9321005CF70E /* LHDetailCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDetailCollectionViewController.h; sourceTree = "<group>"; };
+		71FB4BD5195A9321005CF70E /* LHDetailCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDetailCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,10 +483,10 @@
 				7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */,
 				7128FDA61923F5CD0031BEA8 /* LHModalPickerViewController.h */,
 				7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */,
-				71E8EC2B194C076A0004C6F7 /* LHColorPickerViewController.h */,
-				71E8EC2C194C076A0004C6F7 /* LHColorPickerViewController.m */,
 				71C871A3195673D000C3F564 /* LHHomeKitController.h */,
 				71C871A4195673D000C3F564 /* LHHomeKitController.m */,
+				71FB4BD4195A9321005CF70E /* LHDetailCollectionViewController.h */,
+				71FB4BD5195A9321005CF70E /* LHDetailCollectionViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -648,7 +648,6 @@
 				71E8EC33194C0C5E0004C6F7 /* NKOColorPickerView.m in Sources */,
 				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
 				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
-				71E8EC2D194C076A0004C6F7 /* LHColorPickerViewController.m in Sources */,
 				71C871AB1959280B00C3F564 /* LHLock.m in Sources */,
 				7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */,
 				71D9BF001933099A00164594 /* LHAlertView.m in Sources */,
@@ -661,6 +660,7 @@
 				71A697C2192B24D900C9AB86 /* DDLog.m in Sources */,
 				71E8EC34194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m in Sources */,
 				71102104195404CA001128E0 /* LHHomeKitBulb.m in Sources */,
+				71FB4BD6195A9321005CF70E /* LHDetailCollectionViewController.m in Sources */,
 				71C871B11959F6FB00C3F564 /* LHGarageDoor.m in Sources */,
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,

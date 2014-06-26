@@ -9,6 +9,6 @@
 #import "LHHomeKitDevice.h"
 #import "DeviceProtocols.h"
 
-@interface LHHomeKitBulb : LHHomeKitDevice <ColoredLight>
+@interface LHHomeKitBulb : LHHomeKitDevice <LHLightColorChanging>
 
 @end

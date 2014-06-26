@@ -9,7 +9,10 @@
 #ifndef Lithouse_DeviceProtocols_h
 #define Lithouse_DeviceProtocols_h
 
-@protocol ColoredLight <NSObject>
+@protocol LHDeviceDetailChanging <NSObject>
+
+@end
+@protocol LHLightColorChanging <LHDeviceDetailChanging>
 
 - (void) updateColor : (UIColor *) toColor;
 - (UIColor *) getCurrentColor;

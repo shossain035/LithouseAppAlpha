@@ -240,46 +240,88 @@
             </objects>
             <point key="canvasLocation" x="1372" y="842"/>
         </scene>
-        <!--Color Picker View Controller-->
-        <scene sceneID="bbb-JN-2jB">
+        <!--Detail Collection View Controller-->
+        <scene sceneID="PB4-Gr-gHA">
             <objects>
-                <viewController id="L1s-Oh-vgh" customClass="LHColorPickerViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2Cw-4v-hp6"/>
-                        <viewControllerLayoutGuide type="bottom" id="sls-uJ-3sL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eBp-t5-us6">
+                <collectionViewController id="lye-ca-lk0" customClass="LHDetailCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" id="iTJ-nE-LoU">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-p6-vni" customClass="NKOColorPickerView">
-                                <rect key="frame" x="0.0" y="50" width="320" height="364"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="DLp-p6-vni" secondAttribute="trailing" id="FkQ-sA-o1e"/>
-                            <constraint firstItem="sls-uJ-3sL" firstAttribute="top" secondItem="DLp-p6-vni" secondAttribute="bottom" constant="90" id="J6L-PM-LJ0"/>
-                            <constraint firstItem="DLp-p6-vni" firstAttribute="leading" secondItem="eBp-t5-us6" secondAttribute="leading" id="odY-3g-3HA"/>
-                            <constraint firstItem="DLp-p6-vni" firstAttribute="top" secondItem="eBp-t5-us6" secondAttribute="top" constant="50" id="pd0-ku-fh1"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="ob5-4P-K9t">
-                        <barButtonItem key="leftBarButtonItem" image="back" id="GOZ-p1-yHB">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FzK-0h-PX5">
+                            <size key="itemSize" width="258" height="145"/>
+                            <size key="headerReferenceSize" width="50" height="29"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorPickerCell" id="31N-aC-rub">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="customSize" width="320" height="364"/>
+                            </collectionViewCell>
+                            <collectionViewCell hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HiddenCell" id="Xfe-gy-hEd">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="13"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <size key="customSize" width="320" height="13"/>
+                            </collectionViewCell>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScheduleCell" id="LTV-2r-kSY">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="customSize" width="320" height="73"/>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DetailCollectionHeader" id="xum-Xz-O5Y">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Schedules" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czd-Q2-BSW">
+                                    <rect key="frame" x="222" y="4" width="85" height="21"/>
+                                    <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="lye-ca-lk0" id="xKf-mu-N1i"/>
+                            <outlet property="delegate" destination="lye-ca-lk0" id="QPo-ug-SQZ"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="eCe-ft-7bH">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="zBl-QX-fiy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="L1s-Oh-vgh" id="e3M-Vw-Bv6"/>
+                                <action selector="back:" destination="lye-ca-lk0" id="sMV-xd-rdg"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cB6-BH-3Hf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="pickerView" destination="DLp-p6-vni" id="NkY-HZ-8fp"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qKH-wx-psT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v29-Pb-d07" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="1550"/>
+            <point key="canvasLocation" x="1395" y="1412"/>
         </scene>
         <!--Devices View Controller - Devices-->
         <scene sceneID="Pnr-w2-OUc">
@@ -350,8 +392,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-xL-I4E">
-                                    <rect key="frame" x="222" y="2" width="85" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Groups" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-xL-I4E">
+                                    <rect key="frame" x="222" y="4" width="85" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="85" id="Cx8-Ev-qP0"/>
                                     </constraints>
@@ -383,7 +425,7 @@
                     <connections>
                         <outlet property="addGroupBarButton" destination="2rY-O1-JNq" id="8Td-N3-yuI"/>
                         <segue destination="clm-La-61T" kind="push" identifier="PushGroupForEditSegue" id="0EK-rc-e7C"/>
-                        <segue destination="L1s-Oh-vgh" kind="push" identifier="PushColorPickerForLightSegue" id="HMi-B5-27O"/>
+                        <segue destination="lye-ca-lk0" kind="push" identifier="PushDetailCollectionViewSegue" id="kjo-Vl-nMi"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNO-BC-goO" userLabel="First Responder" sceneMemberID="firstResponder"/>
