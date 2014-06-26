@@ -31,6 +31,8 @@
     
     self.dynamicsDrawerViewController = (MSDynamicsDrawerViewController *) self.window.rootViewController;
     self.dynamicsDrawerViewController.paneDragRequiresScreenEdgePan = YES;
+    //stopping unintented exposure
+    [self.dynamicsDrawerViewController registerTouchForwardingClass:[UICollectionViewCell class]];
     // Add some example stylers
     [self.dynamicsDrawerViewController addStylersFromArray : @[[MSDynamicsDrawerScaleStyler styler],
                                                                [MSDynamicsDrawerFadeStyler styler],
