@@ -34,5 +34,7 @@ typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
 
 - (void) toggle;
 - (void) notifyCurrentStatus;
+- (NSString *) defaultActionId;
+
 + (UIImage *) imageForStatus : (LHDeviceStatus) status;
 @end

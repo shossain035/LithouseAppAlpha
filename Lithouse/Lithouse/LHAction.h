@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const LHDefaultActionId;
 extern NSString * const LHTurnOnActionId;
 extern NSString * const LHTurnOffActionId;
 extern NSString * const LHLockActionId;

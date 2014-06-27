@@ -40,4 +40,10 @@ withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId] ) {
     return [imageDictionary objectForKey:@(status)];
 }
 
+- (NSString *) defaultActionId
+{
+    return LHLockActionId;
+}
+
+
 @end
