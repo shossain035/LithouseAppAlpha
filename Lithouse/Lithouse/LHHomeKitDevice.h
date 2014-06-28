@@ -7,12 +7,13 @@
 //
 
 #import "LHDevice.h"
+#import "DeviceProtocols.h"
 
 @class HMAccessory;
 @class HMService;
 @class HMCharacteristic;
 
-@interface LHHomeKitDevice : LHDevice
+@interface LHHomeKitDevice : LHDevice <LHScheduleing>
 
 @property (nonatomic, strong, readonly) HMAccessory        * accessory;
 @property (nonatomic, strong, readonly) HMService          * primaryService;

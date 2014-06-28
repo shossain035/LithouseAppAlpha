@@ -7,11 +7,13 @@
 //
 
 #import "LHDetailCollectionViewController.h"
+#import "LHScheduleViewController.h"
 #import "DeviceProtocols.h"
 #import "NKOColorPickerView.h"
 
 @interface LHDetailCollectionViewController () <UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) NKOColorPickerView * pickerView;
+@property (nonatomic, strong) NKOColorPickerView             * pickerView;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem       * addScheduleBarButton;
 
 @end
 
@@ -41,19 +43,33 @@ static int const LHScheduleCellHeight = 150;
     self.collectionView.canCancelContentTouches = NO;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if ( self.isSchedulable ) {
+        self.navigationItem.rightBarButtonItem = self.addScheduleBarButton;
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL) isSchedulable
+{
+    return (self.device && [self.device conformsToProtocol:@protocol(LHScheduleing)]);
+}
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return ( self.isSchedulable ? 2 : 1 );
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -89,9 +105,6 @@ static int const LHScheduleCellHeight = 150;
     UICollectionReusableView * headerView = [collectionView dequeueReusableSupplementaryViewOfKind : UICollectionElementKindSectionHeader
                                                                                withReuseIdentifier : @"DetailCollectionHeader"
                                                                                       forIndexPath : indexPath];
-    // no schedules available. hide the header bar
-//    if ([[self.devicesAndGroups objectAtIndex : 1] count] == 0) headerView.hidden = YES;
-//    else headerView.hidden = NO;
     return headerView;
 }
 
@@ -153,6 +166,18 @@ referenceSizeForHeaderInSection : (NSInteger) section
     [cell.contentView addSubview:self.pickerView];
     
     return cell;
+}
+
+-(void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender
+{
+    if ( [[segue identifier] isEqualToString : @"PushScheduleForCreateSegue"] ) {
+        id <LHScheduleing> schedulingDevice = (id <LHScheduleing>) self.device;
+        LHScheduleViewController * targetViewController =
+            (LHScheduleViewController *) segue.destinationViewController;
+        
+        targetViewController.device = (LHDevice *) self.device;
+        targetViewController.schedule = [schedulingDevice createSchedule];
+    }
 }
 
 @end

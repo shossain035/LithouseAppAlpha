@@ -8,6 +8,7 @@
 
 #import "LHHomeKitDevice.h"
 #import "LHAction.h"
+#import "LHHomeKitSchedule.h"
 #import <HomeKit/HomeKit.h>
 
 @interface LHHomeKitDevice ()
@@ -260,6 +261,24 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
     }
     
     return nil;
+}
+
+#pragma mark <LHScheduleing>
+
+- (id<LHSchedule>) createSchedule
+{
+    return [[LHHomeKitSchedule alloc] initWithDevice:self
+                                          withAction:[self actionForActionId:self.defaultActionId]];
+}
+
+- (void) saveSchedule:(id<LHSchedule>)schedule
+{
+
+}
+
+- (void) removeSchedule:(id<LHSchedule>)schedule
+{
+
 }
 
 @end
