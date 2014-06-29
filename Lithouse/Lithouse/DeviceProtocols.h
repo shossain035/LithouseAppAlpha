@@ -19,6 +19,8 @@
 - (id<LHSchedule>) createSchedule;
 - (void) saveSchedule : (id<LHSchedule>) schedule;
 - (void) removeSchedule : (id<LHSchedule>) schedule;
+- (NSArray *) getSchedules;
+- (void) enableSchedule : (id<LHSchedule>) schedule;
 @end
 
 @protocol LHLightColorChanging <LHDeviceDetailChanging>

@@ -73,6 +73,7 @@
 		71FB4BD9195D2749005CF70E /* LHScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BD8195D2749005CF70E /* LHScheduleViewController.m */; };
 		71FB4BDC195D52BF005CF70E /* LHRepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BDB195D52BF005CF70E /* LHRepeatViewController.m */; };
 		71FB4BE3195E2BA2005CF70E /* LHHomeKitSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BE2195E2BA2005CF70E /* LHHomeKitSchedule.m */; };
+		71FB4BE9195FF381005CF70E /* LHScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BE8195FF381005CF70E /* LHScheduleCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +204,8 @@
 		71FB4BE0195E270E005CF70E /* LHSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSchedule.h; sourceTree = "<group>"; };
 		71FB4BE1195E2BA2005CF70E /* LHHomeKitSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHHomeKitSchedule.h; sourceTree = "<group>"; };
 		71FB4BE2195E2BA2005CF70E /* LHHomeKitSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHHomeKitSchedule.m; sourceTree = "<group>"; };
+		71FB4BE7195FF381005CF70E /* LHScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHScheduleCell.h; sourceTree = "<group>"; };
+		71FB4BE8195FF381005CF70E /* LHScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHScheduleCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,6 +520,8 @@
 				7128FD961921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m */,
 				71D9BEFE1933099A00164594 /* LHAlertView.h */,
 				71D9BEFF1933099A00164594 /* LHAlertView.m */,
+				71FB4BE7195FF381005CF70E /* LHScheduleCell.h */,
+				71FB4BE8195FF381005CF70E /* LHScheduleCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -666,6 +671,7 @@
 				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
 				7128FD8E19216F120031BEA8 /* LHDeviceGroup.m in Sources */,
 				71C871AB1959280B00C3F564 /* LHLock.m in Sources */,
+				71FB4BE9195FF381005CF70E /* LHScheduleCell.m in Sources */,
 				7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */,
 				71D9BF001933099A00164594 /* LHAlertView.m in Sources */,
 				71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */,

@@ -8,12 +8,16 @@
 
 #import "LHDetailCollectionViewController.h"
 #import "LHScheduleViewController.h"
+#import "LHScheduleCell.h"
 #import "DeviceProtocols.h"
 #import "NKOColorPickerView.h"
+#import "LHAction.h"
+#import "LHSchedule.h"
 
 @interface LHDetailCollectionViewController () <UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NKOColorPickerView             * pickerView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem       * addScheduleBarButton;
+@property (nonatomic, strong) NSArray                        * schedules;
 
 @end
 
@@ -49,6 +53,7 @@ static int const LHScheduleCellHeight = 150;
     
     if ( self.isSchedulable ) {
         self.navigationItem.rightBarButtonItem = self.addScheduleBarButton;
+        self.schedules = [((id<LHScheduleing>)self.device) getSchedules];
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }
@@ -77,7 +82,7 @@ static int const LHScheduleCellHeight = 150;
         if ( self.device != nil ) return 1;
         else return 0;
     }else {
-        return 1;
+        return self.schedules.count;
     }
 }
 
@@ -92,6 +97,17 @@ static int const LHScheduleCellHeight = 150;
         }
     } else {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ScheduleCell" forIndexPath:indexPath];
+        LHScheduleCell * scheduleCell = (LHScheduleCell *) cell;
+        id<LHSchedule> schedule = self.schedules[indexPath.row];
+        scheduleCell.dateLabel.text = [NSDateFormatter localizedStringFromDate:schedule.fireDate
+                                                                     dateStyle:NSDateFormatterShortStyle
+                                                                     timeStyle:NSDateFormatterShortStyle];
+        scheduleCell.actionLabel.text = schedule.action.friendlyName;
+        //todo: recurrance
+        scheduleCell.enableSwitch.on = schedule.enabled;
+        scheduleCell.enableValueChangedCallback = ^(BOOL isEnabled) {
+            [schedule enable:isEnabled];
+        };
     }
     
     return cell;

@@ -12,6 +12,9 @@
 #import <HomeKit/HomeKit.h>
 #include <stdlib.h>
 
+static NSString * const LHHomeKitResourceTypeTrigger   = @"trigger";
+static NSString * const LHHomeKitResourceTypeActionSet = @"actionset";
+
 @interface LHHomeKitDevice ()
 @property (nonatomic, strong, readonly) HMCharacteristic   * primaryCharacteristic;
 @property (nonatomic, strong, readonly) HMHome             * home;
@@ -270,6 +273,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
 
 #pragma mark <LHScheduleing>
 
+//todo: move schedule code to LHHomeKitSchedule
 - (id<LHSchedule>) createSchedule
 {
     return [[LHHomeKitSchedule alloc] initWithDevice:self
@@ -331,7 +335,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
             return;
         }
         
-        [trigger enable:!schedule.disabled completionHandler:^(NSError *error) {
+        [trigger enable:schedule.enabled completionHandler:^(NSError *error) {
             if (error) {
                 NSLog(@"failed to enable trigger: %@", error);
             }
@@ -347,7 +351,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
     __weak __typeof(self) weakSelf = self;
     
     [self.home addActionSetWithName:
-     [NSString stringWithFormat:@"actionset %d", random]
+     [NSString stringWithFormat:@"%@ %d", [weakSelf getHomeKitPreambleForType:LHHomeKitResourceTypeActionSet], random]
                   completionHandler:^(HMActionSet *actionSet, NSError *error) {
                       if ( error) {
                           NSLog(@"failed to create new action set. %@", error);
@@ -355,7 +359,8 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
                       }
                       
                       //todo: correct recurrance
-                      HMTrigger * trigger = [[HMTimerTrigger alloc] initWithName:[NSString stringWithFormat:@"trigger %d", random]
+                      HMTrigger * trigger = [[HMTimerTrigger alloc] initWithName:
+                                             [NSString stringWithFormat:@"%@ %d", [weakSelf getHomeKitPreambleForType:LHHomeKitResourceTypeTrigger], random]
                                                                         fireDate:homeKitSchedule.fireDate
                                                                         timeZone:nil
                                                                       recurrence:nil
@@ -382,12 +387,46 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
     }];
 }
 
+- (NSString *) getHomeKitPreambleForType : (NSString *) type
+{
+    return [NSString stringWithFormat:@"lithouse %@ %@", self.friendlyName, type];
+}
+
 - (void) removeSchedule:(id<LHSchedule>)schedule
 {
 
 }
 
-//todo: consider other types of actions
+- (NSArray *) getSchedules
+{
+    NSString * preambleForTrigger = [self getHomeKitPreambleForType:LHHomeKitResourceTypeTrigger];
+    NSMutableArray * schedules = [[NSMutableArray alloc] init];
+    
+    for ( HMTrigger * trigger in self.home.triggers ) {
+        
+        if ( [trigger.name hasPrefix:preambleForTrigger] ) {
+            LHAction * action = [self getLHActionForHoomeKitActionSet:trigger.actionSets[0]];
+            LHHomeKitSchedule * schedule = [[LHHomeKitSchedule alloc] initWithDevice:self
+                                                                          withAction:action
+                                                                         withTrigger:trigger];
+            [schedules addObject:schedule];
+        }
+    }
+    
+    return [schedules copy];
+}
+
+- (void) enableSchedule : (id<LHSchedule>) schedule
+{
+    LHHomeKitSchedule * homeKitSchedule = schedule;
+    [homeKitSchedule.homeKitTrigger enable:schedule.enabled completionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"failed to enable trigger: %@", error);
+        }
+    }];
+}
+
+//todo: consider other types of actions and make it a base function
 - (HMAction *) getHomeKitActionForLHAction : (LHAction *) lhAction
 {
     int targetValue;
@@ -402,6 +441,21 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
     
     return [[HMCharacteristicWriteAction alloc] initWithCharacteristic:self.primaryCharacteristic
                                                            targetValue:@(targetValue)];
+}
+
+
+//todo: make it robust in accordance with getHomeKitActionForLHAction
+- (LHAction *) getLHActionForHoomeKitActionSet:(HMActionSet *) actionSet
+{
+    for ( HMCharacteristicWriteAction * action in actionSet.actions ) {
+        if ( [action.targetValue integerValue] == 1 ) {
+            return [self actionForActionId:LHTurnOnActionId];
+        } else if ( [action.targetValue integerValue] == 0 ) {
+            return [self actionForActionId:LHTurnOffActionId];
+        }
+    }
+        
+    return nil;
 }
 
 @end

@@ -16,7 +16,7 @@
 @protocol LHSchedule <NSObject>
 @property (nonatomic, weak, readonly) id <LHScheduleing> device;
 @property (nonatomic, weak) LHAction * action;
-@property (nonatomic, assign) BOOL disabled;
+@property (nonatomic, assign, readonly) BOOL enabled;
 @property (nonatomic, strong) NSMutableArray * selectedWeekdays;
 @property (nonatomic, strong) NSDate * fireDate;
 
@@ -24,6 +24,7 @@
                      withAction : (LHAction *) anAction;
 - (void) save;
 - (void) remove;
+- (void) enable:(BOOL) isEnabled;
 @end
 
 

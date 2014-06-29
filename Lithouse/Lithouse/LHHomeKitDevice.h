@@ -41,6 +41,4 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
       fromCurrentRangeMax:(NSNumber *) currentMax
          toCharacteristic:(HMCharacteristic *) characteristic;
 
-- (HMAction *) getHomeKitActionForLHAction : (LHAction *) lhAction;
-
 @end

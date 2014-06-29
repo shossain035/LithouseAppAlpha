@@ -14,4 +14,8 @@
 
 @property (nonatomic,strong) HMTrigger * homeKitTrigger;
 
+- (instancetype) initWithDevice : (id <LHScheduleing>) aDevice
+                     withAction : (LHAction *) anAction
+                    withTrigger : (HMTrigger *) trigger;
+
 @end
