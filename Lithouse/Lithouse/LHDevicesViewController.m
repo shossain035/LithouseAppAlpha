@@ -498,8 +498,10 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void) searchForDevices : (NSNotification *) notification {
     NSLog(@"search for devices");
+    //todo: cleanup state management
     [self searchForBridgeLocal];
     [self refreshDeviceList];
+    [self.homeKitController startSearchingForHomeKitDevices];
     //no need to start wemo search, as they will be called periodically. 
 }
 

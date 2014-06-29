@@ -17,21 +17,22 @@
 @implementation LHHomeKitDeviceFactory
 
 + (LHDevice *) newHomeKitDeviceWithAccessory : (HMAccessory *) accessory
+                                       inHome:(HMHome *) home;
 {
     for (HMService * service in accessory.services) {
         NSLog(@"service: %@", service.serviceType);
         if ( [service.serviceType isEqualToString:HMServiceTypeLightbulb] ) {
-            return [[LHHomeKitBulb alloc] initWithHMAccessory:accessory];
+            return [[LHHomeKitBulb alloc] initWithHMAccessory:accessory inHome:home];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeLock] ) {
-            return [[LHLock alloc] initWithHMAccessory:accessory];
+            return [[LHLock alloc] initWithHMAccessory:accessory inHome:home];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeSwitch] ) {
-            return [[LHSwitch alloc] initWithHMAccessory:accessory];
+            return [[LHSwitch alloc] initWithHMAccessory:accessory inHome:home];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeGarageDoorOpener] ) {
-            return [[LHGarageDoor alloc] initWithHMAccessory:accessory];
+            return [[LHGarageDoor alloc] initWithHMAccessory:accessory inHome:home];
         }
     }
         
-    return [[LHHomeKitDevice alloc] initWithHMAccessory:accessory];
+    return [[LHHomeKitDevice alloc] initWithHMAccessory:accessory inHome:home];
 }
 
 

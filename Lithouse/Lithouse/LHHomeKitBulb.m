@@ -20,12 +20,14 @@
 @implementation LHHomeKitBulb
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+                              inHome:(HMHome *) home
 {
     if ( self = [super initWithHMAccessory:accessory
                     withPrimaryServiceType:HMServiceTypeLightbulb
                     withCharacteristicType:HMCharacteristicTypePowerState
 withActionIdForSettingPrimaryCharacteristic:LHTurnOnActionId
-withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId] ) {
+withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
+                                    inHome:home] ) {
         
         self.displayImage = [UIImage imageNamed : @"hue"];
         

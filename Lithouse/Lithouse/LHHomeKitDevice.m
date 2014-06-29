@@ -10,10 +10,11 @@
 #import "LHAction.h"
 #import "LHHomeKitSchedule.h"
 #import <HomeKit/HomeKit.h>
+#include <stdlib.h>
 
 @interface LHHomeKitDevice ()
 @property (nonatomic, strong, readonly) HMCharacteristic   * primaryCharacteristic;
-
+@property (nonatomic, strong, readonly) HMHome             * home;
 @end
 
 @implementation LHHomeKitDevice
@@ -23,6 +24,7 @@
               withCharacteristicType:(NSString *) characteristicType
 withActionIdForSettingPrimaryCharacteristic:(NSString *) actionIdForSettingPrimaryCharacteristic
 withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingPrimaryCharacteristic
+                              inHome:(HMHome *) home
 
 {
     self = [super init];
@@ -30,6 +32,7 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
     
     _accessory = accessory;
     self.friendlyName = accessory.name;
+    _home = home;
     
     if (!accessory.configured) {
         self.currentStatus = LHDeviceIsUnPaired;
@@ -62,13 +65,15 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
 }
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+                              inHome:(HMHome *) home;
 {
     
     return [self initWithHMAccessory:accessory
               withPrimaryServiceType:nil
               withCharacteristicType:nil
 withActionIdForSettingPrimaryCharacteristic:nil
-withActionIdForUnsettingPrimaryCharacteristic:nil];
+withActionIdForUnsettingPrimaryCharacteristic:nil
+                              inHome:home];
 }
 
 - (NSString *) identifier
@@ -273,12 +278,130 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
 
 - (void) saveSchedule:(id<LHSchedule>)schedule
 {
+    LHHomeKitSchedule * homeKitSchedule = (LHHomeKitSchedule *) schedule;
+    
+    if (!homeKitSchedule.homeKitTrigger) {
+        [self createTriggerForSchedule:homeKitSchedule];
+    } else {
+        [(HMTimerTrigger *) homeKitSchedule.homeKitTrigger updateFireDate:schedule.fireDate
+                                                        completionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"failed to update trigger fire date. %@", error);
+                return;
+            }
+            //todo: update recurrance then nest enable
+            [self updateTrigger:homeKitSchedule.homeKitTrigger
+                   withSchedule:homeKitSchedule];
+        }];
+        
+        
+    }
+}
 
+- (void) updateTrigger:(HMTrigger *) trigger
+          withSchedule:(LHHomeKitSchedule *) schedule
+{
+    //remove all actions
+    if (!trigger) {
+        NSLog(@"nil trigger");
+        return;
+    }
+    
+    HMActionSet * actionSet = trigger.actionSets [0];
+    NSArray * oldActions = [actionSet.actions allObjects];
+    
+    for ( HMAction * action in oldActions ) {
+        
+        [actionSet removeAction:action completionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"failed to remove old action. %@", error);
+            }
+        }];
+    }
+    
+    HMAction * newAction = [self getHomeKitActionForLHAction:schedule.action];
+    if ( !newAction ) {
+        NSLog(@"no action found for id: %@", schedule.action.identifier);
+        return; //todo: throw error to user
+    }
+    
+    [actionSet addAction:newAction completionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"failed to add new action. %@", error);
+            return;
+        }
+        
+        [trigger enable:!schedule.disabled completionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"failed to enable trigger: %@", error);
+            }
+        }];
+    }];
+}
+
+//todo: remove trigger and action set in case of failure
+- (void) createTriggerForSchedule : (LHHomeKitSchedule *) homeKitSchedule
+{
+    //todo: better unique name
+    int random = arc4random() % 10000;
+    __weak __typeof(self) weakSelf = self;
+    
+    [self.home addActionSetWithName:
+     [NSString stringWithFormat:@"actionset %d", random]
+                  completionHandler:^(HMActionSet *actionSet, NSError *error) {
+                      if ( error) {
+                          NSLog(@"failed to create new action set. %@", error);
+                          return;
+                      }
+                      
+                      //todo: correct recurrance
+                      HMTrigger * trigger = [[HMTimerTrigger alloc] initWithName:[NSString stringWithFormat:@"trigger %d", random]
+                                                                        fireDate:homeKitSchedule.fireDate
+                                                                        timeZone:nil
+                                                                      recurrence:nil
+                                                              recurrenceCalendar:nil];
+                      
+                      [weakSelf.home addTrigger:trigger completionHandler:^(NSError *error) {
+                          if ( error ) {
+                              NSLog(@"failed to add trigger: %@", error);
+                              return;
+                          }
+                          __weak __typeof(trigger) weakTrigger = trigger;
+                          
+                          [trigger addActionSet:actionSet completionHandler:^(NSError *error) {
+                              if ( error) {
+                                  NSLog(@"failed to add action set. %@", error);
+                                  return;
+                              }
+                              
+                              [weakSelf updateTrigger:weakTrigger
+                                         withSchedule:homeKitSchedule];
+                          }];
+                          
+                      }];
+    }];
 }
 
 - (void) removeSchedule:(id<LHSchedule>)schedule
 {
 
+}
+
+//todo: consider other types of actions
+- (HMAction *) getHomeKitActionForLHAction : (LHAction *) lhAction
+{
+    int targetValue;
+    
+    if ([lhAction.identifier isEqualToString:LHTurnOnActionId]) {
+        targetValue = 1;
+    } else if ([lhAction.identifier isEqualToString:LHTurnOffActionId]) {
+        targetValue = 0;
+    } else {
+        return nil;
+    }
+    
+    return [[HMCharacteristicWriteAction alloc] initWithCharacteristic:self.primaryCharacteristic
+                                                           targetValue:@(targetValue)];
 }
 
 @end

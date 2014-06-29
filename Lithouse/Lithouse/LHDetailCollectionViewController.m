@@ -177,6 +177,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
         
         targetViewController.device = (LHDevice *) self.device;
         targetViewController.schedule = [schedulingDevice createSchedule];
+        targetViewController.isNewSchedule = YES;
     }
 }
 

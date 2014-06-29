@@ -14,8 +14,11 @@
 
 
 @protocol LHSchedule <NSObject>
-@property (nonatomic, weak) id <LHScheduleing> device;
+@property (nonatomic, weak, readonly) id <LHScheduleing> device;
 @property (nonatomic, weak) LHAction * action;
+@property (nonatomic, assign) BOOL disabled;
+@property (nonatomic, strong) NSMutableArray * selectedWeekdays;
+@property (nonatomic, strong) NSDate * fireDate;
 
 - (instancetype) initWithDevice : (id <LHScheduleing>) aDevice
                      withAction : (LHAction *) anAction;

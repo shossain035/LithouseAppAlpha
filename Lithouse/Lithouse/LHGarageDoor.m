@@ -13,12 +13,14 @@
 @implementation LHGarageDoor
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+                              inHome:(HMHome *) home
 {
     if ( self = [super initWithHMAccessory:accessory
                     withPrimaryServiceType:HMServiceTypeGarageDoorOpener
                     withCharacteristicType:HMCharacteristicTypeLocked
 withActionIdForSettingPrimaryCharacteristic:LHLockActionId
-withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId] ) {
+withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
+                                    inHome:home] ) {
         
         self.displayImage = [UIImage imageNamed : @"lock_closed"];
     }

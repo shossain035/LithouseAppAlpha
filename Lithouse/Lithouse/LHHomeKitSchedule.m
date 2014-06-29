@@ -7,11 +7,15 @@
 //
 
 #import "LHHomeKitSchedule.h"
+#import "DeviceProtocols.h"
 
 @implementation LHHomeKitSchedule
 
 @synthesize device = _device;
 @synthesize action = _action;
+@synthesize selectedWeekdays = _selectedWeekdays;
+@synthesize disabled = _disabled;
+@synthesize fireDate = _fireDate;
 
 - (instancetype) initWithDevice : (id <LHScheduleing>) aDevice
                      withAction : (LHAction *) anAction
@@ -21,18 +25,21 @@
     
     _device = aDevice;
     _action = anAction;
-    
+    _disabled = NO;
+    _fireDate = [NSDate date];
+    _selectedWeekdays = [@[@YES,@YES,@YES,@YES,@YES,@YES,@YES] mutableCopy];
+
     return self;
 }
 
 - (void) save
 {
-    NSLog(@"save schedule");
+    [self.device saveSchedule:self];
 }
 
 -(void) remove
 {
-    NSLog(@"remove schedule");
+    [self.device removeSchedule:self];
 }
 
 @end

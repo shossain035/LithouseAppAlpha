@@ -11,13 +11,14 @@
 #import <HomeKit/HomeKit.h>
 
 @implementation LHSwitch
-- (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+- (instancetype) initWithHMAccessory:(HMAccessory *) accessory inHome:(HMHome *) home
 {
     if ( self = [super initWithHMAccessory:accessory
                     withPrimaryServiceType:HMServiceTypeSwitch
                     withCharacteristicType:HMCharacteristicTypePowerState
 withActionIdForSettingPrimaryCharacteristic:LHTurnOnActionId
-withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId] ) {
+withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
+                                    inHome:home] ) {
         
         self.displayImage = [UIImage imageNamed : @"ic_switch"];
     }

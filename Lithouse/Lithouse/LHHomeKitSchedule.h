@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LHSchedule.h"
 
+@class HMTrigger;
 @interface LHHomeKitSchedule : NSObject <LHSchedule>
+
+@property (nonatomic,strong) HMTrigger * homeKitTrigger;
 
 @end

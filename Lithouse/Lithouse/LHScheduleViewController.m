@@ -7,19 +7,19 @@
 //
 
 #import "LHScheduleViewController.h"
+#import "LHRepeatViewController.h"
 #import "LHSchedule.h"
 #import "LHAlertView.h"
 #import "LHDevice.h"
 #import "LHAction.h"
 
 @interface LHScheduleViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
-@property (nonatomic, strong) IBOutlet UIDatePicker * datePicker;
-@property (nonatomic, strong) IBOutlet UIView       * datePickerContainer;
-@property (nonatomic, strong) IBOutlet UIPickerView * actionPicker;
-@property (nonatomic, strong) IBOutlet UIView       * actionPickerContainer;
-@property (nonatomic, strong) IBOutlet UIButton     * deleteButton;
-
-
+@property (nonatomic, strong) IBOutlet UIDatePicker   * datePicker;
+@property (nonatomic, strong) IBOutlet UIView         * datePickerContainer;
+@property (nonatomic, strong) IBOutlet UIPickerView   * actionPicker;
+@property (nonatomic, strong) IBOutlet UIView         * actionPickerContainer;
+@property (nonatomic, strong) IBOutlet UIButton       * deleteButton;
+@property (nonatomic, strong)          NSMutableArray * actions;
 @end
 
 @implementation LHScheduleViewController
@@ -48,7 +48,11 @@
     } else {
         self.deleteButton.hidden = false;
     }
-
+    
+    self.datePicker.date = self.schedule.fireDate;
+    [self.actionPicker selectRow:[self indexOfSelectedAction]
+                     inComponent:0
+                        animated:NO];
 }
 
 - (void) viewDidLayoutSubviews
@@ -60,6 +64,24 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (int) indexOfSelectedAction
+{
+    self.actions = [[NSMutableArray alloc] init];
+    int selectedIndex = 0;
+    //ignoring i=0 "ignore" action
+    for ( int i=1; i<self.device.actionCount; i++) {
+        self.actions[i-1] = [self.device actionAtIndex:(long)i];
+        
+        if ( [self.schedule.action.identifier
+              isEqualToString:[self.device actionAtIndex:(long)i].identifier]) {
+            
+            selectedIndex = i-1;
+        }
+    }
+        
+    return selectedIndex;
 }
 
 - (IBAction) cancel : (id) sender
@@ -114,6 +136,8 @@
 - (IBAction) datePickerValueChanged:(id)sender
 {
     NSLog(@"time: %@", self.datePicker.date);
+    //todo: consider going back in time.
+    self.schedule.fireDate = self.datePicker.date;
 }
 
 - (void) pickerView : (UIView *) pickerView
@@ -150,14 +174,14 @@
 - (NSInteger) pickerView:(UIPickerView *)pickerView
  numberOfRowsInComponent:(NSInteger)component
 {
-    return self.device.actionCount;
+    return self.actions.count;
 }
 
 - (NSString *) pickerView:(UIPickerView *)pickerView
               titleForRow:(NSInteger)row
              forComponent:(NSInteger)component
 {
-    return [self.device actionAtIndex:row].friendlyName;
+    return ((LHAction *)self.actions[row]).friendlyName;
 }
 
 #pragma mark <UIPickerViewDelegate>
@@ -166,6 +190,19 @@
         inComponent:(NSInteger)component
 {
     NSLog(@"selected row: %d comp %d", row, component);
+    self.schedule.action = self.actions[row];
 }
+
+
+-(void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender
+{
+    if ( [[segue identifier] isEqualToString : @"PushRepeatWeekdaysSegue"] ) {
+        LHRepeatViewController * targetViewController =
+            (LHRepeatViewController *) segue.destinationViewController;
+        
+        targetViewController.selectedWeekdays = self.schedule.selectedWeekdays;
+    }
+}
+
 
 @end

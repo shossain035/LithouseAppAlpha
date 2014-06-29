@@ -50,6 +50,8 @@ static const int LHHomeKitDeviceSearchDelay = 30;
 - (void) startSearchingForHomeKitDevices
 {
     NSLog(@"start searching for homekit devices");
+    //todo: need to call exploreHomes in order to get the latest state.
+    
     [self.unPairedDevices removeAllObjects];
     [self.accessoryBrowser startSearchingForNewAccessories];
     [self performSelector : @selector(stopSearchingForHomeKitDevices)
@@ -91,7 +93,8 @@ static const int LHHomeKitDeviceSearchDelay = 30;
             //todo: cleanup
             for ( HMAccessory * accessory in weakSelf.lithouseHome.accessories ) {
                 [weakSelf.deviceViewControllerDelegate addDeviceToList:
-                 [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory]];
+                 [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory
+                                                                inHome:weakSelf.lithouseHome]];
             }
         }
     }];
@@ -133,7 +136,8 @@ static const int LHHomeKitDeviceSearchDelay = 30;
         for ( HMAccessory * accessory in home.accessories ) {
             if (accessory.reachable) {
                 [self.deviceViewControllerDelegate addDeviceToList:
-                 [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory]];
+                 [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory
+                                                                inHome:home]];
             }
         }
     }
@@ -153,7 +157,7 @@ static const int LHHomeKitDeviceSearchDelay = 30;
 {
     NSLog ( @"found accessory :%@", accessory );
     [self.unPairedDevices addObject:
-     [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory]];
+     [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory inHome:nil]];
 }
 
 -(void) accessoryBrowser:(HMAccessoryBrowser *)browser

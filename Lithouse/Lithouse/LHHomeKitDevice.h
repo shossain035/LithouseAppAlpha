@@ -12,18 +12,22 @@
 @class HMAccessory;
 @class HMService;
 @class HMCharacteristic;
+@class HMAction;
+@class HMHome;
 
 @interface LHHomeKitDevice : LHDevice <LHScheduleing>
 
 @property (nonatomic, strong, readonly) HMAccessory        * accessory;
 @property (nonatomic, strong, readonly) HMService          * primaryService;
 
-- (instancetype) initWithHMAccessory:(HMAccessory *) accessory;
+- (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+                              inHome:(HMHome *) home;
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
               withPrimaryServiceType:(NSString *) serviceType
               withCharacteristicType:(NSString *) characteristicType
 withActionIdForSettingPrimaryCharacteristic:(NSString *) actionIdForSettingPrimaryCharacteristic
-withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingPrimaryCharacteristic;
+withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingPrimaryCharacteristic
+                            inHome:(HMHome *) home;
 
 - (HMCharacteristic *) characteristicWithType : (NSString *) characteristicType
                                    forService : (HMService *) service;
@@ -36,5 +40,7 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
       fromCurrentRangeMin:(NSNumber *) currentMin
       fromCurrentRangeMax:(NSNumber *) currentMax
          toCharacteristic:(HMCharacteristic *) characteristic;
+
+- (HMAction *) getHomeKitActionForLHAction : (LHAction *) lhAction;
 
 @end

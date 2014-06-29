@@ -10,8 +10,10 @@
 
 @class LHDevice;
 @class HMAccessory;
+@class HMHome;
 
 @interface LHHomeKitDeviceFactory : NSObject
-+ (LHDevice *) newHomeKitDeviceWithAccessory : (HMAccessory *) accessory;
++ (LHDevice *) newHomeKitDeviceWithAccessory : (HMAccessory *) accessory
+                                       inHome:(HMHome *) home;;
 
 @end
