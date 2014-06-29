@@ -66,4 +66,35 @@
     [self.device enableSchedule:self];
 }
 
+- (NSDate *) moveFireDateToFuture
+{
+    if ([self.fireDate timeIntervalSinceNow] > 0.0) {
+        return self.fireDate;
+    }
+    
+    NSLog(@"past time: %@", self.fireDate);
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    NSDate * today = [NSDate date];
+    self.fireDate = [calendar dateBySettingHour:[calendar component:NSHourCalendarUnit fromDate:self.fireDate]
+                                         minute:[calendar component:NSMinuteCalendarUnit fromDate:self.fireDate]
+                                         second:[calendar component:NSSecondCalendarUnit fromDate:self.fireDate]
+                                         ofDate:today
+                                        options:0];
+    
+    NSLog(@"changed to today time: %@", self.fireDate);
+    if ([self.fireDate timeIntervalSinceNow] > 0.0) {
+        return self.fireDate;
+    }
+    
+    NSDateComponents * offsetOneDayComponent = [[NSDateComponents alloc] init];
+    offsetOneDayComponent.day = 1;
+    
+    self.fireDate = [calendar dateByAddingComponents:offsetOneDayComponent
+                                              toDate:self.fireDate
+                                             options:0];
+    
+    NSLog(@"changed to tomorrow time: %@", self.fireDate);
+    
+    return self.fireDate;
+}
 @end

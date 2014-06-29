@@ -14,11 +14,14 @@
 #import "LHAction.h"
 #import "LHSchedule.h"
 
+static NSString * const LHSegueForCreatingSchedule = @"SegueForCreatingSchedule";
+static NSString * const LHSegueForEditingSchedule  = @"SegueForEditingSchedule";
+
 @interface LHDetailCollectionViewController () <UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NKOColorPickerView             * pickerView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem       * addScheduleBarButton;
 @property (nonatomic, strong) NSArray                        * schedules;
-
+@property (nonatomic, weak)   id<LHSchedule>                   currentSchedule;
 @end
 
 @implementation LHDetailCollectionViewController
@@ -124,6 +127,18 @@ static int const LHScheduleCellHeight = 150;
     return headerView;
 }
 
+#pragma mark - <UICollectionViewDelegate>
+- (void) collectionView : (UICollectionView *) collectionView didSelectItemAtIndexPath : (NSIndexPath *) indexPath
+{
+    if (indexPath.section == 0) {
+        return;
+    }
+    
+    self.currentSchedule = self.schedules[indexPath.row];
+    [self performSegueWithIdentifier : LHSegueForEditingSchedule
+                              sender : self];
+}
+
 #pragma mark <UICollectionViewDelegateFlowLayout>
 - (CGSize) collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout
@@ -186,14 +201,21 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender
 {
-    if ( [[segue identifier] isEqualToString : @"PushScheduleForCreateSegue"] ) {
+    if ( [[segue identifier] isEqualToString : LHSegueForCreatingSchedule] ||
+        [[segue identifier] isEqualToString : LHSegueForEditingSchedule] ) {
         id <LHScheduleing> schedulingDevice = (id <LHScheduleing>) self.device;
         LHScheduleViewController * targetViewController =
             (LHScheduleViewController *) segue.destinationViewController;
         
         targetViewController.device = (LHDevice *) self.device;
-        targetViewController.schedule = [schedulingDevice createSchedule];
-        targetViewController.isNewSchedule = YES;
+        
+        if ( [[segue identifier] isEqualToString : LHSegueForCreatingSchedule] ) {
+            targetViewController.schedule = [schedulingDevice createSchedule];
+            targetViewController.isNewSchedule = YES;
+        } else if ( [[segue identifier] isEqualToString : LHSegueForEditingSchedule] ) {
+            targetViewController.schedule = self.currentSchedule;
+            targetViewController.isNewSchedule = NO;
+        }
     }
 }
 

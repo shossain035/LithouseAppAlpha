@@ -18,4 +18,6 @@
                      withAction : (LHAction *) anAction
                     withTrigger : (HMTrigger *) trigger;
 
+- (NSDate *) moveFireDateToFuture;
+
 @end

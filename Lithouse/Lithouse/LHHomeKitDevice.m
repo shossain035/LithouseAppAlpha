@@ -187,6 +187,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
                          completion ( targetValue );
                      }
                  } else {
+                     //todo: alert user
                      NSLog(@"could not write characteristic: %@", error);
                  }
              }];
@@ -285,7 +286,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
     LHHomeKitSchedule * homeKitSchedule = (LHHomeKitSchedule *) schedule;
     
     if (!homeKitSchedule.homeKitTrigger) {
-        [self createTriggerForSchedule:homeKitSchedule];
+        [self createAndUpdateTriggerForSchedule:homeKitSchedule];
     } else {
         [(HMTimerTrigger *) homeKitSchedule.homeKitTrigger updateFireDate:schedule.fireDate
                                                         completionHandler:^(NSError *error) {
@@ -335,23 +336,18 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
             return;
         }
         
-        [trigger enable:schedule.enabled completionHandler:^(NSError *error) {
-            if (error) {
-                NSLog(@"failed to enable trigger: %@", error);
-            }
-        }];
+        [self enableSchedule:schedule];
     }];
 }
 
 //todo: remove trigger and action set in case of failure
-- (void) createTriggerForSchedule : (LHHomeKitSchedule *) homeKitSchedule
+- (void) createAndUpdateTriggerForSchedule : (LHHomeKitSchedule *) homeKitSchedule
 {
-    //todo: better unique name
-    int random = arc4random() % 10000;
+    NSString * uuid = [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     __weak __typeof(self) weakSelf = self;
     
     [self.home addActionSetWithName:
-     [NSString stringWithFormat:@"%@ %d", [weakSelf getHomeKitPreambleForType:LHHomeKitResourceTypeActionSet], random]
+     [NSString stringWithFormat:@"%@ %@", [weakSelf getHomeKitPreambleForType:LHHomeKitResourceTypeActionSet], uuid]
                   completionHandler:^(HMActionSet *actionSet, NSError *error) {
                       if ( error) {
                           NSLog(@"failed to create new action set. %@", error);
@@ -360,12 +356,12 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
                       
                       //todo: correct recurrance
                       HMTrigger * trigger = [[HMTimerTrigger alloc] initWithName:
-                                             [NSString stringWithFormat:@"%@ %d", [weakSelf getHomeKitPreambleForType:LHHomeKitResourceTypeTrigger], random]
+                                             [NSString stringWithFormat:@"%@ %@", [weakSelf getHomeKitPreambleForType:LHHomeKitResourceTypeTrigger], uuid]
                                                                         fireDate:homeKitSchedule.fireDate
                                                                         timeZone:nil
                                                                       recurrence:nil
                                                               recurrenceCalendar:nil];
-                      
+                
                       [weakSelf.home addTrigger:trigger completionHandler:^(NSError *error) {
                           if ( error ) {
                               NSLog(@"failed to add trigger: %@", error);
@@ -379,6 +375,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
                                   return;
                               }
                               
+                              homeKitSchedule.homeKitTrigger = weakTrigger;
                               [weakSelf updateTrigger:weakTrigger
                                          withSchedule:homeKitSchedule];
                           }];
@@ -419,10 +416,34 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
 - (void) enableSchedule : (id<LHSchedule>) schedule
 {
     LHHomeKitSchedule * homeKitSchedule = schedule;
-    [homeKitSchedule.homeKitTrigger enable:schedule.enabled completionHandler:^(NSError *error) {
+    HMTimerTrigger * timerTrigger = (HMTimerTrigger *) homeKitSchedule.homeKitTrigger;
+    //check if trigger date is in the past
+    if ([timerTrigger.fireDate timeIntervalSinceNow] < 0.0) {
+        [homeKitSchedule moveFireDateToFuture];
+        [timerTrigger updateFireDate:schedule.fireDate
+                   completionHandler:^(NSError *error) {
+                       if (error) {
+                           NSLog(@"failed to update trigger fire date. %@", error);
+                           return;
+                       }
+                       
+                       [self enableTrigger:timerTrigger enabled:schedule.enabled];
+                   }];
+    } else {
+        [self enableTrigger:timerTrigger enabled:schedule.enabled];
+    }
+    
+}
+
+- (void) enableTrigger : (HMTrigger *) trigger enabled : (BOOL) isEnabled
+{
+    [trigger enable:isEnabled completionHandler:^(NSError *error) {
         if (error) {
             NSLog(@"failed to enable trigger: %@", error);
+            return;
         }
+        
+        NSLog(@"updated trigger: %@", trigger.name);
     }];
 }
 

@@ -349,12 +349,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cB6-BH-3Hf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="0pq-3z-BCP" kind="push" identifier="PushScheduleForCreateSegue" id="Yoz-iC-WHI"/>
+                                <segue destination="0pq-3z-BCP" kind="push" identifier="SegueForCreatingSchedule" id="Yoz-iC-WHI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addScheduleBarButton" destination="cB6-BH-3Hf" id="Yn3-W0-plM"/>
+                        <segue destination="0pq-3z-BCP" kind="push" identifier="SegueForEditingSchedule" id="geW-TL-D9n"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v29-Pb-d07" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -714,5 +715,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="0EK-rc-e7C"/>
+        <segue reference="geW-TL-D9n"/>
     </inferredMetricsTieBreakers>
 </document>
