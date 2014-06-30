@@ -7,7 +7,6 @@
 //
 
 #import "LHScheduleViewController.h"
-#import "LHRepeatViewController.h"
 #import "LHSchedule.h"
 #import "LHAlertView.h"
 #import "LHDevice.h"
@@ -18,6 +17,9 @@
 @property (nonatomic, strong) IBOutlet UIView         * datePickerContainer;
 @property (nonatomic, strong) IBOutlet UIPickerView   * actionPicker;
 @property (nonatomic, strong) IBOutlet UIView         * actionPickerContainer;
+@property (nonatomic, strong) IBOutlet UIPickerView   * recurrancePicker;
+@property (nonatomic, strong) IBOutlet UIView         * recurrancePickerContainer;
+
 @property (nonatomic, strong) IBOutlet UIButton       * deleteButton;
 @property (nonatomic, strong)          NSMutableArray * actions;
 @end
@@ -55,6 +57,9 @@
     [self.actionPicker selectRow:[self indexOfSelectedAction]
                      inComponent:0
                         animated:NO];
+    [self.recurrancePicker selectRow:self.schedule.repeatMode
+                         inComponent:0
+                            animated:NO];
 }
 
 - (void) viewDidLayoutSubviews
@@ -135,6 +140,16 @@
     [self pickerView:self.actionPickerContainer shouldAppear:NO];
 }
 
+- (IBAction) showRecurrencePicker : (id) sender
+{
+    [self pickerView:self.recurrancePickerContainer shouldAppear:YES];
+}
+
+- (IBAction) hideRecurrencePicker : (id) sender
+{
+    [self pickerView:self.recurrancePickerContainer shouldAppear:NO];
+}
+
 - (IBAction) datePickerValueChanged:(id)sender
 {
     NSLog(@"time: %@", self.datePicker.date);
@@ -165,6 +180,9 @@
     self.actionPickerContainer.frame = CGRectMake(0.0f, self.view.frame.size.height,
                                                   self.actionPickerContainer.frame.size.width,
                                                   self.actionPickerContainer.frame.size.height);
+    self.recurrancePickerContainer.frame = CGRectMake(0.0f, self.view.frame.size.height,
+                                                      self.recurrancePickerContainer.frame.size.width,
+                                                      self.recurrancePickerContainer.frame.size.height);
 }
 
 #pragma mark <UIPickerViewDataSource>
@@ -176,14 +194,26 @@
 - (NSInteger) pickerView:(UIPickerView *)pickerView
  numberOfRowsInComponent:(NSInteger)component
 {
-    return self.actions.count;
+    if ( pickerView == self.actionPicker) {
+        return self.actions.count;
+    } else if ( pickerView == self.recurrancePicker ) {
+        return LHRepeatModesCount;
+    }
+    
+    return 0;
 }
 
 - (NSString *) pickerView:(UIPickerView *)pickerView
               titleForRow:(NSInteger)row
              forComponent:(NSInteger)component
 {
-    return ((LHAction *)self.actions[row]).friendlyName;
+    if ( pickerView == self.actionPicker) {
+        return ((LHAction *)self.actions[row]).friendlyName;
+    } else if ( pickerView == self.recurrancePicker ) {
+        return [self nameOfRepeatMode:row];
+    }
+    
+    return @"";
 }
 
 #pragma mark <UIPickerViewDelegate>
@@ -192,18 +222,25 @@
         inComponent:(NSInteger)component
 {
     NSLog(@"selected row: %d comp %d", row, component);
-    self.schedule.action = self.actions[row];
+    if ( pickerView == self.actionPicker) {
+        self.schedule.action = self.actions[row];
+    } else if ( pickerView == self.recurrancePicker ) {
+        self.schedule.repeatMode = row;
+    }
 }
 
-
--(void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender
+- (NSString *) nameOfRepeatMode : (LHScheduleTimerRepeatMode) mode
 {
-    if ( [[segue identifier] isEqualToString : @"PushRepeatWeekdaysSegue"] ) {
-        LHRepeatViewController * targetViewController =
-            (LHRepeatViewController *) segue.destinationViewController;
-        
-        targetViewController.selectedWeekdays = self.schedule.selectedWeekdays;
-    }
+    static dispatch_once_t pred;
+    static NSDictionary * nameDictionary = nil;
+    
+    dispatch_once(&pred, ^{
+        nameDictionary = @{@(LHRepeatNever):@"Never",
+                           @(LHRepeatDaily):@"Every Day",
+                           @(LHRepeatWeekly):@"Every Week"};
+    });
+    
+    return nameDictionary [@(mode)];
 }
 
 

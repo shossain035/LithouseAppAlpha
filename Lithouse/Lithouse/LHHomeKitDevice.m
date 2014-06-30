@@ -288,15 +288,26 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
     if (!homeKitSchedule.homeKitTrigger) {
         [self createAndUpdateTriggerForSchedule:homeKitSchedule];
     } else {
-        [(HMTimerTrigger *) homeKitSchedule.homeKitTrigger updateFireDate:schedule.fireDate
+        HMTimerTrigger * timerTrigger = (HMTimerTrigger *) homeKitSchedule.homeKitTrigger;
+        [timerTrigger updateFireDate:schedule.fireDate
                                                         completionHandler:^(NSError *error) {
             if (error) {
                 NSLog(@"failed to update trigger fire date. %@", error);
                 return;
             }
-            //todo: update recurrance then nest enable
-            [self updateTrigger:homeKitSchedule.homeKitTrigger
-                   withSchedule:homeKitSchedule];
+            
+            [timerTrigger updateRecurrence:[homeKitSchedule dateComponentsForRecurrance]
+                         completionHandler:^(NSError *error) {
+                if (error) {
+                    NSLog(@"failed to update trigger recurrance. %@", error);
+                    return;
+                }
+                             
+                [self updateTrigger:homeKitSchedule.homeKitTrigger
+                       withSchedule:homeKitSchedule];
+                 
+            }];
+            
         }];
         
         
@@ -359,7 +370,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
                                              [NSString stringWithFormat:@"%@ %@", [weakSelf getHomeKitPreambleForType:LHHomeKitResourceTypeTrigger], uuid]
                                                                         fireDate:homeKitSchedule.fireDate
                                                                         timeZone:nil
-                                                                      recurrence:nil
+                                                                      recurrence:[homeKitSchedule dateComponentsForRecurrance]
                                                               recurrenceCalendar:nil];
                 
                       [weakSelf.home addTrigger:trigger completionHandler:^(NSError *error) {

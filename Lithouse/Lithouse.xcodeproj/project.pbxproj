@@ -71,7 +71,6 @@
 		71E8EC34194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E8EC31194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m */; };
 		71FB4BD6195A9321005CF70E /* LHDetailCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BD5195A9321005CF70E /* LHDetailCollectionViewController.m */; };
 		71FB4BD9195D2749005CF70E /* LHScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BD8195D2749005CF70E /* LHScheduleViewController.m */; };
-		71FB4BDC195D52BF005CF70E /* LHRepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BDB195D52BF005CF70E /* LHRepeatViewController.m */; };
 		71FB4BE3195E2BA2005CF70E /* LHHomeKitSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BE2195E2BA2005CF70E /* LHHomeKitSchedule.m */; };
 		71FB4BE9195FF381005CF70E /* LHScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB4BE8195FF381005CF70E /* LHScheduleCell.m */; };
 /* End PBXBuildFile section */
@@ -199,8 +198,6 @@
 		71FB4BD5195A9321005CF70E /* LHDetailCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDetailCollectionViewController.m; sourceTree = "<group>"; };
 		71FB4BD7195D2749005CF70E /* LHScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHScheduleViewController.h; sourceTree = "<group>"; };
 		71FB4BD8195D2749005CF70E /* LHScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHScheduleViewController.m; sourceTree = "<group>"; };
-		71FB4BDA195D52BF005CF70E /* LHRepeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHRepeatViewController.h; sourceTree = "<group>"; };
-		71FB4BDB195D52BF005CF70E /* LHRepeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHRepeatViewController.m; sourceTree = "<group>"; };
 		71FB4BE0195E270E005CF70E /* LHSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSchedule.h; sourceTree = "<group>"; };
 		71FB4BE1195E2BA2005CF70E /* LHHomeKitSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHHomeKitSchedule.h; sourceTree = "<group>"; };
 		71FB4BE2195E2BA2005CF70E /* LHHomeKitSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHHomeKitSchedule.m; sourceTree = "<group>"; };
@@ -505,8 +502,6 @@
 				71FB4BD5195A9321005CF70E /* LHDetailCollectionViewController.m */,
 				71FB4BD7195D2749005CF70E /* LHScheduleViewController.h */,
 				71FB4BD8195D2749005CF70E /* LHScheduleViewController.m */,
-				71FB4BDA195D52BF005CF70E /* LHRepeatViewController.h */,
-				71FB4BDB195D52BF005CF70E /* LHRepeatViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -686,7 +681,6 @@
 				71FB4BE3195E2BA2005CF70E /* LHHomeKitSchedule.m in Sources */,
 				71102104195404CA001128E0 /* LHHomeKitBulb.m in Sources */,
 				71FB4BD6195A9321005CF70E /* LHDetailCollectionViewController.m in Sources */,
-				71FB4BDC195D52BF005CF70E /* LHRepeatViewController.m in Sources */,
 				71C871B11959F6FB00C3F564 /* LHGarageDoor.m in Sources */,
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,

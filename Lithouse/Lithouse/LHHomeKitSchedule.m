@@ -14,9 +14,9 @@
 
 @synthesize device = _device;
 @synthesize action = _action;
-@synthesize selectedWeekdays = _selectedWeekdays;
 @synthesize enabled = _enabled;
 @synthesize fireDate = _fireDate;
+@synthesize repeatMode = _repeatMode;
 
 - (instancetype) initWithDevice : (id <LHScheduleing>) aDevice
                      withAction : (LHAction *) anAction
@@ -37,14 +37,12 @@
     if ( !trigger ) {
         _enabled = YES;
         _fireDate = [NSDate date];
-        _selectedWeekdays = [@[@YES,@YES,@YES,@YES,@YES,@YES,@YES] mutableCopy];
+        _repeatMode = LHRepeatDaily;
     } else {
         _enabled = trigger.enabled;
-        
+        _repeatMode = [self repeatModeFromDateComponents:((HMTimerTrigger *)trigger).recurrence];
         HMTimerTrigger * timerTrigger = (HMTimerTrigger *) trigger;
         _fireDate = timerTrigger.fireDate;
-        //todo: selected weekdays based on recurrance
-        //todo: handle the case of repeat = NEVER and lastFireDate != nil
     }
     
     return self;
@@ -97,4 +95,39 @@
     
     return self.fireDate;
 }
+
+- (LHScheduleTimerRepeatMode) repeatModeFromDateComponents:(NSDateComponents *) dateComponents
+{
+    if (dateComponents.day == 1) {
+        return LHRepeatDaily;
+    }  else if (dateComponents.day == 7) {
+        return LHRepeatWeekly;
+    }
+        
+    return LHRepeatNever;
+}
+
+- (NSDateComponents *) dateComponentsForRecurrance
+{
+    NSDateComponents * dateComponents = [[NSDateComponents alloc] init];
+    
+    if ( self.repeatMode == LHRepeatDaily ) {
+        dateComponents.day = 1;
+    } else if ( self.repeatMode == LHRepeatWeekly ) {
+        dateComponents.day = 7;
+    } else {
+        dateComponents = nil;
+    }
+    
+    return dateComponents;
+}
+
+-(void) setRepeatMode:(LHScheduleTimerRepeatMode)repeatMode
+{
+    _repeatMode = repeatMode;
+    if (repeatMode != LHRepeatNever) {
+        _enabled = YES;
+    }
+}
+
 @end

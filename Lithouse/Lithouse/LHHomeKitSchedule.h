@@ -19,5 +19,6 @@
                     withTrigger : (HMTrigger *) trigger;
 
 - (NSDate *) moveFireDateToFuture;
+- (NSDateComponents *) dateComponentsForRecurrance;
 
 @end

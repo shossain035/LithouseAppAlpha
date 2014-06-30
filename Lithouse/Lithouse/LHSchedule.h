@@ -12,13 +12,19 @@
 @class LHAction;
 @protocol LHScheduleing;
 
+typedef NS_ENUM ( NSUInteger, LHScheduleTimerRepeatMode ) {
+    LHRepeatNever,
+    LHRepeatDaily,
+    LHRepeatWeekly,
+    LHRepeatModesCount
+};
 
 @protocol LHSchedule <NSObject>
 @property (nonatomic, weak, readonly) id <LHScheduleing> device;
 @property (nonatomic, weak) LHAction * action;
 @property (nonatomic, assign, readonly) BOOL enabled;
-@property (nonatomic, strong) NSMutableArray * selectedWeekdays;
 @property (nonatomic, strong) NSDate * fireDate;
+@property (nonatomic, assign) LHScheduleTimerRepeatMode repeatMode;
 
 - (instancetype) initWithDevice : (id <LHScheduleing>) aDevice
                      withAction : (LHAction *) anAction;
