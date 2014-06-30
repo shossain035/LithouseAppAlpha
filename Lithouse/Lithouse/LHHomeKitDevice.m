@@ -391,7 +391,25 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
 
 - (void) removeSchedule:(id<LHSchedule>)schedule
 {
+    HMTrigger * trigger = ((LHHomeKitSchedule *) schedule).homeKitTrigger;
+    
+    for ( HMActionSet * actionSet in trigger.actionSets ) {
+        [self.home removeActionSet:actionSet completionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"failed to remove action set. %@", error);
+            }
 
+        }];
+    }
+    
+    [self.home removeTrigger:trigger completionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"failed to remove trigger. %@", error);
+            return;
+        }
+        
+        NSLog(@"removed trigger.");
+    }];
 }
 
 - (NSArray *) getSchedules

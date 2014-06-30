@@ -42,11 +42,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    //todo: show device image on background
     if (self.isNewSchedule) {
         self.deleteButton.hidden = true;
+        self.title = @"Create Schedule";
     } else {
         self.deleteButton.hidden = false;
+        self.title = @"Edit Schedule";
     }
     
     self.datePicker.date = self.schedule.fireDate;
