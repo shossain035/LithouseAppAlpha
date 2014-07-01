@@ -120,8 +120,8 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
                          otherButtonTitles : nil];
     //hub authentication alert
     self.hueHubNotAuthenticatedAlert =
-        [[LHAlertView alloc] initWithTitle : @"Authentication Failed"
-                                   message : @"Please press the button on the hub within 30 seconds."
+        [[LHAlertView alloc] initWithTitle : @"Authentication Failure"
+                                   message : @"Please press the button on the Hue hub within 30 seconds."
                                   delegate : self
                          cancelButtonTitle : @"Cancel"
                          otherButtonTitles : @"Retry", nil];
