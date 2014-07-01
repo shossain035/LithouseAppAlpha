@@ -7,19 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LHDevice.h"
+#import "LHCollectionViewCell.h"
 
-typedef void (^LHDeviceCellInfoButtonCallbackBlock) (void);
-typedef void (^LHDeviceCellToggleCallbackBlock)     (void);
-
-@interface LHDeviceCell : UICollectionViewCell
+@class LHDevice;
+@interface LHDeviceCell : LHCollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView   * image;
 @property (strong, nonatomic) IBOutlet UILabel       * nameLabel;
 @property (strong, nonatomic) IBOutlet UIButton      * infoButton;
-@property (copy) LHDeviceCellInfoButtonCallbackBlock   infoButtonCallback;
-@property (copy) LHDeviceCellToggleCallbackBlock       toggleCallbackBlock;
 
 - (void) addObserverForDevice : (LHDevice *) aDevice;
-- (void) animate;
+
 @end

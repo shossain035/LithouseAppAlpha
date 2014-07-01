@@ -26,7 +26,8 @@ static NSString * const LHSegueForEditingSchedule  = @"SegueForEditingSchedule";
 
 @implementation LHDetailCollectionViewController
 
-static int const LHScheduleCellHeight = 150;
+static int const LHScheduleCellWidth = 300;
+static int const LHScheduleCellHeight = 66;
 
 - (IBAction) back : (id) sender
 {
@@ -48,6 +49,17 @@ static int const LHScheduleCellHeight = 150;
     
     //important: otherwise touches inside control view will cause scrolling.
     self.collectionView.canCancelContentTouches = NO;
+    
+    [[NSNotificationCenter defaultCenter]
+         addObserverForName : LHScheduleCollectionChangedNotification
+         object             : nil
+         queue              : [NSOperationQueue mainQueue]
+         usingBlock         : ^ (NSNotification * notification)
+         {
+             self.schedules = [((id<LHScheduleing>)self.device) getSchedules];
+             [self.collectionView reloadData];
+         }
+     ];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -106,10 +118,18 @@ static int const LHScheduleCellHeight = 150;
                                                                      dateStyle:NSDateFormatterShortStyle
                                                                      timeStyle:NSDateFormatterShortStyle];
         scheduleCell.actionLabel.text = schedule.action.friendlyName;
-        //todo: recurrance
-        scheduleCell.enableSwitch.on = schedule.enabled;
-        scheduleCell.enableValueChangedCallback = ^(BOOL isEnabled) {
-            [schedule enable:isEnabled];
+        [scheduleCell activate:schedule.enabled];
+        
+        scheduleCell.toggleCallbackBlock = ^{
+            //toogle current state
+            [schedule enable:!schedule.enabled];
+        };
+
+        scheduleCell.infoButtonCallback = ^{
+            self.currentSchedule = schedule;
+        
+            [self performSegueWithIdentifier : LHSegueForEditingSchedule
+                                      sender : self];
         };
     }
     
@@ -134,9 +154,9 @@ static int const LHScheduleCellHeight = 150;
         return;
     }
     
-    self.currentSchedule = self.schedules[indexPath.row];
-    [self performSegueWithIdentifier : LHSegueForEditingSchedule
-                              sender : self];
+    LHScheduleCell * cell = (LHScheduleCell *) [collectionView cellForItemAtIndexPath : indexPath];
+    
+    [cell toggle];
 }
 
 #pragma mark <UICollectionViewDelegateFlowLayout>
@@ -147,7 +167,7 @@ static int const LHScheduleCellHeight = 150;
     if ( indexPath.section == 0 ) {
         return CGSizeMake ( self.collectionView.bounds.size.width, [self heightOfDetailControllerForDevice] );
     } else {
-        return CGSizeMake ( self.collectionView.bounds.size.width, LHScheduleCellHeight );
+        return CGSizeMake ( LHScheduleCellWidth, LHScheduleCellHeight );
     }
 }
 
@@ -158,7 +178,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     if ( section == 0 ) {
         return CGSizeMake (0, 0);
     }else {
-        return CGSizeMake ( self.collectionView.bounds.size.width, 25 );
+        return CGSizeMake ( self.collectionView.bounds.size.width, 33 );
     }
 }
 
@@ -217,6 +237,11 @@ referenceSizeForHeaderInSection : (NSInteger) section
             targetViewController.isNewSchedule = NO;
         }
     }
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

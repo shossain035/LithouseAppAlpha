@@ -420,6 +420,10 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
         }
         
         NSLog(@"removed trigger.");
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName : LHScheduleCollectionChangedNotification
+                                                            object : self
+                                                          userInfo : nil];
     }];
 }
 
@@ -473,6 +477,10 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
         }
         
         NSLog(@"updated trigger: %@", trigger.name);
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName : LHScheduleCollectionChangedNotification
+                                                            object : self
+                                                          userInfo : nil];
     }];
 }
 

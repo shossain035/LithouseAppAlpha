@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHCollectionViewCell.h"
 
-typedef void (^LHScheduleEnableValueChanged) (BOOL);
-
-@interface LHScheduleCell : UICollectionViewCell
+@interface LHScheduleCell : LHCollectionViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel  * dateLabel;
 @property (nonatomic, strong) IBOutlet UILabel  * actionLabel;
 @property (nonatomic, strong) IBOutlet UILabel  * recurranceLabel;
-@property (nonatomic, strong) IBOutlet UISwitch * enableSwitch;
-@property (copy) LHScheduleEnableValueChanged     enableValueChangedCallback;
+
 
 
 @end

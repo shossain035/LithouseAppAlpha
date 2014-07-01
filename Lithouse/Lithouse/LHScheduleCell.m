@@ -10,11 +10,4 @@
 
 @implementation LHScheduleCell
 
-- (IBAction) valueChanged : (id) sender
-{
-    if ( self.enableValueChangedCallback ) {
-        self.enableValueChangedCallback ( self.enableSwitch.on );
-    }
-}
-
 @end

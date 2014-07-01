@@ -12,6 +12,8 @@
 @class LHAction;
 @protocol LHScheduleing;
 
+extern NSString * const LHScheduleCollectionChangedNotification;
+
 typedef NS_ENUM ( NSUInteger, LHScheduleTimerRepeatMode ) {
     LHRepeatNever,
     LHRepeatDaily,

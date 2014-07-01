@@ -125,9 +125,19 @@
 -(void) setRepeatMode:(LHScheduleTimerRepeatMode)repeatMode
 {
     _repeatMode = repeatMode;
-    if (repeatMode != LHRepeatNever) {
-        _enabled = YES;
-    }
+    _enabled = YES;
+}
+
+- (void) setFireDate:(NSDate *)fireDate
+{
+    _fireDate = fireDate;
+    _enabled = YES;
+}
+
+- (void) setAction:(LHAction *)action
+{
+    _action = action;
+    _enabled = YES;
 }
 
 @end

@@ -410,8 +410,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
         
     LHDeviceCell * cell = (LHDeviceCell *) [collectionView cellForItemAtIndexPath : indexPath];
     
-    [cell animate];
-    cell.toggleCallbackBlock();
+    [cell toggle];
 }
 
 #pragma mark - Navigation
