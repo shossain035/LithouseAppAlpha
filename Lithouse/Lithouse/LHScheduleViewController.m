@@ -221,7 +221,6 @@
        didSelectRow:(NSInteger)row
         inComponent:(NSInteger)component
 {
-    NSLog(@"selected row: %d comp %d", row, component);
     if ( pickerView == self.actionPicker) {
         self.schedule.action = self.actions[row];
     } else if ( pickerView == self.recurrancePicker ) {

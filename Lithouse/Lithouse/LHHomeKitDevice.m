@@ -53,16 +53,17 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
         [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
                                                             withActionSelector:@selector(unsetPrimaryCharacteristic)
                                                           withActionIdentifier:actionIdForUnsettingPrimaryCharacteristic]];
-        
-//        for (HMService * service in accessory.services) {
-//            NSLog(@"service: %@", service.serviceType);
-//            
-//            for (HMCharacteristic * characteristic in service.characteristics) {
-//                NSLog(@"characteristic: %@ property: %@", characteristic.characteristicType, characteristic.properties);
-//            }
-//        }
-        
     }
+    
+//    NSLog(@"******************************************");
+//    for (HMService * service in accessory.services) {
+//        NSLog(@"service: %@", service.serviceType);
+//        
+//        for (HMCharacteristic * characteristic in service.characteristics) {
+//            NSLog(@"characteristic: %@ property: %@", characteristic.characteristicType, characteristic.properties);
+//        }
+//    }
+//    NSLog(@"******************************************");
     
     return self;
 }
