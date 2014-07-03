@@ -97,8 +97,8 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
     return LHTurnOnActionId;
 }
 
-+ (UIImage *) imageForStatus : (LHDeviceStatus) status
+- (UIImage *) imageForStatus : (LHDeviceStatus) status
 {
-    return nil;
+    return self.displayImage;
 }
 @end

@@ -30,6 +30,11 @@ withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
 
 //todo: may need to change HMCharacteristicTypeTargetDoorState before locking
 
+- (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    return [LHGarageDoor imageForStatus:status];
+}
+
 + (UIImage *) imageForStatus : (LHDeviceStatus) status
 {
     static dispatch_once_t pred;

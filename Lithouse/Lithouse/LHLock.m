@@ -28,6 +28,12 @@ withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
 }
 
 
+- (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    return [LHLock imageForStatus:status];
+}
+
+
 + (UIImage *) imageForStatus : (LHDeviceStatus) status
 {
     static dispatch_once_t pred;
@@ -37,9 +43,10 @@ withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
         imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed : @"lock_closed"],
                             @(LHDeviceIsOff):[UIImage imageNamed : @"lock_open"]};
     });
-
+    
     return [imageDictionary objectForKey:@(status)];
 }
+
 
 - (NSString *) defaultActionId
 {

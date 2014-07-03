@@ -30,11 +30,8 @@
             LHDeviceStatus status = [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
                                      intValue];
             
-            UIImage * deviceImage = [[aDevice class] imageForStatus:status];
-            if ( deviceImage != nil ) {
-                self.image.image = deviceImage;
-            }
-            
+            self.image.image = [aDevice imageForStatus:status];
+
             [self activate:NO];
             if ( status == LHDeviceIsOn ) {
                 [self activate:YES];
