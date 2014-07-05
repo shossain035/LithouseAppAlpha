@@ -259,12 +259,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="customSize" width="320" height="364"/>
+                                <size key="customSize" width="320" height="264"/>
                             </collectionViewCell>
                             <collectionViewCell hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HiddenCell" id="Xfe-gy-hEd">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -275,6 +275,42 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <size key="customSize" width="320" height="13"/>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThermostatCell" id="W8f-Ss-WNJ" customClass="LHThermostatCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNE-iS-RJx" customClass="EFCircularSlider">
+                                            <rect key="frame" x="60" y="32" width="200" height="200"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYR-EW-jqs">
+                                                    <rect key="frame" x="78" y="60" width="45" height="45"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="36"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Heating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7y-mv-ka7">
+                                                    <rect key="frame" x="26" y="113" width="149" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="customSize" width="320" height="264"/>
+                                <connections>
+                                    <outlet property="currentStateLabel" destination="Q7y-mv-ka7" id="PpS-ev-hch"/>
+                                    <outlet property="currentTemperatureLabel" destination="nYR-EW-jqs" id="4oP-7V-5fg"/>
+                                    <outlet property="temperatureSlider" destination="RNE-iS-RJx" id="h6K-07-VaE"/>
+                                </connections>
                             </collectionViewCell>
                             <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScheduleCell" id="LTV-2r-kSY" customClass="LHScheduleCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -323,14 +359,14 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DetailCollectionHeader" id="xum-Xz-O5Y">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1OA-q6-sWL">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                     <subviews>
                                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Schedules" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czd-Q2-BSW">
-                                            <rect key="frame" x="222" y="0.0" width="85" height="21"/>
+                                            <rect key="frame" x="215" y="0.0" width="85" height="25"/>
                                             <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -581,7 +617,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dJh-kt-dpq">
                             <size key="itemSize" width="300" height="66"/>
-                            <size key="headerReferenceSize" width="50" height="25"/>
+                            <size key="headerReferenceSize" width="320" height="25"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -637,25 +673,17 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeviceCollectionHeader" id="yOd-xb-mpc">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-xL-I4E">
-                                    <rect key="frame" x="221" y="0.0" width="85" height="21"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="85" id="uBw-z6-bUF"/>
-                                    </constraints>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Groups" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xv-xL-I4E">
+                                    <rect key="frame" x="215" y="0.0" width="85" height="25"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="0xv-xL-I4E" secondAttribute="trailing" constant="14" id="bSL-2k-vgZ"/>
-                                <constraint firstItem="0xv-xL-I4E" firstAttribute="top" secondItem="yOd-xb-mpc" secondAttribute="top" id="jhM-Jk-xRi"/>
-                                <constraint firstItem="0xv-xL-I4E" firstAttribute="centerY" secondItem="yOd-xb-mpc" secondAttribute="centerY" constant="-2" id="khU-AQ-Ixf"/>
-                            </constraints>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="SfV-gr-bcl" id="jgG-wI-eMi"/>

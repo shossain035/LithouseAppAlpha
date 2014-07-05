@@ -37,10 +37,10 @@ static const int LHHomeKitDeviceSearchDelay = 30;
     _deviceViewControllerDelegate = deviceViewControllerDelegate;
     
     _homeManager = [[HMHomeManager alloc] init];
-    self.homeManager.delegate = self;
+    _homeManager.delegate = self;
     
     _accessoryBrowser = [[HMAccessoryBrowser alloc] init];
-    self.accessoryBrowser.delegate = self;
+    _accessoryBrowser.delegate = self;
     
     _unPairedDevices = [[NSMutableArray alloc] init];
     
@@ -50,8 +50,7 @@ static const int LHHomeKitDeviceSearchDelay = 30;
 - (void) startSearchingForHomeKitDevices
 {
     NSLog(@"start searching for homekit devices");
-    //todo: need to call exploreHomes in order to get the latest state.
-    
+    [self exploreHomes];
     [self.unPairedDevices removeAllObjects];
     [self.accessoryBrowser startSearchingForNewAccessories];
     [self performSelector : @selector(stopSearchingForHomeKitDevices)

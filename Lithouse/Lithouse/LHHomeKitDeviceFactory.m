@@ -12,6 +12,7 @@
 #import "LHLock.h"
 #import "LHSwitch.h"
 #import "LHGarageDoor.h"
+#import "LHThermostat.h"
 #import <HomeKit/HomeKit.h>
 
 @implementation LHHomeKitDeviceFactory
@@ -29,6 +30,8 @@
             return [[LHSwitch alloc] initWithHMAccessory:accessory inHome:home];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeGarageDoorOpener] ) {
             return [[LHGarageDoor alloc] initWithHMAccessory:accessory inHome:home];
+        } else if ( [service.serviceType isEqualToString:HMServiceTypeThermostat] ) {
+            return [[LHThermostat alloc] initWithHMAccessory:accessory inHome:home];
         }
     }
         

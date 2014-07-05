@@ -9,6 +9,7 @@
 #import "LHDetailCollectionViewController.h"
 #import "LHScheduleViewController.h"
 #import "LHScheduleCell.h"
+#import "LHThermostatCell.h"
 #import "DeviceProtocols.h"
 #import "NKOColorPickerView.h"
 #import "LHAction.h"
@@ -24,13 +25,20 @@ static NSString * const LHSegueForEditingSchedule  = @"SegueForEditingSchedule";
 @property (nonatomic, weak)   id<LHSchedule>                   currentSchedule;
 @end
 
-@implementation LHDetailCollectionViewController
+@implementation LHDetailCollectionViewController {
+    dispatch_source_t _thermostatRefreshTimer;
+}
 
-static int const LHScheduleCellWidth = 300;
-static int const LHScheduleCellHeight = 66;
+static int const LHScheduleCellWidth     = 300;
+static int const LHScheduleCellHeight    = 66;
+static int const LHColorPickerCellHeight = 264;
+static int const LHThermostatCellHeight  = 264;
 
 - (IBAction) back : (id) sender
 {
+    //invalidate all timers.
+    //todo: check memory management issues.
+    _thermostatRefreshTimer = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -107,6 +115,8 @@ static int const LHScheduleCellHeight = 66;
     if ( indexPath.section == 0 ) {
         if ( [self.device conformsToProtocol:@protocol(LHLightColorChanging)] ) {
             cell = [self collectionView:collectionView colorPickerCellForItemAtIndexPath:indexPath];
+        } else if ( [self.device conformsToProtocol:@protocol(LHThermostatSetting)] ) {
+            cell = [self collectionView:collectionView thermostatCellForItemAtIndexPath:indexPath];
         } else {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HiddenCell" forIndexPath:indexPath];
         }
@@ -188,10 +198,33 @@ referenceSizeForHeaderInSection : (NSInteger) section
     if ( self.device == nil ) return 1;
     
     if ([self.device conformsToProtocol:@protocol(LHLightColorChanging)]) {
-        return 264;
+        return LHColorPickerCellHeight;
     }
     
+    if ([self.device conformsToProtocol:@protocol(LHThermostatSetting)]) {
+        return LHThermostatCellHeight;
+    }
+
     return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+        thermostatCellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LHThermostatCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ThermostatCell"
+                                                                            forIndexPath:indexPath];
+    
+    [cell configureWithThermostat:(id<LHThermostatSetting>)self.device];
+    
+    _thermostatRefreshTimer = [self createDispatchTimerWithInterval:5ull * NSEC_PER_SEC
+                                                         withLeeway:1ull * NSEC_PER_SEC
+                                                          withQueue:dispatch_get_main_queue()
+                                                              withBlock:^{
+                                                                  NSLog(@"thermostat refresh.");
+                                                                  [cell refresh];
+                                                              }];
+    
+    return cell;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -243,5 +276,21 @@ referenceSizeForHeaderInSection : (NSInteger) section
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+-(dispatch_source_t) createDispatchTimerWithInterval:(uint64_t) interval
+                                          withLeeway:(uint64_t) leeway
+                                           withQueue:(dispatch_queue_t) queue
+                                           withBlock:(dispatch_block_t) block
+{
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
+                                                     0, 0, queue);
+    if (timer) {
+        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval, leeway);
+        dispatch_source_set_event_handler(timer, block);
+        dispatch_resume(timer);
+    }
+    return timer;
+}
+
 
 @end

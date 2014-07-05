@@ -9,6 +9,26 @@
 #ifndef Lithouse_DeviceProtocols_h
 #define Lithouse_DeviceProtocols_h
 
+typedef NS_ENUM ( NSUInteger, LHThermostatState ) {
+    LHThermostatOff,
+    LHThermostatHeating,
+    LHThermostatCooling,
+    LHThermostatAuto,
+};
+
+typedef struct _LHCharacteristicRange {
+    double maximumValue;
+    double minimumValue;
+} LHCharacteristicRange;
+
+
+NS_INLINE LHCharacteristicRange LHMakeRange(double minimumValue, double maximumValue) {
+    LHCharacteristicRange r;
+    r.minimumValue = minimumValue;
+    r.maximumValue = maximumValue;
+    return r;
+}
+
 @protocol LHSchedule;
 
 @protocol LHDeviceDetailChanging <NSObject>
@@ -28,6 +48,17 @@
 - (void) updateColor : (UIColor *) toColor;
 - (UIColor *) getCurrentColor;
 - (BOOL) doesSupportColorControl;
+
+@end
+
+@protocol LHThermostatSetting <LHDeviceDetailChanging>
+
+- (void) updateTargetTemperature:(NSNumber *) targetTemperature;
+- (NSNumber *) getTargetTemperature;
+- (NSNumber *) getCurrentTemperature;
+- (LHCharacteristicRange) getTemperatureRange;
+- (void) updateTargetState:(LHThermostatState) targetState;
+- (LHThermostatState) getCurrentState;
 
 @end
 

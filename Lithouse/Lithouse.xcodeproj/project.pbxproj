@@ -30,6 +30,9 @@
 		71A697DD192B2B2600C9AB86 /* press_smartbridge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A697D5192B2B2600C9AB86 /* press_smartbridge@2x.png */; };
 		71A697ED192C788B00C9AB86 /* LHHueBulb.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697EC192C788B00C9AB86 /* LHHueBulb.m */; };
 		71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */; };
+		71AD254D1964A20B0092F5CB /* EFCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD254C1964A20B0092F5CB /* EFCircularSlider.m */; };
+		71AD25501964A7BA0092F5CB /* LHThermostat.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD254F1964A7BA0092F5CB /* LHThermostat.m */; };
+		71AD2553196524260092F5CB /* LHThermostatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD2552196524260092F5CB /* LHThermostatCell.m */; };
 		71B226E4192537F300E251B3 /* BelkinSDKLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */; };
 		71B226E5192537F300E251B3 /* Cybergarage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DA192537F300E251B3 /* Cybergarage.a */; };
 		71B226E6192537F400E251B3 /* Reachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B226DB192537F300E251B3 /* Reachability.a */; };
@@ -131,6 +134,12 @@
 		71A697EC192C788B00C9AB86 /* LHHueBulb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHHueBulb.m; sourceTree = "<group>"; };
 		71A697EF192DAE9E00C9AB86 /* DeviceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceGroup.h; sourceTree = "<group>"; };
 		71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceGroup.m; sourceTree = "<group>"; };
+		71AD254B1964A20B0092F5CB /* EFCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFCircularSlider.h; sourceTree = "<group>"; };
+		71AD254C1964A20B0092F5CB /* EFCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFCircularSlider.m; sourceTree = "<group>"; };
+		71AD254E1964A7BA0092F5CB /* LHThermostat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHThermostat.h; sourceTree = "<group>"; };
+		71AD254F1964A7BA0092F5CB /* LHThermostat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHThermostat.m; sourceTree = "<group>"; };
+		71AD2551196524260092F5CB /* LHThermostatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHThermostatCell.h; sourceTree = "<group>"; };
+		71AD2552196524260092F5CB /* LHThermostatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHThermostatCell.m; sourceTree = "<group>"; };
 		71B226D9192537F300E251B3 /* BelkinSDKLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = BelkinSDKLibrary.a; sourceTree = "<group>"; };
 		71B226DA192537F300E251B3 /* Cybergarage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Cybergarage.a; sourceTree = "<group>"; };
 		71B226DB192537F300E251B3 /* Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Reachability.a; sourceTree = "<group>"; };
@@ -259,6 +268,8 @@
 				71C871AD1959ED1C00C3F564 /* LHSwitch.m */,
 				71C871AF1959F6FB00C3F564 /* LHGarageDoor.h */,
 				71C871B01959F6FB00C3F564 /* LHGarageDoor.m */,
+				71AD254E1964A7BA0092F5CB /* LHThermostat.h */,
+				71AD254F1964A7BA0092F5CB /* LHThermostat.m */,
 				71C871A61956A64300C3F564 /* LHHomeKitDeviceFactory.h */,
 				71C871A71956A64300C3F564 /* LHHomeKitDeviceFactory.m */,
 			);
@@ -352,6 +363,15 @@
 				71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */,
 			);
 			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		71AD254A19649E000092F5CB /* CircularSlider */ = {
+			isa = PBXGroup;
+			children = (
+				71AD254B1964A20B0092F5CB /* EFCircularSlider.h */,
+				71AD254C1964A20B0092F5CB /* EFCircularSlider.m */,
+			);
+			name = CircularSlider;
 			sourceTree = "<group>";
 		};
 		71B226D7192537AD00E251B3 /* WeMoLocalSDK */ = {
@@ -483,6 +503,7 @@
 		71C82E3E191F359300395392 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				71AD254A19649E000092F5CB /* CircularSlider */,
 				71E8EC2E194C0BFF0004C6F7 /* ColorPicker */,
 				71A697C8192B2B2600C9AB86 /* HueSDK */,
 				71B226D7192537AD00E251B3 /* WeMoLocalSDK */,
@@ -525,6 +546,8 @@
 				7128FD961921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m */,
 				71D9BEFE1933099A00164594 /* LHAlertView.h */,
 				71D9BEFF1933099A00164594 /* LHAlertView.m */,
+				71AD2551196524260092F5CB /* LHThermostatCell.h */,
+				71AD2552196524260092F5CB /* LHThermostatCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -670,6 +693,7 @@
 				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
 				71A697BF192B24D900C9AB86 /* DDAbstractDatabaseLogger.m in Sources */,
 				71A697C1192B24D900C9AB86 /* DDFileLogger.m in Sources */,
+				71AD25501964A7BA0092F5CB /* LHThermostat.m in Sources */,
 				711021081954A1F8001128E0 /* LHHomeKitDevice.m in Sources */,
 				71E8EC33194C0C5E0004C6F7 /* NKOColorPickerView.m in Sources */,
 				7128FD9119219A370031BEA8 /* LHGroupCRUDViewController.m in Sources */,
@@ -681,11 +705,13 @@
 				71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */,
 				71C82E3D191F358D00395392 /* MSDynamicsDrawerViewController.m in Sources */,
 				71C871AE1959ED1C00C3F564 /* LHSwitch.m in Sources */,
+				71AD2553196524260092F5CB /* LHThermostatCell.m in Sources */,
 				71FB4BD9195D2749005CF70E /* LHScheduleViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
 				71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */,
 				71C871A5195673D000C3F564 /* LHHomeKitController.m in Sources */,
 				71A697C2192B24D900C9AB86 /* DDLog.m in Sources */,
+				71AD254D1964A20B0092F5CB /* EFCircularSlider.m in Sources */,
 				71E8EC34194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m in Sources */,
 				71FB4BE3195E2BA2005CF70E /* LHHomeKitSchedule.m in Sources */,
 				71102104195404CA001128E0 /* LHHomeKitBulb.m in Sources */,

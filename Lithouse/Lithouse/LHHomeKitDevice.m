@@ -16,22 +16,26 @@ static NSString * const LHHomeKitResourceTypeTrigger   = @"trigger";
 static NSString * const LHHomeKitResourceTypeActionSet = @"actionset";
 
 @interface LHHomeKitDevice ()
-@property (nonatomic, strong, readonly) HMCharacteristic   * primaryCharacteristic;
 @property (nonatomic, strong, readonly) HMHome             * home;
+@property (nonatomic, strong, readonly) id                   targetOnValue;
+@property (nonatomic, strong, readonly) id                   targetOffValue;
 @end
 
 @implementation LHHomeKitDevice
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
               withPrimaryServiceType:(NSString *) serviceType
-              withCharacteristicType:(NSString *) characteristicType
+ withPrimaryTargetCharacteristicType:(NSString *) targetCharacteristicType
+withPrimaryCurrentCharacteristicType:(NSString *) currentCharacteristicType
 withActionIdForSettingPrimaryCharacteristic:(NSString *) actionIdForSettingPrimaryCharacteristic
 withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingPrimaryCharacteristic
+withPrimPrimaryCharacteristicValueOn:(id) onValue
+withPrimPrimaryCharacteristicValueOff:(id) offValue
                               inHome:(HMHome *) home
 
 {
     self = [super init];
-    if (!self) return nil;;
+    if (!self) return nil;
     
     _accessory = accessory;
     self.friendlyName = accessory.name;
@@ -39,12 +43,21 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
     
     if (!accessory.configured) {
         self.currentStatus = LHDeviceIsUnPaired;
-    } else if (serviceType != nil && characteristicType != nil ) {
+    } else if (serviceType != nil && targetCharacteristicType != nil ) {
         _primaryService = [self serviceForType:serviceType];
-        _primaryCharacteristic = [self characteristicWithType:characteristicType
+        _primaryTargetCharacteristic = [self characteristicWithType:targetCharacteristicType
                                                    forService:self.primaryService];
+        
+        _primaryCurrentCharacteristic = _primaryTargetCharacteristic;
+        if ( currentCharacteristicType != nil ) {
+            _primaryCurrentCharacteristic = [self characteristicWithType:currentCharacteristicType
+                                                              forService:self.primaryService];
+        }
+        
+        _targetOnValue = onValue != nil ? onValue : @(1);
+        _targetOffValue = offValue != nil ? offValue : @(0);
         //todo: what if we cannot fetch services now?
-        [self readPrimaryCharacteristic];
+        [self readPrimaryCurrentCharacteristic];
         //todo: move these to LHDevice
         [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
                                                             withActionSelector:@selector(setPrimaryCharacteristic)
@@ -69,6 +82,24 @@ withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingP
 }
 
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
+              withPrimaryServiceType:(NSString *) serviceType
+              withCharacteristicType:(NSString *) characteristicType
+withActionIdForSettingPrimaryCharacteristic:(NSString *) actionIdForSettingPrimaryCharacteristic
+withActionIdForUnsettingPrimaryCharacteristic:(NSString *) actionIdForUnsettingPrimaryCharacteristic
+                              inHome:(HMHome *) home
+{
+    return [self initWithHMAccessory:accessory
+              withPrimaryServiceType:serviceType
+ withPrimaryTargetCharacteristicType:characteristicType
+withPrimaryCurrentCharacteristicType:nil
+withActionIdForSettingPrimaryCharacteristic:actionIdForSettingPrimaryCharacteristic
+withActionIdForUnsettingPrimaryCharacteristic:actionIdForUnsettingPrimaryCharacteristic
+withPrimPrimaryCharacteristicValueOn:nil
+withPrimPrimaryCharacteristicValueOff:nil
+                              inHome:home];
+}
+
+- (instancetype) initWithHMAccessory:(HMAccessory *) accessory
                               inHome:(HMHome *) home;
 {
     
@@ -89,13 +120,13 @@ withActionIdForUnsettingPrimaryCharacteristic:nil
 - (void) setPrimaryCharacteristic
 {
     NSLog ( @"turning HM device on");
-    [self writePrimaryCharacteristic:@(1)];
+    [self writePrimaryTargetCharacteristic:self.targetOnValue];
 }
 
 - (void) unsetPrimaryCharacteristic
 {
     NSLog ( @"turning HM device off");
-    [self writePrimaryCharacteristic:@(0)];
+    [self writePrimaryTargetCharacteristic:self.targetOffValue];
 }
 
 - (void) toggle
@@ -159,12 +190,12 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
         / currentRange.doubleValue);
 }
 
-- (void) writePrimaryCharacteristic:(id)targetValue
+- (void) writePrimaryTargetCharacteristic:(id)targetValue
 {
     [self writeTargetValue:targetValue
-          toCharacteristic:self.primaryCharacteristic
+          toCharacteristic:self.primaryTargetCharacteristic
      withCompletionHandler:^(id value) {
-           if ( [value boolValue] == YES ) {
+           if ( [value isEqual:self.targetOnValue]) {
                self.currentStatus = LHDeviceIsOn;
            } else {
                self.currentStatus = LHDeviceIsOff;
@@ -189,7 +220,8 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
                      }
                  } else {
                      //todo: alert user
-                     NSLog(@"could not write characteristic: %@", error);
+                     NSLog(@"could not write characteristic: %@ targetValue: %@ error:%@",
+                           characteristic.characteristicType, targetValue, error);
                  }
              }];
     
@@ -213,11 +245,11 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
      withCompletionHandler:nil];
 }
 
-- (void) readPrimaryCharacteristic
+- (void) readPrimaryCurrentCharacteristic
 {
-    [self readCharacteristic:self.primaryCharacteristic
+    [self readCharacteristic:self.primaryCurrentCharacteristic
        withCompletionHandler:^(id value) {
-           if ( [value boolValue] == YES ) {
+           if ( [value isEqual:self.targetOnValue] ) {
                self.currentStatus = LHDeviceIsOn;
            } else {
                self.currentStatus = LHDeviceIsOff;
@@ -240,7 +272,8 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
                 completion ( characteristic.value );
             }
         } else {
-            NSLog(@"could not read characteristic: %@", error);
+            NSLog(@"could not read characteristic%@ for service:%@ error: %@",
+                  characteristic.characteristicType, characteristic.service.serviceType, error);
         }
     }];
     
@@ -249,7 +282,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
 - (HMCharacteristic *) characteristicWithType : (NSString *) characteristicType
                                    forService : (HMService *) service
 {
-    if (service == nil) return nil;
+    if (service == nil || characteristicType == nil ) return nil;
     
     for ( HMCharacteristic * characteristic in service.characteristics ) {
         if ( [characteristic.characteristicType isEqualToString : characteristicType]) {
@@ -259,6 +292,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
         }
     }
     
+    NSLog(@"nil characteristicType: %@", characteristicType);
     return nil;
 }
 
@@ -498,7 +532,7 @@ toTargetRangeForCharacteristic : (HMCharacteristic *) characteristic
         return nil;
     }
     
-    return [[HMCharacteristicWriteAction alloc] initWithCharacteristic:self.primaryCharacteristic
+    return [[HMCharacteristicWriteAction alloc] initWithCharacteristic:self.primaryTargetCharacteristic
                                                            targetValue:@(targetValue)];
 }
 
