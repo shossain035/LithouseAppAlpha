@@ -14,6 +14,8 @@
 
 static NSString * LHHomeName = @"Lithouse Home";
 static const int LHHomeKitDeviceSearchDelay = 30;
+static const int LHHomeKitExploreHomeDelay  = 3;
+
 
 @interface LHHomeKitController () <HMHomeManagerDelegate,
                                    HMAccessoryBrowserDelegate>
@@ -50,7 +52,10 @@ static const int LHHomeKitDeviceSearchDelay = 30;
 - (void) startSearchingForHomeKitDevices
 {
     NSLog(@"start searching for homekit devices");
-    [self exploreHomes];
+    [self performSelector:@selector(exploreHomes)
+               withObject:nil
+               afterDelay:LHHomeKitExploreHomeDelay];
+    
     [self.unPairedDevices removeAllObjects];
     [self.accessoryBrowser startSearchingForNewAccessories];
     [self performSelector : @selector(stopSearchingForHomeKitDevices)
@@ -146,7 +151,7 @@ static const int LHHomeKitDeviceSearchDelay = 30;
 - (void) homeManagerDidUpdateHomes : (HMHomeManager *) manager
 {
     [self findLithouseHome];
-    [self exploreHomes];
+    [self startSearchingForHomeKitDevices];
 }
 
 #pragma mark accessory browser delegate

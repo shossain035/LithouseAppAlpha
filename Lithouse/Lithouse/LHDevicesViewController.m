@@ -155,7 +155,6 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
 {
     [super viewWillAppear:animated];
     [self refreshDeviceList];
-    [self.homeKitController startSearchingForHomeKitDevices];
 }
 
 
