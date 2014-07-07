@@ -41,9 +41,6 @@ static const int LHHomeKitExploreHomeDelay  = 3;
     _homeManager = [[HMHomeManager alloc] init];
     _homeManager.delegate = self;
     
-    _accessoryBrowser = [[HMAccessoryBrowser alloc] init];
-    _accessoryBrowser.delegate = self;
-    
     _unPairedDevices = [[NSMutableArray alloc] init];
     
     return self;
@@ -56,7 +53,13 @@ static const int LHHomeKitExploreHomeDelay  = 3;
                withObject:nil
                afterDelay:LHHomeKitExploreHomeDelay];
     
+    //do not search if already searching
+    if (self.accessoryBrowser != nil) return;
+    
     [self.unPairedDevices removeAllObjects];
+    _accessoryBrowser = [[HMAccessoryBrowser alloc] init];
+    _accessoryBrowser.delegate = self;
+    
     [self.accessoryBrowser startSearchingForNewAccessories];
     [self performSelector : @selector(stopSearchingForHomeKitDevices)
                withObject : nil
@@ -69,7 +72,7 @@ static const int LHHomeKitExploreHomeDelay  = 3;
     
     [self.accessoryBrowser stopSearchingForNewAccessories];
     //todo: add new devices with alert
-    
+    _accessoryBrowser = nil;
     
     [self.deviceViewControllerDelegate
      addUnPairedDevicesToList:self.unPairedDevices];
