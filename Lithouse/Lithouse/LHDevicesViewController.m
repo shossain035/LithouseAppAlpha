@@ -376,7 +376,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     if ( [device isKindOfClass:[LHHomeKitDevice class]]) {
         LHHomeKitDevice * homeKitDevice = (LHHomeKitDevice *) device;
         //unpaired home kit device. toogle will result in pairing.
-        if ( !homeKitDevice.accessory.configured ) {
+        if ( homeKitDevice.currentStatus == LHDeviceIsUnPaired ) {
             cell.toggleCallbackBlock = ^{
                 [self.homeKitController pairDevice:homeKitDevice];
             };
