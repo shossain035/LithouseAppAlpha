@@ -428,8 +428,8 @@
                                     <action selector="delete:" destination="0pq-3z-BCP" eventType="touchDown" id="7Wt-6c-t3b"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beU-dO-sV8">
-                                <rect key="frame" x="0.0" y="44" width="320" height="30"/>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beU-dO-sV8">
+                                <rect key="frame" x="0.0" y="58" width="320" height="30"/>
                                 <state key="normal" title="Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -437,8 +437,8 @@
                                     <action selector="showDatePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="4j1-9D-i1E"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlM-i0-sKD">
-                                <rect key="frame" x="137" y="6" width="46" height="30"/>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlM-i0-sKD">
+                                <rect key="frame" x="0.0" y="8" width="320" height="30"/>
                                 <state key="normal" title="Action">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -447,7 +447,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyL-zB-5t1">
-                                <rect key="frame" x="0.0" y="224" width="320" height="189"/>
+                                <rect key="frame" x="0.0" y="224" width="320" height="192"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-l4-UmC">
                                         <rect key="frame" x="274" y="0.0" width="46" height="30"/>
@@ -459,7 +459,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-85-fUI">
-                                        <rect key="frame" x="0.0" y="29" width="320" height="162"/>
+                                        <rect key="frame" x="0.0" y="30" width="320" height="162"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cdA-w2-5Lq">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
@@ -475,7 +475,7 @@
                                         <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XX-Qg-5P6">
-                                        <rect key="frame" x="97" y="4" width="127" height="21"/>
+                                        <rect key="frame" x="97" y="0.0" width="127" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -483,34 +483,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JD5-vZ-gBz">
-                                <rect key="frame" x="20" y="89" width="280" height="55"/>
-                                <subviews>
-                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msl-If-gwu">
-                                        <rect key="frame" x="0.0" y="29" width="280" height="21"/>
-                                        <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBQ-Y0-XGO">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="55"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Repeat">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showRecurrencePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="54t-Gp-Fvo"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bss-Yr-YlI">
-                                <rect key="frame" x="0.0" y="300" width="320" height="189"/>
+                                <rect key="frame" x="0.0" y="400" width="320" height="192"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-ej-MBe">
-                                        <rect key="frame" x="0.0" y="29" width="320" height="162"/>
+                                        <rect key="frame" x="0.0" y="30" width="320" height="162"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owp-dQ-mkw">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
@@ -533,7 +510,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repeat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9o-qo-v7M">
-                                        <rect key="frame" x="110" y="4" width="100" height="21"/>
+                                        <rect key="frame" x="110" y="0.0" width="100" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -542,10 +519,10 @@
                                 <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-7G-lEs">
-                                <rect key="frame" x="0.0" y="157" width="320" height="189"/>
+                                <rect key="frame" x="0.0" y="157" width="320" height="192"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hx-tx-JsY">
-                                        <rect key="frame" x="0.0" y="29" width="320" height="162"/>
+                                        <rect key="frame" x="0.0" y="30" width="320" height="162"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncm-A9-eTj">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
@@ -568,7 +545,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Action" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W1-Ug-qqY">
-                                        <rect key="frame" x="109" y="4" width="103" height="21"/>
+                                        <rect key="frame" x="109" y="0.0" width="103" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -576,6 +553,16 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBQ-Y0-XGO">
+                                <rect key="frame" x="0.0" y="108" width="320" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Repeat">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showRecurrencePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="54t-Gp-Fvo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -594,11 +581,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="rlM-i0-sKD" id="NUp-je-HI2"/>
                         <outlet property="actionPicker" destination="ncm-A9-eTj" id="raQ-eB-SVI"/>
                         <outlet property="actionPickerContainer" destination="Fi1-7G-lEs" id="Jbh-jt-fqA"/>
+                        <outlet property="dateButton" destination="beU-dO-sV8" id="pCp-8g-xI6"/>
                         <outlet property="datePicker" destination="cdA-w2-5Lq" id="JsV-9s-Y1b"/>
                         <outlet property="datePickerContainer" destination="FyL-zB-5t1" id="bpB-Qc-5Ox"/>
                         <outlet property="deleteButton" destination="3sZ-Wy-GHo" id="vgX-y4-qhW"/>
+                        <outlet property="recurranceButton" destination="RBQ-Y0-XGO" id="5mb-MS-VpO"/>
                         <outlet property="recurrancePicker" destination="owp-dQ-mkw" id="iXj-Eq-oOp"/>
                         <outlet property="recurrancePickerContainer" destination="bss-Yr-YlI" id="vJj-Ne-cmU"/>
                     </connections>

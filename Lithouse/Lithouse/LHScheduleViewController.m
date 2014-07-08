@@ -22,6 +22,13 @@
 
 @property (nonatomic, strong) IBOutlet UIButton       * deleteButton;
 @property (nonatomic, strong)          NSMutableArray * actions;
+
+@property (nonatomic, strong) IBOutlet UIButton       * actionButton;
+@property (nonatomic, strong) IBOutlet UIButton       * dateButton;
+@property (nonatomic, strong) IBOutlet UIButton       * recurranceButton;
+@property (nonatomic, strong, readonly) NSDateFormatter * dateFormatter;
+
+
 @end
 
 @implementation LHScheduleViewController
@@ -39,6 +46,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateFormat:@"h:mm aaa"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,18 +63,26 @@
     }
     
     self.datePicker.date = self.schedule.fireDate;
+    [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.datePicker.date]
+                     forState:UIControlStateNormal];
+    
     [self.actionPicker selectRow:[self indexOfSelectedAction]
                      inComponent:0
                         animated:NO];
+    [self.actionButton setTitle:[self.schedule.action friendlyName]
+                       forState:UIControlStateNormal];
+    
     [self.recurrancePicker selectRow:self.schedule.repeatMode
                          inComponent:0
                             animated:NO];
+    [self.recurranceButton setTitle:[self nameOfRepeatMode:self.schedule.repeatMode]
+                       forState:UIControlStateNormal];
 }
 
 - (void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self hideAllPickerViews];
+    [self hideAllPickerViewsWithAnimation:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,34 +172,43 @@
     NSLog(@"time: %@", self.datePicker.date);
     //todo: consider going back in time.
     self.schedule.fireDate = self.datePicker.date;
+    
+    [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.datePicker.date]
+                     forState:UIControlStateNormal];
 }
 
 - (void) pickerView : (UIView *) pickerView
        shouldAppear : (BOOL) doesAppear
 {
+    [self pickerView:pickerView
+        shouldAppear:doesAppear
+          isAnimated:YES];
+}
+
+- (void) pickerView : (UIView *) pickerView
+       shouldAppear : (BOOL) doesAppear
+         isAnimated : (BOOL) animated
+{
     CGFloat targetY = self.view.frame.size.height;
     if (doesAppear) {
         targetY -= pickerView.frame.size.height;
-        [self hideAllPickerViews];
+        [self hideAllPickerViewsWithAnimation:NO];
     }
     
-    [UIView beginAnimations:nil context:NULL];
+    if (animated) {
+        [UIView beginAnimations:nil context:NULL];
+    }
     pickerView.frame = CGRectMake(0.0f, targetY, pickerView.frame.size.width, pickerView.frame.size.height);
-    [UIView commitAnimations];
-    
+    if (animated) {
+        [UIView commitAnimations];
+    }
 }
 
-- (void) hideAllPickerViews
+- (void) hideAllPickerViewsWithAnimation : (BOOL) isAnimated
 {
-    self.datePickerContainer.frame = CGRectMake(0.0f, self.view.frame.size.height,
-                                                self.datePickerContainer.frame.size.width,
-                                                self.datePickerContainer.frame.size.height);
-    self.actionPickerContainer.frame = CGRectMake(0.0f, self.view.frame.size.height,
-                                                  self.actionPickerContainer.frame.size.width,
-                                                  self.actionPickerContainer.frame.size.height);
-    self.recurrancePickerContainer.frame = CGRectMake(0.0f, self.view.frame.size.height,
-                                                      self.recurrancePickerContainer.frame.size.width,
-                                                      self.recurrancePickerContainer.frame.size.height);
+    [self pickerView:self.datePickerContainer shouldAppear:NO isAnimated:isAnimated];
+    [self pickerView:self.actionPickerContainer shouldAppear:NO isAnimated:isAnimated];
+    [self pickerView:self.recurrancePickerContainer shouldAppear:NO isAnimated:isAnimated];
 }
 
 #pragma mark <UIPickerViewDataSource>
@@ -223,8 +249,12 @@
 {
     if ( pickerView == self.actionPicker) {
         self.schedule.action = self.actions[row];
+        [self.actionButton setTitle:[self.schedule.action friendlyName]
+                         forState:UIControlStateNormal];
     } else if ( pickerView == self.recurrancePicker ) {
         self.schedule.repeatMode = row;
+        [self.recurranceButton setTitle:[self nameOfRepeatMode:self.schedule.repeatMode]
+                               forState:UIControlStateNormal];
     }
 }
 
@@ -242,5 +272,9 @@
     return nameDictionary [@(mode)];
 }
 
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self hideAllPickerViewsWithAnimation:YES];
+}
 
 @end
