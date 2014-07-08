@@ -41,7 +41,7 @@ withPrimPrimaryCharacteristicValueOff:(id) offValue
     self.friendlyName = accessory.name;
     _home = home;
     
-     if (serviceType != nil && targetCharacteristicType != nil ) {
+    if (serviceType != nil && targetCharacteristicType != nil ) {
         _primaryService = [self serviceForType:serviceType];
         _primaryTargetCharacteristic = [self characteristicWithType:targetCharacteristicType
                                                    forService:self.primaryService];
@@ -64,9 +64,9 @@ withPrimPrimaryCharacteristicValueOff:(id) offValue
         [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:self
                                                             withActionSelector:@selector(unsetPrimaryCharacteristic)
                                                           withActionIdentifier:actionIdForUnsettingPrimaryCharacteristic]];
-     } else {
-         self.currentStatus = LHDeviceIsUnPaired;
-     }
+    } else {
+        self.currentStatus = LHDeviceIsUnPaired;
+    }
 //    NSLog(@"******************************************");
 //    for (HMService * service in accessory.services) {
 //        NSLog(@"service: %@", service.serviceType);
