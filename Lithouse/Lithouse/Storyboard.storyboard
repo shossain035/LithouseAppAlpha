@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AN3-Sb-tr2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="14A283o" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AN3-Sb-tr2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
         <!--Dynamics Drawer View Controller-->
@@ -96,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="2332" y="842"/>
         </scene>
-        <!--GroupCRUD View Controller - Create Group-->
+        <!--Create Group-->
         <scene sceneID="aoq-fd-Bdj">
             <objects>
                 <viewController id="clm-La-61T" customClass="LHGroupCRUDViewController" sceneMemberID="viewController">
@@ -406,7 +407,7 @@
             </objects>
             <point key="canvasLocation" x="1372" y="1517"/>
         </scene>
-        <!--Schedule View Controller - Schedule-->
+        <!--Schedule-->
         <scene sceneID="IHb-HG-wcf">
             <objects>
                 <viewController id="0pq-3z-BCP" customClass="LHScheduleViewController" sceneMemberID="viewController">
@@ -418,8 +419,11 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sZ-Wy-GHo">
-                                <rect key="frame" x="79" y="307" width="163" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sZ-Wy-GHo">
+                                <rect key="frame" x="79" y="469" width="163" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="163" id="aUY-7o-g75"/>
+                                </constraints>
                                 <state key="normal" title="Delete This Schedule">
                                     <color key="titleColor" red="0.94591039539999999" green="0.10925212199999999" blue="0.06942197403" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -428,54 +432,35 @@
                                     <action selector="delete:" destination="0pq-3z-BCP" eventType="touchDown" id="7Wt-6c-t3b"/>
                                 </connections>
                             </button>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beU-dO-sV8">
-                                <rect key="frame" x="0.0" y="58" width="320" height="30"/>
-                                <state key="normal" title="Date">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showDatePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="4j1-9D-i1E"/>
-                                </connections>
-                            </button>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlM-i0-sKD">
-                                <rect key="frame" x="0.0" y="8" width="320" height="30"/>
-                                <state key="normal" title="Action">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showActionPicker:" destination="0pq-3z-BCP" eventType="touchDown" id="NpL-Hc-y6f"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyL-zB-5t1">
-                                <rect key="frame" x="0.0" y="224" width="320" height="192"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-7G-lEs">
+                                <rect key="frame" x="0.0" y="300" width="320" height="192"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-l4-UmC">
-                                        <rect key="frame" x="274" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hideDatePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="EnI-Pq-8ZB"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-85-fUI">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hx-tx-JsY">
                                         <rect key="frame" x="0.0" y="30" width="320" height="162"/>
                                         <subviews>
-                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cdA-w2-5Lq">
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncm-A9-eTj">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                                                <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <date key="date" timeIntervalSinceReferenceDate="425459150.67881799">
-                                                    <!--<__NSDate Class=2014-06-26 07:05:50 +0000 timeInterval=425459150.678818 ISO8601=2014-06-26T00:05:50.679-0700>-->
-                                                </date>
                                                 <connections>
-                                                    <action selector="datePickerValueChanged:" destination="0pq-3z-BCP" eventType="valueChanged" id="rG4-E1-PRT"/>
+                                                    <outlet property="dataSource" destination="0pq-3z-BCP" id="zXy-R0-m4u"/>
+                                                    <outlet property="delegate" destination="0pq-3z-BCP" id="iae-JR-s5J"/>
                                                 </connections>
-                                            </datePicker>
+                                            </pickerView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XX-Qg-5P6">
-                                        <rect key="frame" x="97" y="0.0" width="127" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djk-ih-fXu">
+                                        <rect key="frame" x="274" y="0.0" width="46" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hideActionPicker:" destination="0pq-3z-BCP" eventType="touchDown" id="rxS-zI-FGz"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Action" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W1-Ug-qqY">
+                                        <rect key="frame" x="109" y="0.0" width="103" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -501,6 +486,7 @@
                                     </view>
                                     <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3H-KV-h0j">
                                         <rect key="frame" x="274" y="0.0" width="46" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -518,34 +504,37 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-7G-lEs">
-                                <rect key="frame" x="0.0" y="157" width="320" height="192"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyL-zB-5t1">
+                                <rect key="frame" x="0.0" y="224" width="320" height="192"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hx-tx-JsY">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-l4-UmC">
+                                        <rect key="frame" x="274" y="0.0" width="46" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hideDatePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="EnI-Pq-8ZB"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-85-fUI">
                                         <rect key="frame" x="0.0" y="30" width="320" height="162"/>
                                         <subviews>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncm-A9-eTj">
+                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cdA-w2-5Lq">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="425459150.67881799">
+                                                    <!--2014-06-26 07:05:50 +0000-->
+                                                </date>
                                                 <connections>
-                                                    <outlet property="dataSource" destination="0pq-3z-BCP" id="zXy-R0-m4u"/>
-                                                    <outlet property="delegate" destination="0pq-3z-BCP" id="iae-JR-s5J"/>
+                                                    <action selector="datePickerValueChanged:" destination="0pq-3z-BCP" eventType="valueChanged" id="rG4-E1-PRT"/>
                                                 </connections>
-                                            </pickerView>
+                                            </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djk-ih-fXu">
-                                        <rect key="frame" x="274" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hideActionPicker:" destination="0pq-3z-BCP" eventType="touchDown" id="rxS-zI-FGz"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Action" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W1-Ug-qqY">
-                                        <rect key="frame" x="109" y="0.0" width="103" height="30"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XX-Qg-5P6">
+                                        <rect key="frame" x="97" y="0.0" width="127" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -553,18 +542,97 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBQ-Y0-XGO">
-                                <rect key="frame" x="0.0" y="108" width="320" height="30"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-oW-Vun">
+                                <rect key="frame" x="83" y="20" width="215" height="58"/>
+                                <subviews>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn Off" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSz-ad-K97">
+                                        <rect key="frame" x="65" y="0.0" width="150" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" red="0.075977652620000002" green="0.62486049109999997" blue="0.091857902259999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thermostat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgN-Y9-o77">
+                                        <rect key="frame" x="65" y="37" width="150" height="21"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.075977652620000002" green="0.62486049109999997" blue="0.091857902259999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                    <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlM-i0-sKD">
+                                        <rect key="frame" x="0.0" y="0.0" width="215" height="58"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showActionPicker:" destination="0pq-3z-BCP" eventType="touchDown" id="NpL-Hc-y6f"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lock_closed" translatesAutoresizingMaskIntoConstraints="NO" id="0qo-4e-Wo2">
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Repeat">
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obK-YL-xMw">
+                                <rect key="frame" x="83" y="176" width="170" height="40"/>
+                                <subviews>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every Week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQS-ZV-pey">
+                                        <rect key="frame" x="65" y="0.0" width="105" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.075977652620000002" green="0.62486049109999997" blue="0.091857902259999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="repeat" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMs-EW-yLQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBQ-Y0-XGO">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="lf9-rj-NGP"/>
+                                            <constraint firstAttribute="width" constant="170" id="ppE-sR-Pws"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showRecurrencePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="54t-Gp-Fvo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                            </view>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beU-dO-sV8">
+                                <rect key="frame" x="89" y="113" width="143" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showRecurrencePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="54t-Gp-Fvo"/>
+                                    <action selector="showDatePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="4j1-9D-i1E"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l0X-ca-0xd" firstAttribute="top" secondItem="3sZ-Wy-GHo" secondAttribute="bottom" constant="5" id="5R6-3F-HN4"/>
+                            <constraint firstItem="3sZ-Wy-GHo" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="79" id="Kqr-kp-MJI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule" id="u0A-LM-3Za">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="p5K-Fw-DgY">
@@ -581,14 +649,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="actionButton" destination="rlM-i0-sKD" id="NUp-je-HI2"/>
                         <outlet property="actionPicker" destination="ncm-A9-eTj" id="raQ-eB-SVI"/>
                         <outlet property="actionPickerContainer" destination="Fi1-7G-lEs" id="Jbh-jt-fqA"/>
                         <outlet property="dateButton" destination="beU-dO-sV8" id="pCp-8g-xI6"/>
                         <outlet property="datePicker" destination="cdA-w2-5Lq" id="JsV-9s-Y1b"/>
                         <outlet property="datePickerContainer" destination="FyL-zB-5t1" id="bpB-Qc-5Ox"/>
                         <outlet property="deleteButton" destination="3sZ-Wy-GHo" id="vgX-y4-qhW"/>
-                        <outlet property="recurranceButton" destination="RBQ-Y0-XGO" id="5mb-MS-VpO"/>
+                        <outlet property="displayImage" destination="0qo-4e-Wo2" id="ZK4-kB-d95"/>
                         <outlet property="recurrancePicker" destination="owp-dQ-mkw" id="iXj-Eq-oOp"/>
                         <outlet property="recurrancePickerContainer" destination="bss-Yr-YlI" id="vJj-Ne-cmU"/>
                     </connections>
@@ -597,7 +664,7 @@
             </objects>
             <point key="canvasLocation" x="1883" y="1517"/>
         </scene>
-        <!--Devices View Controller - Devices-->
+        <!--Devices-->
         <scene sceneID="Pnr-w2-OUc">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="SfV-gr-bcl" customClass="LHDevicesViewController" sceneMemberID="viewController">
@@ -747,15 +814,19 @@
     </scenes>
     <resources>
         <image name="back" width="26" height="26"/>
+        <image name="lock_closed" width="58" height="58"/>
         <image name="unknown" width="90" height="90"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="0EK-rc-e7C"/>
-        <segue reference="geW-TL-D9n"/>
+        <segue reference="Yoz-iC-WHI"/>
     </inferredMetricsTieBreakers>
 </document>
