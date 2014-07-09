@@ -20,29 +20,32 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver : self.statusChangeObserver];
     
+    [self configureCellWithDevice:aDevice];
+    
     self.statusChangeObserver = [[NSNotificationCenter defaultCenter]
         addObserverForName : LHDeviceDidStatusChangeNotification
         object             : aDevice
         queue              : [NSOperationQueue mainQueue]
         usingBlock         : ^ (NSNotification * notification)
         {
-            NSDictionary * statusData = notification.userInfo;
-            LHDeviceStatus status = [[statusData objectForKey : LHDeviceDidStatusChangeNotification]
-                                     intValue];
-            
-            self.image.image = [aDevice imageForStatus:status];
-
-            [self activate:NO];
-            if ( status == LHDeviceIsOn ) {
-                [self activate:YES];
-            } else if ( status == LHDeviceIsUnPaired ) {
-                self.backgroundColor = [UIColor lightGrayColor];
-            }
-            
+            [self configureCellWithDevice:aDevice];
         }
     ];
+}
+
+- (void) configureCellWithDevice:(LHDevice *) aDevice
+{
+    self.image.image = [aDevice imageForStatus:aDevice.currentStatus];
+    if (self.image.image == nil) {
+        self.image.image = aDevice.displayImage;
+    }
     
-    [aDevice notifyCurrentStatus];
+    [self activate:NO];
+    if ( aDevice.currentStatus == LHDeviceIsOn ) {
+        [self activate:YES];
+    } else if ( aDevice.currentStatus == LHDeviceIsUnPaired ) {
+        self.backgroundColor = [UIColor lightGrayColor];
+    }
 }
 
 - (void) dealloc
