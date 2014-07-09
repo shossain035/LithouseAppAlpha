@@ -28,6 +28,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView    * displayImage;
 @property (nonatomic, strong) IBOutlet UILabel        * actionLabel;
 @property (nonatomic, strong) IBOutlet UILabel        * recurranceLabel;
+@property (nonatomic, strong) IBOutlet UILabel        * deviceNameLabel;
 
 @end
 
@@ -70,6 +71,7 @@
    
     //todo: image for status based on action
     self.displayImage.image = self.device.displayImage;
+    self.deviceNameLabel.text = self.device.friendlyName;
 }
 
 - (void) viewDidLayoutSubviews
