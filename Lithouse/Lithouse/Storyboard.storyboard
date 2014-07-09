@@ -542,7 +542,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-oW-Vun">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-oW-Vun">
                                 <rect key="frame" x="83" y="20" width="215" height="58"/>
                                 <subviews>
                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn Off" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSz-ad-K97">
@@ -556,7 +556,7 @@
                                         <rect key="frame" x="65" y="37" width="150" height="21"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.075977652620000002" green="0.62486049109999997" blue="0.091857902259999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
@@ -579,8 +579,12 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="QOd-iX-WsY"/>
+                                    <constraint firstAttribute="width" constant="215" id="b5w-S5-nli"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obK-YL-xMw">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obK-YL-xMw">
                                 <rect key="frame" x="83" y="176" width="170" height="40"/>
                                 <subviews>
                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every Week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQS-ZV-pey">
@@ -597,7 +601,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBQ-Y0-XGO">
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBQ-Y0-XGO">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -616,9 +620,19 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Ev-Z8-1BN"/>
+                                    <constraint firstAttribute="width" constant="170" id="L1w-hm-Nct"/>
+                                    <constraint firstItem="RBQ-Y0-XGO" firstAttribute="leading" secondItem="obK-YL-xMw" secondAttribute="leading" id="QpX-Ng-10C"/>
+                                    <constraint firstItem="RBQ-Y0-XGO" firstAttribute="top" secondItem="obK-YL-xMw" secondAttribute="top" id="zk5-KX-ac6"/>
+                                </constraints>
                             </view>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beU-dO-sV8">
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beU-dO-sV8">
                                 <rect key="frame" x="89" y="113" width="143" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="cJb-LO-1s6"/>
+                                    <constraint firstAttribute="height" constant="48" id="mR0-oW-0DG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -630,8 +644,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="C8i-oW-Vun" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="83" id="2Bf-zN-8Jl"/>
+                            <constraint firstItem="beU-dO-sV8" firstAttribute="top" secondItem="C8i-oW-Vun" secondAttribute="bottom" constant="35" id="2Qo-Cp-txm"/>
+                            <constraint firstItem="C8i-oW-Vun" firstAttribute="top" secondItem="Ktu-iS-QvT" secondAttribute="bottom" constant="20" id="3gC-hZ-k4l"/>
                             <constraint firstItem="l0X-ca-0xd" firstAttribute="top" secondItem="3sZ-Wy-GHo" secondAttribute="bottom" constant="5" id="5R6-3F-HN4"/>
+                            <constraint firstItem="obK-YL-xMw" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="83" id="Bvy-4O-vjo"/>
                             <constraint firstItem="3sZ-Wy-GHo" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="79" id="Kqr-kp-MJI"/>
+                            <constraint firstItem="beU-dO-sV8" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="89" id="OOY-pd-Ynv"/>
+                            <constraint firstItem="obK-YL-xMw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RMs-47-QUY" secondAttribute="leading" constant="83" id="QmM-0g-JoU"/>
+                            <constraint firstItem="obK-YL-xMw" firstAttribute="top" secondItem="beU-dO-sV8" secondAttribute="bottom" constant="15" id="g4a-Wh-x6Y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule" id="u0A-LM-3Za">
@@ -649,6 +670,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionLabel" destination="hSz-ad-K97" id="LTy-fv-yF8"/>
                         <outlet property="actionPicker" destination="ncm-A9-eTj" id="raQ-eB-SVI"/>
                         <outlet property="actionPickerContainer" destination="Fi1-7G-lEs" id="Jbh-jt-fqA"/>
                         <outlet property="dateButton" destination="beU-dO-sV8" id="pCp-8g-xI6"/>
@@ -656,6 +678,7 @@
                         <outlet property="datePickerContainer" destination="FyL-zB-5t1" id="bpB-Qc-5Ox"/>
                         <outlet property="deleteButton" destination="3sZ-Wy-GHo" id="vgX-y4-qhW"/>
                         <outlet property="displayImage" destination="0qo-4e-Wo2" id="ZK4-kB-d95"/>
+                        <outlet property="recurranceLabel" destination="fQS-ZV-pey" id="PSY-p1-3jD"/>
                         <outlet property="recurrancePicker" destination="owp-dQ-mkw" id="iXj-Eq-oOp"/>
                         <outlet property="recurrancePickerContainer" destination="bss-Yr-YlI" id="vJj-Ne-cmU"/>
                     </connections>

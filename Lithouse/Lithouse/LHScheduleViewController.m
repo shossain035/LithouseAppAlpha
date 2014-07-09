@@ -23,24 +23,16 @@
 @property (nonatomic, strong) IBOutlet UIButton       * deleteButton;
 @property (nonatomic, strong)          NSMutableArray * actions;
 
-@property (nonatomic, strong) IBOutlet UIButton       * actionButton;
 @property (nonatomic, strong) IBOutlet UIButton       * dateButton;
-@property (nonatomic, strong) IBOutlet UIButton       * recurranceButton;
 @property (nonatomic, strong, readonly) NSDateFormatter * dateFormatter;
-
+@property (nonatomic, strong) IBOutlet UIImageView    * displayImage;
+@property (nonatomic, strong) IBOutlet UILabel        * actionLabel;
+@property (nonatomic, strong) IBOutlet UILabel        * recurranceLabel;
 
 @end
 
 @implementation LHScheduleViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -69,14 +61,15 @@
     [self.actionPicker selectRow:[self indexOfSelectedAction]
                      inComponent:0
                         animated:NO];
-    [self.actionButton setTitle:[self.schedule.action friendlyName]
-                       forState:UIControlStateNormal];
+    self.actionLabel.text = [self.schedule.action friendlyName];
     
     [self.recurrancePicker selectRow:self.schedule.repeatMode
                          inComponent:0
                             animated:NO];
-    [self.recurranceButton setTitle:[self nameOfRepeatMode:self.schedule.repeatMode]
-                       forState:UIControlStateNormal];
+    self.recurranceLabel.text = [self nameOfRepeatMode:self.schedule.repeatMode];
+   
+    //todo: image for status based on action
+    self.displayImage.image = self.device.displayImage;
 }
 
 - (void) viewDidLayoutSubviews
@@ -249,12 +242,10 @@
 {
     if ( pickerView == self.actionPicker) {
         self.schedule.action = self.actions[row];
-        [self.actionButton setTitle:[self.schedule.action friendlyName]
-                         forState:UIControlStateNormal];
+        self.actionLabel.text = [self.schedule.action friendlyName];
     } else if ( pickerView == self.recurrancePicker ) {
         self.schedule.repeatMode = row;
-        [self.recurranceButton setTitle:[self nameOfRepeatMode:self.schedule.repeatMode]
-                               forState:UIControlStateNormal];
+        self.recurranceLabel.text = [self nameOfRepeatMode:self.schedule.repeatMode];
     }
 }
 
