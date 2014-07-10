@@ -23,11 +23,17 @@ static NSString * const LHSegueForEditingSchedule  = @"SegueForEditingSchedule";
 @property (nonatomic, strong) IBOutlet UIBarButtonItem       * addScheduleBarButton;
 @property (nonatomic, strong) NSArray                        * schedules;
 @property (nonatomic, weak)   id<LHSchedule>                   currentSchedule;
+@property (nonatomic, strong, readonly) NSDateFormatter      * timeHourMinuteFormatter;
+@property (nonatomic, strong, readonly) NSDateFormatter      * timeAMPMFormatter;
+
 @end
 
 @implementation LHDetailCollectionViewController {
     dispatch_source_t _thermostatRefreshTimer;
 }
+
+@synthesize timeHourMinuteFormatter = _timeHourMinuteFormatter;
+@synthesize timeAMPMFormatter = _timeAMPMFormatter;
 
 static int const LHScheduleCellWidth     = 300;
 static int const LHScheduleCellHeight    = 66;
@@ -68,6 +74,27 @@ static int const LHThermostatCellHeight  = 264;
              [self.collectionView reloadData];
          }
      ];
+}
+
+- (NSDateFormatter *) timeHourMinuteFormatter
+{
+    if ( _timeHourMinuteFormatter == nil ) {
+        _timeHourMinuteFormatter = [[NSDateFormatter alloc] init];
+        [_timeHourMinuteFormatter setDateFormat:@"h:mm"];
+    }
+    
+    return _timeHourMinuteFormatter;
+}
+
+- (NSDateFormatter *) timeAMPMFormatter
+{
+    if ( _timeAMPMFormatter == nil ) {
+        _timeAMPMFormatter = [[NSDateFormatter alloc] init];
+        [_timeAMPMFormatter setDateFormat:@"aaa"];
+        
+    }
+    
+    return _timeAMPMFormatter;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -124,9 +151,10 @@ static int const LHThermostatCellHeight  = 264;
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ScheduleCell" forIndexPath:indexPath];
         LHScheduleCell * scheduleCell = (LHScheduleCell *) cell;
         id<LHSchedule> schedule = self.schedules[indexPath.row];
-        scheduleCell.dateLabel.text = [NSDateFormatter localizedStringFromDate:schedule.fireDate
-                                                                     dateStyle:NSDateFormatterShortStyle
-                                                                     timeStyle:NSDateFormatterShortStyle];
+        
+        scheduleCell.timeHourMinuteLabel.text = [self.timeHourMinuteFormatter stringFromDate:schedule.fireDate];
+        scheduleCell.timeAMPMLabel.text = [self.timeAMPMFormatter stringFromDate:schedule.fireDate];
+        
         scheduleCell.actionLabel.text = schedule.action.friendlyName;
         [scheduleCell activate:schedule.enabled];
         

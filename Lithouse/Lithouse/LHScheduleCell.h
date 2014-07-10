@@ -11,7 +11,8 @@
 
 @interface LHScheduleCell : LHCollectionViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel  * dateLabel;
+@property (nonatomic, strong) IBOutlet UILabel  * timeHourMinuteLabel;
+@property (nonatomic, strong) IBOutlet UILabel  * timeAMPMLabel;
 @property (nonatomic, strong) IBOutlet UILabel  * actionLabel;
 @property (nonatomic, strong) IBOutlet UILabel  * recurranceLabel;
 

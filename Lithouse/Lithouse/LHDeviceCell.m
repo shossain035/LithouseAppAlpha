@@ -40,11 +40,12 @@
         self.image.image = aDevice.displayImage;
     }
     
-    [self activate:NO];
     if ( aDevice.currentStatus == LHDeviceIsOn ) {
         [self activate:YES];
     } else if ( aDevice.currentStatus == LHDeviceIsUnPaired ) {
         self.backgroundColor = [UIColor lightGrayColor];
+    } else {
+        [self activate:NO];
     }
 }
 

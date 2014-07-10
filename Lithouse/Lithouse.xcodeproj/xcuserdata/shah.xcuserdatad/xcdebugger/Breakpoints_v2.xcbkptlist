@@ -1596,11 +1596,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "-collectionView:layout:sizeForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1612,11 +1612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1628,11 +1628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1692,11 +1692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1708,11 +1708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1740,11 +1740,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1756,11 +1756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1772,11 +1772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1866,11 +1866,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2102,11 +2102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2198,11 +2198,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -2246,11 +2246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-collectionView:thermostatCellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2262,11 +2262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2278,11 +2278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
-            timestampString = "426119337.577245"
+            timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "-collectionView:thermostatCellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2760,6 +2760,38 @@
             startingLineNumber = "79"
             endingLineNumber = "79"
             landmarkName = "-viewDidLayoutSubviews"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lithouse/LHScheduleCell.m"
+            timestampString = "426640504.994045"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-activate:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lithouse/LHDetailCollectionViewController.m"
+            timestampString = "426639417.785811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-timeHourMinuteFormatter"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
