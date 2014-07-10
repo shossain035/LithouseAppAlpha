@@ -21,6 +21,8 @@ typedef NS_ENUM ( NSUInteger, LHScheduleTimerRepeatMode ) {
     LHRepeatModesCount
 };
 
+NSString * stringWithLHScheduleTimerRepeatMode (LHScheduleTimerRepeatMode mode);
+
 @protocol LHSchedule <NSObject>
 @property (nonatomic, weak, readonly) id <LHScheduleing> device;
 @property (nonatomic, weak) LHAction * action;

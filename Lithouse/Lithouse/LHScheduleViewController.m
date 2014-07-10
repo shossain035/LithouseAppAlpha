@@ -67,7 +67,7 @@
     [self.recurrancePicker selectRow:self.schedule.repeatMode
                          inComponent:0
                             animated:NO];
-    self.recurranceLabel.text = [self nameOfRepeatMode:self.schedule.repeatMode];
+    self.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
    
     //todo: image for status based on action
     self.displayImage.image = self.device.displayImage;
@@ -231,7 +231,7 @@
     if ( pickerView == self.actionPicker) {
         return ((LHAction *)self.actions[row]).friendlyName;
     } else if ( pickerView == self.recurrancePicker ) {
-        return [self nameOfRepeatMode:row];
+        return stringWithLHScheduleTimerRepeatMode(row);
     }
     
     return @"";
@@ -247,22 +247,8 @@
         self.actionLabel.text = [self.schedule.action friendlyName];
     } else if ( pickerView == self.recurrancePicker ) {
         self.schedule.repeatMode = row;
-        self.recurranceLabel.text = [self nameOfRepeatMode:self.schedule.repeatMode];
+        self.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
     }
-}
-
-- (NSString *) nameOfRepeatMode : (LHScheduleTimerRepeatMode) mode
-{
-    static dispatch_once_t pred;
-    static NSDictionary * nameDictionary = nil;
-    
-    dispatch_once(&pred, ^{
-        nameDictionary = @{@(LHRepeatNever):@"Never",
-                           @(LHRepeatDaily):@"Every Day",
-                           @(LHRepeatWeekly):@"Every Week"};
-    });
-    
-    return nameDictionary [@(mode)];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

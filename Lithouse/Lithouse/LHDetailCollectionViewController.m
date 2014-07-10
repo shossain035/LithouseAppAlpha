@@ -154,7 +154,7 @@ static int const LHThermostatCellHeight  = 264;
         
         scheduleCell.timeHourMinuteLabel.text = [self.timeHourMinuteFormatter stringFromDate:schedule.fireDate];
         scheduleCell.timeAMPMLabel.text = [self.timeAMPMFormatter stringFromDate:schedule.fireDate];
-        
+        scheduleCell.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(schedule.repeatMode);
         scheduleCell.actionLabel.text = schedule.action.friendlyName;
         [scheduleCell activate:schedule.enabled];
         
