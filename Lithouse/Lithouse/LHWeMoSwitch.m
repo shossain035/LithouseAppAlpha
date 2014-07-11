@@ -32,7 +32,6 @@
         [self updateWithWeMoControlDevice : aWeMoControlDevice];
     }
     
-    self.displayImage = [self defaultDeviceIcon : aWeMoControlDevice.deviceType];
     return self;
 }
 
@@ -105,5 +104,9 @@
     return self.weMoControlDevice.udn;
 }
 
+- (UIImage *) imageForStatus:(LHDeviceStatus) status
+{
+    return [self defaultDeviceIcon:self.weMoControlDevice.deviceType];
+}
 
 @end

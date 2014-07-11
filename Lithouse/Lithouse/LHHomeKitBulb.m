@@ -29,8 +29,6 @@ withActionIdForSettingPrimaryCharacteristic:LHTurnOnActionId
 withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
                                     inHome:home] ) {
         
-        self.displayImage = [UIImage imageNamed : @"hue"];
-        
         _hue = [self characteristicWithType:HMCharacteristicTypeHue forService:self.primaryService];
         _saturation = [self characteristicWithType:HMCharacteristicTypeSaturation forService:self.primaryService];
         _brightness = [self characteristicWithType:HMCharacteristicTypeBrightness forService:self.primaryService];
@@ -69,6 +67,27 @@ withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
 {
     //todo: break it up
     return (self.hue != nil && self.saturation != nil && self.brightness != nil);
+}
+
+- (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    return [LHHomeKitBulb imageForStatus:status];
+}
+
++ (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    static dispatch_once_t pred;
+    static NSDictionary * imageDictionary = nil;
+    
+    dispatch_once(&pred, ^{
+        imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed:@"light_on"],
+                            @(LHDeviceIsOff):[UIImage imageNamed:@"light_off"]};
+    });
+    
+    UIImage * imageForStatus = [imageDictionary objectForKey:@(status)];
+    return [((imageForStatus == nil) ?
+            [imageDictionary objectForKey:@(LHDeviceIsOff)]:imageForStatus)
+            imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 @end

@@ -70,7 +70,7 @@
     self.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
    
     //todo: image for status based on action
-    self.displayImage.image = self.device.displayImage;
+    self.displayImage.image = [self.device imageForStatus:LHDeviceIsOff];
     self.deviceNameLabel.text = self.device.friendlyName;
 }
 

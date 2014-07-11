@@ -36,9 +36,6 @@
 - (void) configureCellWithDevice:(LHDevice *) aDevice
 {
     self.image.image = [aDevice imageForStatus:aDevice.currentStatus];
-    if (self.image.image == nil) {
-        self.image.image = aDevice.displayImage;
-    }
     
     if ( aDevice.currentStatus == LHDeviceIsOn ) {
         [self activate:YES];

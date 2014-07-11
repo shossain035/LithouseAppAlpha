@@ -1,17 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "lock_open.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "lock_open@2x.png"
+      "filename" : "thermostat_off_small.png"
     }
   ],
   "info" : {

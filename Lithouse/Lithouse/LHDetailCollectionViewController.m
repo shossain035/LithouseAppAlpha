@@ -141,6 +141,7 @@ static int const LHThermostatCellHeight  = 264;
     UICollectionViewCell *cell = nil;
     if ( indexPath.section == 0 ) {
         if ( [self.device conformsToProtocol:@protocol(LHLightColorChanging)] ) {
+            //todo: consider doesSupportColorControl
             cell = [self collectionView:collectionView colorPickerCellForItemAtIndexPath:indexPath];
         } else if ( [self.device conformsToProtocol:@protocol(LHThermostatSetting)] ) {
             cell = [self collectionView:collectionView thermostatCellForItemAtIndexPath:indexPath];

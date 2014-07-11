@@ -25,7 +25,6 @@
         self.managedDeviceGroup = aManagedDeviceGroup;
         self.friendlyName = aManagedDeviceGroup.name;
         self.deviceDictionary = aDeviceDictionary;
-        self.displayImage = [UIImage imageWithData : aManagedDeviceGroup.image];
     }
 
     return self;
@@ -46,5 +45,9 @@
     }
 }
 
+- (UIImage *) imageForStatus:(LHDeviceStatus)status
+{
+    return [UIImage imageWithData:self.managedDeviceGroup.image];
+}
 
 @end

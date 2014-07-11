@@ -22,7 +22,6 @@ typedef NS_ENUM ( NSUInteger, LHDeviceStatus ) {
 @interface LHDevice : NSObject
 
 @property (nonatomic, strong)   NSString            * friendlyName;
-@property (nonatomic, strong)   UIImage             * displayImage;
 @property (nonatomic)           LHDeviceStatus        currentStatus;
 @property (nonatomic, readonly) NSUInteger            actionCount;
 

@@ -24,7 +24,6 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
         self.permissibleActions = [[NSMutableDictionary alloc] init];
         self.permissibleActionIds = [[NSMutableArray alloc] init];
         
-        self.displayImage = [UIImage imageNamed : @"unknown"];
         self.currentStatus = LHDeviceIsUnknown;
         
         [self addToPermissibleActions : [[LHAction alloc] initWithTargetDevice:nil
@@ -97,8 +96,8 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
     return LHTurnOnActionId;
 }
 
-- (UIImage *) imageForStatus : (LHDeviceStatus) status
+- (UIImage *) imageForStatus:(LHDeviceStatus) status
 {
-    return self.displayImage;
+    return [UIImage imageNamed:@"unknown"];
 }
 @end

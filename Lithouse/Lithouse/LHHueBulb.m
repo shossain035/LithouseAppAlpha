@@ -36,7 +36,6 @@ static int const LHHueApiCallInterval = 1.0;
     if ( self = [self init] ) {
         [self updateWithPHLight : aPHLight];
     }
-    self.displayImage = [UIImage imageNamed : @"hue"];
     
     return self;
 }
@@ -186,6 +185,11 @@ static int const LHHueApiCallInterval = 1.0;
     });
     
     return sharedSemaphore;
+}
+
+- (UIImage *) imageForStatus:(LHDeviceStatus) status
+{
+    return [UIImage imageNamed:@"hue"];
 }
 
 @end

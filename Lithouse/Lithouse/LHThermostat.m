@@ -42,7 +42,6 @@ withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
 //        [self getCurrentTemperature];
 //        [self getTargetTemperature];
 //        
-       // self.displayImage = [UIImage imageNamed : @"ic_switch"];
     }
     
     return self;
@@ -141,6 +140,26 @@ withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
                self.currentStatus = LHDeviceIsOff;
            }
        }];
+}
+
+- (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    return [LHThermostat imageForStatus:status];
+}
+
++ (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    static dispatch_once_t pred;
+    static NSDictionary * imageDictionary = nil;
+    
+    dispatch_once(&pred, ^{
+        imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed:@"thermostat_on"],
+                            @(LHDeviceIsOff):[UIImage imageNamed:@"thermostat_off"]};
+    });
+    
+    UIImage * imageForStatus = [imageDictionary objectForKey:@(status)];
+    return ((imageForStatus == nil) ?
+            [imageDictionary objectForKey:@(LHDeviceIsOff)]:imageForStatus);
 }
 
 @end

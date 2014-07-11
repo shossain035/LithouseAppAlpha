@@ -20,9 +20,30 @@ withActionIdForSettingPrimaryCharacteristic:LHTurnOnActionId
 withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
                                     inHome:home] ) {
         
-        self.displayImage = [UIImage imageNamed : @"ic_switch"];
     }
     
     return self;
 }
+
+- (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    return [LHSwitch imageForStatus:status];
+}
+
++ (UIImage *) imageForStatus : (LHDeviceStatus) status
+{
+    static dispatch_once_t pred;
+    static NSDictionary * imageDictionary = nil;
+    
+    dispatch_once(&pred, ^{
+        imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed:@"switch_on"],
+                            @(LHDeviceIsOff):[UIImage imageNamed:@"switch_off"]};
+    });
+    
+    UIImage * imageForStatus = [imageDictionary objectForKey:@(status)];
+    return [((imageForStatus == nil) ?
+            [imageDictionary objectForKey:@(LHDeviceIsOff)]:imageForStatus)
+            imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+}
+
 @end

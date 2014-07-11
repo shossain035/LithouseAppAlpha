@@ -341,7 +341,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }
     
     cell.nameLabel.text = device.friendlyName;
-    cell.image.image = device.displayImage;
     cell.infoButton.hidden  = YES;
     
     if ( [device isKindOfClass : [LHDeviceGroup class]] ) {

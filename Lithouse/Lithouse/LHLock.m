@@ -20,8 +20,6 @@
 withActionIdForSettingPrimaryCharacteristic:LHLockActionId
 withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
                                     inHome:home] ) {
-        
-        self.displayImage = [UIImage imageNamed : @"lock_closed"];
     }
     
     return self;
@@ -40,11 +38,14 @@ withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
     static NSDictionary * imageDictionary = nil;
     
     dispatch_once(&pred, ^{
-        imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed : @"lock_closed"],
-                            @(LHDeviceIsOff):[UIImage imageNamed : @"lock_open"]};
+        imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed:@"locked"],
+                            @(LHDeviceIsOff):[UIImage imageNamed:@"unlocked"]};
     });
     
-    return [imageDictionary objectForKey:@(status)];
+    UIImage * imageForStatus = [imageDictionary objectForKey:@(status)];
+    return [((imageForStatus == nil) ?
+             [imageDictionary objectForKey:@(LHDeviceIsOff)]:imageForStatus)
+            imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 
