@@ -59,7 +59,7 @@
     
     // Create hue sdk instance
     phHueSDK = [[PHHueSDK alloc] init];
-    [phHueSDK startUpSDK];
+    //[phHueSDK startUpSDK];
     [phHueSDK enableLogging : NO];
     return YES;
 }

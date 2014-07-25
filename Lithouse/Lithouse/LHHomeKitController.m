@@ -13,8 +13,8 @@
 #import <HomeKit/HomeKit.h>
 
 static NSString * LHHomeName = @"Lithouse Home";
-static const int LHHomeKitDeviceSearchDelay = 30;
-static const int LHHomeKitExploreHomeDelay  = 3;
+static const int LHHomeKitDeviceSearchDelay = 15;
+//static const int LHHomeKitExploreHomeDelay  = 1;
 
 
 @interface LHHomeKitController () <HMHomeManagerDelegate,
@@ -49,9 +49,7 @@ static const int LHHomeKitExploreHomeDelay  = 3;
 - (void) startSearchingForHomeKitDevices
 {
     NSLog(@"start searching for homekit devices");
-    [self performSelector:@selector(exploreHomes)
-               withObject:nil
-               afterDelay:LHHomeKitExploreHomeDelay];
+    [self exploreHomes];
     
     //do not search if already searching
     if (self.accessoryBrowser != nil) return;
@@ -140,12 +138,18 @@ static const int LHHomeKitExploreHomeDelay  = 3;
 - (void) exploreHomes
 {
     for ( HMHome * home in self.homeManager.homes ) {
+//        [self.homeManager removeHome:home completionHandler:^(NSError *error) {
+//            if (error) {
+//                NSLog(@"failed to remove accessory: %@", error);
+//            }
+//        }];
         for ( HMAccessory * accessory in home.accessories ) {
-            if (accessory.reachable) {
+            //if (accessory.reachable) {
                 [self.deviceViewControllerDelegate addDeviceToList:
                  [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory
                                                                 inHome:home]];
-            }
+            
+            //}
         }
     }
 }
