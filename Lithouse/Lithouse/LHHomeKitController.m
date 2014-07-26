@@ -138,18 +138,12 @@ static const int LHHomeKitDeviceSearchDelay = 15;
 - (void) exploreHomes
 {
     for ( HMHome * home in self.homeManager.homes ) {
-//        [self.homeManager removeHome:home completionHandler:^(NSError *error) {
-//            if (error) {
-//                NSLog(@"failed to remove accessory: %@", error);
-//            }
-//        }];
         for ( HMAccessory * accessory in home.accessories ) {
-            //if (accessory.reachable) {
+            if (accessory.reachable) {
                 [self.deviceViewControllerDelegate addDeviceToList:
                  [LHHomeKitDeviceFactory newHomeKitDeviceWithAccessory:accessory
                                                                 inHome:home]];
-            
-            //}
+            }
         }
     }
 }
