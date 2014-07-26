@@ -16,6 +16,7 @@
 		7128FD9B192295780031BEA8 /* LHAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD9A192295780031BEA8 /* LHAction.m */; };
 		7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */; };
 		7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */; };
+		712CCE6C198356EE000F4919 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712CCE6B198356EE000F4919 /* HomeKit.framework */; };
 		71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */; };
 		71A697BF192B24D900C9AB86 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B1192B24D900C9AB86 /* DDAbstractDatabaseLogger.m */; };
 		71A697C0192B24D900C9AB86 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B3192B24D900C9AB86 /* DDASLLogger.m */; };
@@ -108,6 +109,8 @@
 		7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHWeMoSwitch.m; sourceTree = "<group>"; };
 		7128FDA61923F5CD0031BEA8 /* LHModalPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHModalPickerViewController.h; sourceTree = "<group>"; };
 		7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHModalPickerViewController.m; sourceTree = "<group>"; };
+		712CCE6A198356EE000F4919 /* Lithouse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lithouse.entitlements; sourceTree = "<group>"; };
+		712CCE6B198356EE000F4919 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		7152D723194C3A4D00C627CD /* DeviceProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceProtocols.h; sourceTree = "<group>"; };
 		71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceConfigData.plist; sourceTree = "<group>"; };
 		71A697B0192B24D900C9AB86 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
@@ -230,6 +233,7 @@
 				71B226ED19253A5000E251B3 /* Security.framework in Frameworks */,
 				71B226EB19253A0E00E251B3 /* MobileCoreServices.framework in Frameworks */,
 				71B226E9192539E500E251B3 /* libxml2.dylib in Frameworks */,
+				712CCE6C198356EE000F4919 /* HomeKit.framework in Frameworks */,
 				71B226E5192537F300E251B3 /* Cybergarage.a in Frameworks */,
 				71C82E02191F2A8F00395392 /* CoreGraphics.framework in Frameworks */,
 				71C82E06191F2A8F00395392 /* CoreData.framework in Frameworks */,
@@ -424,6 +428,7 @@
 		71C82DFE191F2A8F00395392 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				712CCE6B198356EE000F4919 /* HomeKit.framework */,
 				711444AE193825AC007AD29C /* Social.framework */,
 				71A697C6192B252100C9AB86 /* HueSDK_iOS.framework */,
 				71A697AF192B24D900C9AB86 /* Lumberjack */,
@@ -444,6 +449,7 @@
 		71C82E07191F2A8F00395392 /* Lithouse */ = {
 			isa = PBXGroup;
 			children = (
+				712CCE6A198356EE000F4919 /* Lithouse.entitlements */,
 				71C82E4C1920772400395392 /* Models */,
 				71C82E48192061ED00395392 /* Views */,
 				71C82E41191F4C9100395392 /* ViewControllers */,
@@ -623,6 +629,11 @@
 				TargetAttributes = {
 					71C82DFB191F2A8F00395392 = {
 						DevelopmentTeam = ZJ6D9WMT6L;
+						SystemCapabilities = {
+							com.apple.HomeKit = {
+								enabled = 1;
+							};
+						};
 					};
 					71C82E1B191F2A8F00395392 = {
 						TestTargetID = 71C82DFB191F2A8F00395392;
@@ -795,7 +806,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -829,7 +840,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -842,7 +853,9 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Lithouse/Lithouse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -863,6 +876,7 @@
 					/Users/shah/Desktop/LithouseAppAlpha/Lithouse/HueSDK_iOS.framework/Versions/A/HueSDK_iOS,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -874,7 +888,9 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Lithouse/Lithouse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.0.4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -895,6 +911,7 @@
 					/Users/shah/Desktop/LithouseAppAlpha/Lithouse/HueSDK_iOS.framework/Versions/A/HueSDK_iOS,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
