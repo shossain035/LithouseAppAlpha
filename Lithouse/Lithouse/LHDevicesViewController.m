@@ -709,7 +709,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [[LHAppDelegate getHueSDK] enableLocalConnectionUsingInterval:self.hueHeartbeatDelay];
     } else {
         // Automaticly start searching for bridges
-        //[self searchForBridgeLocal];
         [self performSelector : @selector(searchForBridgeLocal)
                     withObject: nil
                    afterDelay : self.hueHeartbeatDelay];
@@ -759,14 +758,15 @@ referenceSizeForHeaderInSection : (NSInteger) section
             NSString * macAddress = [bridgesFound.allKeys objectAtIndex : 0];
             [[LHAppDelegate getHueSDK] setBridgeToUseWithIpAddress : [bridgesFound objectForKey : macAddress]
                                                         macAddress : macAddress];
+            
+            [self performSelector : @selector(enableLocalHeartbeat:)
+                       withObject : @REGULAR_HUE_HEARTBEAT_DELAY
+                       afterDelay : 1];
         }
         else {
             NSLog ( @"No HUE bridge found" );
         }
         
-        [self performSelector : @selector(enableLocalHeartbeat:)
-                   withObject : @REGULAR_HUE_HEARTBEAT_DELAY
-                   afterDelay : 1];
     }];
 }
 
