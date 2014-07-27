@@ -132,7 +132,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-h1-nha">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-h1-nha">
                                 <rect key="frame" x="15" y="151" width="291" height="310"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -200,7 +200,7 @@
                         <constraints>
                             <constraint firstItem="b1B-h1-nha" firstAttribute="centerX" secondItem="7W2-c2-e6S" secondAttribute="centerX" id="8wv-5c-GlD"/>
                             <constraint firstItem="WCP-EE-5da" firstAttribute="trailing" secondItem="Qzz-sy-Vxh" secondAttribute="trailing" id="Afs-2n-5So"/>
-                            <constraint firstItem="SNI-55-U7O" firstAttribute="top" secondItem="b1B-h1-nha" secondAttribute="bottom" constant="8" symbolic="YES" id="BNz-qv-Ppb"/>
+                            <constraint firstItem="SNI-55-U7O" firstAttribute="top" secondItem="b1B-h1-nha" secondAttribute="bottom" constant="5" id="BNz-qv-Ppb"/>
                             <constraint firstAttribute="trailing" secondItem="SNI-55-U7O" secondAttribute="trailing" constant="16" id="H8R-4O-qT0"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="Qzz-sy-Vxh" secondAttribute="bottom" constant="8" symbolic="YES" id="JJR-vr-9b5"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="WCP-EE-5da" secondAttribute="bottom" constant="8" symbolic="YES" id="PBV-OP-Q2i"/>
