@@ -36,7 +36,14 @@
     
     if ( !trigger ) {
         _enabled = YES;
-        _fireDate = [NSDate date];
+        
+        NSCalendar* currentCalendar = [NSCalendar currentCalendar];
+        NSDateComponents* dateComponents =
+            [currentCalendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
+                               fromDate:[NSDate date]];
+        
+        _fireDate = [currentCalendar dateFromComponents:dateComponents];
+        
         _repeatMode = LHRepeatDaily;
     } else {
         _enabled = trigger.enabled;
