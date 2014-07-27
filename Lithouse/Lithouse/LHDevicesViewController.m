@@ -646,8 +646,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
     self.pushLinkViewController = nil;
     
     // Start local heartbeat
-    [self performSelector : @selector(enableLocalHeartbeat)
-               withObject : nil
+    [self performSelector : @selector(enableLocalHeartbeat:)
+               withObject : @REGULAR_HUE_HEARTBEAT_DELAY
                afterDelay : 1];
 }
 
@@ -667,7 +667,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [self noLocalConnection];
         
         // Start local heartbeat (to see when connection comes back)
-        [self performSelector:@selector(enableLocalHeartbeat) withObject:nil afterDelay:1];
+        [self performSelector:@selector(enableLocalHeartbeat:)
+                   withObject:@REGULAR_HUE_HEARTBEAT_DELAY
+                   afterDelay:1];
     }
     else {
         // Bridge button not pressed in time
@@ -695,6 +697,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }
     
     self.hueHeartbeatDelay = [withDelay intValue];
+    NSLog(@"heart beat delay: %d", self.hueHeartbeatDelay);
     /***************************************************
      The heartbeat processing collects data from the bridge
      so now try to see if we have a bridge already connected
@@ -707,7 +710,10 @@ referenceSizeForHeaderInSection : (NSInteger) section
         [[LHAppDelegate getHueSDK] enableLocalConnectionUsingInterval:self.hueHeartbeatDelay];
     } else {
         // Automaticly start searching for bridges
-        [self searchForBridgeLocal];
+        //[self searchForBridgeLocal];
+        [self performSelector : @selector(searchForBridgeLocal)
+                    withObject: nil
+                   afterDelay : self.hueHeartbeatDelay];
     }
 }
 
@@ -759,8 +765,8 @@ referenceSizeForHeaderInSection : (NSInteger) section
             NSLog ( @"No HUE bridge found" );
         }
         
-        [self performSelector : @selector(enableLocalHeartbeat)
-                   withObject : nil
+        [self performSelector : @selector(enableLocalHeartbeat:)
+                   withObject : @REGULAR_HUE_HEARTBEAT_DELAY
                    afterDelay : 1];
     }];
 }
