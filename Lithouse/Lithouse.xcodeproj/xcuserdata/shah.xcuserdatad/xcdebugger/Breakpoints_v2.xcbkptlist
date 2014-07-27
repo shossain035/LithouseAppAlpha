@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125493.40311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "761"
-            endingLineNumber = "761"
+            startingLineNumber = "769"
+            endingLineNumber = "769"
             landmarkName = "-searchForBridgeLocal"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125493.40311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "718"
-            endingLineNumber = "718"
+            startingLineNumber = "722"
+            endingLineNumber = "722"
             landmarkName = "-disableLocalHeartbeat"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125493.40311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "747"
-            endingLineNumber = "747"
+            startingLineNumber = "751"
+            endingLineNumber = "751"
             landmarkName = "-searchForBridgeLocal"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125493.40311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "758"
-            endingLineNumber = "758"
+            startingLineNumber = "766"
+            endingLineNumber = "766"
             landmarkName = "-searchForBridgeLocal"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "767"
-            endingLineNumber = "767"
+            startingLineNumber = "772"
+            endingLineNumber = "772"
             landmarkName = "-addDeviceToList:"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125493.40311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "728"
-            endingLineNumber = "728"
+            startingLineNumber = "732"
+            endingLineNumber = "732"
             landmarkName = "@implementation LHDevicesViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "816"
-            endingLineNumber = "816"
+            startingLineNumber = "821"
+            endingLineNumber = "821"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "832"
-            endingLineNumber = "832"
+            startingLineNumber = "837"
+            endingLineNumber = "837"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "830"
-            endingLineNumber = "830"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -698,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "842"
-            endingLineNumber = "842"
+            startingLineNumber = "847"
+            endingLineNumber = "847"
             landmarkName = "-listenForHueNotifications:"
             landmarkType = "5">
          </BreakpointContent>
@@ -858,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "884"
-            endingLineNumber = "884">
+            startingLineNumber = "889"
+            endingLineNumber = "889">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -872,11 +872,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "883"
-            endingLineNumber = "883">
+            startingLineNumber = "888"
+            endingLineNumber = "888">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1119,22 +1119,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
-            landmarkName = "-enableLocalHeartbeat:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Lithouse/LHMainMenuViewController.m"
             timestampString = "423280886.795228"
             startingColumnNumber = "9223372036854775807"
@@ -1152,11 +1136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "886"
-            endingLineNumber = "886">
+            startingLineNumber = "891"
+            endingLineNumber = "891">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1278,11 +1262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDevicesViewController.m"
-            timestampString = "426718839.926691"
+            timestampString = "428125152.934839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "820"
-            endingLineNumber = "820"
+            startingLineNumber = "825"
+            endingLineNumber = "825"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1788,11 +1772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554">
+            startingLineNumber = "559"
+            endingLineNumber = "559">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1802,11 +1786,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428132672.961756"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "411"
-            endingLineNumber = "411"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "-createAndUpdateTriggerForSchedule:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1818,11 +1802,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "544"
-            endingLineNumber = "544"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
             landmarkName = "-getLHActionForHoomeKitActionSet:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1834,11 +1818,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
+            startingLineNumber = "548"
+            endingLineNumber = "548"
             landmarkName = "-getLHActionForHoomeKitActionSet:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1866,11 +1850,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
             landmarkName = "-enableSchedule:"
             landmarkType = "5">
             <Locations>
@@ -1912,11 +1896,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428131498.902741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "-saveSchedule:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1928,11 +1912,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428131498.902741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "396"
-            endingLineNumber = "396"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
             landmarkName = "-createAndUpdateTriggerForSchedule:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1944,11 +1928,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428131498.902741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
             landmarkName = "-updateTrigger:withSchedule:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1960,11 +1944,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "489"
-            endingLineNumber = "489"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
             landmarkName = "-enableSchedule:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1976,11 +1960,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "-enableTrigger:enabled:"
             landmarkType = "5">
             <Locations>
@@ -2022,23 +2006,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
-            landmarkName = "-enableTrigger:enabled:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "515"
@@ -2054,11 +2022,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
             landmarkName = "-enableTrigger:enabled:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2070,11 +2038,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428133831.863365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
+            startingLineNumber = "514"
+            endingLineNumber = "514"
+            landmarkName = "-enableTrigger:enabled:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lithouse/LHHomeKitDevice.m"
+            timestampString = "428133831.863365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
             landmarkName = "-enableTrigger:enabled:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2102,11 +2086,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitSchedule.m"
-            timestampString = "425860997.07995"
+            timestampString = "428133496.62859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "-repeatModeFromDateComponents:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2118,11 +2102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitSchedule.m"
-            timestampString = "425860997.07995"
+            timestampString = "428133496.62859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-repeatModeFromDateComponents:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2150,11 +2134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitDevice.m"
-            timestampString = "426488457.229757"
+            timestampString = "428131498.902741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "-saveSchedule:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2311,22 +2295,6 @@
             timestampString = "426732849.354437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "-convertHMThermostatStateToLHState:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lithouse/LHThermostat.m"
-            timestampString = "426732849.354437"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
             endingLineNumber = "126"
             landmarkName = "-convertHMThermostatStateToLHState:"
@@ -2378,22 +2346,6 @@
             startingLineNumber = "201"
             endingLineNumber = "201"
             landmarkName = "-writePrimaryTargetCharacteristic:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lithouse/LHThermostat.m"
-            timestampString = "426732849.354437"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "-readPrimaryCurrentCharacteristic"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2689,22 +2641,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lithouse/LHScheduleCell.m"
-            timestampString = "426640504.994045"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "-activate:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Lithouse/LHDetailCollectionViewController.m"
             timestampString = "426639417.785811"
             startingColumnNumber = "9223372036854775807"
@@ -2722,12 +2658,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHHomeKitController.m"
-            timestampString = "426714434.462082"
+            timestampString = "428091073.25773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "-exploreHomes"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lithouse/LHHomeKitSchedule.m"
+            timestampString = "428133496.62859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-moveFireDateToFuture"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

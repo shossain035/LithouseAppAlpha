@@ -21,12 +21,13 @@
 {
     if ( self = [super initWithHMAccessory:accessory
                     withPrimaryServiceType:HMServiceTypeThermostat
-       withPrimaryTargetCharacteristicType:HMCharacteristicTypeTargetHeatingCooling
-      withPrimaryCurrentCharacteristicType:HMCharacteristicTypeCurrentHeatingCooling
+                 withCharacteristicType:HMCharacteristicTypeTargetHeatingCooling
+                 // withPrimaryTargetCharacteristicType:HMCharacteristicTypeTargetHeatingCooling
+    //  withPrimaryCurrentCharacteristicType:HMCharacteristicTypeCurrentHeatingCooling
 withActionIdForSettingPrimaryCharacteristic:LHTurnOnActionId
 withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
-      withPrimPrimaryCharacteristicValueOn:HMCharacteristicValueHeatingCoolingAuto
-     withPrimPrimaryCharacteristicValueOff:HMCharacteristicValueHeatingCoolingOff
+   //   withPrimPrimaryCharacteristicValueOn:HMCharacteristicValueHeatingCoolingAuto
+   //  withPrimPrimaryCharacteristicValueOff:HMCharacteristicValueHeatingCoolingOff
                                     inHome:home] ) {
         
         _currentTemperature = [self characteristicWithType:HMCharacteristicTypeCurrentTemperature
@@ -82,24 +83,24 @@ withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
 
 - (void) updateTargetState:(LHThermostatState) targetState
 {
-    NSString * targetStateString = HMCharacteristicValueHeatingCoolingAuto;
+//    NSString * targetStateString = HMCharacteristicValueHeatingCoolingAuto;
+//    
+//    switch (targetState) {
+//        case LHThermostatHeating:
+//            targetStateString = HMCharacteristicValueHeatingCoolingHeat;
+//            break;
+//        case LHThermostatCooling:
+//            targetStateString = HMCharacteristicValueHeatingCoolingCool;
+//            break;
+//        case LHThermostatOff:
+//            targetStateString = HMCharacteristicValueHeatingCoolingOff;
+//            break;
+//        default:
+//            targetStateString = HMCharacteristicValueHeatingCoolingAuto;
+//            break;
+//    }
     
-    switch (targetState) {
-        case LHThermostatHeating:
-            targetStateString = HMCharacteristicValueHeatingCoolingHeat;
-            break;
-        case LHThermostatCooling:
-            targetStateString = HMCharacteristicValueHeatingCoolingCool;
-            break;
-        case LHThermostatOff:
-            targetStateString = HMCharacteristicValueHeatingCoolingOff;
-            break;
-        default:
-            targetStateString = HMCharacteristicValueHeatingCoolingAuto;
-            break;
-    }
-    
-    [self writePrimaryTargetCharacteristic:targetStateString];
+//    [self writePrimaryTargetCharacteristic:targetStateString];
 }
 
 - (LHThermostatState) getTargetState
@@ -117,29 +118,30 @@ withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
 
 - (LHThermostatState) convertHMThermostatStateToLHState:(NSString *) stateString
 {
-    if ( [stateString isEqualToString:HMCharacteristicValueHeatingCoolingHeat] ) {
-        return LHThermostatHeating;
-    } else if ( [stateString isEqualToString:HMCharacteristicValueHeatingCoolingCool] ) {
-        return LHThermostatCooling;
-    } if ( [stateString isEqualToString:HMCharacteristicValueHeatingCoolingAuto] ) {
-        return LHThermostatAuto;
-    }
+//    if ( [stateString isEqualToString:HMCharacteristicValueHeatingCoolingHeat] ) {
+//        return LHThermostatHeating;
+//    } else if ( [stateString isEqualToString:HMCharacteristicValueHeatingCoolingCool] ) {
+//        return LHThermostatCooling;
+//    } if ( [stateString isEqualToString:HMCharacteristicValueHeatingCoolingAuto] ) {
+//        return LHThermostatAuto;
+//    }
     
     return LHThermostatOff;
 }
 
 - (void) readPrimaryCurrentCharacteristic
 {
-    [self readCharacteristic:self.primaryCurrentCharacteristic
-       withCompletionHandler:^(id value) {
-           if ( [value isEqual:HMCharacteristicValueHeatingCoolingAuto]
-               || [value isEqual:HMCharacteristicValueHeatingCoolingHeat]
-               || [value isEqual:HMCharacteristicValueHeatingCoolingCool] ) {
-               self.currentStatus = LHDeviceIsOn;
-           } else {
-               self.currentStatus = LHDeviceIsOff;
-           }
-       }];
+//    
+//    [self readCharacteristic:self.primaryCurrentCharacteristic
+//       withCompletionHandler:^(id value) {
+//           if ( [value isEqual:HMCharacteristicValueHeatingCoolingAuto]
+//               || [value isEqual:HMCharacteristicValueHeatingCoolingHeat]
+//               || [value isEqual:HMCharacteristicValueHeatingCoolingCool] ) {
+//               self.currentStatus = LHDeviceIsOn;
+//           } else {
+//               self.currentStatus = LHDeviceIsOff;
+//           }
+//       }];
 }
 
 - (UIImage *) imageForStatus : (LHDeviceStatus) status
