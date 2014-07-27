@@ -697,7 +697,6 @@ referenceSizeForHeaderInSection : (NSInteger) section
     }
     
     self.hueHeartbeatDelay = [withDelay intValue];
-    NSLog(@"heart beat delay: %d", self.hueHeartbeatDelay);
     /***************************************************
      The heartbeat processing collects data from the bridge
      so now try to see if we have a bridge already connected
