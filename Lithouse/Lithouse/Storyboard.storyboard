@@ -128,7 +128,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-h1-nha">
-                                <rect key="frame" x="15" y="151" width="291" height="310"/>
+                                <rect key="frame" x="15" y="151" width="291" height="295"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDeviceCell" rowHeight="48" id="0JC-V3-Dt9" customClass="LHGroupDeviceTableViewCell">
@@ -188,7 +188,7 @@
                                 </connections>
                             </tableView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNI-55-U7O" colorLabel="IBBuiltInLabel-Red">
-                                <rect key="frame" x="13" y="466" width="291" height="33"/>
+                                <rect key="frame" x="13" y="461" width="291" height="33"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Delete This Group">
                                     <color key="titleColor" red="0.94591039540816324" green="0.10925212200735407" blue="0.069421974029198849" alpha="1" colorSpace="calibratedRGB"/>
@@ -212,10 +212,10 @@
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="centerX" secondItem="b1B-h1-nha" secondAttribute="centerX" id="5eW-Bt-LCl"/>
                             <constraint firstAttribute="trailing" secondItem="SNI-55-U7O" secondAttribute="trailing" constant="16" id="6IL-Tu-3YK"/>
                             <constraint firstItem="b1B-h1-nha" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="15" id="BMh-JC-Iv2"/>
-                            <constraint firstItem="SNI-55-U7O" firstAttribute="top" secondItem="b1B-h1-nha" secondAttribute="bottom" constant="5" id="EM8-GG-Ddx"/>
+                            <constraint firstItem="SNI-55-U7O" firstAttribute="top" secondItem="b1B-h1-nha" secondAttribute="bottom" constant="15" id="EM8-GG-Ddx"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="top" secondItem="Qzz-sy-Vxh" secondAttribute="bottom" constant="8" symbolic="YES" id="Fay-4F-Fwt"/>
                             <constraint firstItem="Qzz-sy-Vxh" firstAttribute="top" secondItem="NWz-4U-DmI" secondAttribute="bottom" constant="7" id="ZEA-rD-YG8"/>
-                            <constraint firstItem="mr8-sF-byb" firstAttribute="top" secondItem="SNI-55-U7O" secondAttribute="bottom" constant="5" id="fmT-g9-enj"/>
+                            <constraint firstItem="mr8-sF-byb" firstAttribute="top" secondItem="SNI-55-U7O" secondAttribute="bottom" constant="10" id="fmT-g9-enj"/>
                             <constraint firstItem="SNI-55-U7O" firstAttribute="centerX" secondItem="WCP-EE-5da" secondAttribute="centerX" id="h2m-rH-byb"/>
                             <constraint firstItem="7W2-c2-e6S" firstAttribute="leading" secondItem="g2m-oe-4h8" secondAttribute="leading" constant="82" id="r4C-4Z-ivp"/>
                             <constraint firstItem="Qzz-sy-Vxh" firstAttribute="leading" secondItem="WCP-EE-5da" secondAttribute="leading" id="rLa-kE-DXz"/>
@@ -435,7 +435,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sZ-Wy-GHo">
-                                <rect key="frame" x="79" y="466" width="163" height="33"/>
+                                <rect key="frame" x="79" y="461" width="163" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="163" id="aUY-7o-g75"/>
                                 </constraints>
@@ -662,7 +662,7 @@
                             <constraint firstItem="C8i-oW-Vun" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="75" id="2Bf-zN-8Jl"/>
                             <constraint firstItem="beU-dO-sV8" firstAttribute="top" secondItem="C8i-oW-Vun" secondAttribute="bottom" constant="35" id="2Qo-Cp-txm"/>
                             <constraint firstItem="C8i-oW-Vun" firstAttribute="top" secondItem="Ktu-iS-QvT" secondAttribute="bottom" constant="20" id="3gC-hZ-k4l"/>
-                            <constraint firstItem="l0X-ca-0xd" firstAttribute="top" secondItem="3sZ-Wy-GHo" secondAttribute="bottom" constant="5" id="5R6-3F-HN4"/>
+                            <constraint firstItem="l0X-ca-0xd" firstAttribute="top" secondItem="3sZ-Wy-GHo" secondAttribute="bottom" constant="10" id="5R6-3F-HN4"/>
                             <constraint firstItem="3sZ-Wy-GHo" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="79" id="Kqr-kp-MJI"/>
                             <constraint firstItem="beU-dO-sV8" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="89" id="OOY-pd-Ynv"/>
                             <constraint firstItem="obK-YL-xMw" firstAttribute="leading" secondItem="RMs-47-QUY" secondAttribute="leading" constant="75" id="QmM-0g-JoU"/>
