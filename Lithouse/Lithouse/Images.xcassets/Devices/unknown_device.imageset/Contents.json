@@ -1,16 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "thermostat_off.png"
+      "filename" : "unknown_device_space.png"
     }
   ],
   "info" : {

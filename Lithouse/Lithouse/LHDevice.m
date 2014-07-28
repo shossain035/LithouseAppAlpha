@@ -98,6 +98,6 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
 
 - (UIImage *) imageForStatus:(LHDeviceStatus) status
 {
-    return [UIImage imageNamed:@"unknown"];
+    return [UIImage imageNamed:@"unknown_device"];
 }
 @end

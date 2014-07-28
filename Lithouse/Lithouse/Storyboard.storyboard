@@ -197,7 +197,7 @@
                                     <action selector="delete:" destination="clm-La-61T" eventType="touchDown" id="Yt1-zX-N70"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unknown" translatesAutoresizingMaskIntoConstraints="NO" id="Qzz-sy-Vxh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="generic_group" translatesAutoresizingMaskIntoConstraints="NO" id="Qzz-sy-Vxh">
                                 <rect key="frame" x="113" y="7" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="iRp-01-mzB"/>
@@ -853,10 +853,10 @@
     <resources>
         <image name="back" width="26" height="26"/>
         <image name="create_group" width="29" height="29"/>
-        <image name="create_schedule" width="29" height="29"/>
+        <image name="create_schedule" width="26" height="26"/>
+        <image name="generic_group" width="90" height="90"/>
         <image name="light_on" width="63" height="63"/>
         <image name="thermostat_on" width="84" height="84"/>
-        <image name="unknown" width="90" height="90"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
