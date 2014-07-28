@@ -406,7 +406,7 @@
                                 <action selector="back:" destination="lye-ca-lk0" id="sMV-xd-rdg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cB6-BH-3Hf">
+                        <barButtonItem key="rightBarButtonItem" image="create_schedule" id="cB6-BH-3Hf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="0pq-3z-BCP" kind="push" identifier="SegueForCreatingSchedule" id="Yoz-iC-WHI"/>
@@ -786,7 +786,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Devices" id="7Ge-Lo-apd">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="2rY-O1-JNq">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="create_group" id="2rY-O1-JNq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="clm-La-61T" kind="push" identifier="PushGroupForCreateSegue" id="arR-f9-dw0"/>
@@ -852,6 +852,8 @@
     </scenes>
     <resources>
         <image name="back" width="26" height="26"/>
+        <image name="create_group" width="29" height="29"/>
+        <image name="create_schedule" width="29" height="29"/>
         <image name="light_on" width="63" height="63"/>
         <image name="thermostat_on" width="84" height="84"/>
         <image name="unknown" width="90" height="90"/>
