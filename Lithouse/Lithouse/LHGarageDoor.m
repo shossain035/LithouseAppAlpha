@@ -15,13 +15,15 @@
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory
                               inHome:(HMHome *) home
 {
-    if ( self = [super initWithHMAccessory:accessory
-                    withPrimaryServiceType:HMServiceTypeGarageDoorOpener
-                    withCharacteristicType:HMCharacteristicTypeLocked
-withActionIdForSettingPrimaryCharacteristic:LHLockActionId
-withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
-                                    inHome:home] ) {
-    }
+    self = [super initWithHMAccessory:accessory
+               withPrimaryServiceType:HMServiceTypeGarageDoorOpener
+  withPrimaryTargetCharacteristicType:HMCharacteristicTypeLocked
+ withPrimaryCurrentCharacteristicType:HMCharacteristicTypeLocked
+withActionIdForSettingPrimaryCharacteristic:LHUnlockActionId
+withActionIdForUnsettingPrimaryCharacteristic:LHLockActionId
+ withPrimPrimaryCharacteristicValueOn:@(0)
+withPrimPrimaryCharacteristicValueOff:@(1)
+                               inHome:home];
     
     return self;
 }
@@ -39,13 +41,14 @@ withActionIdForUnsettingPrimaryCharacteristic:LHUnlockActionId
     static NSDictionary * imageDictionary = nil;
     
     dispatch_once(&pred, ^{
-        imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed:@"garage_closed"],
-                            @(LHDeviceIsOff):[UIImage imageNamed:@"garage_open"]};
+        imageDictionary = @{@(LHDeviceIsOn):[UIImage imageNamed:@"garage_open"],
+                            @(LHDeviceIsOff):[UIImage imageNamed:@"garage_closed"]};
     });
     
     UIImage * imageForStatus = [imageDictionary objectForKey:@(status)];
+    //todo: create a new icon for unknown garage door status 
     return ((imageForStatus == nil) ?
-            [imageDictionary objectForKey:@(LHDeviceIsOff)]:imageForStatus);
+            [imageDictionary objectForKey:@(LHDeviceIsOn)]:imageForStatus);
 }
 
 - (NSString *) defaultActionId
