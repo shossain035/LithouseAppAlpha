@@ -100,4 +100,22 @@ NSString * const LHDeviceDidStatusChangeNotification = @"LHDeviceDidStatusChange
 {
     return [UIImage imageNamed:@"unknown_device"];
 }
+
+- (UIImage *) imageForActionId: (NSString *) actionId
+{
+    if ([LHTurnOnActionId isEqualToString:actionId]
+        || [LHUnlockActionId isEqualToString:actionId]) {
+        
+        return [self imageForStatus:LHDeviceIsOn];
+        
+    } else if ([LHTurnOffActionId isEqualToString:actionId]
+               || [LHLockActionId isEqualToString:actionId]) {
+        
+        return [self imageForStatus:LHDeviceIsOff];
+        
+    }
+    
+    return [self imageForStatus:LHDeviceIsOff];
+}
+
 @end

@@ -61,13 +61,14 @@
     
     [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.schedule.fireDate]
                      forState:UIControlStateNormal];
-    self.actionLabel.text = [self.schedule.action friendlyName];
-    self.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
-   
-    //todo: image for status based on action
-    self.displayImage.image = [self.device imageForStatus:LHDeviceIsOff];
+    
+    self.actionLabel.text = self.schedule.action.friendlyName;
+    self.displayImage.image = [self.device imageForActionId:self.schedule.action.identifier];
+    
     self.deviceNameLabel.text = self.device.friendlyName;
     
+    self.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
+   
     self.actionNames = [[NSMutableArray alloc] init];
     //ignoring i=0 "ignore" action
     for ( int i=1; i<self.device.actionCount; i++) {
@@ -143,7 +144,9 @@
                          withDidSelectRowCallback:^(NSInteger selectedRow) {
                              //todo: cleanup mapping. related indexOfSelectedAction()
                              self.schedule.action = [self.device actionAtIndex:selectedRow + 1];
-                             self.actionLabel.text = [self.schedule.action friendlyName];
+                             self.actionLabel.text = self.schedule.action.friendlyName;
+                             self.displayImage.image = [self.device imageForActionId:self.schedule.action.identifier];
+                             
                          }];
     
     [self showOverlay:overlay];
