@@ -9,16 +9,19 @@
 
 NSString * const LHScheduleCollectionChangedNotification = @"LHScheduleCollectionChangedNotification";
 
-NSString * stringWithLHScheduleTimerRepeatMode (LHScheduleTimerRepeatMode mode)
+NSArray * getRepeatModeNames ()
 {
     static dispatch_once_t pred;
-    static NSDictionary * nameDictionary = nil;
+    static NSArray * nameArray = nil;
     
     dispatch_once(&pred, ^{
-        nameDictionary = @{@(LHRepeatNever):@"Never",
-                           @(LHRepeatDaily):@"Every Day",
-                           @(LHRepeatWeekly):@"Every Week"};
+        nameArray = @[@"Never", @"Every Day", @"Every Week"];
     });
     
-    return nameDictionary [@(mode)];
+    return nameArray;
+}
+
+NSString * stringWithLHScheduleTimerRepeatMode (LHScheduleTimerRepeatMode mode)
+{
+    return getRepeatModeNames() [mode];
 }

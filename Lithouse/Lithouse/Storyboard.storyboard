@@ -355,7 +355,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yh-tr-aSZ">
-                                            <rect key="frame" x="197" y="12" width="33" height="21"/>
+                                            <rect key="frame" x="192" y="12" width="33" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -448,116 +448,6 @@
                                     <action selector="delete:" destination="0pq-3z-BCP" eventType="touchDown" id="7Wt-6c-t3b"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-7G-lEs">
-                                <rect key="frame" x="0.0" y="300" width="320" height="192"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hx-tx-JsY">
-                                        <rect key="frame" x="0.0" y="30" width="320" height="162"/>
-                                        <subviews>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncm-A9-eTj">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="0pq-3z-BCP" id="zXy-R0-m4u"/>
-                                                    <outlet property="delegate" destination="0pq-3z-BCP" id="iae-JR-s5J"/>
-                                                </connections>
-                                            </pickerView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djk-ih-fXu">
-                                        <rect key="frame" x="274" y="0.0" width="46" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hideActionPicker:" destination="0pq-3z-BCP" eventType="touchDown" id="rxS-zI-FGz"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Action" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W1-Ug-qqY">
-                                        <rect key="frame" x="109" y="0.0" width="103" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bss-Yr-YlI">
-                                <rect key="frame" x="0.0" y="400" width="320" height="192"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-ej-MBe">
-                                        <rect key="frame" x="0.0" y="30" width="320" height="162"/>
-                                        <subviews>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owp-dQ-mkw">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="0pq-3z-BCP" id="uCt-ek-O34"/>
-                                                    <outlet property="delegate" destination="0pq-3z-BCP" id="FDa-h7-wlC"/>
-                                                </connections>
-                                            </pickerView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3H-KV-h0j">
-                                        <rect key="frame" x="274" y="0.0" width="46" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hideRecurrencePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="cYv-na-8AM"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repeat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9o-qo-v7M">
-                                        <rect key="frame" x="110" y="0.0" width="100" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyL-zB-5t1">
-                                <rect key="frame" x="0.0" y="224" width="320" height="192"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-l4-UmC">
-                                        <rect key="frame" x="274" y="0.0" width="46" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hideDatePicker:" destination="0pq-3z-BCP" eventType="touchDown" id="EnI-Pq-8ZB"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-85-fUI">
-                                        <rect key="frame" x="0.0" y="30" width="320" height="162"/>
-                                        <subviews>
-                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cdA-w2-5Lq">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                                                <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <date key="date" timeIntervalSinceReferenceDate="425459150.67881799">
-                                                    <!--2014-06-26 07:05:50 +0000-->
-                                                </date>
-                                                <connections>
-                                                    <action selector="datePickerValueChanged:" destination="0pq-3z-BCP" eventType="valueChanged" id="rG4-E1-PRT"/>
-                                                </connections>
-                                            </datePicker>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XX-Qg-5P6">
-                                        <rect key="frame" x="97" y="0.0" width="127" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-oW-Vun">
                                 <rect key="frame" x="75" y="20" width="215" height="58"/>
                                 <subviews>
@@ -685,22 +575,157 @@
                     </navigationItem>
                     <connections>
                         <outlet property="actionLabel" destination="hSz-ad-K97" id="LTy-fv-yF8"/>
-                        <outlet property="actionPicker" destination="ncm-A9-eTj" id="raQ-eB-SVI"/>
-                        <outlet property="actionPickerContainer" destination="Fi1-7G-lEs" id="Jbh-jt-fqA"/>
                         <outlet property="dateButton" destination="beU-dO-sV8" id="pCp-8g-xI6"/>
-                        <outlet property="datePicker" destination="cdA-w2-5Lq" id="JsV-9s-Y1b"/>
-                        <outlet property="datePickerContainer" destination="FyL-zB-5t1" id="bpB-Qc-5Ox"/>
                         <outlet property="deleteButton" destination="3sZ-Wy-GHo" id="vgX-y4-qhW"/>
                         <outlet property="deviceNameLabel" destination="CgN-Y9-o77" id="kQ0-X2-OzE"/>
                         <outlet property="displayImage" destination="0qo-4e-Wo2" id="ZK4-kB-d95"/>
                         <outlet property="recurranceLabel" destination="fQS-ZV-pey" id="PSY-p1-3jD"/>
-                        <outlet property="recurrancePicker" destination="owp-dQ-mkw" id="iXj-Eq-oOp"/>
-                        <outlet property="recurrancePickerContainer" destination="bss-Yr-YlI" id="vJj-Ne-cmU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtw-WR-flD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1883" y="1517"/>
+        </scene>
+        <!--Overlay Picker View Controller-->
+        <scene sceneID="U2m-z7-7nO">
+            <objects>
+                <viewController storyboardIdentifier="LHOverlayPickerViewController" id="eqd-oJ-VSC" customClass="LHOverlayPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AtL-C3-XYH"/>
+                        <viewControllerLayoutGuide type="bottom" id="A8e-tF-A7T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BJg-bl-AVh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-sq-oPH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+                                <subviews>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeC-p1-ZpD">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
+                                        <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="N26-WC-fZJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHA-ZH-0ao">
+                                        <rect key="frame" x="0.0" y="33" width="320" height="162"/>
+                                        <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="eqd-oJ-VSC" id="SC2-Ln-W05"/>
+                                            <outlet property="delegate" destination="eqd-oJ-VSC" id="uIp-hX-AHC"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="bHA-ZH-0ao" firstAttribute="top" secondItem="MQT-sq-oPH" secondAttribute="top" constant="33" id="5A2-Sn-f1a"/>
+                                    <constraint firstAttribute="centerX" secondItem="yeC-p1-ZpD" secondAttribute="centerX" id="FVs-H2-WBv"/>
+                                    <constraint firstAttribute="width" secondItem="bHA-ZH-0ao" secondAttribute="width" id="Fe7-3R-Jxx"/>
+                                    <constraint firstAttribute="height" constant="195" id="WUs-Tb-qna"/>
+                                    <constraint firstItem="yeC-p1-ZpD" firstAttribute="top" secondItem="MQT-sq-oPH" secondAttribute="top" id="bFC-ZY-IZo"/>
+                                    <constraint firstAttribute="centerX" secondItem="bHA-ZH-0ao" secondAttribute="centerX" id="lky-wJ-7Yn"/>
+                                    <constraint firstAttribute="width" secondItem="yeC-p1-ZpD" secondAttribute="width" id="lsp-sr-Ctj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MQT-sq-oPH" firstAttribute="top" secondItem="BJg-bl-AVh" secondAttribute="top" id="NGp-D3-MAm"/>
+                            <constraint firstItem="MQT-sq-oPH" firstAttribute="width" secondItem="BJg-bl-AVh" secondAttribute="width" id="XZz-Pa-rgd"/>
+                            <constraint firstItem="MQT-sq-oPH" firstAttribute="leading" secondItem="BJg-bl-AVh" secondAttribute="leading" id="kc9-Gn-82i"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="mainPickerView" destination="bHA-ZH-0ao" id="rYC-Oe-NpM"/>
+                        <outlet property="mainView" destination="MQT-sq-oPH" id="C2J-Kh-oUG"/>
+                        <outlet property="titleLabel" destination="yeC-p1-ZpD" id="fGA-jm-7pR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jlw-r6-bwj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2332" y="1517"/>
+        </scene>
+        <!--Overlay Date Picker View Controller-->
+        <scene sceneID="87c-Cj-aBU">
+            <objects>
+                <viewController storyboardIdentifier="LHOverlayDatePickerViewController" id="gBr-0B-nss" customClass="LHOverlayDatePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MfP-i8-NUf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Phf-x4-ABV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LR5-Su-WHu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4i-sr-sBz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPt-WS-cJq">
+                                        <rect key="frame" x="0.0" y="33" width="320" height="162"/>
+                                        <subviews>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="625-pZ-Bkq">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="428391405.583193">
+                                                    <!--2014-07-30 05:36:45 +0000-->
+                                                </date>
+                                                <connections>
+                                                    <action selector="datePickerValueChanged:" destination="gBr-0B-nss" eventType="valueChanged" id="x2L-NS-3TG"/>
+                                                </connections>
+                                            </datePicker>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.82033512929999997" green="1" blue="0.78494225200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="625-pZ-Bkq" secondAttribute="width" id="6mx-ac-DwJ"/>
+                                            <constraint firstAttribute="height" secondItem="625-pZ-Bkq" secondAttribute="height" id="Ohw-2N-lbv"/>
+                                            <constraint firstItem="625-pZ-Bkq" firstAttribute="top" secondItem="JPt-WS-cJq" secondAttribute="top" id="Z7A-x9-Jso"/>
+                                            <constraint firstItem="625-pZ-Bkq" firstAttribute="leading" secondItem="JPt-WS-cJq" secondAttribute="leading" id="etw-oJ-iIm"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZd-Ec-S1l">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="9GZ-x4-0Pe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="JPt-WS-cJq" secondAttribute="bottom" id="BeJ-06-SRk"/>
+                                    <constraint firstItem="qZd-Ec-S1l" firstAttribute="top" secondItem="m4i-sr-sBz" secondAttribute="top" id="ISr-5g-UlN"/>
+                                    <constraint firstAttribute="width" secondItem="JPt-WS-cJq" secondAttribute="width" id="ViK-yg-dxI"/>
+                                    <constraint firstItem="JPt-WS-cJq" firstAttribute="leading" secondItem="m4i-sr-sBz" secondAttribute="leading" id="VqD-TI-glq"/>
+                                    <constraint firstItem="JPt-WS-cJq" firstAttribute="top" secondItem="m4i-sr-sBz" secondAttribute="top" constant="33" id="Zc1-9Z-Fuj"/>
+                                    <constraint firstItem="qZd-Ec-S1l" firstAttribute="leading" secondItem="JPt-WS-cJq" secondAttribute="leading" id="nPh-cn-E9H"/>
+                                    <constraint firstItem="qZd-Ec-S1l" firstAttribute="leading" secondItem="m4i-sr-sBz" secondAttribute="leading" id="vie-XH-HYh"/>
+                                    <constraint firstItem="qZd-Ec-S1l" firstAttribute="trailing" secondItem="JPt-WS-cJq" secondAttribute="trailing" id="z7H-gH-vTV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m4i-sr-sBz" firstAttribute="width" secondItem="LR5-Su-WHu" secondAttribute="width" id="0Nl-5j-6Rj"/>
+                            <constraint firstItem="m4i-sr-sBz" firstAttribute="top" secondItem="LR5-Su-WHu" secondAttribute="top" id="3s8-HY-DT9"/>
+                            <constraint firstItem="m4i-sr-sBz" firstAttribute="leading" secondItem="LR5-Su-WHu" secondAttribute="leading" id="gnU-Mm-rEM"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="datePicker" destination="625-pZ-Bkq" id="82M-Ic-7bn"/>
+                        <outlet property="mainView" destination="m4i-sr-sBz" id="4ry-9i-KOa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tci-Yy-l8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2798" y="1517"/>
         </scene>
         <!--Devices-->
         <scene sceneID="Pnr-w2-OUc">

@@ -17,6 +17,11 @@
 		7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */; };
 		7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */; };
 		712CCE6C198356EE000F4919 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712CCE6B198356EE000F4919 /* HomeKit.framework */; };
+		712CCE731988355E000F4919 /* LHOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE721988355E000F4919 /* LHOverlayViewController.m */; };
+		712CCE79198837D0000F4919 /* LHOverlayTransitioner.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE78198837D0000F4919 /* LHOverlayTransitioner.m */; };
+		712CCE7C19883948000F4919 /* LHOverlayPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE7B19883948000F4919 /* LHOverlayPresentationController.m */; };
+		712CCE7F1988594B000F4919 /* LHOverlayPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE7E1988594B000F4919 /* LHOverlayPickerViewController.m */; };
+		712CCE821988BDA5000F4919 /* LHOverlayDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE811988BDA5000F4919 /* LHOverlayDatePickerViewController.m */; };
 		71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */; };
 		71A697BF192B24D900C9AB86 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B1192B24D900C9AB86 /* DDAbstractDatabaseLogger.m */; };
 		71A697C0192B24D900C9AB86 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B3192B24D900C9AB86 /* DDASLLogger.m */; };
@@ -111,6 +116,16 @@
 		7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHModalPickerViewController.m; sourceTree = "<group>"; };
 		712CCE6A198356EE000F4919 /* Lithouse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lithouse.entitlements; sourceTree = "<group>"; };
 		712CCE6B198356EE000F4919 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		712CCE711988355E000F4919 /* LHOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHOverlayViewController.h; sourceTree = "<group>"; };
+		712CCE721988355E000F4919 /* LHOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHOverlayViewController.m; sourceTree = "<group>"; };
+		712CCE77198837D0000F4919 /* LHOverlayTransitioner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHOverlayTransitioner.h; sourceTree = "<group>"; };
+		712CCE78198837D0000F4919 /* LHOverlayTransitioner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHOverlayTransitioner.m; sourceTree = "<group>"; };
+		712CCE7A19883948000F4919 /* LHOverlayPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHOverlayPresentationController.h; sourceTree = "<group>"; };
+		712CCE7B19883948000F4919 /* LHOverlayPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHOverlayPresentationController.m; sourceTree = "<group>"; };
+		712CCE7D1988594B000F4919 /* LHOverlayPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHOverlayPickerViewController.h; sourceTree = "<group>"; };
+		712CCE7E1988594B000F4919 /* LHOverlayPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHOverlayPickerViewController.m; sourceTree = "<group>"; };
+		712CCE801988BDA5000F4919 /* LHOverlayDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHOverlayDatePickerViewController.h; sourceTree = "<group>"; };
+		712CCE811988BDA5000F4919 /* LHOverlayDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHOverlayDatePickerViewController.m; sourceTree = "<group>"; };
 		7152D723194C3A4D00C627CD /* DeviceProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceProtocols.h; sourceTree = "<group>"; };
 		71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceConfigData.plist; sourceTree = "<group>"; };
 		71A697B0192B24D900C9AB86 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
@@ -308,6 +323,23 @@
 				7152D723194C3A4D00C627CD /* DeviceProtocols.h */,
 			);
 			name = Devices;
+			sourceTree = "<group>";
+		};
+		712CCE6D198832E4000F4919 /* OverlayViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				712CCE711988355E000F4919 /* LHOverlayViewController.h */,
+				712CCE721988355E000F4919 /* LHOverlayViewController.m */,
+				712CCE7D1988594B000F4919 /* LHOverlayPickerViewController.h */,
+				712CCE7E1988594B000F4919 /* LHOverlayPickerViewController.m */,
+				712CCE801988BDA5000F4919 /* LHOverlayDatePickerViewController.h */,
+				712CCE811988BDA5000F4919 /* LHOverlayDatePickerViewController.m */,
+				712CCE77198837D0000F4919 /* LHOverlayTransitioner.h */,
+				712CCE78198837D0000F4919 /* LHOverlayTransitioner.m */,
+				712CCE7A19883948000F4919 /* LHOverlayPresentationController.h */,
+				712CCE7B19883948000F4919 /* LHOverlayPresentationController.m */,
+			);
+			name = OverlayViewControllers;
 			sourceTree = "<group>";
 		};
 		71A697AF192B24D900C9AB86 /* Lumberjack */ = {
@@ -521,6 +553,7 @@
 		71C82E41191F4C9100395392 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				712CCE6D198832E4000F4919 /* OverlayViewControllers */,
 				71C82E42191F4CD600395392 /* LHMainMenuViewController.h */,
 				71C82E43191F4CD600395392 /* LHMainMenuViewController.m */,
 				71C82E4519205E6100395392 /* LHDevicesViewController.h */,
@@ -699,6 +732,7 @@
 				71A697C5192B24D900C9AB86 /* DispatchQueueLogFormatter.m in Sources */,
 				7128FD971921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m in Sources */,
 				7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */,
+				712CCE7C19883948000F4919 /* LHOverlayPresentationController.m in Sources */,
 				71C82E0E191F2A8F00395392 /* main.m in Sources */,
 				71A697C3192B24D900C9AB86 /* DDTTYLogger.m in Sources */,
 				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
@@ -718,9 +752,12 @@
 				71C871AE1959ED1C00C3F564 /* LHSwitch.m in Sources */,
 				71AD2553196524260092F5CB /* LHThermostatCell.m in Sources */,
 				71FB4BD9195D2749005CF70E /* LHScheduleViewController.m in Sources */,
+				712CCE821988BDA5000F4919 /* LHOverlayDatePickerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
 				71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */,
+				712CCE79198837D0000F4919 /* LHOverlayTransitioner.m in Sources */,
 				71C871A5195673D000C3F564 /* LHHomeKitController.m in Sources */,
+				712CCE731988355E000F4919 /* LHOverlayViewController.m in Sources */,
 				71A697C2192B24D900C9AB86 /* DDLog.m in Sources */,
 				71AD254D1964A20B0092F5CB /* EFCircularSlider.m in Sources */,
 				71E8EC34194C0C5E0004C6F7 /* NKOTriangularIndicatorView.m in Sources */,
@@ -730,6 +767,7 @@
 				71FB4BD6195A9321005CF70E /* LHDetailCollectionViewController.m in Sources */,
 				71C871B11959F6FB00C3F564 /* LHGarageDoor.m in Sources */,
 				71C82E4719205E6100395392 /* LHDevicesViewController.m in Sources */,
+				712CCE7F1988594B000F4919 /* LHOverlayPickerViewController.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
 				71A697C4192B24D900C9AB86 /* ContextFilterLogFormatter.m in Sources */,
 			);

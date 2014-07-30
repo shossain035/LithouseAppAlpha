@@ -12,17 +12,21 @@
 #import "LHDevice.h"
 #import "LHAction.h"
 
-@interface LHScheduleViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
-@property (nonatomic, strong) IBOutlet UIDatePicker   * datePicker;
-@property (nonatomic, strong) IBOutlet UIView         * datePickerContainer;
-@property (nonatomic, strong) IBOutlet UIPickerView   * actionPicker;
-@property (nonatomic, strong) IBOutlet UIView         * actionPickerContainer;
-@property (nonatomic, strong) IBOutlet UIPickerView   * recurrancePicker;
-@property (nonatomic, strong) IBOutlet UIView         * recurrancePickerContainer;
+#import "LHOverlayPickerViewController.h"
+#import "LHOverlayDatePickerViewController.h"
+#import "LHOverlayTransitioner.h"
+
+#define kOverlayPickerViewControllerId     @"LHOverlayPickerViewController"
+#define kOverlayDatePickerViewControllerId @"LHOverlayDatePickerViewController"
+
+@interface LHScheduleViewController ()
+{
+    id<UIViewControllerTransitioningDelegate> _transitioningDelegate;
+}
+
 
 @property (nonatomic, strong) IBOutlet UIButton       * deleteButton;
-@property (nonatomic, strong)          NSMutableArray * actions;
-
+@property (nonatomic, strong)          NSMutableArray * actionNames;
 @property (nonatomic, strong) IBOutlet UIButton       * dateButton;
 @property (nonatomic, strong, readonly) NSDateFormatter * dateFormatter;
 @property (nonatomic, strong) IBOutlet UIImageView    * displayImage;
@@ -55,29 +59,20 @@
         self.title = @"Edit Schedule";
     }
     
-    self.datePicker.date = self.schedule.fireDate;
-    [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.datePicker.date]
+    [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.schedule.fireDate]
                      forState:UIControlStateNormal];
-    
-    [self.actionPicker selectRow:[self indexOfSelectedAction]
-                     inComponent:0
-                        animated:NO];
     self.actionLabel.text = [self.schedule.action friendlyName];
-    
-    [self.recurrancePicker selectRow:self.schedule.repeatMode
-                         inComponent:0
-                            animated:NO];
     self.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
    
     //todo: image for status based on action
     self.displayImage.image = [self.device imageForStatus:LHDeviceIsOff];
     self.deviceNameLabel.text = self.device.friendlyName;
-}
-
-- (void) viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    [self hideAllPickerViewsWithAnimation:NO];
+    
+    self.actionNames = [[NSMutableArray alloc] init];
+    //ignoring i=0 "ignore" action
+    for ( int i=1; i<self.device.actionCount; i++) {
+        self.actionNames[i-1] = [self.device actionAtIndex:(long)i].friendlyName;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,12 +82,9 @@
 
 - (int) indexOfSelectedAction
 {
-    self.actions = [[NSMutableArray alloc] init];
     int selectedIndex = 0;
     //ignoring i=0 "ignore" action
     for ( int i=1; i<self.device.actionCount; i++) {
-        self.actions[i-1] = [self.device actionAtIndex:(long)i];
-        
         if ( [self.schedule.action.identifier
               isEqualToString:[self.device actionAtIndex:(long)i].identifier]) {
             
@@ -132,128 +124,62 @@
     [alert show];
 }
 
-- (IBAction) showDatePicker : (id) sender
+- (void) showOverlay:(LHOverlayViewController *) overlayController
 {
-    [self pickerView:self.datePickerContainer shouldAppear:YES];
-}
-
-- (IBAction) hideDatePicker : (id) sender
-{
-    [self pickerView:self.datePickerContainer shouldAppear:NO];
+    _transitioningDelegate = [[LHOverlayTransitioningDelegate alloc] init];
+    [overlayController setTransitioningDelegate: _transitioningDelegate];
+    
+    [self presentViewController:overlayController animated:YES completion:NULL];
 }
 
 - (IBAction) showActionPicker : (id) sender
 {
-    [self pickerView:self.actionPickerContainer shouldAppear:YES];
-}
-
-- (IBAction) hideActionPicker : (id) sender
-{
-    [self pickerView:self.actionPickerContainer shouldAppear:NO];
+    LHOverlayPickerViewController *overlay = [self.storyboard
+                                              instantiateViewControllerWithIdentifier:kOverlayPickerViewControllerId];
+    
+    [overlay setupOverlayPickerViewWithDataSource:self.actionNames
+                                withSelectedIndex:[self indexOfSelectedAction]
+                                        withTitle:@"Select Action"
+                         withDidSelectRowCallback:^(NSInteger selectedRow) {
+                             //todo: cleanup mapping. related indexOfSelectedAction()
+                             self.schedule.action = [self.device actionAtIndex:selectedRow + 1];
+                             self.actionLabel.text = [self.schedule.action friendlyName];
+                         }];
+    
+    [self showOverlay:overlay];
 }
 
 - (IBAction) showRecurrencePicker : (id) sender
 {
-    [self pickerView:self.recurrancePickerContainer shouldAppear:YES];
-}
-
-- (IBAction) hideRecurrencePicker : (id) sender
-{
-    [self pickerView:self.recurrancePickerContainer shouldAppear:NO];
-}
-
-- (IBAction) datePickerValueChanged:(id)sender
-{
-    NSLog(@"time: %@", self.datePicker.date);
-    //todo: consider going back in time.
-    self.schedule.fireDate = self.datePicker.date;
+    LHOverlayPickerViewController *overlay = [self.storyboard
+                                        instantiateViewControllerWithIdentifier:kOverlayPickerViewControllerId];
     
-    [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.datePicker.date]
-                     forState:UIControlStateNormal];
-}
-
-- (void) pickerView : (UIView *) pickerView
-       shouldAppear : (BOOL) doesAppear
-{
-    [self pickerView:pickerView
-        shouldAppear:doesAppear
-          isAnimated:YES];
-}
-
-- (void) pickerView : (UIView *) pickerView
-       shouldAppear : (BOOL) doesAppear
-         isAnimated : (BOOL) animated
-{
-    CGFloat targetY = self.view.frame.size.height;
-    if (doesAppear) {
-        targetY -= pickerView.frame.size.height;
-        [self hideAllPickerViewsWithAnimation:NO];
-    }
+    [overlay setupOverlayPickerViewWithDataSource:getRepeatModeNames()
+                                withSelectedIndex:self.schedule.repeatMode
+                                        withTitle:@"Repeat"
+                         withDidSelectRowCallback:^(NSInteger selectedRow) {
+                  self.schedule.repeatMode = selectedRow;
+                  self.recurranceLabel.text
+                    = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
+              }];
     
-    if (animated) {
-        [UIView beginAnimations:nil context:NULL];
-    }
-    pickerView.frame = CGRectMake(0.0f, targetY, pickerView.frame.size.width, pickerView.frame.size.height);
-    if (animated) {
-        [UIView commitAnimations];
-    }
+    [self showOverlay:overlay];
 }
 
-- (void) hideAllPickerViewsWithAnimation : (BOOL) isAnimated
+- (IBAction) showDatePicker:(id)sender
 {
-    [self pickerView:self.datePickerContainer shouldAppear:NO isAnimated:isAnimated];
-    [self pickerView:self.actionPickerContainer shouldAppear:NO isAnimated:isAnimated];
-    [self pickerView:self.recurrancePickerContainer shouldAppear:NO isAnimated:isAnimated];
-}
+    LHOverlayDatePickerViewController *dateOverlay =
+        [self.storyboard instantiateViewControllerWithIdentifier:kOverlayDatePickerViewControllerId];
 
-#pragma mark <UIPickerViewDataSource>
- - (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger) pickerView:(UIPickerView *)pickerView
- numberOfRowsInComponent:(NSInteger)component
-{
-    if ( pickerView == self.actionPicker) {
-        return self.actions.count;
-    } else if ( pickerView == self.recurrancePicker ) {
-        return LHRepeatModesCount;
-    }
+    [dateOverlay setupOverlayDatePickerViewWithDate:self.schedule.fireDate
+                          withDidSelectDateCallback:^(NSDate * selectedDate) {
+                              self.schedule.fireDate = selectedDate;
+                              [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.schedule.fireDate]
+                                               forState:UIControlStateNormal];
+                              
+                          }];
     
-    return 0;
-}
-
-- (NSString *) pickerView:(UIPickerView *)pickerView
-              titleForRow:(NSInteger)row
-             forComponent:(NSInteger)component
-{
-    if ( pickerView == self.actionPicker) {
-        return ((LHAction *)self.actions[row]).friendlyName;
-    } else if ( pickerView == self.recurrancePicker ) {
-        return stringWithLHScheduleTimerRepeatMode(row);
-    }
-    
-    return @"";
-}
-
-#pragma mark <UIPickerViewDelegate>
-- (void) pickerView:(UIPickerView *)pickerView
-       didSelectRow:(NSInteger)row
-        inComponent:(NSInteger)component
-{
-    if ( pickerView == self.actionPicker) {
-        self.schedule.action = self.actions[row];
-        self.actionLabel.text = [self.schedule.action friendlyName];
-    } else if ( pickerView == self.recurrancePicker ) {
-        self.schedule.repeatMode = row;
-        self.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(self.schedule.repeatMode);
-    }
-}
-
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self hideAllPickerViewsWithAnimation:YES];
+    [self showOverlay:dateOverlay];
 }
 
 @end
