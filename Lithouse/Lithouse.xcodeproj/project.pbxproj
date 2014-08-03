@@ -15,7 +15,6 @@
 		7128FD971921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD961921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m */; };
 		7128FD9B192295780031BEA8 /* LHAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FD9A192295780031BEA8 /* LHAction.m */; };
 		7128FDA21922A11A0031BEA8 /* LHWeMoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */; };
-		7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */; };
 		712CCE6C198356EE000F4919 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712CCE6B198356EE000F4919 /* HomeKit.framework */; };
 		712CCE731988355E000F4919 /* LHOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE721988355E000F4919 /* LHOverlayViewController.m */; };
 		712CCE79198837D0000F4919 /* LHOverlayTransitioner.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE78198837D0000F4919 /* LHOverlayTransitioner.m */; };
@@ -112,8 +111,6 @@
 		7128FD9A192295780031BEA8 /* LHAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAction.m; sourceTree = "<group>"; };
 		7128FDA01922A11A0031BEA8 /* LHWeMoSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHWeMoSwitch.h; sourceTree = "<group>"; };
 		7128FDA11922A11A0031BEA8 /* LHWeMoSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHWeMoSwitch.m; sourceTree = "<group>"; };
-		7128FDA61923F5CD0031BEA8 /* LHModalPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHModalPickerViewController.h; sourceTree = "<group>"; };
-		7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHModalPickerViewController.m; sourceTree = "<group>"; };
 		712CCE6A198356EE000F4919 /* Lithouse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lithouse.entitlements; sourceTree = "<group>"; };
 		712CCE6B198356EE000F4919 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		712CCE711988355E000F4919 /* LHOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHOverlayViewController.h; sourceTree = "<group>"; };
@@ -560,8 +557,6 @@
 				71C82E4619205E6100395392 /* LHDevicesViewController.m */,
 				7128FD8F19219A360031BEA8 /* LHGroupCRUDViewController.h */,
 				7128FD9019219A370031BEA8 /* LHGroupCRUDViewController.m */,
-				7128FDA61923F5CD0031BEA8 /* LHModalPickerViewController.h */,
-				7128FDA71923F5CD0031BEA8 /* LHModalPickerViewController.m */,
 				71C871A3195673D000C3F564 /* LHHomeKitController.h */,
 				71C871A4195673D000C3F564 /* LHHomeKitController.m */,
 				71FB4BD4195A9321005CF70E /* LHDetailCollectionViewController.h */,
@@ -731,7 +726,6 @@
 				71A697C0192B24D900C9AB86 /* DDASLLogger.m in Sources */,
 				71A697C5192B24D900C9AB86 /* DispatchQueueLogFormatter.m in Sources */,
 				7128FD971921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m in Sources */,
-				7128FDA81923F5CD0031BEA8 /* LHModalPickerViewController.m in Sources */,
 				712CCE7C19883948000F4919 /* LHOverlayPresentationController.m in Sources */,
 				71C82E0E191F2A8F00395392 /* main.m in Sources */,
 				71A697C3192B24D900C9AB86 /* DDTTYLogger.m in Sources */,

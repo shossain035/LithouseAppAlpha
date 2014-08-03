@@ -8,13 +8,17 @@
 
 #import "LHGroupCRUDViewController.h"
 #import "LHGroupDeviceTableViewCell.h"
-#import "LHModalPickerViewController.h"
 #import "LHAppDelegate.h"
 
 #import "LHDevice.h"
 #import "LHAction.h"
 #import "LHAlertView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "LHOverlayPickerViewController.h"
+#import "LHOverlayDatePickerViewController.h"
+#import "LHOverlayTransitioner.h"
+
+#define kOverlayPickerViewControllerId     @"LHOverlayPickerViewController"
 
 int const LHPhotoPickerActionSheetTag = 1;
 
@@ -22,6 +26,9 @@ int const LHPhotoPickerActionSheetTag = 1;
                                          UIActionSheetDelegate,
                                          UIImagePickerControllerDelegate,
                                          UINavigationControllerDelegate>
+{
+    id<UIViewControllerTransitioningDelegate> _transitioningDelegate;
+}
 
 @property (nonatomic, strong) NSMutableArray * devices;
 @property (nonatomic, strong) DeviceGroup    * deviceGroup;
@@ -249,41 +256,44 @@ int const LHPhotoPickerActionSheetTag = 1;
 - (void) launchActionPickerForCell : (LHGroupDeviceTableViewCell *) deviceSelectionCell
                         withDevice : (LHDevice *) aDevice
 {
-    UINavigationController * navigationController = (UINavigationController *)
-        [self.storyboard instantiateViewControllerWithIdentifier : @"ModalPickerViewController"];
-
-    LHModalPickerViewController * pickerViewController =
-        (LHModalPickerViewController *) [[navigationController viewControllers] objectAtIndex : 0];
-    pickerViewController.navigationItem.title = aDevice.friendlyName;
+    //create the names array and get the currenlty selected index
+    int selectedIndex = 0;
+    NSMutableArray * actionNames = [[NSMutableArray alloc] init];
     
-    pickerViewController.numberOfRowsCallback = ^ NSInteger {
-        return [aDevice actionCount];
-    };
-
-    pickerViewController.updateCellAtIndexPathCallback =
-    ^ (UITableViewCell * cell, NSIndexPath * indexPath) {
-        LHAction * action = [aDevice actionAtIndex : indexPath.row];
-        cell.textLabel.text = action.friendlyName;
+    for ( long i=0; i < aDevice.actionCount; i++) {
+        LHAction * action = [aDevice actionAtIndex:i];
+        actionNames[i] = action.friendlyName;
         
         if ([action.identifier isEqualToString :
              [self.selectedActionsForDevices objectForKey : aDevice.identifier]]) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            selectedIndex = i;
         }
-    };
+    }
     
-    pickerViewController.didSelectRowAtIndexPathCallback = ^ (NSIndexPath * indexPath) {
-        LHAction * action = [aDevice actionAtIndex : indexPath.row];
-        [self.selectedActionsForDevices setObject : action.identifier
-                                           forKey : aDevice.identifier];
-        
-        [self updateCurrentActionForDevice : aDevice
-                                withAction : action
-                            forDisplayCell : deviceSelectionCell];
-    };
+    //construct the overlay picker view
+    LHOverlayPickerViewController *overlay = [self.storyboard
+                                              instantiateViewControllerWithIdentifier:kOverlayPickerViewControllerId];
     
-    [self presentViewController : navigationController animated : YES completion : nil];
+    [overlay setupOverlayPickerViewWithDataSource:actionNames
+                                withSelectedIndex:selectedIndex
+                                        withTitle:aDevice.friendlyName
+                         withDidSelectRowCallback:^(NSInteger selectedRow) {
+                             
+                             LHAction * action = [aDevice actionAtIndex : selectedRow];
+                             [self.selectedActionsForDevices setObject : action.identifier
+                                                                forKey : aDevice.identifier];
+                             
+                             [self updateCurrentActionForDevice : aDevice
+                                                     withAction : action
+                                                 forDisplayCell : deviceSelectionCell];
+                             
+                         }];
+    //display the overlay picker view
+    _transitioningDelegate = [[LHOverlayTransitioningDelegate alloc] init];
+    [overlay setTransitioningDelegate: _transitioningDelegate];
+    
+    [self presentViewController:overlay animated:YES completion:NULL];
 }
 
 - (void) updateCurrentActionForDevice : (LHDevice *) aDevice
