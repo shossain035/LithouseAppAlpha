@@ -52,6 +52,7 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
 @property int                                                  hueHeartbeatDelay;
 
 @property (nonatomic, strong) LHHomeKitController            * homeKitController;
+@property (nonatomic, strong) UIRefreshControl               * refreshControl;
 @end
 
 @implementation LHDevicesViewController
@@ -92,6 +93,14 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
     [self createHelperViews];
     
     self.homeKitController = [[LHHomeKitController alloc] initWithDeviceViewController:self];
+    
+    //refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor grayColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(searchForDevices)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:self.refreshControl];
     
     /*
     [NSTimer scheduledTimerWithTimeInterval : 30.0
@@ -192,6 +201,7 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
     dispatch_async(dispatch_get_main_queue(), ^{
         // hiding at the first one
         [self hideSpinner];
+        [self.refreshControl endRefreshing];
         
         //todo: consolidate
         if ( self.deviceDictionary.count > 0  ) {
@@ -493,13 +503,23 @@ referenceSizeForHeaderInSection : (NSInteger) section
     NSLog(@"didNetworkChanged");
 }
 
--(void) searchForDevices : (NSNotification *) notification {
+-(void) refreshDevices:(BOOL) doInBackground
+{
     NSLog(@"search for devices");
     //todo: cleanup state management
     [self searchForBridgeLocal];
-    [self refreshDeviceList];
+    [self refreshDeviceList:doInBackground];
     [self.homeKitController startSearchingForHomeKitDevices];
-    //no need to start wemo search, as they will be called periodically. 
+}
+
+-(void) searchForDevices
+{
+    //no need to show extra spinner
+    [self refreshDevices:YES];
+}
+
+-(void) searchForDevices : (NSNotification *) notification {
+    [self refreshDevices:NO];
 }
 
 
