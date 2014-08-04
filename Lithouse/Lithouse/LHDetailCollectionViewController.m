@@ -35,10 +35,11 @@ static NSString * const LHSegueForEditingSchedule  = @"SegueForEditingSchedule";
 @synthesize timeHourMinuteFormatter = _timeHourMinuteFormatter;
 @synthesize timeAMPMFormatter = _timeAMPMFormatter;
 
-static int const LHScheduleCellWidth     = 300;
-static int const LHScheduleCellHeight    = 66;
-static int const LHColorPickerCellHeight = 264;
-static int const LHThermostatCellHeight  = 264;
+static int const LHScheduleCellWidth       = 300;
+static int const LHScheduleCellHeight      = 66;
+static int const LHEmptyScheduleCellHeight = 128;
+static int const LHColorPickerCellHeight   = 264;
+static int const LHThermostatCellHeight    = 264;
 
 - (IBAction) back : (id) sender
 {
@@ -46,6 +47,11 @@ static int const LHThermostatCellHeight  = 264;
     //todo: check memory management issues.
     _thermostatRefreshTimer = nil;
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction) createButtonPressed:(id)sender
+{
+    [self performSegueWithIdentifier:LHSegueForCreatingSchedule sender:sender];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -132,6 +138,10 @@ static int const LHThermostatCellHeight  = 264;
         if ( self.device != nil ) return 1;
         else return 0;
     }else {
+        //empty schedule
+        if (self.schedules.count == 0) {
+            return 1;
+        }
         return self.schedules.count;
     }
 }
@@ -149,27 +159,32 @@ static int const LHThermostatCellHeight  = 264;
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HiddenCell" forIndexPath:indexPath];
         }
     } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ScheduleCell" forIndexPath:indexPath];
-        LHScheduleCell * scheduleCell = (LHScheduleCell *) cell;
-        id<LHSchedule> schedule = self.schedules[indexPath.row];
-        
-        scheduleCell.timeHourMinuteLabel.text = [self.timeHourMinuteFormatter stringFromDate:schedule.fireDate];
-        scheduleCell.timeAMPMLabel.text = [self.timeAMPMFormatter stringFromDate:schedule.fireDate];
-        scheduleCell.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(schedule.repeatMode);
-        scheduleCell.actionLabel.text = schedule.action.friendlyName;
-        [scheduleCell activate:schedule.enabled];
-        
-        scheduleCell.toggleCallbackBlock = ^{
-            //toogle current state
-            [schedule enable:!schedule.enabled];
-        };
+        //empty schedule
+        if (indexPath.row == 0 && self.schedules.count == 0) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ScheduleCellEmpty" forIndexPath:indexPath];
+        } else {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ScheduleCell" forIndexPath:indexPath];
+            LHScheduleCell * scheduleCell = (LHScheduleCell *) cell;
+            id<LHSchedule> schedule = self.schedules[indexPath.row];
+            
+            scheduleCell.timeHourMinuteLabel.text = [self.timeHourMinuteFormatter stringFromDate:schedule.fireDate];
+            scheduleCell.timeAMPMLabel.text = [self.timeAMPMFormatter stringFromDate:schedule.fireDate];
+            scheduleCell.recurranceLabel.text = stringWithLHScheduleTimerRepeatMode(schedule.repeatMode);
+            scheduleCell.actionLabel.text = schedule.action.friendlyName;
+            [scheduleCell activate:schedule.enabled];
+            
+            scheduleCell.toggleCallbackBlock = ^{
+                //toogle current state
+                [schedule enable:!schedule.enabled];
+            };
 
-        scheduleCell.infoButtonCallback = ^{
-            self.currentSchedule = schedule;
-        
-            [self performSegueWithIdentifier : LHSegueForEditingSchedule
-                                      sender : self];
-        };
+            scheduleCell.infoButtonCallback = ^{
+                self.currentSchedule = schedule;
+            
+                [self performSegueWithIdentifier : LHSegueForEditingSchedule
+                                          sender : self];
+            };
+        }
     }
     
     return cell;
@@ -189,7 +204,8 @@ static int const LHThermostatCellHeight  = 264;
 #pragma mark - <UICollectionViewDelegate>
 - (void) collectionView : (UICollectionView *) collectionView didSelectItemAtIndexPath : (NSIndexPath *) indexPath
 {
-    if (indexPath.section == 0) {
+    //ignore detail setting or empty cell
+    if (indexPath.section == 0 || self.schedules.count == 0) {
         return;
     }
     
@@ -206,6 +222,11 @@ static int const LHThermostatCellHeight  = 264;
     if ( indexPath.section == 0 ) {
         return CGSizeMake ( self.collectionView.bounds.size.width, [self heightOfDetailControllerForDevice] );
     } else {
+        //empty schedule cell
+        if (self.schedules.count == 0) {
+            return CGSizeMake ( LHScheduleCellWidth, LHEmptyScheduleCellHeight );
+        }
+
         return CGSizeMake ( LHScheduleCellWidth, LHScheduleCellHeight );
     }
 }
