@@ -15,15 +15,15 @@
 //todo: cleanup garage door and lock set/unset logic
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory inHome:(HMHome *) home
 {
-    self = [super initWithHMAccessory:accessory
-               withPrimaryServiceType:HMServiceTypeLock
-  withPrimaryTargetCharacteristicType:HMCharacteristicTypeLocked
- withPrimaryCurrentCharacteristicType:HMCharacteristicTypeLocked
-withActionIdForSettingPrimaryCharacteristic:LHUnlockActionId
-withActionIdForUnsettingPrimaryCharacteristic:LHLockActionId
- withPrimPrimaryCharacteristicValueOn:@(0)
-withPrimPrimaryCharacteristicValueOff:@(1)
-                               inHome:home];
+//    self = [super initWithHMAccessory:accessory
+//               withPrimaryServiceType:HMServiceTypeLockManagement
+//  withPrimaryTargetCharacteristicType:HMCharacteristicTypeCurrentLockMechanismState
+// withPrimaryCurrentCharacteristicType:HMCharacteristicTypeLocked
+//withActionIdForSettingPrimaryCharacteristic:LHUnlockActionId
+//withActionIdForUnsettingPrimaryCharacteristic:LHLockActionId
+// withPrimPrimaryCharacteristicValueOn:@(0)
+//withPrimPrimaryCharacteristicValueOff:@(1)
+//                               inHome:home];
     
     return self;
 }

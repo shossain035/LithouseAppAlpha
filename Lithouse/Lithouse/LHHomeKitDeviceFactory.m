@@ -24,7 +24,7 @@
         NSLog(@"service: %@", service.serviceType);
         if ( [service.serviceType isEqualToString:HMServiceTypeLightbulb] ) {
             return [[LHHomeKitBulb alloc] initWithHMAccessory:accessory inHome:home];
-        } else if ( [service.serviceType isEqualToString:HMServiceTypeLock] ) {
+        } else if ( [service.serviceType isEqualToString:HMServiceTypeLockManagement] ) {
             return [[LHLock alloc] initWithHMAccessory:accessory inHome:home];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeSwitch] ) {
             return [[LHSwitch alloc] initWithHMAccessory:accessory inHome:home];

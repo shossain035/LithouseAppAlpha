@@ -151,6 +151,7 @@ static const int LHHomeKitDeviceSearchDelay = 15;
 #pragma mark home manager delegate
 - (void) homeManagerDidUpdateHomes : (HMHomeManager *) manager
 {
+    NSLog(@"homeManagerDidUpdateHomes called");
     [self findLithouseHome];
     [self startSearchingForHomeKitDevices];
 }

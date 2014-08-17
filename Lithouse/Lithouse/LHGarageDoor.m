@@ -17,8 +17,8 @@
 {
     self = [super initWithHMAccessory:accessory
                withPrimaryServiceType:HMServiceTypeGarageDoorOpener
-  withPrimaryTargetCharacteristicType:HMCharacteristicTypeLocked
- withPrimaryCurrentCharacteristicType:HMCharacteristicTypeLocked
+  withPrimaryTargetCharacteristicType:HMCharacteristicTypeTargetDoorState
+ withPrimaryCurrentCharacteristicType:HMCharacteristicTypeCurrentDoorState
 withActionIdForSettingPrimaryCharacteristic:LHUnlockActionId
 withActionIdForUnsettingPrimaryCharacteristic:LHLockActionId
  withPrimPrimaryCharacteristicValueOn:@(0)
