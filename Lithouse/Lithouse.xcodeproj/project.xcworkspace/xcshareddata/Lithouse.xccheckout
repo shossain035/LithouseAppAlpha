@@ -10,29 +10,29 @@
 	<string>Lithouse</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FD62EA0B-5870-4B5A-935D-8F467882F556</key>
+		<key>92198CD0BEC7D73FE966BC079EBE5F0112465DDE</key>
 		<string>https://github.com/shossain035/LithouseAppAlpha.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Lithouse/Lithouse.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FD62EA0B-5870-4B5A-935D-8F467882F556</key>
+		<key>92198CD0BEC7D73FE966BC079EBE5F0112465DDE</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/shossain035/LithouseAppAlpha.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FD62EA0B-5870-4B5A-935D-8F467882F556</string>
+	<string>92198CD0BEC7D73FE966BC079EBE5F0112465DDE</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FD62EA0B-5870-4B5A-935D-8F467882F556</string>
+			<string>92198CD0BEC7D73FE966BC079EBE5F0112465DDE</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LithouseAppAlpha</string>
 		</dict>
