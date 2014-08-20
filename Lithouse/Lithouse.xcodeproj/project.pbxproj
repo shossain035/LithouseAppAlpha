@@ -21,6 +21,11 @@
 		712CCE7C19883948000F4919 /* LHOverlayPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE7B19883948000F4919 /* LHOverlayPresentationController.m */; };
 		712CCE7F1988594B000F4919 /* LHOverlayPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE7E1988594B000F4919 /* LHOverlayPickerViewController.m */; };
 		712CCE821988BDA5000F4919 /* LHOverlayDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712CCE811988BDA5000F4919 /* LHOverlayDatePickerViewController.m */; };
+		713E46E619A3BEEA0062C5E9 /* LHRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713E46E519A3BEEA0062C5E9 /* LHRegistrationViewController.m */; };
+		713E46E919A420C70062C5E9 /* LHTextInputOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713E46E819A420C70062C5E9 /* LHTextInputOverlayViewController.m */; };
+		713E46ED19A4544D0062C5E9 /* LHSignupInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 713E46EC19A4544D0062C5E9 /* LHSignupInputDelegate.m */; };
+		713E46F019A456480062C5E9 /* LHLoginInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 713E46EF19A456480062C5E9 /* LHLoginInputDelegate.m */; };
+		713E46F619A4663A0062C5E9 /* LHCloudApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 713E46F519A4663A0062C5E9 /* LHCloudApiClient.m */; };
 		71A697AB1929A13100C9AB86 /* DeviceConfigData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */; };
 		71A697BF192B24D900C9AB86 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B1192B24D900C9AB86 /* DDAbstractDatabaseLogger.m */; };
 		71A697C0192B24D900C9AB86 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697B3192B24D900C9AB86 /* DDASLLogger.m */; };
@@ -123,6 +128,16 @@
 		712CCE7E1988594B000F4919 /* LHOverlayPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHOverlayPickerViewController.m; sourceTree = "<group>"; };
 		712CCE801988BDA5000F4919 /* LHOverlayDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHOverlayDatePickerViewController.h; sourceTree = "<group>"; };
 		712CCE811988BDA5000F4919 /* LHOverlayDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHOverlayDatePickerViewController.m; sourceTree = "<group>"; };
+		713E46E419A3BEEA0062C5E9 /* LHRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHRegistrationViewController.h; sourceTree = "<group>"; };
+		713E46E519A3BEEA0062C5E9 /* LHRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHRegistrationViewController.m; sourceTree = "<group>"; };
+		713E46E719A420C70062C5E9 /* LHTextInputOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHTextInputOverlayViewController.h; sourceTree = "<group>"; };
+		713E46E819A420C70062C5E9 /* LHTextInputOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHTextInputOverlayViewController.m; sourceTree = "<group>"; };
+		713E46EB19A4544D0062C5E9 /* LHSignupInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSignupInputDelegate.h; sourceTree = "<group>"; };
+		713E46EC19A4544D0062C5E9 /* LHSignupInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHSignupInputDelegate.m; sourceTree = "<group>"; };
+		713E46EE19A456480062C5E9 /* LHLoginInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHLoginInputDelegate.h; sourceTree = "<group>"; };
+		713E46EF19A456480062C5E9 /* LHLoginInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHLoginInputDelegate.m; sourceTree = "<group>"; };
+		713E46F419A4663A0062C5E9 /* LHCloudApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHCloudApiClient.h; sourceTree = "<group>"; };
+		713E46F519A4663A0062C5E9 /* LHCloudApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHCloudApiClient.m; sourceTree = "<group>"; };
 		7152D723194C3A4D00C627CD /* DeviceProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceProtocols.h; sourceTree = "<group>"; };
 		71A697AA1929A13100C9AB86 /* DeviceConfigData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceConfigData.plist; sourceTree = "<group>"; };
 		71A697B0192B24D900C9AB86 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
@@ -335,6 +350,14 @@
 				712CCE78198837D0000F4919 /* LHOverlayTransitioner.m */,
 				712CCE7A19883948000F4919 /* LHOverlayPresentationController.h */,
 				712CCE7B19883948000F4919 /* LHOverlayPresentationController.m */,
+				713E46E719A420C70062C5E9 /* LHTextInputOverlayViewController.h */,
+				713E46E819A420C70062C5E9 /* LHTextInputOverlayViewController.m */,
+				713E46EB19A4544D0062C5E9 /* LHSignupInputDelegate.h */,
+				713E46EC19A4544D0062C5E9 /* LHSignupInputDelegate.m */,
+				713E46EE19A456480062C5E9 /* LHLoginInputDelegate.h */,
+				713E46EF19A456480062C5E9 /* LHLoginInputDelegate.m */,
+				713E46F419A4663A0062C5E9 /* LHCloudApiClient.h */,
+				713E46F519A4663A0062C5E9 /* LHCloudApiClient.m */,
 			);
 			name = OverlayViewControllers;
 			sourceTree = "<group>";
@@ -563,6 +586,8 @@
 				71FB4BD5195A9321005CF70E /* LHDetailCollectionViewController.m */,
 				71FB4BD7195D2749005CF70E /* LHScheduleViewController.h */,
 				71FB4BD8195D2749005CF70E /* LHScheduleViewController.m */,
+				713E46E419A3BEEA0062C5E9 /* LHRegistrationViewController.h */,
+				713E46E519A3BEEA0062C5E9 /* LHRegistrationViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -730,8 +755,11 @@
 				71C82E0E191F2A8F00395392 /* main.m in Sources */,
 				71A697C3192B24D900C9AB86 /* DDTTYLogger.m in Sources */,
 				71C82E4F1920775F00395392 /* LHDevice.m in Sources */,
+				713E46E619A3BEEA0062C5E9 /* LHRegistrationViewController.m in Sources */,
 				71A697BF192B24D900C9AB86 /* DDAbstractDatabaseLogger.m in Sources */,
+				713E46F619A4663A0062C5E9 /* LHCloudApiClient.m in Sources */,
 				71A697C1192B24D900C9AB86 /* DDFileLogger.m in Sources */,
+				713E46F019A456480062C5E9 /* LHLoginInputDelegate.m in Sources */,
 				71AD25501964A7BA0092F5CB /* LHThermostat.m in Sources */,
 				711021081954A1F8001128E0 /* LHHomeKitDevice.m in Sources */,
 				71E8EC33194C0C5E0004C6F7 /* NKOColorPickerView.m in Sources */,
@@ -748,6 +776,7 @@
 				71FB4BD9195D2749005CF70E /* LHScheduleViewController.m in Sources */,
 				712CCE821988BDA5000F4919 /* LHOverlayDatePickerViewController.m in Sources */,
 				71C82E4B1920621B00395392 /* LHDeviceCell.m in Sources */,
+				713E46ED19A4544D0062C5E9 /* LHSignupInputDelegate.m in Sources */,
 				71A697D8192B2B2600C9AB86 /* PHBridgePushLinkViewController.m in Sources */,
 				712CCE79198837D0000F4919 /* LHOverlayTransitioner.m in Sources */,
 				71C871A5195673D000C3F564 /* LHHomeKitController.m in Sources */,
@@ -764,6 +793,7 @@
 				712CCE7F1988594B000F4919 /* LHOverlayPickerViewController.m in Sources */,
 				71C82E3C191F358D00395392 /* MSDynamicsDrawerStyler.m in Sources */,
 				71A697C4192B24D900C9AB86 /* ContextFilterLogFormatter.m in Sources */,
+				713E46E919A420C70062C5E9 /* LHTextInputOverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

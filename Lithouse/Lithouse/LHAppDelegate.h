@@ -26,6 +26,7 @@
 @property (nonatomic, copy) WeMoStateManager * stateManager;
 
 
+- (void) launchMainApp;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

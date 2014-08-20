@@ -27,9 +27,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    return YES;
+}
+
+- (void) launchMainApp
+{
     [[UIApplication sharedApplication] setStatusBarHidden : NO];
+    //[self.window.rootViewController.navigationController popToRootViewControllerAnimated:NO];
+    [self.window.rootViewController dismissViewControllerAnimated:NO completion:NULL];
     
-    self.dynamicsDrawerViewController = (MSDynamicsDrawerViewController *) self.window.rootViewController;
+    self.dynamicsDrawerViewController
+        = (MSDynamicsDrawerViewController *) [self.window.rootViewController.storyboard
+                                              instantiateViewControllerWithIdentifier : @"DynamicDrawer"];
+    
+    [UIView transitionWithView:self.window
+                      duration:0.65
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.window.rootViewController = self.dynamicsDrawerViewController;
+                    }
+                    completion:nil];
+
     self.dynamicsDrawerViewController.paneDragRequiresScreenEdgePan = YES;
     //stopping unintented exposure
     [self.dynamicsDrawerViewController registerTouchForwardingClass:[UICollectionViewCell class]];
@@ -42,12 +60,12 @@
     LHMainMenuViewController * menuViewController = [self.window.rootViewController.storyboard
                                                      instantiateViewControllerWithIdentifier : @"MainMenu"];
     menuViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;
-
+    
     [self.dynamicsDrawerViewController setDrawerViewController : menuViewController
                                                   forDirection : MSDynamicsDrawerDirectionLeft];
     // Transition to the first view controller
     [menuViewController transitionToViewController : LHPaneViewControllerTypeDevicesAndTriggers];
-    
+
     //App wide styles
     self.window.tintColor = [UIColor colorWithRed : 0.23203192348306206f
                                             green : 0.68421157525510212f
@@ -61,7 +79,7 @@
     phHueSDK = [[PHHueSDK alloc] init];
     [phHueSDK startUpSDK];
     [phHueSDK enableLogging : NO];
-    return YES;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
