@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lithouse/LHAppDelegate.m"
-            timestampString = "430212988.177068"
+            timestampString = "430252554.004651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-launchMainApp"
             landmarkType = "5">
          </BreakpointContent>

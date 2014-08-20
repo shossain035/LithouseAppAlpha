@@ -11,6 +11,7 @@
 #import "MSDynamicsDrawerViewController.h"
 #import "MSDynamicsDrawerStyler.h"
 #import "WeMoNetworkManager.h"
+#import "License.h"
 
 @interface LHAppDelegate ()
 @property (readonly, strong, nonatomic) PHHueSDK * phHueSDK;
@@ -27,6 +28,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSFetchRequest * request = [[NSFetchRequest alloc]initWithEntityName : @"License"];
+    NSError * error = nil;
+    NSArray * results = [self.managedObjectContext executeFetchRequest : request error : &error];
+    
+    if ( error == nil ) {
+        for ( License * license  in results ) {
+            NSLog(@"registrationDate: %@", license.registrationDate);
+            //todo: check against expiration date
+            [self launchMainApp];
+            return YES;
+        }
+        
+    } else {
+        NSLog(@"error: %@", error);
+    }
     return YES;
 }
 
@@ -168,7 +184,11 @@
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                   configuration:nil
+                                                             URL:storeURL
+                                                         options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
+                                                           error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          

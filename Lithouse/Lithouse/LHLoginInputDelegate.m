@@ -9,6 +9,7 @@
 #import "LHLoginInputDelegate.h"
 #import "LHCloudApiClient.h"
 #import "LHAppDelegate.h"
+#import "License.h"
 
 @implementation LHLoginInputDelegate
 
@@ -47,8 +48,13 @@
                               }
             
                               NSLog(@"logged in");
-                              //save to db
+                              
                               LHAppDelegate * appDelegate = (LHAppDelegate *) [[UIApplication sharedApplication] delegate];
+                              License * license = [NSEntityDescription insertNewObjectForEntityForName : @"License"
+                                                                                inManagedObjectContext : appDelegate.managedObjectContext];
+                              license.registrationDate = [NSDate date];
+                              [appDelegate saveContext];
+                              
                               [appDelegate launchMainApp];
         
     }];
