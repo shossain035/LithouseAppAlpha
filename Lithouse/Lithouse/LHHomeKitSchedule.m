@@ -39,7 +39,7 @@
         
         NSCalendar* currentCalendar = [NSCalendar currentCalendar];
         NSDateComponents* dateComponents =
-            [currentCalendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
+            [currentCalendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute)
                                fromDate:[NSDate date]];
         
         _fireDate = [currentCalendar dateFromComponents:dateComponents];
@@ -80,9 +80,9 @@
     NSLog(@"past time: %@", self.fireDate);
     NSCalendar * calendar = [NSCalendar currentCalendar];
     NSDate * today = [NSDate date];
-    self.fireDate = [calendar dateBySettingHour:[calendar component:NSHourCalendarUnit fromDate:self.fireDate]
-                                         minute:[calendar component:NSMinuteCalendarUnit fromDate:self.fireDate]
-                                         second:[calendar component:NSSecondCalendarUnit fromDate:self.fireDate]
+    self.fireDate = [calendar dateBySettingHour:[calendar component:NSCalendarUnitHour fromDate:self.fireDate]
+                                         minute:[calendar component:NSCalendarUnitMinute fromDate:self.fireDate]
+                                         second:[calendar component:NSCalendarUnitSecond fromDate:self.fireDate]
                                          ofDate:today
                                         options:0];
     
