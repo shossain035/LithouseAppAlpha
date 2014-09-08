@@ -121,7 +121,7 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
         [self sendEmailWithContent : [NSString stringWithFormat : @"</br></br></br>Lithouse v%@",
                                       [[[NSBundle mainBundle] infoDictionary] objectForKey : @"CFBundleShortVersionString"]]
                        withSubject : @"Feedback from iOS app"
-                       toRecipents : [NSArray arrayWithObject : @"nahid@lithouse.co"]];
+                       toRecipents : [NSArray arrayWithObject : @"hello@litehouse.io"]];
         return;
     } else if ( LHPaneViewControllerTypeTweet == paneViewControllerType ) {
         [self twittTapped];
@@ -233,7 +233,7 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
     
     if ( [SLComposeViewController isAvailableForServiceType : SLServiceTypeTwitter] ) {
         SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType : SLServiceTypeTwitter];
-        [tweetSheet setInitialText : [NSString stringWithFormat : @"%@ by @lithouseIoT is the easiest way to connect #IoT",
+        [tweetSheet setInitialText : [NSString stringWithFormat : @"%@ by @litehouseio is the easiest way to connect #IoT",
                                       ITUNES_APP_URL_IOS7]];
         
         [self presentViewController : tweetSheet animated : YES completion : nil];
