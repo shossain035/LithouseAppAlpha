@@ -123,10 +123,10 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
     //no device found alert
     self.noDeviceAvailableAlert =
         [[LHAlertView alloc] initWithTitle : @"No Devices Found"
-                                   message : @"Please power up your WeMo or Hue and connect them to network."
+                                   message : @"Please checkout the list of devices we support."
                                   delegate : self
-                         cancelButtonTitle : @"Retry"
-                         otherButtonTitles : nil];
+                         cancelButtonTitle : @"Search Again"
+                         otherButtonTitles : @"Supported Devices", nil];
     
     self.alertArray = @[self.wifiDisconnectedAlert,
                         self.hueHubNotAuthenticatedAlert,
@@ -190,10 +190,16 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
         //todo: consolidate
         if ( self.deviceDictionary.count > 0  ) {
             self.addGroupBarButton.enabled = true;
-            [self.noDeviceAvailableAlert dismissWithClickedButtonIndex : self.noDeviceAvailableAlert.cancelButtonIndex
+            [self.noDeviceAvailableAlert dismissWithClickedButtonIndex : -1
                                                               animated : YES];
         } else {
             self.addGroupBarButton.enabled = false;
+            
+            if ( !self.pushLinkViewController
+                && ![self isAlertsVisible] ) {
+                [self.noDeviceAvailableAlert show];
+            }
+
         }
         
         
@@ -208,7 +214,16 @@ NSString * const LHSearchForDevicesNotification           = @"LHSearchForDevices
 
 - (void) refreshDeviceList : (BOOL) doInBackground
 {
-    if ( !doInBackground ) [self showSpinner];
+    if ( !doInBackground ) {
+        [self showSpinner];
+    
+        //FIX: cause search to stop
+        
+        [self performSelector : @selector(reloadDeviceList)
+                   withObject : nil
+                   afterDelay : 10];
+        
+    }
     
     if ( ![self isWiFiConnected] ) return;
     
@@ -487,7 +502,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void) searchForDevices : (NSNotification *) notification {
     NSLog(@"search for devices");
-    [self searchForBridgeLocal];
+    //[self searchForBridgeLocal];
     [self refreshDeviceList];
     //no need to start wemo search, as they will be called periodically. 
 }
@@ -802,9 +817,13 @@ referenceSizeForHeaderInSection : (NSInteger) section
         else {
             [self disableLocalHeartbeat];
         }
-    } if ( alertView == self.noDeviceAvailableAlert
-          && buttonIndex == 0 ) {
-        [self refreshDeviceList];
+    } else if ( alertView == self.noDeviceAvailableAlert ) {
+        if (buttonIndex == 0 ) {
+            [self refreshDeviceList];
+        } else {
+            
+        }
+        
     }
 }
 
