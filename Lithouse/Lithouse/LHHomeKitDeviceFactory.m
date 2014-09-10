@@ -24,9 +24,10 @@
         NSLog(@"service: %@", service.serviceType);
         if ( [service.serviceType isEqualToString:HMServiceTypeLightbulb] ) {
             return [[LHHomeKitBulb alloc] initWithHMAccessory:accessory inHome:home];
-        } else if ( [service.serviceType isEqualToString:HMServiceTypeLockManagement] ) {
-            return [[LHLock alloc] initWithHMAccessory:accessory inHome:home];
-        } else if ( [service.serviceType isEqualToString:HMServiceTypeSwitch] ) {
+        //} else if ( [service.serviceType isEqualToString:HMServiceTypeLockManagement] ) {
+         // return [[LHLock alloc] initWithHMAccessory:accessory inHome:home];
+            //todo: replace switch with outlet
+        } else if ( [service.serviceType isEqualToString:HMServiceTypeOutlet] ) {
             return [[LHSwitch alloc] initWithHMAccessory:accessory inHome:home];
         } else if ( [service.serviceType isEqualToString:HMServiceTypeGarageDoorOpener] ) {
             return [[LHGarageDoor alloc] initWithHMAccessory:accessory inHome:home];
