@@ -28,21 +28,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSFetchRequest * request = [[NSFetchRequest alloc]initWithEntityName : @"License"];
-    NSError * error = nil;
-    NSArray * results = [self.managedObjectContext executeFetchRequest : request error : &error];
-    
-    if ( error == nil ) {
-        for ( License * license  in results ) {
-            NSLog(@"registrationDate: %@", license.registrationDate);
-            //todo: check against expiration date
-            [self launchMainApp];
-            return YES;
-        }
-        
-    } else {
-        NSLog(@"error: %@", error);
-    }
+    [self launchMainApp];
+//    NSFetchRequest * request = [[NSFetchRequest alloc]initWithEntityName : @"License"];
+//    NSError * error = nil;
+//    NSArray * results = [self.managedObjectContext executeFetchRequest : request error : &error];
+//    
+//    if ( error == nil ) {
+//        for ( License * license  in results ) {
+//            NSLog(@"registrationDate: %@", license.registrationDate);
+//            //todo: check against expiration date
+//            [self launchMainApp];
+//            return YES;
+//        }
+//        
+//    } else {
+//        NSLog(@"error: %@", error);
+//    }
     return YES;
 }
 
@@ -50,7 +51,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden : NO];
     //[self.window.rootViewController.navigationController popToRootViewControllerAnimated:NO];
-    [self.window.rootViewController dismissViewControllerAnimated:NO completion:NULL];
+    //[self.window.rootViewController dismissViewControllerAnimated:NO completion:NULL];
     
     self.dynamicsDrawerViewController
         = (MSDynamicsDrawerViewController *) [self.window.rootViewController.storyboard

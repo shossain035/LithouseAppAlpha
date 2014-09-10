@@ -30,7 +30,10 @@ static NSString * const LHDeviceCellReuseIdentifier               = @"DevicesAnd
 static NSString * const LHPushGroupForCreateSegueIdentifier       = @"PushGroupForCreateSegue";
 static NSString * const LHPushGroupForEditSegueIdentifier         = @"PushGroupForEditSegue";
 static NSString * const LHPushDetailCollectionViewSegueIdentifier = @"PushDetailCollectionViewSegue";
+static NSString * const LHPushDevicesWebViewSegueIdentifier       = @"ShowSupportedDevicesWebView";
 NSString * const LHSearchForDevicesNotification                   = @"LHSearchForDevicesNotification";
+NSString * const LHSupportedDevicesNotification                   = @"LHSupportedDevicesNotification";
+
 
 @interface LHDevicesViewController () <UIAlertViewDelegate>
 
@@ -90,6 +93,11 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
                                                  name : LHSearchForDevicesNotification
                                                object : nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver : self
+                                             selector : @selector(showSupportedDevices:)
+                                                 name : LHSupportedDevicesNotification
+                                               object : nil];
+    
     [self createHelperViews];
     
     self.homeKitController = [[LHHomeKitController alloc] initWithDeviceViewController:self];
@@ -138,10 +146,10 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
     //no device found alert
     self.noDeviceAvailableAlert =
         [[LHAlertView alloc] initWithTitle : @"No Devices Found"
-                                   message : @"Please power up your WeMo or Hue and connect them to network."
+                                   message : @"Please checkout the list of devices we support."
                                   delegate : self
-                         cancelButtonTitle : @"Retry"
-                         otherButtonTitles : nil];
+                         cancelButtonTitle : @"Search Again"
+                         otherButtonTitles : @"Supported Devices", nil];
     
     self.alertArray = @[self.wifiDisconnectedAlert,
                         self.hueHubNotAuthenticatedAlert,
@@ -206,10 +214,17 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
         //todo: consolidate
         if ( self.deviceDictionary.count > 0  ) {
             self.addGroupBarButton.enabled = true;
-            [self.noDeviceAvailableAlert dismissWithClickedButtonIndex : self.noDeviceAvailableAlert.cancelButtonIndex
+            [self.noDeviceAvailableAlert dismissWithClickedButtonIndex : -1
                                                               animated : YES];
         } else {
             self.addGroupBarButton.enabled = false;
+            
+            if ( !self.pushLinkViewController
+                && ![self isAlertsVisible]
+                //so that we don't bother user while looking at something important
+                && self.navigationController.topViewController == self ) {
+                [self.noDeviceAvailableAlert show];
+            }
         }
         
         
@@ -224,7 +239,15 @@ NSString * const LHSearchForDevicesNotification                   = @"LHSearchFo
 
 - (void) refreshDeviceList : (BOOL) doInBackground
 {
-    if ( !doInBackground ) [self showSpinner];
+    if ( !doInBackground ) {
+        [self showSpinner];
+        
+        //FIX: cause search to stop
+        
+        [self performSelector : @selector(reloadDeviceList)
+                   withObject : nil
+                   afterDelay : 15];
+    }
     
     if ( ![self isWiFiConnected] ) return;
     
@@ -389,6 +412,7 @@ referenceSizeForHeaderInSection : (NSInteger) section
             cell.toggleCallbackBlock = ^{
                 [self.homeKitController pairDevice:homeKitDevice];
             };
+            
         }
     }
     
@@ -507,9 +531,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
 {
     NSLog(@"search for devices");
     //todo: cleanup state management
+    [self.homeKitController startSearchingForHomeKitDevices];
     [self searchForBridgeLocal];
     [self refreshDeviceList:doInBackground];
-    [self.homeKitController startSearchingForHomeKitDevices];
 }
 
 -(void) searchForDevices
@@ -520,6 +544,15 @@ referenceSizeForHeaderInSection : (NSInteger) section
 
 -(void) searchForDevices : (NSNotification *) notification {
     [self refreshDevices:NO];
+}
+
+-(void) showSupportedDevices:(NSNotification *) notification {
+    [self showSupportedDevices];
+}
+
+-(void) showSupportedDevices {
+    [self performSegueWithIdentifier : LHPushDevicesWebViewSegueIdentifier
+                              sender : self];
 }
 
 
@@ -855,9 +888,13 @@ referenceSizeForHeaderInSection : (NSInteger) section
         else {
             [self disableLocalHeartbeat];
         }
-    } if ( alertView == self.noDeviceAvailableAlert
-          && buttonIndex == 0 ) {
-        [self refreshDeviceList];
+    } else if ( alertView == self.noDeviceAvailableAlert ) {
+        if (buttonIndex == 0 ) {
+            [self refreshDeviceList];
+        } else if (buttonIndex == 1) {
+            [self showSupportedDevices];
+        }
+        
     }
 }
 

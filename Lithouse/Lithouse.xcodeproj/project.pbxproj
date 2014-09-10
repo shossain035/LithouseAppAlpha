@@ -41,6 +41,7 @@
 		71A697DD192B2B2600C9AB86 /* press_smartbridge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A697D5192B2B2600C9AB86 /* press_smartbridge@2x.png */; };
 		71A697ED192C788B00C9AB86 /* LHHueBulb.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697EC192C788B00C9AB86 /* LHHueBulb.m */; };
 		71A697F1192DAE9E00C9AB86 /* DeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */; };
+		71A9BD7319BE34E700B64D3A /* LHSupportedDevicesWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A9BD7219BE34E700B64D3A /* LHSupportedDevicesWebViewController.m */; };
 		71AD254D1964A20B0092F5CB /* EFCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD254C1964A20B0092F5CB /* EFCircularSlider.m */; };
 		71AD25501964A7BA0092F5CB /* LHThermostat.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD254F1964A7BA0092F5CB /* LHThermostat.m */; };
 		71AD2553196524260092F5CB /* LHThermostatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AD2552196524260092F5CB /* LHThermostatCell.m */; };
@@ -169,6 +170,8 @@
 		71A697EC192C788B00C9AB86 /* LHHueBulb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHHueBulb.m; sourceTree = "<group>"; };
 		71A697EF192DAE9E00C9AB86 /* DeviceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceGroup.h; sourceTree = "<group>"; };
 		71A697F0192DAE9E00C9AB86 /* DeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceGroup.m; sourceTree = "<group>"; };
+		71A9BD7119BE34E700B64D3A /* LHSupportedDevicesWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSupportedDevicesWebViewController.h; sourceTree = "<group>"; };
+		71A9BD7219BE34E700B64D3A /* LHSupportedDevicesWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHSupportedDevicesWebViewController.m; sourceTree = "<group>"; };
 		71AD254B1964A20B0092F5CB /* EFCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFCircularSlider.h; sourceTree = "<group>"; };
 		71AD254C1964A20B0092F5CB /* EFCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFCircularSlider.m; sourceTree = "<group>"; };
 		71AD254E1964A7BA0092F5CB /* LHThermostat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHThermostat.h; sourceTree = "<group>"; };
@@ -596,6 +599,8 @@
 				71FB4BD8195D2749005CF70E /* LHScheduleViewController.m */,
 				713E46E419A3BEEA0062C5E9 /* LHRegistrationViewController.h */,
 				713E46E519A3BEEA0062C5E9 /* LHRegistrationViewController.m */,
+				71A9BD7119BE34E700B64D3A /* LHSupportedDevicesWebViewController.h */,
+				71A9BD7219BE34E700B64D3A /* LHSupportedDevicesWebViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -756,6 +761,7 @@
 				71F51F5E196208A0002E6258 /* LHCollectionViewCell.m in Sources */,
 				71C82E12191F2A8F00395392 /* LHAppDelegate.m in Sources */,
 				71C871A81956A64300C3F564 /* LHHomeKitDeviceFactory.m in Sources */,
+				71A9BD7319BE34E700B64D3A /* LHSupportedDevicesWebViewController.m in Sources */,
 				71A697C0192B24D900C9AB86 /* DDASLLogger.m in Sources */,
 				71A697C5192B24D900C9AB86 /* DispatchQueueLogFormatter.m in Sources */,
 				7128FD971921F21C0031BEA8 /* LHGroupDeviceTableViewCell.m in Sources */,
@@ -1074,7 +1080,7 @@
 				7130126719A516EF00814ECB /* Lithouse License.xcdatamodel */,
 				71C82E14191F2A8F00395392 /* Lithouse.xcdatamodel */,
 			);
-			currentVersion = 7130126719A516EF00814ECB /* Lithouse License.xcdatamodel */;
+			currentVersion = 71C82E14191F2A8F00395392 /* Lithouse.xcdatamodel */;
 			path = Lithouse.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

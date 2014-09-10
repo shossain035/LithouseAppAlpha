@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M5T-oc-uzR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M5T-oc-uzR">
     <dependencies>
-        <deployment defaultVersion="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -17,10 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegistrationBackground" translatesAutoresizingMaskIntoConstraints="NO" id="dLh-5s-Wjx">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <button alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9QK-KK-oJE">
+                            <button alpha="0.79999999999999982" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9QK-KK-oJE">
                                 <rect key="frame" x="77" y="263" width="167" height="41"/>
                                 <color key="backgroundColor" red="0.23203192349999999" green="0.68421157529999999" blue="0.29434636800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -36,7 +32,7 @@
                                     <action selector="registerButtonTouched:" destination="M5T-oc-uzR" eventType="touchDown" id="LKD-6r-F9i"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uy-nQ-GZd">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uy-nQ-GZd">
                                 <rect key="frame" x="77" y="312" width="167" height="41"/>
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,16 +45,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="dLh-5s-Wjx" secondAttribute="width" id="6EB-26-f9n"/>
                             <constraint firstItem="0uy-nQ-GZd" firstAttribute="height" secondItem="9QK-KK-oJE" secondAttribute="height" id="BTg-UJ-cqp"/>
-                            <constraint firstAttribute="height" secondItem="dLh-5s-Wjx" secondAttribute="height" id="NSw-DI-CbM"/>
-                            <constraint firstItem="0uy-nQ-GZd" firstAttribute="centerX" secondItem="dLh-5s-Wjx" secondAttribute="centerX" constant="0.5" id="QCY-7E-XBo"/>
                             <constraint firstItem="0uy-nQ-GZd" firstAttribute="top" secondItem="9QK-KK-oJE" secondAttribute="bottom" constant="8" id="bUO-UQ-D06"/>
                             <constraint firstItem="0uy-nQ-GZd" firstAttribute="width" secondItem="9QK-KK-oJE" secondAttribute="width" id="d41-2R-hMU"/>
-                            <constraint firstItem="9QK-KK-oJE" firstAttribute="centerY" secondItem="dLh-5s-Wjx" secondAttribute="centerY" constant="-0.5" id="g6B-5N-ckO"/>
-                            <constraint firstItem="9QK-KK-oJE" firstAttribute="centerX" secondItem="dLh-5s-Wjx" secondAttribute="centerX" constant="0.5" id="m3c-Za-fBq"/>
-                            <constraint firstItem="dLh-5s-Wjx" firstAttribute="top" secondItem="jJk-vY-405" secondAttribute="bottom" constant="-20" id="qE1-ME-99Y"/>
-                            <constraint firstAttribute="centerX" secondItem="dLh-5s-Wjx" secondAttribute="centerX" id="wab-Tl-Zbn"/>
                         </constraints>
                     </view>
                     <connections>
@@ -329,6 +318,41 @@
             </objects>
             <point key="canvasLocation" x="1372" y="841"/>
         </scene>
+        <!--Devices-->
+        <scene sceneID="qVb-db-deW">
+            <objects>
+                <viewController id="39v-zs-OhD" customClass="LHSupportedDevicesWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5bk-Ie-n2L"/>
+                        <viewControllerLayoutGuide type="bottom" id="RNq-cX-5gi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lbA-u9-VgP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hjv-B3-ydb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Devices" id="fkK-kV-Qug">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="onb-Y5-oWd">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back:" destination="39v-zs-OhD" id="J5n-WQ-SUi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="Hjv-B3-ydb" id="BFg-Mt-KIh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8L9-AI-b9P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1372" y="193"/>
+        </scene>
         <!--Detail Collection View Controller-->
         <scene sceneID="PB4-Gr-gHA">
             <objects>
@@ -534,7 +558,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v29-Pb-d07" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1387" y="1501"/>
+            <point key="canvasLocation" x="1389" y="1517"/>
         </scene>
         <!--Schedule-->
         <scene sceneID="IHb-HG-wcf">
@@ -925,6 +949,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Devices" id="7Ge-Lo-apd">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="pMZ-FM-bNe"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" image="create_group" id="2rY-O1-JNq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -936,6 +961,7 @@
                         <outlet property="addGroupBarButton" destination="2rY-O1-JNq" id="8Td-N3-yuI"/>
                         <segue destination="clm-La-61T" kind="push" identifier="PushGroupForEditSegue" id="0EK-rc-e7C"/>
                         <segue destination="lye-ca-lk0" kind="push" identifier="PushDetailCollectionViewSegue" id="kjo-Vl-nMi"/>
+                        <segue destination="39v-zs-OhD" kind="push" identifier="ShowSupportedDevicesWebView" id="wqa-Ql-t9B"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNO-BC-goO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -967,7 +993,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="RegistrationBackground" width="320" height="568"/>
         <image name="back" width="26" height="26"/>
         <image name="create_group" width="29" height="29"/>
         <image name="create_schedule" width="26" height="26"/>
@@ -984,7 +1009,7 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0EK-rc-e7C"/>
+        <segue reference="arR-f9-dw0"/>
         <segue reference="Yoz-iC-WHI"/>
     </inferredMetricsTieBreakers>
 </document>

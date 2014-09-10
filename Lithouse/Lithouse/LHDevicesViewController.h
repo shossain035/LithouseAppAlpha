@@ -21,6 +21,7 @@
 @end
 
 extern NSString * const LHSearchForDevicesNotification;
+extern NSString * const LHSupportedDevicesNotification;
 
 @interface LHDevicesViewController : UICollectionViewController <WeMoDeviceDiscoveryDelegate,
                                                                  PHBridgePushLinkViewControllerDelegate,
