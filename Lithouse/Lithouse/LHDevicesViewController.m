@@ -171,7 +171,7 @@ NSString * const LHSupportedDevicesNotification                   = @"LHSupporte
 - (void) viewWillAppear : (BOOL) animated
 {
     [super viewWillAppear:animated];
-    [self refreshDeviceList];
+    [self refreshDeviceList:NO];
 }
 
 
@@ -181,7 +181,7 @@ NSString * const LHSupportedDevicesNotification                   = @"LHSupporte
     
         [self.spinnerView removeFromSuperview];
         
-        if ( ![self isAlertsVisible] ) {
+        if ( ![self isAlertsVisible] && self.deviceDictionary.count <= 0) {
             [self.navigationController.view addSubview : self.spinnerView];
         }
     });
