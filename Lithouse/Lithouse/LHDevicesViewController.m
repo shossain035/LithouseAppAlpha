@@ -246,7 +246,7 @@ NSString * const LHSupportedDevicesNotification                   = @"LHSupporte
         
         [self performSelector : @selector(reloadDeviceList)
                    withObject : nil
-                   afterDelay : 15];
+                   afterDelay : 10];
     }
     
     if ( ![self isWiFiConnected] ) return;
@@ -276,6 +276,9 @@ NSString * const LHSupportedDevicesNotification                   = @"LHSupporte
 
 - (BOOL) isWiFiConnected
 {
+    //todo: add wifi logic
+    return YES;
+    
     WeMoNetworkManager * networkManager = [WeMoNetworkManager sharedWeMoNetworkManager];
     NSString * routerSsid = [networkManager accessPoint];
     NSLog(@"ssid = %@",routerSsid);
