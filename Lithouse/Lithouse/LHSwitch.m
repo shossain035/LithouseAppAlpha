@@ -14,7 +14,8 @@
 - (instancetype) initWithHMAccessory:(HMAccessory *) accessory inHome:(HMHome *) home
 {
     if ( self = [super initWithHMAccessory:accessory
-                    withPrimaryServiceType:HMServiceTypeSwitch
+                 //todo: replace switch with outlet
+                    withPrimaryServiceType:HMServiceTypeOutlet
                     withCharacteristicType:HMCharacteristicTypePowerState
 withActionIdForSettingPrimaryCharacteristic:LHTurnOnActionId
 withActionIdForUnsettingPrimaryCharacteristic:LHTurnOffActionId
