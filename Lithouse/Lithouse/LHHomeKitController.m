@@ -12,7 +12,7 @@
 #import "LHHomeKitDevice.h"
 #import <HomeKit/HomeKit.h>
 
-static NSString * LHHomeName = @"Lithouse Home";
+static NSString * LHHomeName = @"Litehouse";
 static const int LHHomeKitDeviceSearchDelay = 15;
 //static const int LHHomeKitExploreHomeDelay  = 1;
 
