@@ -10,6 +10,7 @@
 #import "LHDevicesViewController.h"
 #import "LHGroupCRUDViewController.h"
 #import "LHDetailCollectionViewController.h"
+#import "LHSupportedDevicesWebViewController.h"
 #import "LHDevice.h"
 #import "LHWeMoSwitch.h"
 #import "LHHueBulb.h"
@@ -56,6 +57,8 @@ NSString * const LHSupportedDevicesNotification                   = @"LHSupporte
 
 @property (nonatomic, strong) LHHomeKitController            * homeKitController;
 @property (nonatomic, strong) UIRefreshControl               * refreshControl;
+@property (nonatomic, strong) LHSupportedDevicesWebViewController * supporedDeviceViewController;
+
 @end
 
 @implementation LHDevicesViewController
@@ -119,6 +122,9 @@ NSString * const LHSupportedDevicesNotification                   = @"LHSupporte
     */
     
     //todo: handle UIApplicationDidBecomeActiveNotification
+    
+    self.supporedDeviceViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SupportedDevices"];
+    [self.supporedDeviceViewController.view layoutSubviews];
 }
 
 - (void)dealloc
@@ -554,8 +560,9 @@ referenceSizeForHeaderInSection : (NSInteger) section
 }
 
 -(void) showSupportedDevices {
-    [self performSegueWithIdentifier : LHPushDevicesWebViewSegueIdentifier
-                              sender : self];
+    
+    [self.navigationController pushViewController:self.supporedDeviceViewController
+                                         animated:NO];
 }
 
 

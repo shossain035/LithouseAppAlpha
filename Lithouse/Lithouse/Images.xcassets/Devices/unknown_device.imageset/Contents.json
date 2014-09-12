@@ -11,6 +11,10 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "unknown_device_space.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

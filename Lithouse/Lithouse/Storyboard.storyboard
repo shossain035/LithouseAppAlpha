@@ -321,7 +321,7 @@
         <!--Devices-->
         <scene sceneID="qVb-db-deW">
             <objects>
-                <viewController id="39v-zs-OhD" customClass="LHSupportedDevicesWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SupportedDevices" id="39v-zs-OhD" customClass="LHSupportedDevicesWebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5bk-Ie-n2L"/>
                         <viewControllerLayoutGuide type="bottom" id="RNq-cX-5gi"/>

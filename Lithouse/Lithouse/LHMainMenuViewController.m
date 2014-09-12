@@ -132,8 +132,16 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
         [[NSNotificationCenter defaultCenter] postNotificationName : LHSearchForDevicesNotification
                                                             object : nil];
     } else if ( LHPaneViewControllerTypeSupportedDevices == paneViewControllerType ) {
-        [[NSNotificationCenter defaultCenter] postNotificationName : LHSupportedDevicesNotification
-                                                            object : nil];
+        
+        [self.dynamicsDrawerViewController setPaneState : MSDynamicsDrawerPaneStateClosed
+                                               animated : YES
+                                  allowUserInterruption : YES
+                                             completion : nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName : LHSupportedDevicesNotification object : nil];
+        
+        return;
+        
     }
     
     // Close pane if already displaying the pane view controller
