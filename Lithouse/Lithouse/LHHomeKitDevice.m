@@ -19,6 +19,11 @@ static NSString * const LHHomeKitResourceTypeActionSet = @"actionset";
 @property (nonatomic, strong, readonly) HMHome             * home;
 @property (nonatomic, strong, readonly) id                   targetOnValue;
 @property (nonatomic, strong, readonly) id                   targetOffValue;
+
+@property (nonatomic, strong, readonly) NSString           * primaryServiceId;
+@property (nonatomic, strong, readonly) NSString           * primaryTargetCharacteristicId;
+@property (nonatomic, strong, readonly) NSString           * primaryCurrentCharacteristicId;
+
 @end
 
 @implementation LHHomeKitDevice
@@ -42,14 +47,12 @@ withPrimPrimaryCharacteristicValueOff:(id) offValue
     _home = home;
     
     if (serviceType != nil && targetCharacteristicType != nil ) {
-        _primaryService = [self serviceForType:serviceType];
-        _primaryTargetCharacteristic = [self characteristicWithType:targetCharacteristicType
-                                                   forService:self.primaryService];
+        _primaryServiceId = serviceType;
+        _primaryTargetCharacteristicId = targetCharacteristicType;
         
-        _primaryCurrentCharacteristic = _primaryTargetCharacteristic;
+        _primaryCurrentCharacteristicId = _primaryTargetCharacteristicId;
         if ( currentCharacteristicType != nil ) {
-            _primaryCurrentCharacteristic = [self characteristicWithType:currentCharacteristicType
-                                                              forService:self.primaryService];
+            _primaryCurrentCharacteristicId = currentCharacteristicType;
         }
         
         _targetOnValue = onValue != nil ? onValue : @(1);
@@ -109,6 +112,24 @@ withActionIdForSettingPrimaryCharacteristic:nil
 withActionIdForUnsettingPrimaryCharacteristic:nil
                               inHome:home];
 }
+
+- (HMService *) primaryService
+{
+    return [self serviceForType:self.primaryServiceId];
+}
+
+- (HMCharacteristic *) primaryTargetCharacteristic
+{
+    return [self characteristicWithType:self.primaryTargetCharacteristicId
+                             forService:self.primaryService];
+}
+
+- (HMCharacteristic *) primaryCurrentCharacteristic
+{
+    return [self characteristicWithType:self.primaryCurrentCharacteristicId
+                             forService:self.primaryService];
+}
+
 
 - (NSString *) identifier
 {
