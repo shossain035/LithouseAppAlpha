@@ -120,7 +120,7 @@ NSString * const LSMenuCellReuseIdentifier = @"Drawer Cell";
 {
     //hnadle contact us
     if ( LHPaneViewControllerTypeContactUs == paneViewControllerType ) {
-        [self sendEmailWithContent : [NSString stringWithFormat : @"</br></br></br>Lithouse v%@",
+        [self sendEmailWithContent : [NSString stringWithFormat : @"</br></br></br>Litehouse v%@",
                                       [[[NSBundle mainBundle] infoDictionary] objectForKey : @"CFBundleShortVersionString"]]
                        withSubject : @"Feedback from iOS app"
                        toRecipents : [NSArray arrayWithObject : @"hello@litehouse.io"]];
