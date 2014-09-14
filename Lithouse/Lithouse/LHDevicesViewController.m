@@ -151,8 +151,8 @@ NSString * const LHSupportedDevicesNotification                   = @"LHSupporte
     
     //no device found alert
     self.noDeviceAvailableAlert =
-        [[LHAlertView alloc] initWithTitle : @"No Devices Found"
-                                   message : @"Please checkout the list of devices we support."
+        [[LHAlertView alloc] initWithTitle : @"No Device Found"
+                                   message : @"Please checkout the supported list."
                                   delegate : self
                          cancelButtonTitle : @"Search Again"
                          otherButtonTitles : @"Supported Devices", nil];
